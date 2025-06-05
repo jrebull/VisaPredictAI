@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>VisaPredict AI - Estimación de Aprobación de Visas</title>
+    <title>VisaPredict AI - Generador de Peticiones de Predicción</title>
     <script src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
     <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
     <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
@@ -25,45 +25,115 @@
 
     <script type="text/babel">
         const { useState } = React;
-        const { Brain, CheckCircle, XCircle, AlertCircle } = lucide;
+        const { Brain, Download, FileText, CheckCircle } = lucide;
 
         function VisaPredictAI() {
             const [formData, setFormData] = useState({
-                case_id: '',
                 country: '',
                 education_of_employee: '',
-                has_job_experience: 'Y',
-                requires_job_training: 'N',
-                company_no_of_employees: '',
-                yr_of_estab: '',
-                region_of_employment: '',
-                prevailing_wage: '',
-                unit_of_wage: 'Year',
-                full_time_position: 'Y'
+                has_job_experience: '',
+                state: '',
+                full_time_position: ''
             });
 
-            const [prediction, setPrediction] = useState(null);
-            const [cases, setCases] = useState([]);
+            const [fileGenerated, setFileGenerated] = useState(false);
+            const [generatedFiles, setGeneratedFiles] = useState([]);
 
+            // Mapeo de países a continentes
             const countryToContinent = {
-                'United States': 'North America',
-                'Canada': 'North America',
-                'Mexico': 'North America',
-                'Brazil': 'South America',
-                'Argentina': 'South America',
-                'United Kingdom': 'Europe',
-                'Germany': 'Europe',
-                'France': 'Europe',
-                'Spain': 'Europe',
-                'Italy': 'Europe',
-                'China': 'Asia',
-                'India': 'Asia',
-                'Japan': 'Asia',
-                'South Korea': 'Asia',
-                'Australia': 'Oceania',
-                'South Africa': 'Africa',
-                'Egypt': 'Africa',
-                'Nigeria': 'Africa'
+                // África
+                'Algeria': 'Africa', 'Angola': 'Africa', 'Benin': 'Africa', 'Botswana': 'Africa',
+                'Burkina Faso': 'Africa', 'Burundi': 'Africa', 'Cameroon': 'Africa', 'Cape Verde': 'Africa',
+                'Central African Republic': 'Africa', 'Chad': 'Africa', 'Comoros': 'Africa', 'Congo': 'Africa',
+                'DR Congo': 'Africa', 'Djibouti': 'Africa', 'Egypt': 'Africa', 'Equatorial Guinea': 'Africa',
+                'Eritrea': 'Africa', 'Ethiopia': 'Africa', 'Gabon': 'Africa', 'Gambia': 'Africa',
+                'Ghana': 'Africa', 'Guinea': 'Africa', 'Guinea-Bissau': 'Africa', 'Ivory Coast': 'Africa',
+                'Kenya': 'Africa', 'Lesotho': 'Africa', 'Liberia': 'Africa', 'Libya': 'Africa',
+                'Madagascar': 'Africa', 'Malawi': 'Africa', 'Mali': 'Africa', 'Mauritania': 'Africa',
+                'Mauritius': 'Africa', 'Morocco': 'Africa', 'Mozambique': 'Africa', 'Namibia': 'Africa',
+                'Niger': 'Africa', 'Nigeria': 'Africa', 'Rwanda': 'Africa', 'Sao Tome': 'Africa',
+                'Senegal': 'Africa', 'Seychelles': 'Africa', 'Sierra Leone': 'Africa', 'Somalia': 'Africa',
+                'South Africa': 'Africa', 'South Sudan': 'Africa', 'Sudan': 'Africa', 'Swaziland': 'Africa',
+                'Tanzania': 'Africa', 'Togo': 'Africa', 'Tunisia': 'Africa', 'Uganda': 'Africa',
+                'Zambia': 'Africa', 'Zimbabwe': 'Africa',
+                
+                // Asia
+                'Afghanistan': 'Asia', 'Armenia': 'Asia', 'Azerbaijan': 'Asia', 'Bahrain': 'Asia',
+                'Bangladesh': 'Asia', 'Bhutan': 'Asia', 'Brunei': 'Asia', 'Cambodia': 'Asia',
+                'China': 'Asia', 'Cyprus': 'Asia', 'Georgia': 'Asia', 'India': 'Asia',
+                'Indonesia': 'Asia', 'Iran': 'Asia', 'Iraq': 'Asia', 'Israel': 'Asia',
+                'Japan': 'Asia', 'Jordan': 'Asia', 'Kazakhstan': 'Asia', 'Kuwait': 'Asia',
+                'Kyrgyzstan': 'Asia', 'Laos': 'Asia', 'Lebanon': 'Asia', 'Malaysia': 'Asia',
+                'Maldives': 'Asia', 'Mongolia': 'Asia', 'Myanmar': 'Asia', 'Nepal': 'Asia',
+                'North Korea': 'Asia', 'Oman': 'Asia', 'Pakistan': 'Asia', 'Palestine': 'Asia',
+                'Philippines': 'Asia', 'Qatar': 'Asia', 'Russia': 'Asia', 'Saudi Arabia': 'Asia',
+                'Singapore': 'Asia', 'South Korea': 'Asia', 'Sri Lanka': 'Asia', 'Syria': 'Asia',
+                'Taiwan': 'Asia', 'Tajikistan': 'Asia', 'Thailand': 'Asia', 'Timor-Leste': 'Asia',
+                'Turkey': 'Asia', 'Turkmenistan': 'Asia', 'UAE': 'Asia', 'Uzbekistan': 'Asia',
+                'Vietnam': 'Asia', 'Yemen': 'Asia',
+                
+                // Europa
+                'Albania': 'Europe', 'Andorra': 'Europe', 'Austria': 'Europe', 'Belarus': 'Europe',
+                'Belgium': 'Europe', 'Bosnia': 'Europe', 'Bulgaria': 'Europe', 'Croatia': 'Europe',
+                'Czech Republic': 'Europe', 'Denmark': 'Europe', 'Estonia': 'Europe', 'Finland': 'Europe',
+                'France': 'Europe', 'Germany': 'Europe', 'Greece': 'Europe', 'Hungary': 'Europe',
+                'Iceland': 'Europe', 'Ireland': 'Europe', 'Italy': 'Europe', 'Kosovo': 'Europe',
+                'Latvia': 'Europe', 'Liechtenstein': 'Europe', 'Lithuania': 'Europe', 'Luxembourg': 'Europe',
+                'Macedonia': 'Europe', 'Malta': 'Europe', 'Moldova': 'Europe', 'Monaco': 'Europe',
+                'Montenegro': 'Europe', 'Netherlands': 'Europe', 'Norway': 'Europe', 'Poland': 'Europe',
+                'Portugal': 'Europe', 'Romania': 'Europe', 'San Marino': 'Europe', 'Serbia': 'Europe',
+                'Slovakia': 'Europe', 'Slovenia': 'Europe', 'Spain': 'Europe', 'Sweden': 'Europe',
+                'Switzerland': 'Europe', 'Ukraine': 'Europe', 'United Kingdom': 'Europe', 'Vatican': 'Europe',
+                
+                // América del Norte
+                'Antigua and Barbuda': 'North America', 'Bahamas': 'North America', 'Barbados': 'North America',
+                'Belize': 'North America', 'Canada': 'North America', 'Costa Rica': 'North America',
+                'Cuba': 'North America', 'Dominica': 'North America', 'Dominican Republic': 'North America',
+                'El Salvador': 'North America', 'Grenada': 'North America', 'Guatemala': 'North America',
+                'Haiti': 'North America', 'Honduras': 'North America', 'Jamaica': 'North America',
+                'Mexico': 'North America', 'Nicaragua': 'North America', 'Panama': 'North America',
+                'Saint Kitts': 'North America', 'Saint Lucia': 'North America', 'Saint Vincent': 'North America',
+                'Trinidad and Tobago': 'North America', 'United States': 'North America',
+                
+                // América del Sur
+                'Argentina': 'South America', 'Bolivia': 'South America', 'Brazil': 'South America',
+                'Chile': 'South America', 'Colombia': 'South America', 'Ecuador': 'South America',
+                'Guyana': 'South America', 'Paraguay': 'South America', 'Peru': 'South America',
+                'Suriname': 'South America', 'Uruguay': 'South America', 'Venezuela': 'South America',
+                
+                // Oceanía
+                'Australia': 'Oceania', 'Fiji': 'Oceania', 'Kiribati': 'Oceania', 'Marshall Islands': 'Oceania',
+                'Micronesia': 'Oceania', 'Nauru': 'Oceania', 'New Zealand': 'Oceania', 'Palau': 'Oceania',
+                'Papua New Guinea': 'Oceania', 'Samoa': 'Oceania', 'Solomon Islands': 'Oceania',
+                'Tonga': 'Oceania', 'Tuvalu': 'Oceania', 'Vanuatu': 'Oceania'
+            };
+
+            // Mapeo de estados de USA a regiones
+            const stateToRegion = {
+                // West
+                'Alaska': 'West', 'Arizona': 'West', 'California': 'West', 'Colorado': 'West',
+                'Idaho': 'West', 'Montana': 'West', 'Nevada': 'West', 'New Mexico': 'West',
+                'Oregon': 'West', 'Utah': 'West', 'Washington': 'West', 'Wyoming': 'West',
+                
+                // Northeast
+                'Connecticut': 'Northeast', 'Maine': 'Northeast', 'Massachusetts': 'Northeast',
+                'New Hampshire': 'Northeast', 'New Jersey': 'Northeast', 'New York': 'Northeast',
+                'Pennsylvania': 'Northeast', 'Rhode Island': 'Northeast', 'Vermont': 'Northeast',
+                
+                // South
+                'Alabama': 'South', 'Arkansas': 'South', 'Delaware': 'South', 'Florida': 'South',
+                'Georgia': 'South', 'Kentucky': 'South', 'Louisiana': 'South', 'Maryland': 'South',
+                'Mississippi': 'South', 'North Carolina': 'South', 'Oklahoma': 'South',
+                'South Carolina': 'South', 'Tennessee': 'South', 'Texas': 'South', 'Virginia': 'South',
+                'West Virginia': 'South', 'Washington D.C.': 'South',
+                
+                // Midwest
+                'Illinois': 'Midwest', 'Indiana': 'Midwest', 'Iowa': 'Midwest', 'Kansas': 'Midwest',
+                'Michigan': 'Midwest', 'Minnesota': 'Midwest', 'Missouri': 'Midwest', 'Nebraska': 'Midwest',
+                'North Dakota': 'Midwest', 'Ohio': 'Midwest', 'South Dakota': 'Midwest', 'Wisconsin': 'Midwest',
+                
+                // Island
+                'Hawaii': 'Island', 'Puerto Rico': 'Island', 'US Virgin Islands': 'Island'
             };
 
             const handleInputChange = (e) => {
@@ -74,110 +144,66 @@
                 }));
             };
 
-            const simulateAIPrediction = () => {
-                let score = 50;
-                
-                if (formData.education_of_employee === 'Masters' || formData.education_of_employee === 'Doctorate') {
-                    score += 20;
-                } else if (formData.education_of_employee === 'Bachelors') {
-                    score += 10;
-                }
-                
-                if (formData.has_job_experience === 'Y') {
-                    score += 15;
-                }
-                
-                const employees = parseInt(formData.company_no_of_employees);
-                if (employees > 1000) {
-                    score += 10;
-                } else if (employees > 100) {
-                    score += 5;
-                }
-                
-                const yearsEstab = parseInt(formData.yr_of_estab);
-                if (yearsEstab > 10) {
-                    score += 10;
-                } else if (yearsEstab > 5) {
-                    score += 5;
-                }
-                
-                const wage = parseInt(formData.prevailing_wage);
-                if (formData.unit_of_wage === 'Year') {
-                    if (wage > 100000) {
-                        score += 15;
-                    } else if (wage > 70000) {
-                        score += 10;
-                    }
-                }
-                
-                if (formData.full_time_position === 'Y') {
-                    score += 5;
-                }
-                
-                let status, confidence;
-                if (score >= 80) {
-                    status = 'Certified';
-                    confidence = Math.min(95, score);
-                } else if (score >= 60) {
-                    status = 'Certified-Expired';
-                    confidence = score;
-                } else if (score >= 40) {
-                    status = 'Withdrawn';
-                    confidence = score;
-                } else {
-                    status = 'Denied';
-                    confidence = 100 - score;
-                }
-                
-                return { status, confidence, score };
-            };
-
             const validateForm = () => {
-                return formData.case_id && 
-                       formData.country && 
+                return formData.country && 
                        formData.education_of_employee && 
-                       formData.company_no_of_employees && 
-                       formData.yr_of_estab && 
-                       formData.region_of_employment && 
-                       formData.prevailing_wage;
+                       formData.has_job_experience && 
+                       formData.state && 
+                       formData.full_time_position;
             };
 
-            const handleSubmit = () => {
+            const generateFile = () => {
                 if (!validateForm()) {
                     alert('Por favor complete todos los campos requeridos');
                     return;
                 }
+
+                // Obtener timestamp para el nombre del archivo
+                const timestamp = new Date().getTime();
+                const fileName = `PeticionDePrediccion_${timestamp}.txt`;
                 
-                const continent = countryToContinent[formData.country] || 'Other';
-                const result = simulateAIPrediction();
+                // Convertir país a continente y estado a región
+                const continent = countryToContinent[formData.country] || 'Unknown';
+                const region = stateToRegion[formData.state] || 'Unknown';
                 
-                const newCase = {
-                    ...formData,
-                    continent,
-                    case_status: result.status,
-                    confidence: result.confidence,
-                    timestamp: new Date().toISOString()
-                };
+                // Crear contenido del archivo
+                const fileContent = `continent: ${continent}
+education_of_employee: ${formData.education_of_employee}
+has_job_experience: ${formData.has_job_experience}
+region_of_employment: ${region}
+full_time_position: ${formData.full_time_position}`;
+
+                // Crear y descargar el archivo
+                const blob = new Blob([fileContent], { type: 'text/plain' });
+                const url = URL.createObjectURL(blob);
+                const link = document.createElement('a');
+                link.href = url;
+                link.download = fileName;
+                document.body.appendChild(link);
+                link.click();
+                document.body.removeChild(link);
+                URL.revokeObjectURL(url);
+
+                // Agregar a la lista de archivos generados
+                setGeneratedFiles(prev => [...prev, {
+                    fileName,
+                    timestamp: new Date().toLocaleString(),
+                    content: fileContent
+                }]);
                 
-                setCases(prev => [...prev, newCase]);
-                setPrediction(result);
+                setFileGenerated(true);
+                setTimeout(() => setFileGenerated(false), 3000);
             };
 
             const resetForm = () => {
                 setFormData({
-                    case_id: '',
                     country: '',
                     education_of_employee: '',
-                    has_job_experience: 'Y',
-                    requires_job_training: 'N',
-                    company_no_of_employees: '',
-                    yr_of_estab: '',
-                    region_of_employment: '',
-                    prevailing_wage: '',
-                    unit_of_wage: 'Year',
-                    full_time_position: 'Y'
+                    has_job_experience: '',
+                    state: '',
+                    full_time_position: ''
                 });
-                setPrediction(null);
+                setFileGenerated(false);
             };
 
             React.useEffect(() => {
@@ -199,7 +225,7 @@
                                         <h1 className="text-2xl font-bold text-blue-900">
                                             VisaPredict <span className="text-red-600">AI</span>
                                         </h1>
-                                        <p className="text-sm text-gray-700">Trumppppp Estimación Inteligente de Aprobaciones de Visas de Trabajo en EE. UU.</p>
+                                        <p className="text-sm text-gray-700">Estimación Inteligente de Aprobaciones de Visas de Trabajo en EE. UU.</p>
                                     </div>
                                 </div>
                             </div>
@@ -208,307 +234,152 @@
 
                     {/* Main Content */}
                     <main className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-                        {!prediction ? (
-                            <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-8">
-                                <h2 className="text-xl font-semibold text-blue-900 mb-6">Ingrese los Datos del Caso</h2>
-                                
-                                <div className="space-y-6">
-                                    {/* Case ID */}
-                                    <div>
-                                        <label className="block text-sm font-medium text-gray-700 mb-2">
-                                            ID del Caso *
-                                        </label>
-                                        <input
-                                            type="text"
-                                            name="case_id"
-                                            value={formData.case_id}
-                                            onChange={handleInputChange}
-                                            className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-900 focus:border-transparent"
-                                            placeholder="Ej: CASE-2024-001"
-                                        />
-                                    </div>
-
-                                    {/* Country */}
-                                    <div>
-                                        <label className="block text-sm font-medium text-gray-700 mb-2">
-                                            País del Empleado *
-                                        </label>
-                                        <select
-                                            name="country"
-                                            value={formData.country}
-                                            onChange={handleInputChange}
-                                            className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-900 focus:border-transparent"
-                                        >
-                                            <option value="">Seleccione un país</option>
-                                            <option value="India">India</option>
-                                            <option value="China">China</option>
-                                            <option value="Mexico">México</option>
-                                            <option value="Canada">Canadá</option>
-                                            <option value="United Kingdom">Reino Unido</option>
-                                            <option value="Germany">Alemania</option>
-                                            <option value="Brazil">Brasil</option>
-                                            <option value="Japan">Japón</option>
-                                            <option value="South Korea">Corea del Sur</option>
-                                            <option value="Australia">Australia</option>
-                                        </select>
-                                    </div>
-
-                                    {/* Education */}
-                                    <div>
-                                        <label className="block text-sm font-medium text-gray-700 mb-2">
-                                            Nivel de Educación *
-                                        </label>
-                                        <select
-                                            name="education_of_employee"
-                                            value={formData.education_of_employee}
-                                            onChange={handleInputChange}
-                                            className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-900 focus:border-transparent"
-                                        >
-                                            <option value="">Seleccione nivel de educación</option>
-                                            <option value="High School">Secundaria</option>
-                                            <option value="Bachelors">Licenciatura</option>
-                                            <option value="Masters">Maestría</option>
-                                            <option value="Doctorate">Doctorado</option>
-                                        </select>
-                                    </div>
-
-                                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                                        {/* Has Job Experience */}
-                                        <div>
-                                            <label className="block text-sm font-medium text-gray-700 mb-2">
-                                                ¿Tiene Experiencia Laboral?
-                                            </label>
-                                            <select
-                                                name="has_job_experience"
-                                                value={formData.has_job_experience}
-                                                onChange={handleInputChange}
-                                                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-900 focus:border-transparent"
-                                            >
-                                                <option value="Y">Sí</option>
-                                                <option value="N">No</option>
-                                            </select>
-                                        </div>
-
-                                        {/* Requires Job Training */}
-                                        <div>
-                                            <label className="block text-sm font-medium text-gray-700 mb-2">
-                                                ¿Requiere Entrenamiento?
-                                            </label>
-                                            <select
-                                                name="requires_job_training"
-                                                value={formData.requires_job_training}
-                                                onChange={handleInputChange}
-                                                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-900 focus:border-transparent"
-                                            >
-                                                <option value="Y">Sí</option>
-                                                <option value="N">No</option>
-                                            </select>
-                                        </div>
-                                    </div>
-
-                                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                                        {/* Company Employees */}
-                                        <div>
-                                            <label className="block text-sm font-medium text-gray-700 mb-2">
-                                                Número de Empleados *
-                                            </label>
-                                            <input
-                                                type="number"
-                                                name="company_no_of_employees"
-                                                value={formData.company_no_of_employees}
-                                                onChange={handleInputChange}
-                                                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-900 focus:border-transparent"
-                                                placeholder="Ej: 500"
-                                            />
-                                        </div>
-
-                                        {/* Year of Establishment */}
-                                        <div>
-                                            <label className="block text-sm font-medium text-gray-700 mb-2">
-                                                Año de Establecimiento *
-                                            </label>
-                                            <input
-                                                type="number"
-                                                name="yr_of_estab"
-                                                value={formData.yr_of_estab}
-                                                onChange={handleInputChange}
-                                                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-900 focus:border-transparent"
-                                                placeholder="Ej: 2010"
-                                            />
-                                        </div>
-                                    </div>
-
-                                    {/* Region of Employment */}
-                                    <div>
-                                        <label className="block text-sm font-medium text-gray-700 mb-2">
-                                            Región de Empleo *
-                                        </label>
-                                        <select
-                                            name="region_of_employment"
-                                            value={formData.region_of_employment}
-                                            onChange={handleInputChange}
-                                            className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-900 focus:border-transparent"
-                                        >
-                                            <option value="">Seleccione una región</option>
-                                            <option value="Northeast">Noreste</option>
-                                            <option value="Southeast">Sureste</option>
-                                            <option value="Midwest">Medio Oeste</option>
-                                            <option value="Southwest">Suroeste</option>
-                                            <option value="West">Oeste</option>
-                                        </select>
-                                    </div>
-
-                                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                                        {/* Prevailing Wage */}
-                                        <div>
-                                            <label className="block text-sm font-medium text-gray-700 mb-2">
-                                                Salario Prevaleciente *
-                                            </label>
-                                            <input
-                                                type="number"
-                                                name="prevailing_wage"
-                                                value={formData.prevailing_wage}
-                                                onChange={handleInputChange}
-                                                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-900 focus:border-transparent"
-                                                placeholder="Ej: 85000"
-                                            />
-                                        </div>
-
-                                        {/* Unit of Wage */}
-                                        <div>
-                                            <label className="block text-sm font-medium text-gray-700 mb-2">
-                                                Unidad de Salario
-                                            </label>
-                                            <select
-                                                name="unit_of_wage"
-                                                value={formData.unit_of_wage}
-                                                onChange={handleInputChange}
-                                                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-900 focus:border-transparent"
-                                            >
-                                                <option value="Year">Anual</option>
-                                                <option value="Hour">Por Hora</option>
-                                            </select>
-                                        </div>
-                                    </div>
-
-                                    {/* Full Time Position */}
-                                    <div>
-                                        <label className="block text-sm font-medium text-gray-700 mb-2">
-                                            ¿Posición de Tiempo Completo?
-                                        </label>
-                                        <select
-                                            name="full_time_position"
-                                            value={formData.full_time_position}
-                                            onChange={handleInputChange}
-                                            className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-900 focus:border-transparent"
-                                        >
-                                            <option value="Y">Sí</option>
-                                            <option value="N">No</option>
-                                        </select>
-                                    </div>
-
-                                    {/* Submit Button */}
-                                    <div className="pt-6">
-                                        <button
-                                            onClick={handleSubmit}
-                                            className="w-full bg-blue-900 text-white py-3 px-6 rounded-lg font-medium hover:bg-blue-800 transition-colors duration-200 flex items-center justify-center space-x-2"
-                                        >
-                                            <i data-lucide="brain" className="h-5 w-5"></i>
-                                            <span>Analizar con AI</span>
-                                        </button>
-                                    </div>
-                                    
-                                    <p className="text-xs text-gray-500 text-center">* Campos requeridos</p>
-                                </div>
-                            </div>
-                        ) : (
+                        <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-8">
+                            <h2 className="text-xl font-semibold text-blue-900 mb-6">Ingrese los Datos para Predicción</h2>
+                            
                             <div className="space-y-6">
-                                {/* Prediction Result */}
-                                <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-8">
-                                    <h2 className="text-xl font-semibold text-blue-900 mb-6">Resultado de la Predicción</h2>
-                                    
-                                    <div className="text-center space-y-4">
-                                        {prediction.status === 'Certified' && (
-                                            <i data-lucide="check-circle" className="h-20 w-20 text-green-600 mx-auto"></i>
-                                        )}
-                                        {prediction.status === 'Certified-Expired' && (
-                                            <i data-lucide="alert-circle" className="h-20 w-20 text-yellow-600 mx-auto"></i>
-                                        )}
-                                        {prediction.status === 'Withdrawn' && (
-                                            <i data-lucide="alert-circle" className="h-20 w-20 text-orange-600 mx-auto"></i>
-                                        )}
-                                        {prediction.status === 'Denied' && (
-                                            <i data-lucide="x-circle" className="h-20 w-20 text-red-600 mx-auto"></i>
-                                        )}
-                                        
-                                        <div>
-                                            <p className="text-sm text-gray-600 mb-2">Estado Predicho:</p>
-                                            <p className="text-3xl font-bold text-blue-900">{prediction.status}</p>
-                                        </div>
-                                        
-                                        <div className="pt-4">
-                                            <p className="text-sm text-gray-600 mb-2">Nivel de Confianza:</p>
-                                            <div className="w-full bg-gray-200 rounded-full h-6 overflow-hidden">
-                                                <div 
-                                                    className="h-full bg-gradient-to-r from-blue-900 to-red-600 transition-all duration-1000"
-                                                    style={{ width: `${prediction.confidence}%` }}
-                                                ></div>
-                                            </div>
-                                            <p className="text-lg font-semibold text-gray-700 mt-2">{prediction.confidence}%</p>
-                                        </div>
-                                    </div>
-                                    
-                                    <div className="mt-8 pt-6 border-t border-gray-200">
-                                        <p className="text-sm text-gray-600 text-center">
-                                            Esta predicción es generada por nuestro modelo de AI basado en los datos proporcionados.
-                                            Los resultados son estimaciones y no garantizan el resultado final del proceso de visa.
-                                        </p>
-                                    </div>
+                                {/* País de Origen */}
+                                <div>
+                                    <label className="block text-sm font-medium text-gray-700 mb-2">
+                                        País de Origen *
+                                    </label>
+                                    <select
+                                        name="country"
+                                        value={formData.country}
+                                        onChange={handleInputChange}
+                                        className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-900 focus:border-transparent"
+                                    >
+                                        <option value="">Seleccione su país de origen</option>
+                                        {Object.keys(countryToContinent).sort().map(country => (
+                                            <option key={country} value={country}>{country}</option>
+                                        ))}
+                                    </select>
+                                </div>
+
+                                {/* Nivel de Estudios */}
+                                <div>
+                                    <label className="block text-sm font-medium text-gray-700 mb-2">
+                                        Nivel Máximo de Estudios Terminado y Comprobable *
+                                    </label>
+                                    <select
+                                        name="education_of_employee"
+                                        value={formData.education_of_employee}
+                                        onChange={handleInputChange}
+                                        className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-900 focus:border-transparent"
+                                    >
+                                        <option value="">Seleccione su nivel de estudios</option>
+                                        <option value="High School">Preparatoria/Secundaria</option>
+                                        <option value="Bachelor's">Licenciatura</option>
+                                        <option value="Master's">Maestría</option>
+                                        <option value="Doctorate">Doctorado</option>
+                                    </select>
+                                </div>
+
+                                {/* Experiencia Laboral */}
+                                <div>
+                                    <label className="block text-sm font-medium text-gray-700 mb-2">
+                                        ¿Tiene Experiencia en un Puesto Similar al que Está Aplicando? *
+                                    </label>
+                                    <select
+                                        name="has_job_experience"
+                                        value={formData.has_job_experience}
+                                        onChange={handleInputChange}
+                                        className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-900 focus:border-transparent"
+                                    >
+                                        <option value="">Seleccione una opción</option>
+                                        <option value="Y">Sí</option>
+                                        <option value="N">No</option>
+                                    </select>
+                                </div>
+
+                                {/* Estado de la Posición */}
+                                <div>
+                                    <label className="block text-sm font-medium text-gray-700 mb-2">
+                                        ¿En qué Estado de USA es la Posición a la que Aplica? *
+                                    </label>
+                                    <select
+                                        name="state"
+                                        value={formData.state}
+                                        onChange={handleInputChange}
+                                        className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-900 focus:border-transparent"
+                                    >
+                                        <option value="">Seleccione el estado</option>
+                                        {Object.keys(stateToRegion).sort().map(state => (
+                                            <option key={state} value={state}>{state}</option>
+                                        ))}
+                                    </select>
+                                </div>
+
+                                {/* Posición de Tiempo Completo */}
+                                <div>
+                                    <label className="block text-sm font-medium text-gray-700 mb-2">
+                                        ¿Aplicará para un Empleo de Tiempo Completo? *
+                                    </label>
+                                    <select
+                                        name="full_time_position"
+                                        value={formData.full_time_position}
+                                        onChange={handleInputChange}
+                                        className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-900 focus:border-transparent"
+                                    >
+                                        <option value="">Seleccione una opción</option>
+                                        <option value="Y">Sí</option>
+                                        <option value="N">No</option>
+                                    </select>
+                                </div>
+
+                                {/* Submit Button */}
+                                <div className="pt-6">
+                                    <button
+                                        onClick={generateFile}
+                                        className="w-full bg-blue-900 text-white py-3 px-6 rounded-lg font-medium hover:bg-blue-800 transition-colors duration-200 flex items-center justify-center space-x-2"
+                                    >
+                                        <i data-lucide="brain" className="h-5 w-5"></i>
+                                        <span>Analizar con AI</span>
+                                    </button>
                                 </div>
                                 
-                                {/* Action Buttons */}
-                                <div className="flex space-x-4">
-                                    <button
-                                        onClick={resetForm}
-                                        className="flex-1 bg-white text-blue-900 py-3 px-6 rounded-lg font-medium border border-blue-900 hover:bg-blue-50 transition-colors duration-200"
-                                    >
-                                        Analizar Otro Caso
-                                    </button>
-                                    <button
-                                        onClick={() => window.print()}
-                                        className="flex-1 bg-red-600 text-white py-3 px-6 rounded-lg font-medium hover:bg-red-700 transition-colors duration-200"
-                                    >
-                                        Imprimir Resultado
-                                    </button>
-                                </div>
+                                {fileGenerated && (
+                                    <div className="mt-4 p-4 bg-green-50 border border-green-200 rounded-lg flex items-center justify-center space-x-2">
+                                        <i data-lucide="check-circle" className="h-5 w-5 text-green-600"></i>
+                                        <span className="text-green-700 font-medium">¡Archivo generado y descargado exitosamente!</span>
+                                    </div>
+                                )}
+                                
+                                <p className="text-xs text-gray-500 text-center">* Todos los campos son requeridos</p>
                             </div>
-                        )}
-                        
-                        {/* Recent Cases */}
-                        {cases.length > 0 && !prediction && (
-                            <div className="mt-12">
-                                <h3 className="text-lg font-semibold text-blue-900 mb-4">Casos Recientes</h3>
-                                <div className="space-y-2">
-                                    {cases.slice(-3).reverse().map((c, idx) => (
-                                        <div key={idx} className="bg-gray-50 rounded-lg p-4 flex justify-between items-center">
-                                            <div>
-                                                <p className="font-medium text-gray-900">{c.case_id}</p>
-                                                <p className="text-sm text-gray-600">{new Date(c.timestamp).toLocaleString()}</p>
+                        </div>
+
+                        {/* Archivos Generados */}
+                        {generatedFiles.length > 0 && (
+                            <div className="mt-8 bg-white rounded-lg shadow-sm border border-gray-200 p-8">
+                                <h3 className="text-lg font-semibold text-blue-900 mb-4 flex items-center space-x-2">
+                                    <i data-lucide="file-text" className="h-5 w-5"></i>
+                                    <span>Archivos Generados en Esta Sesión</span>
+                                </h3>
+                                <div className="space-y-3">
+                                    {generatedFiles.slice(-5).reverse().map((file, idx) => (
+                                        <div key={idx} className="bg-gray-50 rounded-lg p-4">
+                                            <div className="flex justify-between items-start mb-2">
+                                                <div>
+                                                    <p className="font-medium text-gray-900 flex items-center space-x-2">
+                                                        <i data-lucide="download" className="h-4 w-4"></i>
+                                                        <span>{file.fileName}</span>
+                                                    </p>
+                                                    <p className="text-sm text-gray-600">{file.timestamp}</p>
+                                                </div>
                                             </div>
-                                            <div className="text-right">
-                                                <p className={`font-medium ${
-                                                    c.case_status === 'Certified' ? 'text-green-600' :
-                                                    c.case_status === 'Certified-Expired' ? 'text-yellow-600' :
-                                                    c.case_status === 'Withdrawn' ? 'text-orange-600' :
-                                                    'text-red-600'
-                                                }`}>
-                                                    {c.case_status}
-                                                </p>
-                                                <p className="text-sm text-gray-600">{c.confidence}% confianza</p>
-                                            </div>
+                                            <pre className="text-xs bg-white p-3 rounded border border-gray-200 overflow-x-auto">
+                                                {file.content}
+                                            </pre>
                                         </div>
                                     ))}
                                 </div>
+                                <button
+                                    onClick={resetForm}
+                                    className="mt-4 w-full bg-white text-blue-900 py-2 px-4 rounded-lg font-medium border border-blue-900 hover:bg-blue-50 transition-colors duration-200"
+                                >
+                                    Crear Nueva Predicción
+                                </button>
                             </div>
                         )}
                     </main>
