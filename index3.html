@@ -34,7 +34,7 @@
 
     <script type="text/babel">
         const { useState } = React;
-        const { Brain, Download, FileText, CheckCircle, XCircle, AlertCircle, Loader2, Copy } = lucide;
+        const { Brain, Download, FileText, CheckCircle, XCircle, AlertCircle, Loader2, Copy, FileDown } = lucide;
 
         function VisaPredictAI() {
             const [formData, setFormData] = useState({
@@ -51,6 +51,7 @@
             const [predictions, setPredictions] = useState([]);
             const [showDebug, setShowDebug] = useState(false);
             const [debugInfo, setDebugInfo] = useState('');
+            const [pythonScriptGenerated, setPythonScriptGenerated] = useState(false);
 
             // Mapeo de países a continentes
             const countryToContinent = {
@@ -125,8 +126,9 @@
             const stateToRegion = {
                 // West
                 'Alaska': 'West', 'Arizona': 'West', 'California': 'West', 'Colorado': 'West',
-                'Idaho': 'West', 'Montana': 'West', 'Nevada': 'West', 'New Mexico': 'West',
-                'Oregon': 'West', 'Utah': 'West', 'Washington': 'West', 'Wyoming': 'West',
+                'Hawaii': 'West', 'Idaho': 'West', 'Montana': 'West', 'Nevada': 'West', 
+                'New Mexico': 'West', 'Oregon': 'West', 'Utah': 'West', 'Washington': 'West', 
+                'Wyoming': 'West',
                 
                 // Northeast
                 'Connecticut': 'Northeast', 'Maine': 'Northeast', 'Massachusetts': 'Northeast',
@@ -145,8 +147,8 @@
                 'Michigan': 'Midwest', 'Minnesota': 'Midwest', 'Missouri': 'Midwest', 'Nebraska': 'Midwest',
                 'North Dakota': 'Midwest', 'Ohio': 'Midwest', 'South Dakota': 'Midwest', 'Wisconsin': 'Midwest',
                 
-                // Island
-                'Hawaii': 'Island', 'Puerto Rico': 'Island', 'US Virgin Islands': 'Island'
+                // Island (territorios)
+                'Puerto Rico': 'Island', 'US Virgin Islands': 'Island'
             };
 
             const handleInputChange = (e) => {
@@ -203,10 +205,15 @@
                 console.log('URL:', 'https://visa-prediction-app-390129724119.us-central1.run.app/visa_prediction');
 
                 try {
+                    // Intentar primero con CORS habilitado
+                    debugLog += 'Intentando petición con CORS...\n';
+                    
                     const response = await fetch('https://visa-prediction-app-390129724119.us-central1.run.app/visa_prediction', {
                         method: 'POST',
+                        mode: 'cors', // Explícitamente solicitar CORS
                         headers: {
                             'Content-Type': 'application/json',
+                            'Accept': 'application/json',
                         },
                         body: JSON.stringify(dataToSend)
                     });
@@ -259,9 +266,18 @@
                     
                     let errorMessage = 'Error al obtener la predicción: ';
                     
-                    if (err.message.includes('Failed to fetch')) {
-                        errorMessage += 'No se pudo conectar al servidor. Posible error de CORS o servidor no disponible.';
-                        debugLog += '\nNota: Este error generalmente indica problemas de CORS o que el servidor no está disponible.\n';
+                    if (err.message.includes('Failed to fetch') || err.message.includes('Load failed')) {
+                        errorMessage += 'No se pudo conectar al servidor. Posible error de CORS.';
+                        debugLog += '\nNota: Este error indica un problema de CORS (Cross-Origin Resource Sharing).\n';
+                        debugLog += '\nPosibles soluciones:\n';
+                        debugLog += '1. El servidor debe incluir los headers CORS apropiados\n';
+                        debugLog += '2. Usar una extensión del navegador para deshabilitar CORS (solo para desarrollo)\n';
+                        debugLog += '3. Configurar un proxy en tu servidor local\n';
+                        debugLog += '4. Contactar al administrador del API para habilitar tu dominio\n';
+                        debugLog += '\nPara probar si el API funciona, puedes usar:\n';
+                        debugLog += '- Postman o Insomnia\n';
+                        debugLog += '- cURL desde la terminal\n';
+                        debugLog += '- El script de Python proporcionado\n';
                     } else if (err.message.includes('HTTP error')) {
                         errorMessage += err.message;
                     } else {
@@ -287,6 +303,66 @@
                 setError(null);
                 setDebugInfo('');
                 setShowDebug(false);
+                setPythonScriptGenerated(false);
+            };
+
+            const generatePythonScript = () => {
+                const continent = countryToContinent[formData.country] || 'Unknown';
+                const region = stateToRegion[formData.state] || 'Unknown';
+                
+                const pythonScript = `import requests
+import json
+
+def send_visa_prediction(data):
+    """Envía una solicitud de predicción de visa al API."""
+    url = "https://visa-prediction-app-390129724119.us-central1.run.app/visa_prediction"
+    
+    try:
+        response = requests.post(url, json=data)
+        response.raise_for_status()
+        return response.json()
+    except requests.exceptions.RequestException as e:
+        print(f"Error durante la solicitud: {e}")
+        return None
+
+if __name__ == '__main__':
+    # Datos de tu solicitud actual
+    data = {
+        "full_time_position": "${formData.full_time_position}",
+        "region_of_employment": "${region}",
+        "continent": "${continent}",
+        "has_job_experience": "${formData.has_job_experience}",
+        "education_of_employee": "${formData.education_of_employee}"
+    }
+    
+    print("Enviando solicitud de predicción...")
+    print(f"Datos: {json.dumps(data, indent=2)}")
+    
+    result = send_visa_prediction(data)
+    
+    if result:
+        print("\\n¡Solicitud exitosa!")
+        print(f"Predicción: {result.get('prediction', 'No disponible')}")
+        if result.get('prediction') == 'Approved':
+            print("✅ La visa sería APROBADA según la predicción")
+        else:
+            print("❌ La visa sería DENEGADA según la predicción")
+    else:
+        print("\\n❌ Error al obtener la predicción")
+`;
+                
+                const blob = new Blob([pythonScript], { type: 'text/plain' });
+                const url = URL.createObjectURL(blob);
+                const link = document.createElement('a');
+                link.href = url;
+                link.download = `visa_prediction_${new Date().getTime()}.py`;
+                document.body.appendChild(link);
+                link.click();
+                document.body.removeChild(link);
+                URL.revokeObjectURL(url);
+                
+                setPythonScriptGenerated(true);
+                setTimeout(() => setPythonScriptGenerated(false), 3000);
             };
 
             React.useEffect(() => {
@@ -411,7 +487,7 @@
                                 </div>
 
                                 {/* Submit Button */}
-                                <div className="pt-6">
+                                <div className="pt-6 space-y-3">
                                     <button
                                         onClick={submitPrediction}
                                         disabled={loading}
@@ -429,7 +505,25 @@
                                             </>
                                         )}
                                     </button>
+                                    
+                                    {validateForm() && (
+                                        <button
+                                            onClick={generatePythonScript}
+                                            className="w-full bg-white text-blue-900 py-2 px-4 rounded-lg font-medium border border-blue-900 hover:bg-blue-50 transition-colors duration-200 flex items-center justify-center space-x-2"
+                                        >
+                                            <i data-lucide="file-down" className="h-4 w-4"></i>
+                                            <span>Generar Script Python con estos datos</span>
+                                        </button>
+                                    )}
                                 </div>
+                                
+                                {/* Python Script Generated Notification */}
+                                {pythonScriptGenerated && (
+                                    <div className="mt-4 p-4 bg-green-50 border border-green-200 rounded-lg flex items-center justify-center space-x-2">
+                                        <i data-lucide="check-circle" className="h-5 w-5 text-green-600"></i>
+                                        <span className="text-green-700 font-medium">¡Script Python descargado! Ejecuta: python visa_prediction_*.py</span>
+                                    </div>
+                                )}
                                 
                                 {/* Error Message */}
                                 {error && (
@@ -463,6 +557,14 @@
                                         >
                                             Copiar debug info
                                         </button>
+                                        {validateForm() && (
+                                            <button
+                                                onClick={generatePythonScript}
+                                                className="mt-2 ml-2 text-xs bg-blue-600 text-white px-3 py-1 rounded hover:bg-blue-700"
+                                            >
+                                                Descargar script Python con estos datos
+                                            </button>
+                                        )}
                                     </div>
                                 )}
                                 
@@ -536,6 +638,28 @@
                                 </button>
                             </div>
                         )}
+                        {/* Footer with CORS info */}
+                        <div className="mt-8 bg-blue-50 border border-blue-200 rounded-lg p-6">
+                            <h3 className="text-lg font-semibold text-blue-900 mb-3 flex items-center space-x-2">
+                                <i data-lucide="alert-circle" className="h-5 w-5"></i>
+                                <span>Información Importante sobre CORS</span>
+                            </h3>
+                            <div className="text-sm text-blue-800 space-y-2">
+                                <p>Si experimentas errores de conexión, es probable que sea debido a restricciones CORS del navegador.</p>
+                                <p className="font-semibold">Alternativas para probar el API:</p>
+                                <ul className="list-disc list-inside ml-4 space-y-1">
+                                    <li>Usa el script de Python proporcionado (recomendado)</li>
+                                    <li>Prueba con Postman o Insomnia</li>
+                                    <li>Ejecuta este comando cURL en tu terminal:</li>
+                                </ul>
+                                <div className="mt-3 bg-gray-900 text-gray-100 p-3 rounded font-mono text-xs overflow-x-auto">
+                                    curl -X POST https://visa-prediction-app-390129724119.us-central1.run.app/visa_prediction \<br/>
+                                    &nbsp;&nbsp;-H "Content-Type: application/json" \<br/>
+                                    &nbsp;&nbsp;-d '{`{"full_time_position":"Y","region_of_employment":"Northeast","continent":"Asia","has_job_experience":"Y","education_of_employee":"High School"}`}'
+                                </div>
+                                <p className="mt-3">Para desarrollo local, puedes usar una extensión del navegador como "CORS Unblock" o "Allow CORS" (úsala solo para desarrollo).</p>
+                            </div>
+                        </div>
                     </main>
 
                     {/* Footer */}
