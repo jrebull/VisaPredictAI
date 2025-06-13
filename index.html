@@ -27,6 +27,15 @@
         .animate-pulse {
             animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
         }
+        
+        @keyframes slideIn {
+            from {
+                width: 0;
+            }
+            to {
+                width: var(--width);
+            }
+        }
     </style>
 </head>
 <body>
@@ -201,12 +210,24 @@
                     }
 
                     const result = await response.json();
-                    setPredictionResult(result.prediction);
+                    
+                    // Parsear la nueva estructura de respuesta
+                    const [status, [[probYes, probNo]]] = result;
+                    
+                    setPredictionResult({
+                        status: status,
+                        probYes: (probYes * 100).toFixed(1),
+                        probNo: (probNo * 100).toFixed(1)
+                    });
                     
                     // Agregar a historial
                     setPredictions(prev => [...prev, {
                         data: { ...formData, continent, region },
-                        result: result.prediction,
+                        result: {
+                            status: status,
+                            probYes: (probYes * 100).toFixed(1),
+                            probNo: (probNo * 100).toFixed(1)
+                        },
                         timestamp: new Date().toLocaleString()
                     }]);
                     
@@ -383,28 +404,63 @@
                                 {/* Prediction Result */}
                                 {predictionResult && (
                                     <div className={`mt-6 p-6 rounded-lg border-2 ${
-                                        predictionResult === 'Approved' 
+                                        predictionResult.status === 'Certified' 
                                             ? 'bg-green-50 border-green-500' 
                                             : 'bg-red-50 border-red-500'
                                     }`}>
-                                        <div className="flex items-center justify-center space-x-3">
-                                            {predictionResult === 'Approved' ? (
+                                        <div className="flex items-center justify-center space-x-3 mb-4">
+                                            {predictionResult.status === 'Certified' ? (
                                                 <>
                                                     <i data-lucide="check-circle" className="h-12 w-12 text-green-600"></i>
                                                     <div className="text-center">
-                                                        <h3 className="text-2xl font-bold text-green-800">¡APROBADO!</h3>
-                                                        <p className="text-green-700 mt-1">La predicción indica alta probabilidad de aprobación</p>
+                                                        <h3 className="text-2xl font-bold text-green-800">¡Felicidades!</h3>
+                                                        <p className="text-green-700 mt-1">Fuiste aprobado</p>
                                                     </div>
                                                 </>
                                             ) : (
                                                 <>
                                                     <i data-lucide="x-circle" className="h-12 w-12 text-red-600"></i>
                                                     <div className="text-center">
-                                                        <h3 className="text-2xl font-bold text-red-800">DENEGADO</h3>
-                                                        <p className="text-red-700 mt-1">La predicción indica alta probabilidad de rechazo</p>
+                                                        <h3 className="text-2xl font-bold text-red-800">Lo sentimos</h3>
+                                                        <p className="text-red-700 mt-1">Lamentablemente en este momento tu visa no sería aprobada</p>
                                                     </div>
                                                 </>
                                             )}
+                                        </div>
+                                        
+                                        {/* Barras de porcentaje */}
+                                        <div className="mt-6 space-y-3">
+                                            {/* Barra de aprobado */}
+                                            <div>
+                                                <div className="flex justify-between mb-1">
+                                                    <span className="text-sm font-medium text-green-700">Probabilidad de Aprobación</span>
+                                                    <span className="text-sm font-bold text-green-700">{predictionResult.probYes}%</span>
+                                                </div>
+                                                <div className="w-full bg-gray-200 rounded-full h-6 overflow-hidden">
+                                                    <div 
+                                                        className="bg-green-500 h-6 rounded-full transition-all duration-1000 ease-out flex items-center justify-center text-white text-xs font-semibold"
+                                                        style={{ width: `${predictionResult.probYes}%` }}
+                                                    >
+                                                        {predictionResult.probYes}%
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            
+                                            {/* Barra de denegado */}
+                                            <div>
+                                                <div className="flex justify-between mb-1">
+                                                    <span className="text-sm font-medium text-red-700">Probabilidad de Denegación</span>
+                                                    <span className="text-sm font-bold text-red-700">{predictionResult.probNo}%</span>
+                                                </div>
+                                                <div className="w-full bg-gray-200 rounded-full h-6 overflow-hidden">
+                                                    <div 
+                                                        className="bg-red-500 h-6 rounded-full transition-all duration-1000 ease-out flex items-center justify-center text-white text-xs font-semibold"
+                                                        style={{ width: `${predictionResult.probNo}%` }}
+                                                    >
+                                                        {predictionResult.probNo}%
+                                                    </div>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                 )}
@@ -426,11 +482,11 @@
                                             <div className="flex justify-between items-center mb-2">
                                                 <span className="text-sm text-gray-600">{pred.timestamp}</span>
                                                 <span className={`px-3 py-1 rounded-full text-sm font-medium ${
-                                                    pred.result === 'Approved' 
+                                                    pred.result.status === 'Certified' 
                                                         ? 'bg-green-100 text-green-800' 
                                                         : 'bg-red-100 text-red-800'
                                                 }`}>
-                                                    {pred.result === 'Approved' ? 'Aprobado' : 'Denegado'}
+                                                    {pred.result.status === 'Certified' ? 'Aprobado' : 'Denegado'} ({pred.result.probYes}%)
                                                 </span>
                                             </div>
                                             <div className="grid grid-cols-2 gap-2 text-sm">
