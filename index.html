@@ -36,6 +36,47 @@
                 width: var(--width);
             }
         }
+        
+        @keyframes progressBar {
+            from {
+                width: 0%;
+            }
+            to {
+                width: 100%;
+            }
+        }
+        
+        .progress-bar {
+            animation: progressBar 5s ease-out forwards;
+        }
+        
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: scale(0.9);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+        
+        .fade-in {
+            animation: fadeIn 0.3s ease-out;
+        }
+        
+        .modal-backdrop {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.75);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 9999;
+        }
     </style>
 </head>
 <body>
@@ -220,6 +261,10 @@
                     education_of_employee: formData.education_of_employee
                 };
 
+                // Asegurar que el modal esté visible por al menos 5 segundos
+                const minLoadTime = 5000;
+                const startTime = Date.now();
+
                 try {
                     const response = await fetch('https://visa-prediction-app-390129724119.us-central1.run.app/visa_prediction', {
                         method: 'POST',
@@ -234,6 +279,13 @@
                     }
 
                     const result = await response.json();
+                    
+                    // Calcular tiempo restante para completar los 5 segundos mínimos
+                    const elapsedTime = Date.now() - startTime;
+                    const remainingTime = Math.max(0, minLoadTime - elapsedTime);
+                    
+                    // Esperar el tiempo restante si es necesario
+                    await new Promise(resolve => setTimeout(resolve, remainingTime));
                     
                     // Parsear la nueva estructura de respuesta
                     const [status, [[probYes, probNo]]] = result;
@@ -281,6 +333,30 @@
 
             return (
                 <div className="min-h-screen bg-gray-50">
+                    {/* Loading Modal */}
+                    {loading && (
+                        <div className="modal-backdrop">
+                            <div className="bg-white rounded-lg shadow-2xl p-8 max-w-md w-full mx-4 fade-in">
+                                <div className="text-center">
+                                    <div className="mb-6">
+                                        <i data-lucide="brain" className="h-16 w-16 text-blue-900 mx-auto animate-pulse"></i>
+                                    </div>
+                                    <h3 className="text-xl font-semibold text-gray-900 mb-4">
+                                        Nuestro Modelo de Inteligencia Artificial está validando tu caso
+                                    </h3>
+                                    <div className="relative pt-1">
+                                        <div className="overflow-hidden h-4 mb-4 text-xs flex rounded-full bg-gray-200">
+                                            <div className="progress-bar shadow-none flex flex-col text-center whitespace-nowrap text-white justify-center bg-blue-900"></div>
+                                        </div>
+                                    </div>
+                                    <p className="text-sm text-gray-600 animate-pulse">
+                                        Analizando información...
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    )}
+
                     {/* Header */}
                     <header className="bg-white border-b border-gray-200 shadow-sm">
                         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
@@ -437,16 +513,20 @@
                                                 <>
                                                     <i data-lucide="check-circle" className="h-12 w-12 text-green-600"></i>
                                                     <div className="text-center">
-                                                        <h3 className="text-2xl font-bold text-green-800">¡Felicidades!</h3>
-                                                        <p className="text-green-700 mt-1">Fuiste aprobado</p>
+                                                        <h3 className="text-2xl font-bold text-green-800">Alta probabilidad de aprobación</h3>
+                                                        <p className="text-green-700 mt-1">
+                                                            Según los datos que proporcionaste, nuestro modelo de inteligencia artificial estima que <strong>tienes una alta probabilidad de obtener la aprobación de tu visa</strong>.
+                                                        </p>
                                                     </div>
                                                 </>
                                             ) : (
                                                 <>
                                                     <i data-lucide="x-circle" className="h-12 w-12 text-red-600"></i>
                                                     <div className="text-center">
-                                                        <h3 className="text-2xl font-bold text-red-800">Lo sentimos</h3>
-                                                        <p className="text-red-700 mt-1">Lamentablemente en este momento tu visa no sería aprobada</p>
+                                                        <h3 className="text-2xl font-bold text-red-800">Baja probabilidad de aprobación</h3>
+                                                        <p className="text-red-700 mt-1">
+                                                            Con base en la información que ingresaste, nuestro IA estima que <strong>la probabilidad de aprobación de tu visa es baja en este momento</strong>.
+                                                        </p>
                                                     </div>
                                                 </>
                                             )}
@@ -483,6 +563,27 @@
                                                     >
                                                         {predictionResult.probNo}%
                                                     </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        
+                                        {/* Nota aclaratoria */}
+                                        <div className="mt-6 p-4 bg-yellow-50 border border-yellow-300 rounded-lg">
+                                            <div className="flex items-start space-x-2">
+                                                <span className="text-yellow-800 font-bold">⚠️</span>
+                                                <div className="text-sm text-yellow-800">
+                                                    <p className="font-semibold mb-1">Nota importante:</p>
+                                                    <p className="mb-2">
+                                                        Los resultados presentados por VisaPredict AI son generados mediante un modelo de 
+                                                        inteligencia artificial basado en patrones estadísticos y datos históricos. Esta predicción 
+                                                        <strong> no representa una garantía, consejo legal, ni un veredicto oficial</strong> sobre la aprobación o rechazo 
+                                                        de una visa.
+                                                    </p>
+                                                    <p className="mb-2">
+                                                        VisaPredict AI <strong>no se hace responsable</strong> por decisiones tomadas con base en esta información. 
+                                                        Se recomienda acudir a fuentes oficiales del gobierno de los Estados Unidos o consultar con 
+                                                        especialistas en migración para obtener orientación personalizada.
+                                                    </p>
                                                 </div>
                                             </div>
                                         </div>
