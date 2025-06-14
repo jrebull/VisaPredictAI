@@ -166,16 +166,40 @@
             };
 
             const validateForm = () => {
-                return formData.country && 
-                       formData.education_of_employee && 
-                       formData.has_job_experience && 
-                       formData.state && 
-                       formData.full_time_position;
+                const fields = {
+                    country: 'País de Origen',
+                    education_of_employee: 'Nivel Máximo de Estudios',
+                    has_job_experience: 'Experiencia en Puesto Similar',
+                    state: 'Estado de USA',
+                    full_time_position: 'Empleo de Tiempo Completo'
+                };
+                
+                const missingFields = [];
+                
+                Object.keys(fields).forEach(field => {
+                    if (!formData[field]) {
+                        missingFields.push(fields[field]);
+                    }
+                });
+                
+                return missingFields;
             };
 
             const submitPrediction = async () => {
-                if (!validateForm()) {
-                    alert('Por favor complete todos los campos requeridos');
+                const missingFields = validateForm();
+                
+                if (missingFields.length > 0) {
+                    let message = '';
+                    
+                    if (missingFields.length === 5) {
+                        message = 'Debes seleccionar todos los campos para poder estimar un resultado con IA.';
+                    } else if (missingFields.length === 1) {
+                        message = `Por favor complete el campo: ${missingFields[0]}`;
+                    } else {
+                        message = `Por favor complete los siguientes campos: ${missingFields.join(', ')}`;
+                    }
+                    
+                    alert(message);
                     return;
                 }
 
