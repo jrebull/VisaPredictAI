@@ -65,6 +65,19 @@
             animation: fadeIn 0.3s ease-out;
         }
         
+        @keyframes countUp {
+            from {
+                transform: scale(1.5);
+            }
+            to {
+                transform: scale(1);
+            }
+        }
+        
+        .count-animation {
+            animation: countUp 0.3s ease-out;
+        }
+        
         .modal-backdrop {
             position: fixed;
             top: 0;
@@ -99,6 +112,19 @@
             const [predictionResult, setPredictionResult] = useState(null);
             const [error, setError] = useState(null);
             const [predictions, setPredictions] = useState([]);
+            const [totalPredictions, setTotalPredictions] = useState(0);
+            
+            // NOTA: Para persistir el contador de predicciones totales entre sesiones, necesitarías:
+            // Opción 1: Agregar un endpoint en tu backend API (recomendado)
+            //   - GET /api/predictions/count - para obtener el contador actual
+            //   - POST /api/predictions/increment - para incrementar después de cada predicción
+            // 
+            // Opción 2: Usar un servicio de base de datos en tiempo real como Firebase
+            // 
+            // Opción 3: Si el backend ya registra las predicciones, podrías obtener el total
+            //   desde allí al cargar la página
+            //
+            // Por ahora, el contador es local y se reinicia al recargar la página
 
             // Mapeo de países a continentes
             const countryToContinent = {
@@ -307,6 +333,9 @@
                         timestamp: new Date().toLocaleString()
                     }]);
                     
+                    // Incrementar contador total
+                    setTotalPredictions(prev => prev + 1);
+                    
                 } catch (err) {
                     console.error('Error:', err);
                     setError('Error al obtener la predicción. Por favor intente nuevamente.');
@@ -371,6 +400,12 @@
                                             VisaPredict <span className="text-red-600">AI</span>
                                         </h1>
                                         <p className="text-sm text-gray-700">Predicción Inteligente de Aprobación de Visas de Trabajo en EE.UU.</p>
+                                    </div>
+                                </div>
+                                <div className="text-right">
+                                    <div className="bg-blue-50 px-4 py-2 rounded-lg border border-blue-200">
+                                        <p className="text-xs text-blue-700">Predicciones realizadas</p>
+                                        <p key={totalPredictions} className="text-2xl font-bold text-blue-900 count-animation">{totalPredictions.toLocaleString()}</p>
                                     </div>
                                 </div>
                             </div>
@@ -525,7 +560,7 @@
                                                     <div className="text-center">
                                                         <h3 className="text-2xl font-bold text-red-800">Baja probabilidad de aprobación</h3>
                                                         <p className="text-red-700 mt-1">
-                                                            Con base en la información que ingresaste, nuestro IA estima que <strong>la probabilidad de aprobación de tu visa es baja en este momento</strong>.
+                                                            Con base en la información que ingresaste, nuestro modelo de Inteligencia Artificial estima que <strong>la probabilidad de aprobación de tu visa es baja en este momento</strong>.
                                                         </p>
                                                     </div>
                                                 </>
