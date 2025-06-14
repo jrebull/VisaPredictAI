@@ -78,16 +78,6 @@
             animation: countUp 0.3s ease-out;
         }
         
-        @keyframes shake {
-            0%, 100% { transform: translateX(0); }
-            10%, 30%, 50%, 70%, 90% { transform: translateX(-2px); }
-            20%, 40%, 60%, 80% { transform: translateX(2px); }
-        }
-        
-        .shake {
-            animation: shake 0.5s ease-in-out;
-        }
-        
         .modal-backdrop {
             position: fixed;
             top: 0;
@@ -107,7 +97,7 @@
 
     <script type="text/babel">
         const { useState } = React;
-        const { Brain, Download, FileText, CheckCircle, XCircle, AlertCircle, Loader2, AlertTriangle } = lucide;
+        const { Brain, Download, FileText, CheckCircle, XCircle, AlertCircle, Loader2 } = lucide;
 
         function VisaPredictAI() {
             const [formData, setFormData] = useState({
@@ -123,8 +113,6 @@
             const [error, setError] = useState(null);
             const [predictions, setPredictions] = useState([]);
             const [totalPredictions, setTotalPredictions] = useState(0);
-            const [showValidationModal, setShowValidationModal] = useState(false);
-            const [missingFieldsList, setMissingFieldsList] = useState([]);
             
             // NOTA: Para persistir el contador de predicciones totales entre sesiones, necesitarías:
             // Opción 1: Agregar un endpoint en tu backend API (recomendado)
@@ -268,8 +256,17 @@
                 const missingFields = validateForm();
                 
                 if (missingFields.length > 0) {
-                    setMissingFieldsList(missingFields);
-                    setShowValidationModal(true);
+                    let message = '';
+                    
+                    if (missingFields.length === 5) {
+                        message = 'Debes seleccionar todos los campos para poder estimar un resultado con IA.';
+                    } else if (missingFields.length === 1) {
+                        message = `Por favor complete el campo: ${missingFields[0]}`;
+                    } else {
+                        message = `Por favor complete los siguientes campos: ${missingFields.join(', ')}`;
+                    }
+                    
+                    alert(message);
                     return;
                 }
 
@@ -365,49 +362,6 @@
 
             return (
                 <div className="min-h-screen bg-gray-50">
-                    {/* Validation Modal */}
-                    {showValidationModal && (
-                        <div className="modal-backdrop">
-                            <div className="bg-white rounded-lg shadow-2xl p-8 max-w-md w-full mx-4 fade-in">
-                                <div className="text-center">
-                                    <div className="mb-6">
-                                        <i data-lucide="alert-triangle" className="h-16 w-16 text-yellow-600 mx-auto shake"></i>
-                                    </div>
-                                    <h3 className="text-xl font-semibold text-gray-900 mb-4">
-                                        {missingFieldsList.length === 5 
-                                            ? 'Debes completar todos los campos'
-                                            : 'Campos incompletos'}
-                                    </h3>
-                                    <p className="text-gray-600 mb-6">
-                                        {missingFieldsList.length === 5 
-                                            ? 'Para poder estimar un resultado con IA, necesitas completar todos los campos del formulario.'
-                                            : 'Por favor complete los siguientes campos para continuar:'}
-                                    </p>
-                                    
-                                    {missingFieldsList.length < 5 && (
-                                        <div className="bg-yellow-50 rounded-lg p-4 mb-6 text-left">
-                                            <ul className="space-y-2">
-                                                {missingFieldsList.map((field, index) => (
-                                                    <li key={index} className="flex items-center space-x-2">
-                                                        <span className="text-yellow-600 font-bold">•</span>
-                                                        <span className="text-gray-700">{field}</span>
-                                                    </li>
-                                                ))}
-                                            </ul>
-                                        </div>
-                                    )}
-                                    
-                                    <button
-                                        onClick={() => setShowValidationModal(false)}
-                                        className="bg-blue-900 text-white py-2 px-6 rounded-lg font-medium hover:bg-blue-800 transition-colors duration-200"
-                                    >
-                                        Entendido
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-                    )}
-
                     {/* Loading Modal */}
                     {loading && (
                         <div className="modal-backdrop">
