@@ -9,10 +9,6 @@
     <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
     <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
     <script src="https://cdn.tailwindcss.com"></script>
-    
-    <!-- Firebase SDK -->
-    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-database-compat.js"></script>
     <style>
         body {
             margin: 0;
@@ -110,23 +106,8 @@
     <div id="root"></div>
 
     <script type="text/babel">
-        const { useState, useEffect } = React;
+        const { useState } = React;
         const { Brain, Download, FileText, CheckCircle, XCircle, AlertCircle, Loader2, AlertTriangle } = lucide;
-
-        // CONFIGURACIÓN DE FIREBASE - Reemplaza con tus credenciales
-        const firebaseConfig = {
-            apiKey: "TU_API_KEY",
-            authDomain: "TU_AUTH_DOMAIN",
-            databaseURL: "TU_DATABASE_URL",
-            projectId: "TU_PROJECT_ID",
-            storageBucket: "TU_STORAGE_BUCKET",
-            messagingSenderId: "TU_MESSAGING_SENDER_ID",
-            appId: "TU_APP_ID"
-        };
-
-        // Inicializar Firebase
-        firebase.initializeApp(firebaseConfig);
-        const database = firebase.database();
 
         function VisaPredictAI() {
             const [formData, setFormData] = useState({
@@ -145,39 +126,17 @@
             const [showValidationModal, setShowValidationModal] = useState(false);
             const [missingFieldsList, setMissingFieldsList] = useState([]);
             
-            // Cargar el contador desde Firebase al montar el componente
-            useEffect(() => {
-                const counterRef = database.ref('totalPredictions');
-                
-                // Escuchar cambios en tiempo real
-                counterRef.on('value', (snapshot) => {
-                    const count = snapshot.val() || 0;
-                    setTotalPredictions(count);
-                });
-                
-                // Limpiar el listener al desmontar
-                return () => counterRef.off();
-            }, []);
-
-            // Función para incrementar el contador en Firebase
-								const incrementFirebaseCounter = async () => {
-								    try {
-								        // ¡Pega tu URL aquí!
-								        const response = await fetch('PEGA_AQUÍ_LA_URL_DE_TU_FUNCIÓN', {
-								            method: 'POST'
-								        });
-								        const data = await response.json();
-								        if (data.success) {
-								            console.log('Contador actualizado:', data.count);
-								            // Aquí puedes actualizar el contador en tu página web
-								            // document.getElementById('contador').innerText = data.count;
-								        } else {
-								             console.error('La función devolvió un error:', data.error);
-								        }
-								    } catch (error) {
-								        console.error('Error al llamar a la Cloud Function:', error);
-								    }
-								};	
+            // NOTA: Para persistir el contador de predicciones totales entre sesiones, necesitarías:
+            // Opción 1: Agregar un endpoint en tu backend API (recomendado)
+            //   - GET /api/predictions/count - para obtener el contador actual
+            //   - POST /api/predictions/increment - para incrementar después de cada predicción
+            // 
+            // Opción 2: Usar un servicio de base de datos en tiempo real como Firebase
+            // 
+            // Opción 3: Si el backend ya registra las predicciones, podrías obtener el total
+            //   desde allí al cargar la página
+            //
+            // Por ahora, el contador es local y se reinicia al recargar la página
 
             // Mapeo de países a continentes
             const countryToContinent = {
@@ -377,8 +336,8 @@
                         timestamp: new Date().toLocaleString()
                     }]);
                     
-                    // Incrementar contador en Firebase
-                    await incrementFirebaseCounter();
+                    // Incrementar contador total
+                    setTotalPredictions(prev => prev + 1);
                     
                 } catch (err) {
                     console.error('Error:', err);
@@ -402,7 +361,7 @@
 
             React.useEffect(() => {
                 lucide.createIcons();
-            }, []);
+            });
 
             return (
                 <div className="min-h-screen bg-gray-50">
