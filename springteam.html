@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Spring Team - VisaPredict AI</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: #f0f2f5;
+            color: #333;
+            margin: 0;
+            padding: 2rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+        }
+
+        .cover-container {
+            background-color: #ffffff;
+            border-radius: 12px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+            max-width: 900px;
+            width: 100%;
+            text-align: center;
+            padding: 3rem;
+            border-top: 8px solid #003366;
+        }
+
+        .tec-logo {
+            width: 250px;
+            margin-bottom: 1rem;
+        }
+
+        .institution-name {
+            font-size: 1.2rem;
+            color: #555;
+            margin-bottom: 0.5rem;
+        }
+
+        .program-name {
+            font-size: 1rem;
+            color: #555;
+            margin-bottom: 2.5rem;
+        }
+
+        .project-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #003366;
+            margin-bottom: 1rem;
+        }
+
+        .visapredict-info {
+            background-color: #f8f9fa;
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin: 2rem 0;
+            display: inline-flex;
+            align-items: center;
+            gap: 1.5rem;
+            border: 1px solid #e0e0e0;
+        }
+
+        .visapredict-logo {
+            width: 90px;
+            height: 90px;
+        }
+        
+        .visapredict-text h2 {
+            margin: 0;
+            font-size: 2rem;
+            font-weight: 700;
+            color: #003366;
+        }
+
+        .visapredict-text h2 span {
+            color: #d9534f;
+        }
+
+        .visapredict-text p {
+            margin: 0;
+            color: #555;
+            font-size: 1rem;
+        }
+
+        .team-section {
+            margin: 3rem 0;
+        }
+
+        .team-section h3 {
+            font-size: 1.5rem;
+            color: #333;
+            margin-bottom: 2rem;
+            font-weight: 700;
+        }
+
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 2rem;
+            justify-content: center;
+        }
+
+        .team-member {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .team-member img {
+            width: 140px;
+            height: 140px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-bottom: 1rem;
+            border: 4px solid #003366;
+            transition: transform 0.3s ease;
+        }
+
+        .team-member:hover img {
+            transform: scale(1.05);
+        }
+
+        .team-member .name {
+            font-weight: 700;
+            font-size: 1.1rem;
+            margin: 0;
+        }
+
+        .team-member .id {
+            color: #777;
+            font-size: 0.9rem;
+        }
+
+        .footer-info {
+            margin-top: 3rem;
+            border-top: 1px solid #e0e0e0;
+            padding-top: 2rem;
+        }
+
+        .footer-info p {
+            margin: 0.5rem 0;
+            font-size: 1.1rem;
+            color: #444;
+        }
+        
+        .footer-info .label {
+            font-weight: 700;
+        }
+        
+        .back-button {
+            display: inline-block;
+            margin-top: 3rem;
+            padding: 12px 30px;
+            background-color: #003366;
+            color: #ffffff;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 700;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+        }
+
+        .back-button:hover {
+            background-color: #002244;
+            transform: translateY(-2px);
+        }
+
+    </style>
+</head>
+<body>
+
+    <div class="cover-container">
+        <header>
+            <img src="tecnologico-de-monterrey-blue.svg" alt="Logo Tecnológico de Monterrey" class="tec-logo">
+            <p class="institution-name">Instituto Tecnológico y de Estudios Superiores de Monterrey</p>
+            <p class="program-name">Maestría en Inteligencia Artificial Aplicada (MNA)</p>
+            <h1 class="project-title">Proyecto: Etapa 3. Entrega sprint 2 del proyecto</h1>
+        </header>
+
+        <div class="visapredict-info">
+            <img src="LogoVisaPredictAI.png" alt="VisaPredict AI Logo" class="visapredict-logo">
+            <div class="visapredict-text">
+                <h2>"VisaPredict <span>AI</span>"</h2>
+                <p>Estimación Inteligente de Aprobaciones de Visas de Trabajo en EE. UU. con Scrum</p>
+            </div>
+        </div>
+
+        <main class="team-section">
+            <h3>Integrantes del equipo N° 1:</h3>
+            <div class="team-grid">
+                <div class="team-member">
+                    <img src="IgnacioSagayo.png" alt="Foto de Ignacio Sáyago Vela">
+                    <p class="name">Ignacio Sáyago Vela</p>
+                    <p class="id">A00439670</p>
+                </div>
+                <div class="team-member">
+                    <img src="JaviRebull.png" alt="Foto de Javier Augusto Rebull Saucedo">
+                    <p class="name">Javier Augusto Rebull Saucedo</p>
+                    <p class="id">A01795838</p>
+                </div>
+                <div class="team-member">
+                    <img src="Julia.png" alt="Foto de Julia Gabriela Pinedo">
+                    <p class="name">Julia Gabriela Pinedo</p>
+                    <p class="id">A01795315</p>
+                </div>
+                <div class="team-member">
+                    <img src="Karla.png" alt="Foto de Karla Alejandra Fonseca Márquez">
+                    <p class="name">Karla Alejandra Fonseca Márquez</p>
+                    <p class="id">A01795313</p>
+                </div>
+            </div>
+        </main>
+
+        <footer class="footer-info">
+            <p><span class="label">Profesor Titular:</span> Mtro. Gilberto Carlo Grajales Arana</p>
+            <p><span class="label">Administración del desarrollo de software</span> | <span class="label">Fecha:</span> Junio 2025</p>
+        </footer>
+
+    </div>
+
+    <a href="index.html" class="back-button">Volver al Predictor</a>
+
+</body>
+</html>
