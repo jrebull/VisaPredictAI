@@ -112,7 +112,7 @@
 
     <script type="text/babel">
         const { useState, useEffect } = React;
-        const { Brain, Download, FileText, CheckCircle, XCircle, AlertCircle, Loader2, AlertTriangle, Users, TrendingUp, BarChart2 } = lucide;
+        const { Brain, Download, FileText, CheckCircle, XCircle, AlertCircle, Loader2, AlertTriangle, Users, TrendingUp } = lucide;
 
         // CONFIGURACIÓN DE FIREBASE - Reemplaza con tus credenciales reales
         const firebaseConfig = {
@@ -430,11 +430,8 @@
             };
 
             React.useEffect(() => {
-                const timer = setTimeout(() => {
-                    lucide.createIcons();
-                }, 100);
-                return () => clearTimeout(timer);
-            });
+                lucide.createIcons();
+            }, []);
 
             return (
                 <div className="min-h-screen bg-gray-50">
@@ -505,10 +502,18 @@
                         </div>
                     )}
 
+                    {/* Top Banner - Spring Team */}
+                    <div className="bg-gradient-to-r from-blue-900 to-blue-800 py-3 text-center">
+                        <a href="springteam.html" className="inline-flex items-center space-x-2 bg-white text-blue-900 px-6 py-2 rounded-full hover:bg-blue-50 transition-all duration-300 transform hover:scale-105 shadow-lg">
+                            <i data-lucide="users" className="h-5 w-5"></i>
+                            <span className="font-semibold">Conoce al Spring Team</span>
+                        </a>
+                    </div>
+
                     {/* Header */}
                     <header className="bg-white border-b border-gray-200 shadow-sm">
                         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
-                            <div className="flex items-center justify-center">
+                            <div className="flex items-center justify-between">
                                 <div className="flex items-center space-x-3">
                                     <img 
                                         src="LogoVisaPredictAI.png" 
@@ -520,6 +525,16 @@
                                             VisaPredict <span className="text-red-600">AI</span>
                                         </h1>
                                         <p className="text-sm text-gray-700">Predicción Inteligente de Aprobación de Visas de Trabajo en EE.UU.</p>
+                                    </div>
+                                </div>
+                                <div className="text-right">
+                                    <div className="bg-blue-100 px-4 py-2 rounded-lg border border-blue-200 hover:bg-blue-200 transition-colors duration-200">
+                                        <div className="flex items-center space-x-2">
+                                            <i data-lucide="trending-up" className="h-4 w-4 text-blue-700"></i>
+                                            <p className="text-blue-800 text-sm">
+                                                Llevamos <span key={totalPredictions} className="font-bold count-animation">{totalPredictions.toLocaleString()}</span> estimaciones
+                                            </p>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -785,24 +800,7 @@
                     {/* Footer */}
                     <footer className="mt-12 py-8 bg-gray-100">
                         <div className="text-center">
-                            <p className="text-sm text-gray-500 mb-6">Nota: Esta es una predicción basada en IA y no garantiza el resultado real del proceso de visa.</p>
-                            
-                            <div className="flex items-center justify-center space-x-6 mb-6">
-                                {/* Contador de Predicciones */}
-                                <div className="inline-flex items-center space-x-2 bg-gray-800 text-white px-6 py-2 rounded-full shadow-md">
-                                    <i data-lucide="bar-chart-2" className="h-5 w-5"></i>
-                                    <span className="font-semibold">
-                                        <span key={totalPredictions} className="count-animation">{totalPredictions.toLocaleString()}</span> Predicciones Realizadas
-                                    </span>
-                                </div>
-                                
-                                {/* Botón Spring Team */}
-                                <a href="springteam.html" className="inline-flex items-center space-x-2 bg-blue-900 text-white px-6 py-2 rounded-full hover:bg-blue-800 transition-all duration-300 shadow-md">
-                                    <i data-lucide="users" className="h-5 w-5"></i>
-                                    <span className="font-semibold">Conoce al Spring Team</span>
-                                </a>
-                            </div>
-                            
+                            <p className="text-sm text-gray-500 mb-4">Nota: Esta es una predicción basada en IA y no garantiza el resultado real del proceso de visa.</p>
                             <div className="mt-6 pt-6 border-t border-gray-300">
                                 <p className="text-lg font-medium text-gray-700 italic">
                                     ✨ Que La Fuerza de La Agilidad te Acompañe ✨
