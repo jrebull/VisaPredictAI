@@ -40,7 +40,6 @@
             align-items: center; justify-content: center; z-index: 9999;
         }
         
-        /* === ESTILOS DE TEMA (Sin cambios) === */
         .dark-theme { background-color: #0f172a; color: #e2e8f0; }
         .dark-theme .bg-white { background-color: #1e293b !important; color: #e2e8f0; }
         .dark-theme .bg-gray-50 { background-color: #0f172a !important; }
@@ -85,12 +84,18 @@
         
         .theme-switch { transition: all 0.3s ease; }
         
-        /* === ESTILOS DE CONTROLES (Sin cambios) === */
+        /* === AJUSTE FINAL: Estilos de botones ahora como parte del contenido === */
         .control-buttons-container {
-            position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%); z-index: 1000;
-            background: rgba(255, 255, 255, 0.8); backdrop-filter: blur(10px);
-            border: 1px solid rgba(0, 0, 0, 0.08); padding: 8px; border-radius: 9999px;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); display: flex; gap: 8px; transition: all 0.3s ease;
+            /* Se elimina 'position: fixed' y propiedades de posicionamiento */
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(0, 0, 0, 0.08);
+            padding: 8px;
+            border-radius: 9999px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+            display: flex;
+            gap: 8px;
+            transition: all 0.3s ease;
         }
         .control-button {
             background-color: transparent; border: none; padding: 8px 12px; border-radius: 9999px;
@@ -122,9 +127,6 @@
         const translations = { es: { title: "Predicción Inteligente de Aprobación de Visas de Trabajo en EE.UU.", formTitle: "Ingrese los Datos para Predicción", country: "País de Origen", education: "Nivel Máximo de Estudios Terminado y Comprobable", experience: "¿Tiene Experiencia en un Puesto Similar al que Está Aplicando?", state: "¿En qué Estado de USA es la Posición a la que Aplica?", fullTime: "¿Aplicará para un Empleo de Tiempo Completo?", selectCountry: "Seleccione su país de origen", selectEducation: "Seleccione su nivel de estudios", selectOption: "Seleccione una opción", selectState: "Seleccione el estado", highSchool: "Preparatoria/Secundaria", bachelors: "Licenciatura", masters: "Maestría", doctorate: "Doctorado", yes: "Sí", no: "No", predict: "Obtener Predicción con AI", analyzing: "Analizando...", requiredFields: "* Todos los campos son requeridos", validationTitle1: "Debes completar todos los campos", validationTitle2: "Campos incompletos", validationMsg1: "Para poder estimar un resultado con IA, necesitas completar todos los campos del formulario.", validationMsg2: "Por favor complete los siguientes campos para continuar:", understood: "Entendido", aiValidating: "Nuestro Modelo de Inteligencia Artificial está validando tu caso", analyzingInfo: "Analizando información...", highProb: "Alta probabilidad de aprobación", lowProb: "Baja probabilidad de aprobación", highProbMsg: "Según los datos que proporcionaste, nuestro modelo de inteligencia artificial estima que <strong>tienes una alta probabilidad de obtener la aprobación de tu visa</strong>.", lowProbMsg: "Con base en la información que ingresaste, nuestro modelo de Inteligencia Artificial estima que <strong>la probabilidad de aprobación de tu visa es baja en este momento</strong>.", approvalProb: "Probabilidad de Aprobación", denialProb: "Probabilidad de Denegación", importantNote: "Nota importante:", disclaimer1: "Los resultados presentados por VisaPredict AI son generados mediante un modelo de inteligencia artificial basado en patrones estadísticos y datos históricos. Esta predicción", disclaimer2: "no representa una garantía, consejo legal, ni un veredicto oficial", disclaimer3: "sobre la aprobación o rechazo de una visa.", disclaimer4: "VisaPredict AI", disclaimer5: "no se hace responsable", disclaimer6: "por decisiones tomadas con base en esta información. Se recomienda acudir a fuentes oficiales del gobierno de los Estados Unidos o consultar con especialistas en migración para obtener orientación personalizada.", history: "Historial de Predicciones", approved: "Aprobado", denied: "Denegado", countryLabel: "País:", stateLabel: "Estado:", educationLabel: "Educación:", experienceLabel: "Experiencia:", newPrediction: "Nueva Predicción", predictions: "Predicciones", realizadas: "Realizadas", meetTeam: "Conoce al Spring Team", footerNote: "Nota: Esta es una predicción basada en IA y no garantiza el resultado real del proceso de visa.", agileForce: "✨ Que La Fuerza de La Agilidad te Acompañe ✨", error: "Error al obtener la predicción. Por favor intente nuevamente." }, en: { title: "Intelligent U.S. Work Visa Approval Prediction", formTitle: "Enter Data for Prediction", country: "Country of Origin", education: "Highest Level of Completed and Verifiable Education", experience: "Do You Have Experience in a Similar Position to the One You're Applying For?", state: "In Which U.S. State is the Position You're Applying For?", fullTime: "Will You Apply for a Full-Time Position?", selectCountry: "Select your country of origin", selectEducation: "Select your education level", selectOption: "Select an option", selectState: "Select the state", highSchool: "High School", bachelors: "Bachelor's", masters: "Master's", doctorate: "Doctorate", yes: "Yes", no: "No", predict: "Get AI Prediction", analyzing: "Analyzing...", requiredFields: "* All fields are required", validationTitle1: "You must complete all fields", validationTitle2: "Incomplete fields", validationMsg1: "To get an AI result estimate, you need to complete all form fields.", validationMsg2: "Please complete the following fields to continue:", understood: "Understood", aiValidating: "Our Artificial Intelligence Model is validating your case", analyzingInfo: "Analyzing information...", highProb: "High approval probability", lowProb: "Low approval probability", highProbMsg: "Based on the data you provided, our artificial intelligence model estimates that <strong>you have a high probability of getting your visa approved</strong>.", lowProbMsg: "Based on the information you entered, our Artificial Intelligence model estimates that <strong>the probability of your visa approval is currently low</strong>.", approvalProb: "Approval Probability", denialProb: "Denial Probability", importantNote: "Important note:", disclaimer1: "The results presented by VisaPredict AI are generated by an artificial intelligence model based on statistical patterns and historical data. This prediction", disclaimer2: "does not represent a guarantee, legal advice, or an official verdict", disclaimer3: "on visa approval or rejection.", disclaimer4: "VisaPredict AI", disclaimer5: "is not responsible", disclaimer6: "for decisions made based on this information. We recommend consulting official U.S. government sources or immigration specialists for personalized guidance.", history: "Prediction History", approved: "Approved", denied: "Denied", countryLabel: "Country:", stateLabel: "State:", educationLabel: "Education:", experienceLabel: "Experience:", newPrediction: "New Prediction", predictions: "Predictions", realizadas: "Made", meetTeam: "Meet the Spring Team", footerNote: "Note: This is an AI-based prediction and does not guarantee the actual visa process result.", agileForce: "✨ May The Force of Agility Be With You ✨", error: "Error getting prediction. Please try again." } };
         const firebaseConfig = { apiKey: "TU_API_KEY_AQUI", authDomain: "visapredict-ai.firebaseapp.com", databaseURL: "https://visapredict-ai-default-rtdb.firebaseio.com", projectId: "visapredict-ai", storageBucket: "visapredict-ai.appspot.com", messagingSenderId: "TU_SENDER_ID_AQUI", appId: "TU_APP_ID_AQUI" };
         
-        // --- INICIO DE LA CORRECCIÓN ---
-
-        // Función para aplicar clases al body. La mantenemos fuera para claridad.
         const applyThemeToBody = (theme) => {
             document.body.classList.remove('dark-theme', 'blue-theme');
             if (theme === 'dark') {
@@ -134,22 +136,19 @@
             }
         };
 
-        // Componente Principal que maneja el estado del tema y el idioma
         function App() {
-            // El estado ahora vive en este componente "padre"
             const [theme, setTheme] = useState(() => window.localStorage.getItem('visapredict-theme') || 'light');
             const [language, setLanguage] = useState(() => window.localStorage.getItem('visapredict-language') || 'es');
             
-            // Efecto para guardar las preferencias cuando cambian
             useEffect(() => {
                 window.localStorage.setItem('visapredict-theme', theme);
                 window.localStorage.setItem('visapredict-language', language);
-                applyThemeToBody(theme); // Aplicamos la clase al body
+                applyThemeToBody(theme);
             }, [theme, language]);
 
             return (
                 <VisaPredictAI
-                    key={theme + language} // LA CLAVE: ¡Esto fuerza el re-montaje completo!
+                    key={theme + language}
                     initialTheme={theme}
                     initialLanguage={language}
                     setTheme={setTheme}
@@ -158,9 +157,7 @@
             );
         }
 
-        // El componente de la UI ahora recibe su estado inicial como props
         function VisaPredictAI({ initialTheme, initialLanguage, setTheme, setLanguage }) {
-            
             const [formData, setFormData] = useState({ country: '', education_of_employee: '', has_job_experience: '', state: '', full_time_position: '' });
             const [loading, setLoading] = useState(false);
             const [predictionResult, setPredictionResult] = useState(null);
@@ -170,44 +167,22 @@
             const [showValidationModal, setShowValidationModal] = useState(false);
             const [missingFieldsList, setMissingFieldsList] = useState([]);
             
-            // Usamos el estado inicial que nos pasaron
             const language = initialLanguage;
             const theme = initialTheme;
             const t = translations[language];
 
-            // Este efecto ahora solo se preocupa de los íconos y el contador,
-            // ya que el tema se aplica al montar.
             useEffect(() => {
-                // Renderizar los íconos de Lucide
                 lucide.createIcons();
-
-                // Inicializar Firebase si no está ya inicializado
-                if (!firebase.apps.length) {
-                    firebase.initializeApp(firebaseConfig);
-                }
+                if (!firebase.apps.length) { firebase.initializeApp(firebaseConfig); }
                 const database = firebase.database();
                 const counterRef = database.ref('totalPredictions');
-                counterRef.on('value', (snapshot) => {
-                    const count = snapshot.val() || 0;
-                    setTotalPredictions(count);
-                });
-                
+                counterRef.on('value', (snapshot) => { setTotalPredictions(snapshot.val() || 0); });
                 return () => counterRef.off();
-            }, []); // Se ejecuta solo una vez por montaje
+            }, []);
 
-            // Funciones para cambiar tema/idioma ahora llaman al 'setter' del padre
-            const toggleLanguage = () => {
-                setLanguage(language === 'es' ? 'en' : 'es');
-            };
-            
-            const cycleTheme = () => {
-                const newTheme = theme === 'light' ? 'dark' : theme === 'dark' ? 'blue' : 'light';
-                setTheme(newTheme);
-            };
+            const toggleLanguage = () => setLanguage(language === 'es' ? 'en' : 'es');
+            const cycleTheme = () => setTheme(theme === 'light' ? 'dark' : theme === 'dark' ? 'blue' : 'light');
 
-        // --- FIN DE LA CORRECCIÓN ---
-
-            // Mapeos y lógica del formulario (sin cambios)
             const countryToContinent = { 'Algeria': 'Africa', 'Angola': 'Africa', 'Benin': 'Africa', 'Botswana': 'Africa', 'Burkina Faso': 'Africa', 'Burundi': 'Africa', 'Cameroon': 'Africa', 'Cape Verde': 'Africa', 'Central African Republic': 'Africa', 'Chad': 'Africa', 'Comoros': 'Africa', 'Congo': 'Africa', 'DR Congo': 'Africa', 'Djibouti': 'Africa', 'Egypt': 'Africa', 'Equatorial Guinea': 'Africa', 'Eritrea': 'Africa', 'Ethiopia': 'Africa', 'Gabon': 'Africa', 'Gambia': 'Africa', 'Ghana': 'Africa', 'Guinea': 'Africa', 'Guinea-Bissau': 'Africa', 'Ivory Coast': 'Africa', 'Kenya': 'Africa', 'Lesotho': 'Africa', 'Liberia': 'Africa', 'Libya': 'Africa', 'Madagascar': 'Africa', 'Malawi': 'Africa', 'Mali': 'Africa', 'Mauritania': 'Africa', 'Mauritius': 'Africa', 'Morocco': 'Africa', 'Mozambique': 'Africa', 'Namibia': 'Africa', 'Niger': 'Africa', 'Nigeria': 'Africa', 'Rwanda': 'Africa', 'Sao Tome': 'Africa', 'Senegal': 'Africa', 'Seychelles': 'Africa', 'Sierra Leone': 'Africa', 'Somalia': 'Africa', 'South Africa': 'Africa', 'South Sudan': 'Africa', 'Sudan': 'Africa', 'Swaziland': 'Africa', 'Tanzania': 'Africa', 'Togo': 'Africa', 'Tunisia': 'Africa', 'Uganda': 'Africa', 'Zambia': 'Africa', 'Zimbabwe': 'Africa', 'Afghanistan': 'Asia', 'Armenia': 'Asia', 'Azerbaijan': 'Asia', 'Bahrain': 'Asia', 'Bangladesh': 'Asia', 'Bhutan': 'Asia', 'Brunei': 'Asia', 'Cambodia': 'Asia', 'China': 'Asia', 'Cyprus': 'Asia', 'Georgia': 'Asia', 'India': 'Asia', 'Indonesia': 'Asia', 'Iran': 'Asia', 'Iraq': 'Asia', 'Israel': 'Asia', 'Japan': 'Asia', 'Jordan': 'Asia', 'Kazakhstan': 'Asia', 'Kuwait': 'Asia', 'Kyrgyzstan': 'Asia', 'Laos': 'Asia', 'Lebanon': 'Asia', 'Malaysia': 'Asia', 'Maldives': 'Asia', 'Mongolia': 'Asia', 'Myanmar': 'Asia', 'Nepal': 'Asia', 'North Korea': 'Asia', 'Oman': 'Asia', 'Pakistan': 'Asia', 'Palestine': 'Asia', 'Philippines': 'Asia', 'Qatar': 'Asia', 'Russia': 'Asia', 'Saudi Arabia': 'Asia', 'Singapore': 'Asia', 'South Korea': 'Asia', 'Sri Lanka': 'Asia', 'Syria': 'Asia', 'Taiwan': 'Asia', 'Tajikistan': 'Asia', 'Thailand': 'Asia', 'Timor-Leste': 'Asia', 'Turkey': 'Asia', 'Turkmenistan': 'Asia', 'UAE': 'Asia', 'Uzbekistan': 'Asia', 'Vietnam': 'Asia', 'Yemen': 'Asia', 'Albania': 'Europe', 'Andorra': 'Europe', 'Austria': 'Europe', 'Belarus': 'Europe', 'Belgium': 'Europe', 'Bosnia': 'Europe', 'Bulgaria': 'Europe', 'Croatia': 'Europe', 'Czech Republic': 'Europe', 'Denmark': 'Europe', 'Estonia': 'Europe', 'Finland': 'Europe', 'France': 'Europe', 'Germany': 'Europe', 'Greece': 'Europe', 'Hungary': 'Europe', 'Iceland': 'Europe', 'Ireland': 'Europe', 'Italy': 'Europe', 'Kosovo': 'Europe', 'Latvia': 'Europe', 'Liechtenstein': 'Europe', 'Lithuania': 'Europe', 'Luxembourg': 'Europe', 'Macedonia': 'Europe', 'Malta': 'Europe', 'Moldova': 'Europe', 'Monaco': 'Europe', 'Montenegro': 'Europe', 'Netherlands': 'Europe', 'Norway': 'Europe', 'Poland': 'Europe', 'Portugal': 'Europe', 'Romania': 'Europe', 'San Marino': 'Europe', 'Serbia': 'Europe', 'Slovakia': 'Europe', 'Slovenia': 'Europe', 'Spain': 'Europe', 'Sweden': 'Europe', 'Switzerland': 'Europe', 'Ukraine': 'Europe', 'United Kingdom': 'Europe', 'Vatican': 'Europe', 'Antigua and Barbuda': 'North America', 'Bahamas': 'North America', 'Barbados': 'North America', 'Belize': 'North America', 'Canada': 'North America', 'Costa Rica': 'North America', 'Cuba': 'North America', 'Dominica': 'North America', 'Dominican Republic': 'North America', 'El Salvador': 'North America', 'Grenada': 'North America', 'Guatemala': 'North America', 'Haiti': 'North America', 'Honduras': 'North America', 'Jamaica': 'North America', 'Mexico': 'North America', 'Nicaragua': 'North America', 'Panama': 'North America', 'Saint Kitts': 'North America', 'Saint Lucia': 'North America', 'Saint Vincent': 'North America', 'Trinidad and Tobago': 'North America', 'United States': 'North America', 'Argentina': 'South America', 'Bolivia': 'South America', 'Brazil': 'South America', 'Chile': 'South America', 'Colombia': 'South America', 'Ecuador': 'South America', 'Guyana': 'South America', 'Paraguay': 'South America', 'Peru': 'South America', 'Suriname': 'South America', 'Uruguay': 'South America', 'Venezuela': 'South America', 'Australia': 'Oceania', 'Fiji': 'Oceania', 'Kiribati': 'Oceania', 'Marshall Islands': 'Oceania', 'Micronesia': 'Oceania', 'Nauru': 'Oceania', 'New Zealand': 'Oceania', 'Palau': 'Oceania', 'Papua New Guinea': 'Oceania', 'Samoa': 'Oceania', 'Solomon Islands': 'Oceania', 'Tonga': 'Oceania', 'Tuvalu': 'Oceania', 'Vanuatu': 'Oceania' };
             const stateToRegion = { 'Alaska': 'West', 'Arizona': 'West', 'California': 'West', 'Colorado': 'West', 'Hawaii': 'West', 'Idaho': 'West', 'Montana': 'West', 'Nevada': 'West', 'New Mexico': 'West', 'Oregon': 'West', 'Utah': 'West', 'Washington': 'West', 'Wyoming': 'West', 'Connecticut': 'Northeast', 'Maine': 'Northeast', 'Massachusetts': 'Northeast', 'New Hampshire': 'Northeast', 'New Jersey': 'Northeast', 'New York': 'Northeast', 'Pennsylvania': 'Northeast', 'Rhode Island': 'Northeast', 'Vermont': 'Northeast', 'Alabama': 'South', 'Arkansas': 'South', 'Delaware': 'South', 'District of Columbia': 'South', 'Florida': 'South', 'Georgia': 'South', 'Kentucky': 'South', 'Louisiana': 'South', 'Maryland': 'South', 'Mississippi': 'South', 'North Carolina': 'South', 'Oklahoma': 'South', 'South Carolina': 'South', 'Tennessee': 'South', 'Texas': 'South', 'Virginia': 'South', 'West Virginia': 'South', 'Illinois': 'Midwest', 'Indiana': 'Midwest', 'Iowa': 'Midwest', 'Kansas': 'Midwest', 'Michigan': 'Midwest', 'Minnesota': 'Midwest', 'Missouri': 'Midwest', 'Nebraska': 'Midwest', 'North Dakota': 'Midwest', 'Ohio': 'Midwest', 'South Dakota': 'Midwest', 'Wisconsin': 'Midwest' };
             const handleInputChange = (e) => { const { name, value } = e.target; setFormData(prev => ({ ...prev, [name]: value })); setPredictionResult(null); setError(null); };
@@ -221,14 +196,7 @@
                     {showValidationModal && ( <div className="modal-backdrop"><div className="bg-white rounded-lg shadow-2xl p-8 max-w-md w-full mx-4 fade-in"><div className="text-center"><div className="mb-6"><i data-lucide="alert-triangle" className="h-16 w-16 text-yellow-600 mx-auto shake"></i></div><h3 className="text-xl font-semibold text-gray-900 mb-4">{missingFieldsList.length === 5 ? t.validationTitle1 : t.validationTitle2}</h3><p className="text-gray-600 mb-6">{missingFieldsList.length === 5 ? t.validationMsg1 : t.validationMsg2}</p>{missingFieldsList.length < 5 && (<div className="bg-yellow-50 rounded-lg p-4 mb-6 text-left"><ul className="space-y-2">{missingFieldsList.map((field, index) => (<li key={index} className="flex items-center space-x-2"><span className="text-yellow-600 font-bold">•</span><span className="text-gray-700">{field}</span></li>))}</ul></div>)}<button onClick={() => setShowValidationModal(false)} className="bg-blue-900 text-white py-2 px-6 rounded-lg font-medium hover:bg-blue-800 transition-colors duration-200">{t.understood}</button></div></div></div> )}
                     {loading && ( <div className="modal-backdrop"><div className="bg-white rounded-lg shadow-2xl p-8 max-w-md w-full mx-4 fade-in"><div className="text-center"><div className="mb-6"><i data-lucide="brain" className="h-16 w-16 text-blue-900 mx-auto animate-pulse"></i></div><h3 className="text-xl font-semibold text-gray-900 mb-4">{t.aiValidating}</h3><div className="relative pt-1"><div className="overflow-hidden h-4 mb-4 text-xs flex rounded-full bg-gray-200"><div className="progress-bar shadow-none flex flex-col text-center whitespace-nowrap text-white justify-center bg-blue-900"></div></div></div><p className="text-sm text-gray-600 animate-pulse">{t.analyzingInfo}</p></div></div></div> )}
                     <header className="bg-white border-b border-gray-200 shadow-sm"><div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6"><div className="flex items-center justify-center"><div className="flex items-center space-x-3"><img src="LogoVisaPredictAI.png" alt="VisaPredict AI Logo" className="h-16 w-16 object-contain"/>< div><h1 className="text-2xl font-bold text-blue-900">VisaPredict <span className="text-red-600">AI</span></h1><p className="text-sm text-gray-700">{t.title}</p></div></div></div></div></header>
-                    <div className="control-buttons-container">
-                        <button onClick={toggleLanguage} className="control-button" title={language === 'es' ? 'Switch to English' : 'Cambiar a Español'}><i data-lucide="globe" className="h-4 w-4"></i><span className="text-sm font-medium">{language === 'es' ? 'EN' : 'ES'}</span></button>
-                        <button onClick={cycleTheme} className="control-button" title={theme === 'light' ? 'Modo oscuro' : theme === 'dark' ? 'Modo azul' : 'Modo claro'}>
-                            {theme === 'light' && <i data-lucide="moon" className="h-4 w-4"></i>}
-                            {theme === 'dark' && <i data-lucide="palette" className="h-4 w-4"></i>}
-                            {theme === 'blue' && <i data-lucide="sun" className="h-4 w-4"></i>}
-                        </button>
-                    </div>
+                    
                     <main className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
                         <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-8">
                             <h2 className="text-xl font-semibold text-blue-900 mb-6">{t.formTitle}</h2>
@@ -246,13 +214,40 @@
                         </div>
                         {predictions.length > 0 && (<div className="mt-8 bg-white rounded-lg shadow-sm border border-gray-200 p-8"><h3 className="text-lg font-semibold text-blue-900 mb-4 flex items-center space-x-2"><i data-lucide="file-text" className="h-5 w-5"></i><span>{t.history}</span></h3><div className="space-y-4">{predictions.slice(-5).reverse().map((pred, idx) => (<div key={idx} className="bg-gray-50 rounded-lg p-4 border border-gray-200"><div className="flex justify-between items-center mb-2"><span className="text-sm text-gray-600">{pred.timestamp}</span><span className={`px-3 py-1 rounded-full text-sm font-medium ${pred.result.status === 'Certified' ? 'bg-green-100 text-green-800' : 'bg-red-100 text-red-800'}`}>{pred.result.status === 'Certified' ? t.approved : t.denied} ({pred.result.probYes}%)</span></div><div className="grid grid-cols-2 gap-2 text-sm"><div><span className="font-medium">{t.countryLabel}</span> {pred.data.country}</div><div><span className="font-medium">{t.stateLabel}</span> {pred.data.state}</div><div><span className="font-medium">{t.educationLabel}</span> {pred.data.education_of_employee}</div><div><span className="font-medium">{t.experienceLabel}</span> {pred.data.has_job_experience === 'Y' ? t.yes : t.no}</div></div></div>))}</div><button onClick={resetForm} className="mt-4 w-full bg-white text-blue-900 py-2 px-4 rounded-lg font-medium border border-blue-900 hover:bg-blue-50 transition-colors duration-200">{t.newPrediction}</button></div>)}
                     </main>
-                    <footer className="mt-12 py-8 bg-gray-100"><div className="text-center"><p className="text-sm text-gray-500 mb-6">{t.footerNote}</p><div className="flex items-center justify-center space-x-6 mb-6"><div className="inline-flex items-center space-x-2 bg-gray-800 text-white px-6 py-2 rounded-full shadow-md"><i data-lucide="bar-chart-2" className="h-5 w-5"></i><span className="font-semibold"><span key={totalPredictions} className="count-animation">{totalPredictions.toLocaleString()}</span> {t.predictions} {t.realizadas}</span></div><a href="springteam.html" className="inline-flex items-center space-x-2 bg-blue-900 text-white px-6 py-2 rounded-full hover:bg-blue-800 transition-all duration-300 shadow-md"><i data-lucide="users" className="h-5 w-5"></i><span className="font-semibold">{t.meetTeam}</span></a></div><div className="mt-6 pt-6 border-t border-gray-300"><p className="text-lg font-medium text-gray-700 italic">{t.agileForce}</p></div></div></footer>
+                    <footer className="mt-12 py-8 bg-gray-100">
+                        <div className="text-center">
+                            <p className="text-sm text-gray-500 mb-6">{t.footerNote}</p>
+                            <div className="flex items-center justify-center space-x-6 mb-6">
+                                <div className="inline-flex items-center space-x-2 bg-gray-800 text-white px-6 py-2 rounded-full shadow-md"><i data-lucide="bar-chart-2" className="h-5 w-5"></i><span className="font-semibold"><span key={totalPredictions} className="count-animation">{totalPredictions.toLocaleString()}</span> {t.predictions} {t.realizadas}</span></div>
+                                <a href="springteam.html" className="inline-flex items-center space-x-2 bg-blue-900 text-white px-6 py-2 rounded-full hover:bg-blue-800 transition-all duration-300 shadow-md"><i data-lucide="users" className="h-5 w-5"></i><span className="font-semibold">{t.meetTeam}</span></a>
+                            </div>
+                            
+                            {/* === AJUSTE FINAL: Contenedor para alinear la frase y los botones === */}
+                            <div className="mt-6 pt-6 border-t border-gray-300">
+                                <div className="flex justify-center items-center gap-x-4 flex-wrap">
+                                    <p className="text-lg font-medium text-gray-700 italic m-2">
+                                        {t.agileForce}
+                                    </p>
+                                    <div className="control-buttons-container m-2">
+                                        <button onClick={toggleLanguage} className="control-button" title={language === 'es' ? 'Switch to English' : 'Cambiar a Español'}>
+                                            <i data-lucide="globe" className="h-4 w-4"></i>
+                                            <span className="text-sm font-medium">{language === 'es' ? 'EN' : 'ES'}</span>
+                                        </button>
+                                        <button onClick={cycleTheme} className="control-button" title={theme === 'light' ? 'Modo oscuro' : theme === 'dark' ? 'Modo azul' : 'Modo claro'}>
+                                            {theme === 'light' && <i data-lucide="moon" className="h-4 w-4"></i>}
+                                            {theme === 'dark' && <i data-lucide="palette" className="h-4 w-4"></i>}
+                                            {theme === 'blue' && <i data-lucide="sun" className="h-4 w-4"></i>}
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </footer>
                 </Fragment>
             );
         }
 
         const root = ReactDOM.createRoot(document.getElementById('root'));
-        // Renderizamos el componente padre 'App' que ahora controla todo.
         root.render(<App />);
     </script>
 </body>
