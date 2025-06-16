@@ -105,80 +105,6 @@
             justify-content: center;
             z-index: 9999;
         }
-        
-        /* Temas */
-        .dark-theme {
-            background-color: #1a202c;
-            color: #e2e8f0;
-        }
-        
-        .dark-theme .bg-white {
-            background-color: #2d3748;
-        }
-        
-        .dark-theme .bg-gray-50 {
-            background-color: #1a202c;
-        }
-        
-        .dark-theme .bg-gray-100 {
-            background-color: #2d3748;
-        }
-        
-        .dark-theme .text-gray-700 {
-            color: #cbd5e0;
-        }
-        
-        .dark-theme .text-gray-600 {
-            color: #a0aec0;
-        }
-        
-        .dark-theme .text-gray-500 {
-            color: #718096;
-        }
-        
-        .dark-theme .border-gray-200 {
-            border-color: #4a5568;
-        }
-        
-        .dark-theme .border-gray-300 {
-            border-color: #4a5568;
-        }
-        
-        .dark-theme .bg-blue-50 {
-            background-color: #2c5282;
-        }
-        
-        .dark-theme .bg-red-50 {
-            background-color: #742a2a;
-        }
-        
-        .dark-theme .bg-green-50 {
-            background-color: #22543d;
-        }
-        
-        .dark-theme .bg-yellow-50 {
-            background-color: #744210;
-        }
-        
-        .blue-theme {
-            background-color: #e6f2ff;
-        }
-        
-        .blue-theme .bg-gray-50 {
-            background-color: #e6f2ff;
-        }
-        
-        .blue-theme .bg-gray-100 {
-            background-color: #cce5ff;
-        }
-        
-        .blue-theme .bg-white {
-            background-color: #f0f8ff;
-        }
-        
-        .theme-switch {
-            transition: all 0.3s ease;
-        }
     </style>
 </head>
 <body>
@@ -186,123 +112,7 @@
 
     <script type="text/babel">
         const { useState, useEffect } = React;
-        const { Brain, Download, FileText, CheckCircle, XCircle, AlertCircle, Loader2, AlertTriangle, Users, TrendingUp, BarChart2, Moon, Sun, Globe, Palette } = lucide;
-
-        // Traducciones
-        const translations = {
-            es: {
-                title: "Predicción Inteligente de Aprobación de Visas de Trabajo en EE.UU.",
-                formTitle: "Ingrese los Datos para Predicción",
-                country: "País de Origen",
-                education: "Nivel Máximo de Estudios Terminado y Comprobable",
-                experience: "¿Tiene Experiencia en un Puesto Similar al que Está Aplicando?",
-                state: "¿En qué Estado de USA es la Posición a la que Aplica?",
-                fullTime: "¿Aplicará para un Empleo de Tiempo Completo?",
-                selectCountry: "Seleccione su país de origen",
-                selectEducation: "Seleccione su nivel de estudios",
-                selectOption: "Seleccione una opción",
-                selectState: "Seleccione el estado",
-                highSchool: "Preparatoria/Secundaria",
-                bachelors: "Licenciatura",
-                masters: "Maestría",
-                doctorate: "Doctorado",
-                yes: "Sí",
-                no: "No",
-                predict: "Obtener Predicción con AI",
-                analyzing: "Analizando...",
-                requiredFields: "* Todos los campos son requeridos",
-                validationTitle1: "Debes completar todos los campos",
-                validationTitle2: "Campos incompletos",
-                validationMsg1: "Para poder estimar un resultado con IA, necesitas completar todos los campos del formulario.",
-                validationMsg2: "Por favor complete los siguientes campos para continuar:",
-                understood: "Entendido",
-                aiValidating: "Nuestro Modelo de Inteligencia Artificial está validando tu caso",
-                analyzingInfo: "Analizando información...",
-                highProb: "Alta probabilidad de aprobación",
-                lowProb: "Baja probabilidad de aprobación",
-                highProbMsg: "Según los datos que proporcionaste, nuestro modelo de inteligencia artificial estima que <strong>tienes una alta probabilidad de obtener la aprobación de tu visa</strong>.",
-                lowProbMsg: "Con base en la información que ingresaste, nuestro modelo de Inteligencia Artificial estima que <strong>la probabilidad de aprobación de tu visa es baja en este momento</strong>.",
-                approvalProb: "Probabilidad de Aprobación",
-                denialProb: "Probabilidad de Denegación",
-                importantNote: "Nota importante:",
-                disclaimer1: "Los resultados presentados por VisaPredict AI son generados mediante un modelo de inteligencia artificial basado en patrones estadísticos y datos históricos. Esta predicción",
-                disclaimer2: "no representa una garantía, consejo legal, ni un veredicto oficial",
-                disclaimer3: "sobre la aprobación o rechazo de una visa.",
-                disclaimer4: "VisaPredict AI",
-                disclaimer5: "no se hace responsable",
-                disclaimer6: "por decisiones tomadas con base en esta información. Se recomienda acudir a fuentes oficiales del gobierno de los Estados Unidos o consultar con especialistas en migración para obtener orientación personalizada.",
-                history: "Historial de Predicciones",
-                approved: "Aprobado",
-                denied: "Denegado",
-                countryLabel: "País:",
-                stateLabel: "Estado:",
-                educationLabel: "Educación:",
-                experienceLabel: "Experiencia:",
-                newPrediction: "Nueva Predicción",
-                predictions: "Predicciones",
-                realizadas: "Realizadas",
-                meetTeam: "Conoce al Spring Team",
-                footerNote: "Nota: Esta es una predicción basada en IA y no garantiza el resultado real del proceso de visa.",
-                agileForce: "✨ Que La Fuerza de La Agilidad te Acompañe ✨",
-                error: "Error al obtener la predicción. Por favor intente nuevamente."
-            },
-            en: {
-                title: "Intelligent U.S. Work Visa Approval Prediction",
-                formTitle: "Enter Data for Prediction",
-                country: "Country of Origin",
-                education: "Highest Level of Completed and Verifiable Education",
-                experience: "Do You Have Experience in a Similar Position to the One You're Applying For?",
-                state: "In Which U.S. State is the Position You're Applying For?",
-                fullTime: "Will You Apply for a Full-Time Position?",
-                selectCountry: "Select your country of origin",
-                selectEducation: "Select your education level",
-                selectOption: "Select an option",
-                selectState: "Select the state",
-                highSchool: "High School",
-                bachelors: "Bachelor's",
-                masters: "Master's",
-                doctorate: "Doctorate",
-                yes: "Yes",
-                no: "No",
-                predict: "Get AI Prediction",
-                analyzing: "Analyzing...",
-                requiredFields: "* All fields are required",
-                validationTitle1: "You must complete all fields",
-                validationTitle2: "Incomplete fields",
-                validationMsg1: "To get an AI result estimate, you need to complete all form fields.",
-                validationMsg2: "Please complete the following fields to continue:",
-                understood: "Understood",
-                aiValidating: "Our Artificial Intelligence Model is validating your case",
-                analyzingInfo: "Analyzing information...",
-                highProb: "High approval probability",
-                lowProb: "Low approval probability",
-                highProbMsg: "Based on the data you provided, our artificial intelligence model estimates that <strong>you have a high probability of getting your visa approved</strong>.",
-                lowProbMsg: "Based on the information you entered, our Artificial Intelligence model estimates that <strong>the probability of your visa approval is currently low</strong>.",
-                approvalProb: "Approval Probability",
-                denialProb: "Denial Probability",
-                importantNote: "Important note:",
-                disclaimer1: "The results presented by VisaPredict AI are generated by an artificial intelligence model based on statistical patterns and historical data. This prediction",
-                disclaimer2: "does not represent a guarantee, legal advice, or an official verdict",
-                disclaimer3: "on visa approval or rejection.",
-                disclaimer4: "VisaPredict AI",
-                disclaimer5: "is not responsible",
-                disclaimer6: "for decisions made based on this information. We recommend consulting official U.S. government sources or immigration specialists for personalized guidance.",
-                history: "Prediction History",
-                approved: "Approved",
-                denied: "Denied",
-                countryLabel: "Country:",
-                stateLabel: "State:",
-                educationLabel: "Education:",
-                experienceLabel: "Experience:",
-                newPrediction: "New Prediction",
-                predictions: "Predictions",
-                realizadas: "Made",
-                meetTeam: "Meet the Spring Team",
-                footerNote: "Note: This is an AI-based prediction and does not guarantee the actual visa process result.",
-                agileForce: "✨ May The Force of Agility Be With You ✨",
-                error: "Error getting prediction. Please try again."
-            }
-        };
+        const { Brain, Download, FileText, CheckCircle, XCircle, AlertCircle, Loader2, AlertTriangle, Users, TrendingUp, BarChart2 } = lucide;
 
         // CONFIGURACIÓN DE FIREBASE - Reemplaza con tus credenciales reales
         const firebaseConfig = {
@@ -335,19 +145,6 @@
             const [totalPredictions, setTotalPredictions] = useState(0);
             const [showValidationModal, setShowValidationModal] = useState(false);
             const [missingFieldsList, setMissingFieldsList] = useState([]);
-            const [language, setLanguage] = useState('es');
-            const [theme, setTheme] = useState('light');
-            
-            const t = translations[language];
-            
-            // Cargar preferencias guardadas
-            useEffect(() => {
-                const savedLang = localStorage.getItem('visapredict-language') || 'es';
-                const savedTheme = localStorage.getItem('visapredict-theme') || 'light';
-                setLanguage(savedLang);
-                setTheme(savedTheme);
-                applyTheme(savedTheme);
-            }, []);
             
             // Cargar el contador desde Firebase al montar el componente
             useEffect(() => {
@@ -362,32 +159,6 @@
                 // Limpiar el listener al desmontar
                 return () => counterRef.off();
             }, []);
-            
-            const applyTheme = (selectedTheme) => {
-                document.body.classList.remove('dark-theme', 'blue-theme');
-                if (selectedTheme === 'dark') {
-                    document.body.classList.add('dark-theme');
-                } else if (selectedTheme === 'blue') {
-                    document.body.classList.add('blue-theme');
-                }
-            };
-            
-            const toggleLanguage = () => {
-                const newLang = language === 'es' ? 'en' : 'es';
-                setLanguage(newLang);
-                localStorage.setItem('visapredict-language', newLang);
-            };
-            
-            const cycleTheme = () => {
-                let newTheme;
-                if (theme === 'light') newTheme = 'dark';
-                else if (theme === 'dark') newTheme = 'blue';
-                else newTheme = 'light';
-                
-                setTheme(newTheme);
-                localStorage.setItem('visapredict-theme', newTheme);
-                applyTheme(newTheme);
-            };
 
             // Función para incrementar el contador en Firebase
             // OPCIÓN 1: Usando Cloud Function (más seguro)
@@ -545,11 +316,11 @@
 
             const validateForm = () => {
                 const fields = {
-                    country: t.country,
-                    education_of_employee: t.education,
-                    has_job_experience: t.experience,
-                    state: t.state,
-                    full_time_position: t.fullTime
+                    country: 'País de Origen',
+                    education_of_employee: 'Nivel Máximo de Estudios',
+                    has_job_experience: 'Experiencia en Puesto Similar',
+                    state: 'Estado de USA',
+                    full_time_position: 'Empleo de Tiempo Completo'
                 };
                 
                 const missingFields = [];
@@ -640,7 +411,7 @@
                     
                 } catch (err) {
                     console.error('Error:', err);
-                    setError(t.error);
+                    setError('Error al obtener la predicción. Por favor intente nuevamente.');
                 } finally {
                     setLoading(false);
                 }
@@ -666,7 +437,7 @@
             });
 
             return (
-                <div className={`min-h-screen ${theme === 'light' ? 'bg-gray-50' : ''} theme-switch`}>
+                <div className="min-h-screen bg-gray-50">
                     {/* Validation Modal */}
                     {showValidationModal && (
                         <div className="modal-backdrop">
@@ -677,13 +448,13 @@
                                     </div>
                                     <h3 className="text-xl font-semibold text-gray-900 mb-4">
                                         {missingFieldsList.length === 5 
-                                            ? t.validationTitle1
-                                            : t.validationTitle2}
+                                            ? 'Debes completar todos los campos'
+                                            : 'Campos incompletos'}
                                     </h3>
                                     <p className="text-gray-600 mb-6">
                                         {missingFieldsList.length === 5 
-                                            ? t.validationMsg1
-                                            : t.validationMsg2}
+                                            ? 'Para poder estimar un resultado con IA, necesitas completar todos los campos del formulario.'
+                                            : 'Por favor complete los siguientes campos para continuar:'}
                                     </p>
                                     
                                     {missingFieldsList.length < 5 && (
@@ -703,7 +474,7 @@
                                         onClick={() => setShowValidationModal(false)}
                                         className="bg-blue-900 text-white py-2 px-6 rounded-lg font-medium hover:bg-blue-800 transition-colors duration-200"
                                     >
-                                        {t.understood}
+                                        Entendido
                                     </button>
                                 </div>
                             </div>
@@ -719,7 +490,7 @@
                                         <i data-lucide="brain" className="h-16 w-16 text-blue-900 mx-auto animate-pulse"></i>
                                     </div>
                                     <h3 className="text-xl font-semibold text-gray-900 mb-4">
-                                        {t.aiValidating}
+                                        Nuestro Modelo de Inteligencia Artificial está validando tu caso
                                     </h3>
                                     <div className="relative pt-1">
                                         <div className="overflow-hidden h-4 mb-4 text-xs flex rounded-full bg-gray-200">
@@ -727,7 +498,7 @@
                                         </div>
                                     </div>
                                     <p className="text-sm text-gray-600 animate-pulse">
-                                        {t.analyzingInfo}
+                                        Analizando información...
                                     </p>
                                 </div>
                             </div>
@@ -737,7 +508,7 @@
                     {/* Header */}
                     <header className="bg-white border-b border-gray-200 shadow-sm">
                         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
-                            <div className="flex items-center justify-between">
+                            <div className="flex items-center justify-center">
                                 <div className="flex items-center space-x-3">
                                     <img 
                                         src="LogoVisaPredictAI.png" 
@@ -748,32 +519,8 @@
                                         <h1 className="text-2xl font-bold text-blue-900">
                                             VisaPredict <span className="text-red-600">AI</span>
                                         </h1>
-                                        <p className="text-sm text-gray-700">{t.title}</p>
+                                        <p className="text-sm text-gray-700">Predicción Inteligente de Aprobación de Visas de Trabajo en EE.UU.</p>
                                     </div>
-                                </div>
-                                
-                                {/* Control Buttons */}
-                                <div className="flex items-center space-x-2">
-                                    {/* Language Toggle */}
-                                    <button
-                                        onClick={toggleLanguage}
-                                        className="p-2 rounded-lg bg-gray-100 hover:bg-gray-200 transition-colors duration-200 flex items-center space-x-1"
-                                        title={language === 'es' ? 'Switch to English' : 'Cambiar a Español'}
-                                    >
-                                        <i data-lucide="globe" className="h-4 w-4"></i>
-                                        <span className="text-sm font-medium">{language === 'es' ? 'EN' : 'ES'}</span>
-                                    </button>
-                                    
-                                    {/* Theme Toggle */}
-                                    <button
-                                        onClick={cycleTheme}
-                                        className="p-2 rounded-lg bg-gray-100 hover:bg-gray-200 transition-colors duration-200"
-                                        title={theme === 'light' ? 'Dark mode' : theme === 'dark' ? 'Blue mode' : 'Light mode'}
-                                    >
-                                        {theme === 'light' && <i data-lucide="moon" className="h-4 w-4"></i>}
-                                        {theme === 'dark' && <i data-lucide="palette" className="h-4 w-4"></i>}
-                                        {theme === 'blue' && <i data-lucide="sun" className="h-4 w-4"></i>}
-                                    </button>
                                 </div>
                             </div>
                         </div>
@@ -782,13 +529,13 @@
                     {/* Main Content */}
                     <main className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
                         <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-8">
-                            <h2 className="text-xl font-semibold text-blue-900 mb-6">{t.formTitle}</h2>
+                            <h2 className="text-xl font-semibold text-blue-900 mb-6">Ingrese los Datos para Predicción</h2>
                             
                             <div className="space-y-6">
                                 {/* País de Origen */}
                                 <div>
                                     <label className="block text-sm font-medium text-gray-700 mb-2">
-                                        {t.country} *
+                                        País de Origen *
                                     </label>
                                     <select
                                         name="country"
@@ -796,7 +543,7 @@
                                         onChange={handleInputChange}
                                         className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-900 focus:border-transparent"
                                     >
-                                        <option value="">{t.selectCountry}</option>
+                                        <option value="">Seleccione su país de origen</option>
                                         {Object.keys(countryToContinent).sort().map(country => (
                                             <option key={country} value={country}>{country}</option>
                                         ))}
@@ -806,7 +553,7 @@
                                 {/* Nivel de Estudios */}
                                 <div>
                                     <label className="block text-sm font-medium text-gray-700 mb-2">
-                                        {t.education} *
+                                        Nivel Máximo de Estudios Terminado y Comprobable *
                                     </label>
                                     <select
                                         name="education_of_employee"
@@ -814,18 +561,18 @@
                                         onChange={handleInputChange}
                                         className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-900 focus:border-transparent"
                                     >
-                                        <option value="">{t.selectEducation}</option>
-                                        <option value="High School">{t.highSchool}</option>
-                                        <option value="Bachelor's">{t.bachelors}</option>
-                                        <option value="Master's">{t.masters}</option>
-                                        <option value="Doctorate">{t.doctorate}</option>
+                                        <option value="">Seleccione su nivel de estudios</option>
+                                        <option value="High School">Preparatoria/Secundaria</option>
+                                        <option value="Bachelor's">Licenciatura</option>
+                                        <option value="Master's">Maestría</option>
+                                        <option value="Doctorate">Doctorado</option>
                                     </select>
                                 </div>
 
                                 {/* Experiencia Laboral */}
                                 <div>
                                     <label className="block text-sm font-medium text-gray-700 mb-2">
-                                        {t.experience} *
+                                        ¿Tiene Experiencia en un Puesto Similar al que Está Aplicando? *
                                     </label>
                                     <select
                                         name="has_job_experience"
@@ -833,16 +580,16 @@
                                         onChange={handleInputChange}
                                         className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-900 focus:border-transparent"
                                     >
-                                        <option value="">{t.selectOption}</option>
-                                        <option value="Y">{t.yes}</option>
-                                        <option value="N">{t.no}</option>
+                                        <option value="">Seleccione una opción</option>
+                                        <option value="Y">Sí</option>
+                                        <option value="N">No</option>
                                     </select>
                                 </div>
 
                                 {/* Estado de la Posición */}
                                 <div>
                                     <label className="block text-sm font-medium text-gray-700 mb-2">
-                                        {t.state} *
+                                        ¿En qué Estado de USA es la Posición a la que Aplica? *
                                     </label>
                                     <select
                                         name="state"
@@ -850,7 +597,7 @@
                                         onChange={handleInputChange}
                                         className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-900 focus:border-transparent"
                                     >
-                                        <option value="">{t.selectState}</option>
+                                        <option value="">Seleccione el estado</option>
                                         {Object.keys(stateToRegion).sort().map(state => (
                                             <option key={state} value={state}>{state}</option>
                                         ))}
@@ -860,7 +607,7 @@
                                 {/* Posición de Tiempo Completo */}
                                 <div>
                                     <label className="block text-sm font-medium text-gray-700 mb-2">
-                                        {t.fullTime} *
+                                        ¿Aplicará para un Empleo de Tiempo Completo? *
                                     </label>
                                     <select
                                         name="full_time_position"
@@ -868,9 +615,9 @@
                                         onChange={handleInputChange}
                                         className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-900 focus:border-transparent"
                                     >
-                                        <option value="">{t.selectOption}</option>
-                                        <option value="Y">{t.yes}</option>
-                                        <option value="N">{t.no}</option>
+                                        <option value="">Seleccione una opción</option>
+                                        <option value="Y">Sí</option>
+                                        <option value="N">No</option>
                                     </select>
                                 </div>
 
@@ -884,12 +631,12 @@
                                         {loading ? (
                                             <>
                                                 <i data-lucide="loader-2" className="h-5 w-5 animate-spin"></i>
-                                                <span>{t.analyzing}</span>
+                                                <span>Analizando...</span>
                                             </>
                                         ) : (
                                             <>
                                                 <i data-lucide="brain" className="h-5 w-5"></i>
-                                                <span>{t.predict}</span>
+                                                <span>Obtener Predicción con AI</span>
                                             </>
                                         )}
                                     </button>
@@ -915,16 +662,20 @@
                                                 <>
                                                     <i data-lucide="check-circle" className="h-12 w-12 text-green-600"></i>
                                                     <div className="text-center">
-                                                        <h3 className="text-2xl font-bold text-green-800">{t.highProb}</h3>
-                                                        <p className="text-green-700 mt-1" dangerouslySetInnerHTML={{ __html: t.highProbMsg }}></p>
+                                                        <h3 className="text-2xl font-bold text-green-800">Alta probabilidad de aprobación</h3>
+                                                        <p className="text-green-700 mt-1">
+                                                            Según los datos que proporcionaste, nuestro modelo de inteligencia artificial estima que <strong>tienes una alta probabilidad de obtener la aprobación de tu visa</strong>.
+                                                        </p>
                                                     </div>
                                                 </>
                                             ) : (
                                                 <>
                                                     <i data-lucide="x-circle" className="h-12 w-12 text-red-600"></i>
                                                     <div className="text-center">
-                                                        <h3 className="text-2xl font-bold text-red-800">{t.lowProb}</h3>
-                                                        <p className="text-red-700 mt-1" dangerouslySetInnerHTML={{ __html: t.lowProbMsg }}></p>
+                                                        <h3 className="text-2xl font-bold text-red-800">Baja probabilidad de aprobación</h3>
+                                                        <p className="text-red-700 mt-1">
+                                                            Con base en la información que ingresaste, nuestro modelo de Inteligencia Artificial estima que <strong>la probabilidad de aprobación de tu visa es baja en este momento</strong>.
+                                                        </p>
                                                     </div>
                                                 </>
                                             )}
@@ -935,7 +686,7 @@
                                             {/* Barra de aprobado */}
                                             <div>
                                                 <div className="flex justify-between mb-1">
-                                                    <span className="text-sm font-medium text-green-700">{t.approvalProb}</span>
+                                                    <span className="text-sm font-medium text-green-700">Probabilidad de Aprobación</span>
                                                     <span className="text-sm font-bold text-green-700">{predictionResult.probYes}%</span>
                                                 </div>
                                                 <div className="w-full bg-gray-200 rounded-full h-6 overflow-hidden">
@@ -951,7 +702,7 @@
                                             {/* Barra de denegado */}
                                             <div>
                                                 <div className="flex justify-between mb-1">
-                                                    <span className="text-sm font-medium text-red-700">{t.denialProb}</span>
+                                                    <span className="text-sm font-medium text-red-700">Probabilidad de Denegación</span>
                                                     <span className="text-sm font-bold text-red-700">{predictionResult.probNo}%</span>
                                                 </div>
                                                 <div className="w-full bg-gray-200 rounded-full h-6 overflow-hidden">
@@ -970,12 +721,17 @@
                                             <div className="flex items-start space-x-2">
                                                 <span className="text-yellow-800 font-bold">⚠️</span>
                                                 <div className="text-sm text-yellow-800">
-                                                    <p className="font-semibold mb-1">{t.importantNote}</p>
+                                                    <p className="font-semibold mb-1">Nota importante:</p>
                                                     <p className="mb-2">
-                                                        {t.disclaimer1} <strong>{t.disclaimer2}</strong> {t.disclaimer3}
+                                                        Los resultados presentados por VisaPredict AI son generados mediante un modelo de 
+                                                        inteligencia artificial basado en patrones estadísticos y datos históricos. Esta predicción 
+                                                        <strong> no representa una garantía, consejo legal, ni un veredicto oficial</strong> sobre la aprobación o rechazo 
+                                                        de una visa.
                                                     </p>
                                                     <p className="mb-2">
-                                                        {t.disclaimer4} <strong>{t.disclaimer5}</strong> {t.disclaimer6}
+                                                        VisaPredict AI <strong>no se hace responsable</strong> por decisiones tomadas con base en esta información. 
+                                                        Se recomienda acudir a fuentes oficiales del gobierno de los Estados Unidos o consultar con 
+                                                        especialistas en migración para obtener orientación personalizada.
                                                     </p>
                                                 </div>
                                             </div>
@@ -983,7 +739,7 @@
                                     </div>
                                 )}
                                 
-                                <p className="text-xs text-gray-500 text-center">{t.requiredFields}</p>
+                                <p className="text-xs text-gray-500 text-center">* Todos los campos son requeridos</p>
                             </div>
                         </div>
 
@@ -992,7 +748,7 @@
                             <div className="mt-8 bg-white rounded-lg shadow-sm border border-gray-200 p-8">
                                 <h3 className="text-lg font-semibold text-blue-900 mb-4 flex items-center space-x-2">
                                     <i data-lucide="file-text" className="h-5 w-5"></i>
-                                    <span>{t.history}</span>
+                                    <span>Historial de Predicciones</span>
                                 </h3>
                                 <div className="space-y-4">
                                     {predictions.slice(-5).reverse().map((pred, idx) => (
@@ -1004,14 +760,14 @@
                                                         ? 'bg-green-100 text-green-800' 
                                                         : 'bg-red-100 text-red-800'
                                                 }`}>
-                                                    {pred.result.status === 'Certified' ? t.approved : t.denied} ({pred.result.probYes}%)
+                                                    {pred.result.status === 'Certified' ? 'Aprobado' : 'Denegado'} ({pred.result.probYes}%)
                                                 </span>
                                             </div>
                                             <div className="grid grid-cols-2 gap-2 text-sm">
-                                                <div><span className="font-medium">{t.countryLabel}</span> {pred.data.country}</div>
-                                                <div><span className="font-medium">{t.stateLabel}</span> {pred.data.state}</div>
-                                                <div><span className="font-medium">{t.educationLabel}</span> {pred.data.education_of_employee}</div>
-                                                <div><span className="font-medium">{t.experienceLabel}</span> {pred.data.has_job_experience === 'Y' ? t.yes : t.no}</div>
+                                                <div><span className="font-medium">País:</span> {pred.data.country}</div>
+                                                <div><span className="font-medium">Estado:</span> {pred.data.state}</div>
+                                                <div><span className="font-medium">Educación:</span> {pred.data.education_of_employee}</div>
+                                                <div><span className="font-medium">Experiencia:</span> {pred.data.has_job_experience === 'Y' ? 'Sí' : 'No'}</div>
                                             </div>
                                         </div>
                                     ))}
@@ -1020,7 +776,7 @@
                                     onClick={resetForm}
                                     className="mt-4 w-full bg-white text-blue-900 py-2 px-4 rounded-lg font-medium border border-blue-900 hover:bg-blue-50 transition-colors duration-200"
                                 >
-                                    {t.newPrediction}
+                                    Nueva Predicción
                                 </button>
                             </div>
                         )}
@@ -1029,27 +785,27 @@
                     {/* Footer */}
                     <footer className="mt-12 py-8 bg-gray-100">
                         <div className="text-center">
-                            <p className="text-sm text-gray-500 mb-6">{t.footerNote}</p>
+                            <p className="text-sm text-gray-500 mb-6">Nota: Esta es una predicción basada en IA y no garantiza el resultado real del proceso de visa.</p>
                             
                             <div className="flex items-center justify-center space-x-6 mb-6">
                                 {/* Contador de Predicciones */}
                                 <div className="inline-flex items-center space-x-2 bg-gray-800 text-white px-6 py-2 rounded-full shadow-md">
                                     <i data-lucide="bar-chart-2" className="h-5 w-5"></i>
                                     <span className="font-semibold">
-                                        <span key={totalPredictions} className="count-animation">{totalPredictions.toLocaleString()}</span> {t.predictions} {t.realizadas}
+                                        <span key={totalPredictions} className="count-animation">{totalPredictions.toLocaleString()}</span> Predicciones Realizadas
                                     </span>
                                 </div>
                                 
                                 {/* Botón Spring Team */}
                                 <a href="springteam.html" className="inline-flex items-center space-x-2 bg-blue-900 text-white px-6 py-2 rounded-full hover:bg-blue-800 transition-all duration-300 shadow-md">
                                     <i data-lucide="users" className="h-5 w-5"></i>
-                                    <span className="font-semibold">{t.meetTeam}</span>
+                                    <span className="font-semibold">Conoce al Spring Team</span>
                                 </a>
                             </div>
                             
                             <div className="mt-6 pt-6 border-t border-gray-300">
                                 <p className="text-lg font-medium text-gray-700 italic">
-                                    {t.agileForce}
+                                    ✨ Que La Fuerza de La Agilidad te Acompañe ✨
                                 </p>
                             </div>
                         </div>
