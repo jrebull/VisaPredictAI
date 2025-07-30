@@ -1,0 +1,412 @@
+<script type="text/javascript">
+        var gk_isXlsx = false;
+        var gk_xlsxFileLookup = {};
+        var gk_fileData = {};
+        function filledCell(cell) {
+          return cell !== '' && cell != null;
+        }
+        function loadFileData(filename) {
+        if (gk_isXlsx && gk_xlsxFileLookup[filename]) {
+            try {
+                var workbook = XLSX.read(gk_fileData[filename], { type: 'base64' });
+                var firstSheetName = workbook.SheetNames[0];
+                var worksheet = workbook.Sheets[firstSheetName];
+
+                // Convert sheet to JSON to filter blank rows
+                var jsonData = XLSX.utils.sheet_to_json(worksheet, { header: 1, blankrows: false, defval: '' });
+                // Filter out blank rows (rows where all cells are empty, null, or undefined)
+                var filteredData = jsonData.filter(row => row.some(filledCell));
+
+                // Heuristic to find the header row by ignoring rows with fewer filled cells than the next row
+                var headerRowIndex = filteredData.findIndex((row, index) =>
+                  row.filter(filledCell).length >= filteredData[index + 1]?.filter(filledCell).length
+                );
+                // Fallback
+                if (headerRowIndex === -1 || headerRowIndex > 25) {
+                  headerRowIndex = 0;
+                }
+
+                // Convert filtered JSON back to CSV
+                var csv = XLSX.utils.aoa_to_sheet(filteredData.slice(headerRowIndex)); // Create a new sheet from filtered array of arrays
+                csv = XLSX.utils.sheet_to_csv(csv, { header: 1 });
+                return csv;
+            } catch (e) {
+                console.error(e);
+                return "";
+            }
+        }
+        return gk_fileData[filename] || "";
+        }
+        </script><!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Comparación de Apps de Visas</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background-color: #f8f9fa;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+        th {
+            background-color: #3C3B6E; /* Azul oscuro de la bandera americana */
+            color: white;
+            padding: 12px 16px;
+            text-align: left;
+            font-weight: bold;
+        }
+        td {
+            padding: 12px 16px;
+            border-bottom: 1px solid #dee2e6;
+            vertical-align: top;
+        }
+        tr:nth-child(even) {
+            background-color: #f8f9fa;
+        }
+        .feature {
+            background-color: #B3CDE0; /* Azul claro inspirado en la bandera */
+            font-weight: bold;
+            text-align: left;
+        }
+        .score {
+            display: inline-block;
+            min-width: 24px;
+            height: 24px;
+            line-height: 24px;
+            text-align: center;
+            border-radius: 4px;
+            font-weight: bold;
+            margin-right: 8px;
+            vertical-align: middle;
+        }
+        .score-5 {
+            background-color: #d4edda;
+            color: #155724;
+        }
+        .score-4 {
+            background-color: #c3e6cb;
+            color: #155724;
+        }
+        .score-3 {
+            background-color: #fff3cd;
+            color: #856404;
+        }
+        .score-2 {
+            background-color: #ffeeba;
+            color: #856404;
+        }
+        .score-1 {
+            background-color: #f8d7da;
+            color: #721c24;
+        }
+        .description {
+            display: inline;
+            vertical-align: middle;
+        }
+    </style>
+</head>
+<body>
+    <table>
+        <thead>
+            <tr>
+                <th>Feature</th>
+                <th>VisaPredict AI</th>
+                <th>Lawfully, Inc.</th>
+                <th>Case Tracker</th>
+                <th>FastVisa</th>
+                <th>AsisVisa</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td class="feature">Registro/Social Login</td>
+                <td><span class="score score-4">4</span> Formulario de encuesta y onboarding claro, pero sin social login explícito</td>
+                <td><span class="score score-5">5</span> Social login avanzado</td>
+                <td><span class="score score-4">4</span> Registro simple</td>
+                <td><span class="score score-3">3</span> Orientado a firmas, básico</td>
+                <td><span class="score score-3">3</span> Registro accesible, pero limitado</td>
+            </tr>
+            <tr>
+                <td class="feature">Exploración de Opciones de Visa</td>
+                <td><span class="score score-5">5</span> Módulo detallado con panorama migratorio y simulador</td>
+                <td><span class="score score-3">3</span> Información general, no personalizada</td>
+                <td><span class="score score-2">2</span> Solo tracking, no exploración</td>
+                <td><span class="score score-2">2</span> Sin enfoque en usuarios finales</td>
+                <td><span class="score score-4">4</span> Guía en español, pero menos avanzada</td>
+            </tr>
+            <tr>
+                <td class="feature">Evaluación de Elegibilidad</td>
+                <td><span class="score score-5">5</span> Cuestionario detallado con informe comparativo</td>
+                <td><span class="score score-4">4</span> Predicciones basadas en IA, pero menos específicas</td>
+                <td><span class="score score-1">1</span> Sin evaluación</td>
+                <td><span class="score score-2">2</span> Limitado a firmas</td>
+                <td><span class="score score-3">3</span> Guía básica, no IA avanzada</td>
+            </tr>
+            <tr>
+                <td class="feature">Checklist de Documentación</td>
+                <td><span class="score score-5">5</span> Módulo interactivo con subida de archivos</td>
+                <td><span class="score score-3">3</span> Guías generales, no checklist interactivo</td>
+                <td><span class="score score-2">2</span> Sin gestión documental</td>
+                <td><span class="score score-4">4</span> Gestión para firmas</td>
+                <td><span class="score score-3">3</span> Preparación básica</td>
+            </tr>
+            <tr>
+                <td class="feature">Simulador de Entrevistas</td>
+                <td><span class="score score-5">5</span> Grabación y feedback personalizado</td>
+                <td><span class="score score-2">2</span> Sin simulador</td>
+                <td><span class="score score-1">1</span> Sin funcionalidad</td>
+                <td><span class="score score-2">2</span> No aplica</td>
+                <td><span class="score score-2">2</span> Sin simulador</td>
+            </tr>
+            <tr>
+                <td class="feature">Guía de Traslado</td>
+                <td><span class="score score-4">4</span> Planificación detallada para mudanza</td>
+                <td><span class="score score-1">1</span> Sin guía de traslado</td>
+                <td><span class="score score-1">1</span> Sin funcionalidad</td>
+                <td><span class="score score-2">2</span> Limitado a firmas</td>
+                <td><span class="score score-2">2</span> Sin enfoque en traslado</td>
+            </tr>
+            <tr>
+                <td class="feature">Búsqueda de Patrocinadores</td>
+                <td><span class="score score-4">4</span> Filtros por industria y historial</td>
+                <td><span class="score score-2">2</span> Sin funcionalidad específica</td>
+                <td><span class="score score-1">1</span> Sin apoyo</td>
+                <td><span class="score score-3">3</span> Soporte indirecto via firmas</td>
+                <td><span class="score score-2">2</span> Sin módulo dedicado</td>
+            </tr>
+            <tr>
+                <td class="feature">Seguimiento de Trámite</td>
+                <td><span class="score score-5">5</span> Sincronización con sistema oficial y notificaciones</td>
+                <td><span class="score score-4">4</span> Seguimiento básico con IA</td>
+                <td><span class="score score-4">4</span> Notificaciones en tiempo real</td>
+                <td><span class="score score-3">3</span> Gestión para firmas</td>
+                <td><span class="score score-3">3</span> Seguimiento limitado</td>
+            </tr>
+            <tr>
+                <td class="feature">Personalización</td>
+                <td><span class="score score-5">5</span> Recomendaciones basadas en perfil</td>
+                <td><span class="score score-4">4</span> Noticias personalizadas</td>
+                <td><span class="score score-2">2</span> Sin personalización</td>
+                <td><span class="score score-3">3</span> Para firmas</td>
+                <td><span class="score score-4">4</span> Enfoque en latinos</td>
+            </tr>
+            <tr>
+                <td class="feature">Multilingüe (Español)</td>
+                <td><span class="score score-4">4</span> Implicado, pero no detallado</td>
+                <td><span class="score score-3">3</span> Inglés predominante</td>
+                <td><span class="score score-2">2</span> Solo inglés</td>
+                <td><span class="score score-2">2</span> Inglés</td>
+                <td><span class="score score-5">5</span> Fuerte enfoque en español</td>
+            </tr>
+            <tr>
+                <td class="feature">Noticias y Actualizaciones Migratorias</td>
+                <td><span class="score score-5">5</span> Tablero con cambios en políticas</td>
+                <td><span class="score score-4">4</span> Noticias personalizadas</td>
+                <td><span class="score score-2">2</span> Sin actualizaciones detalladas</td>
+                <td><span class="score score-1">1</span> No aplica</td>
+                <td><span class="score score-3">3</span> Información básica</td>
+            </tr>
+            <tr>
+                <td class="feature">Simulador de Probabilidades</td>
+                <td><span class="score score-5">5</span> Cálculo rápido y comparativo</td>
+                <td><span class="score score-4">4</span> Predicciones basadas en big data</td>
+                <td><span class="score score-1">1</span> Sin funcionalidad</td>
+                <td><span class="score score-2">2</span> Limitado a firmas</td>
+                <td><span class="score score-2">2</span> Sin simulador avanzado</td>
+            </tr>
+            <tr>
+                <td class="feature">Preparación para Green Card</td>
+                <td><span class="score score-4">4</span> Catálogo de opciones y cuestionario</td>
+                <td><span class="score score-2">2</span> Sin enfoque específico</td>
+                <td><span class="score score-1">1</span> No aplica</td>
+                <td><span class="score score-3">3</span> Gestión para firmas</td>
+                <td><span class="score score-2">2</span> Limitado a latinos</td>
+            </tr>
+            <tr>
+                <td class="feature">Notificaciones Automáticas</td>
+                <td><span class="score score-5">5</span> Alertas por avances o aclaraciones</td>
+                <td><span class="score score-3">3</span> Notificaciones básicas</td>
+                <td><span class="score score-4">4</span> Notificaciones push</td>
+                <td><span class="score score-3">3</span> Recordatorios para firmas</td>
+                <td><span class="score score-2">2</span> Limitado</td>
+            </tr>
+            <tr>
+                <td class="feature">Soporte Emocional/Guías</td>
+                <td><span class="score score-4">4</span> Acompañamiento emocional implícito</td>
+                <td><span class="score score-2">2</span> Comunidad limitada</td>
+                <td><span class="score score-1">1</span> Sin soporte</td>
+                <td><span class="score score-2">2</span> No aplica</td>
+                <td><span class="score score-3">3</span> Enfoque cultural</td>
+            </tr>
+            <tr>
+                <td class="feature">Preparación para Examen de Ciudadanía</td>
+                <td><span class="score score-3">3</span> Guías básicas incluidas</td>
+                <td><span class="score score-2">2</span> Sin preparación específica</td>
+                <td><span class="score score-4">4</span> Práctica de civics quiz integrada</td>
+                <td><span class="score score-1">1</span> No aplica para firmas</td>
+                <td><span class="score score-3">3</span> Recursos en español limitados</td>
+            </tr>
+            <tr>
+                <td class="feature">Acceso a Boletín de Visas</td>
+                <td><span class="score score-4">4</span> Integración con boletín actualizado</td>
+                <td><span class="score score-5">5</span> Vista personalizada del boletín</td>
+                <td><span class="score score-5">5</span> Acceso rápido y notificaciones</td>
+                <td><span class="score score-3">3</span> Disponible para gestión de casos</td>
+                <td><span class="score score-4">4</span> Información básica sobre boletín</td>
+            </tr>
+            <tr>
+                <td class="feature">Foro de Comunidad</td>
+                <td><span class="score score-2">2</span> Comunidad limitada o ausente</td>
+                <td><span class="score score-3">3</span> Soporte comunitario básico</td>
+                <td><span class="score score-1">1</span> Sin foro</td>
+                <td><span class="score score-2">2</span> Colaboración interna para firmas</td>
+                <td><span class="score score-3">3</span> Enfoque en usuarios latinos</td>
+            </tr>
+            <tr>
+                <td class="feature">Integración con USCIS Oficial</td>
+                <td><span class="score score-5">5</span> Sincronización en tiempo real</td>
+                <td><span class="score score-4">4</span> Actualizaciones directas de USCIS</td>
+                <td><span class="score score-4">4</span> Tracking basado en datos oficiales</td>
+                <td><span class="score score-3">3</span> Integración limitada para firmas</td>
+                <td><span class="score score-4">4</span> Alertas automáticas</td>
+            </tr>
+            <tr>
+                <td class="feature">Chatbot AI</td>
+                <td><span class="score score-5">5</span> Asistente AI avanzado para consultas</td>
+                <td><span class="score score-3">3</span> Soporte básico vía chat</td>
+                <td><span class="score score-1">1</span> Sin chatbot</td>
+                <td><span class="score score-2">2</span> Automatización para firmas</td>
+                <td><span class="score score-3">3</span> Guías interactivas</td>
+            </tr>
+            <tr>
+                <td class="feature">Transparencia en Precios</td>
+                <td><span class="score score-2">2</span> Precios no claros o suscripciones ocultas</td>
+                <td><span class="score score-4">4</span> Modelos freemium transparentes</td>
+                <td><span class="score score-3">3</span> Opciones gratuitas con upsell</td>
+                <td><span class="score score-4">4</span> Precios claros para firmas</td>
+                <td><span class="score score-3">3</span> Información básica de costos</td>
+            </tr>
+            <tr>
+                <td class="feature">Disponibilidad en App Móvil</td>
+                <td><span class="score score-4">4</span> App móvil con funciones completas</td>
+                <td><span class="score score-5">5</span> Optimizada para móvil con todas las features</td>
+                <td><span class="score score-5">5</span> App dedicada para tracking</td>
+                <td><span class="score score-3">3</span> Acceso web principal, móvil limitado</td>
+                <td><span class="score score-5">5</span> App móvil con tracking</td>
+            </tr>
+            <tr>
+                <td class="feature">Seguridad de Datos</td>
+                <td><span class="score score-5">5</span> Encriptación avanzada y compliance</td>
+                <td><span class="score score-4">4</span> Medidas de seguridad estándar</td>
+                <td><span class="score score-3">3</span> Seguridad básica</td>
+                <td><span class="score score-5">5</span> Alta seguridad para firmas legales</td>
+                <td><span class="score score-4">4</span> Protección de datos implícita</td>
+            </tr>
+            <tr>
+                <td class="feature">Programación de Citas</td>
+                <td><span class="score score-1">1</span> Sin funcionalidad de programación</td>
+                <td><span class="score score-2">2</span> Recordatorios pero no programación</td>
+                <td><span class="score score-1">1</span> No aplica</td>
+                <td><span class="score score-4">4</span> Integración con calendarios para firmas</td>
+                <td><span class="score score-2">2</span> Guías para citas</td>
+            </tr>
+            <tr>
+                <td class="feature">Traducción de Documentos</td>
+                <td><span class="score score-3">3</span> Traducción básica integrada</td>
+                <td><span class="score score-2">2</span> Sin traducción automática</td>
+                <td><span class="score score-1">1</span> No disponible</td>
+                <td><span class="score score-3">3</span> Soporte para documentos en firmas</td>
+                <td><span class="score score-4">4</span> Enfoque en español con traducciones</td>
+            </tr>
+            <tr>
+                <td class="feature">Calculadora de Tarifas</td>
+                <td><span class="score score-4">4</span> Estimación de costos detallada</td>
+                <td><span class="score score-3">3</span> Información general de fees</td>
+                <td><span class="score score-2">2</span> Sin calculadora</td>
+                <td><span class="score score-4">4</span> Gestión de pagos para casos</td>
+                <td><span class="score score-3">3</span> Guías de pagos</td>
+            </tr>
+            <tr>
+                <td class="feature">Búsqueda de Empleo</td>
+                <td><span class="score score-2">2</span> Recursos limitados para jobs</td>
+                <td><span class="score score-1">1</span> Sin integración de empleo</td>
+                <td><span class="score score-1">1</span> No aplica</td>
+                <td><span class="score score-3">3</span> Soporte para patrocinadores en firmas</td>
+                <td><span class="score score-2">2</span> Consejos básicos</td>
+            </tr>
+            <tr>
+                <td class="feature">Integración con Consultoría Legal</td>
+                <td><span class="score score-3">3</span> Enlaces a abogados</td>
+                <td><span class="score score-2">2</span> Soporte limitado</td>
+                <td><span class="score score-1">1</span> Sin integración</td>
+                <td><span class="score score-5">5</span> Diseñada para firmas legales</td>
+                <td><span class="score score-4">4</span> Asesoría integrada</td>
+            </tr>
+            <tr>
+                <td class="feature">Modo Offline</td>
+                <td><span class="score score-1">1</span> Requiere conexión constante</td>
+                <td><span class="score score-3">3</span> Algunas funciones offline</td>
+                <td><span class="score score-2">2</span> Limitado offline</td>
+                <td><span class="score score-2">2</span> Principalmente online</td>
+                <td><span class="score score-3">3</span> Acceso básico offline</td>
+            </tr>
+            <tr>
+                <td class="feature">Dashboard de Análisis</td>
+                <td><span class="score score-5">5</span> Análisis detallado con IA</td>
+                <td><span class="score score-4">4</span> Dashboard con predicciones</td>
+                <td><span class="score score-3">3</span> Vista simple de status</td>
+                <td><span class="score score-4">4</span> Reportes para firmas</td>
+                <td><span class="score score-3">3</span> Resumen básico</td>
+            </tr>
+            <tr>
+                <td class="feature">Automatización de Flujos de Trabajo</td>
+                <td><span class="score score-3">3</span> Automatización limitada a usuarios</td>
+                <td><span class="score score-2">2</span> Sin workflows avanzados</td>
+                <td><span class="score score-1">1</span> No aplica</td>
+                <td><span class="score score-5">5</span> Automatización completa para firmas</td>
+                <td><span class="score score-2">2</span> Procesos básicos</td>
+            </tr>
+            <tr>
+                <td class="feature">Soporte para Múltiples Casos</td>
+                <td><span class="score score-4">4</span> Gestión de varios casos personales</td>
+                <td><span class="score score-5">5</span> Tracking múltiple con análisis</td>
+                <td><span class="score score-4">4</span> Soporte para varios receipts</td>
+                <td><span class="score score-5">5</span> Diseñada para múltiples clientes</td>
+                <td><span class="score score-3">3</span> Limitado a casos individuales</td>
+            </tr>
+            <tr>
+                <td class="feature">Escaneo de Documentos</td>
+                <td><span class="score score-5">5</span> Escaneo AI para extracción de datos</td>
+                <td><span class="score score-3">3</span> Subida simple sin escaneo</td>
+                <td><span class="score score-2">2</span> Sin escaneo</td>
+                <td><span class="score score-4">4</span> Procesamiento para firmas</td>
+                <td><span class="score score-3">3</span> Subida básica</td>
+            </tr>
+            <tr>
+                <td class="feature">Alertas de Expiración</td>
+                <td><span class="score score-4">4</span> Recordatorios para fechas clave</td>
+                <td><span class="score score-4">4</span> Alertas basadas en status</td>
+                <td><span class="score score-3">3</span> Notificaciones generales</td>
+                <td><span class="score score-5">5</span> Tracking de expiraciones para casos</td>
+                <td><span class="score score-4">4</span> Alertas automáticas</td>
+            </tr>
+            <tr>
+                <td class="feature">Integración con Calendario</td>
+                <td><span class="score score-2">2</span> Integración limitada</td>
+                <td><span class="score score-3">3</span> Recordatorios en app</td>
+                <td><span class="score score-2">2</span> Sin integración externa</td>
+                <td><span class="score score-5">5</span> Sincronización con Google Calendar</td>
+                <td><span class="score score-3">3</span> Recordatorios básicos</td>
+            </tr>
+        </tbody>
+    </table>
+</body>
+</html>
