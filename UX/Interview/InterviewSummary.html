@@ -1,0 +1,716 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resumen UX - Yazmín Flores | VisaPredictAI</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --usa-blue: #002868;
+            --usa-red: #BF0A30;
+            --usa-white: #FFFFFF;
+            --light-gray: #F8F9FA;
+            --medium-gray: #6C757D;
+            --dark-gray: #212529;
+            --border-color: #E9ECEF;
+            --success-green: #28A745;
+            --warning-orange: #FD7E14;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6;
+            color: var(--dark-gray);
+            background-color: var(--usa-white);
+            font-size: 16px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        header {
+            background: linear-gradient(135deg, var(--usa-blue) 0%, #1e3a8a 100%);
+            color: var(--usa-white);
+            padding: 2rem 0;
+            box-shadow: 0 8px 32px rgba(0, 40, 104, 0.15);
+        }
+
+        .header-content {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 2rem;
+        }
+
+        .logo-section {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+        }
+
+        .logo {
+            width: 70px;
+            height: 70px;
+            object-fit: contain;
+            border-radius: 12px;
+            background: var(--usa-white);
+            padding: 8px;
+            box-shadow: 0 4px 15px rgba(255, 255, 255, 0.2);
+        }
+
+        .header-text h1 {
+            font-size: 2.2rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            letter-spacing: -0.02em;
+        }
+
+        .header-text p {
+            font-size: 1rem;
+            opacity: 0.9;
+            font-weight: 300;
+        }
+
+        .date-badge {
+            background: var(--usa-red);
+            color: var(--usa-white);
+            padding: 1rem 1.5rem;
+            border-radius: 12px;
+            text-align: center;
+            box-shadow: 0 4px 15px rgba(191, 10, 48, 0.3);
+            min-width: 120px;
+        }
+
+        .date-badge .day {
+            font-size: 1.4rem;
+            font-weight: 700;
+            display: block;
+        }
+
+        .date-badge .month-year {
+            font-size: 0.85rem;
+            opacity: 0.9;
+        }
+
+        .user-profile {
+            background: var(--light-gray);
+            padding: 2.5rem 0;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .profile-grid {
+            display: grid;
+            grid-template-columns: auto 1fr;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .user-photo {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 4px solid var(--usa-white);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+        }
+
+        .user-info {
+            background: var(--usa-white);
+            padding: 2rem;
+            border-radius: 16px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+            border-left: 5px solid var(--usa-blue);
+        }
+
+        .user-info h2 {
+            color: var(--usa-blue);
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+        }
+
+        .info-item {
+            display: flex;
+            flex-direction: column;
+            gap: 0.25rem;
+        }
+
+        .info-item .label {
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: var(--usa-red);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .info-item .value {
+            font-size: 1rem;
+            color: var(--dark-gray);
+            font-weight: 500;
+        }
+
+        .insights-section {
+            padding: 3rem 0;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            color: var(--usa-blue);
+            margin-bottom: 3rem;
+            position: relative;
+            font-weight: 700;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -1rem;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(90deg, var(--usa-red), var(--warning-orange));
+            border-radius: 2px;
+        }
+
+        .insights-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .insight-card {
+            background: var(--usa-white);
+            padding: 2.5rem;
+            border-radius: 16px;
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
+            border-top: 5px solid var(--usa-blue);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .insight-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 5px;
+            background: linear-gradient(90deg, var(--usa-blue), var(--usa-red));
+        }
+
+        .insight-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+        }
+
+        .insight-card.ux-card::before {
+            background: linear-gradient(90deg, var(--success-green), #20C997);
+        }
+
+        .insight-card.user-card::before {
+            background: linear-gradient(90deg, var(--usa-red), #FF6B6B);
+        }
+
+        .insight-card.design-card::before {
+            background: linear-gradient(90deg, var(--warning-orange), #FFB84D);
+        }
+
+        .card-icon {
+            width: 50px;
+            height: 50px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            margin-bottom: 1.5rem;
+            background: var(--light-gray);
+            color: var(--usa-blue);
+        }
+
+        .ux-card .card-icon {
+            background: #E8F5E8;
+            color: var(--success-green);
+        }
+
+        .user-card .card-icon {
+            background: #FFE8E8;
+            color: var(--usa-red);
+        }
+
+        .design-card .card-icon {
+            background: #FFF3E0;
+            color: var(--warning-orange);
+        }
+
+        .insight-card h3 {
+            font-size: 1.4rem;
+            margin-bottom: 1.5rem;
+            font-weight: 600;
+            color: var(--usa-blue);
+        }
+
+        .insight-list {
+            list-style: none;
+        }
+
+        .insight-list li {
+            padding: 0.75rem 0;
+            border-bottom: 1px solid var(--border-color);
+            position: relative;
+            padding-left: 2rem;
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        .insight-list li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: var(--success-green);
+            font-weight: bold;
+            font-size: 1rem;
+        }
+
+        .user-card .insight-list li::before {
+            content: '👤';
+        }
+
+        .design-card .insight-list li::before {
+            content: '🎨';
+        }
+
+        .insight-list li:last-child {
+            border-bottom: none;
+        }
+
+        .highlight-stat {
+            background: var(--light-gray);
+            padding: 2rem 0;
+            margin: 3rem 0;
+            border-radius: 16px;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            text-align: center;
+        }
+
+        .stat-item {
+            padding: 1.5rem;
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--usa-blue);
+            display: block;
+        }
+
+        .stat-label {
+            font-size: 0.95rem;
+            color: var(--medium-gray);
+            margin-top: 0.5rem;
+            font-weight: 500;
+        }
+
+        .recommendations {
+            background: linear-gradient(135deg, var(--usa-blue) 0%, #1e3a8a 100%);
+            color: var(--usa-white);
+            padding: 3rem 0;
+            margin-top: 3rem;
+        }
+
+        .recommendations h3 {
+            text-align: center;
+            font-size: 2rem;
+            margin-bottom: 2rem;
+            font-weight: 600;
+        }
+
+        .rec-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+
+        .rec-item {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 2rem;
+            border-radius: 12px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .rec-item h4 {
+            font-size: 1.2rem;
+            margin-bottom: 1rem;
+            color: var(--usa-white);
+            font-weight: 600;
+        }
+
+        .rec-item p {
+            opacity: 0.9;
+            line-height: 1.6;
+        }
+
+        footer {
+            background: var(--dark-gray);
+            color: var(--usa-white);
+            text-align: center;
+            padding: 2rem 0;
+        }
+
+        footer p {
+            opacity: 0.8;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .fade-in {
+            animation: fadeInUp 0.8s ease-out;
+        }
+
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                text-align: center;
+                gap: 1.5rem;
+            }
+
+            .header-text h1 {
+                font-size: 1.8rem;
+            }
+
+            .profile-grid {
+                grid-template-columns: 1fr;
+                text-align: center;
+                gap: 1.5rem;
+            }
+
+            .insights-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .insight-card {
+                padding: 2rem;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+
+            .container {
+                padding: 0 15px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .user-photo {
+                width: 100px;
+                height: 100px;
+            }
+
+            .insight-card {
+                padding: 1.5rem;
+            }
+
+            .stat-number {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo-section">
+                    <img src="visalogo.png" alt="VisaPredictAI Logo" class="logo">
+                    <div class="header-text">
+                        <h1>VisaPredictAI</h1>
+                        <p>Resumen Ejecutivo de Investigación UX</p>
+                    </div>
+                </div>
+                <div class="date-badge">
+                    <span class="day">31</span>
+                    <span class="month-year">JUL 2025</span>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <section class="user-profile">
+        <div class="container">
+            <div class="profile-grid">
+                <img src="Yaz Flores.jpg" alt="Yazmín Flores" class="user-photo">
+                <div class="user-info">
+                    <h2>Yazmín Flores</h2>
+                    <div class="info-grid">
+                        <div class="info-item">
+                            <span class="label">Edad</span>
+                            <span class="value">38 años</span>
+                        </div>
+                        <div class="info-item">
+                            <span class="label">Profesión</span>
+                            <span class="value">Ingeniera</span>
+                        </div>
+                        <div class="info-item">
+                            <span class="label">Residencia</span>
+                            <span class="value">Massachusetts, USA</span>
+                        </div>
+                        <div class="info-item">
+                            <span class="label">Tiempo en USA</span>
+                            <span class="value">13 años</span>
+                        </div>
+                        <div class="info-item">
+                            <span class="label">Experiencia</span>
+                            <span class="value">Múltiples renovaciones</span>
+                        </div>
+                        <div class="info-item">
+                            <span class="label">Perfil</span>
+                            <span class="value">Usuario experto</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="highlight-stat">
+        <div class="container">
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <span class="stat-number">13</span>
+                    <span class="stat-label">Años de experiencia migratoria</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">∞</span>
+                    <span class="stat-label">Solicitudes de visa realizadas</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">1</span>
+                    <span class="stat-label">Tipo de visa conocido</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">💯</span>
+                    <span class="stat-label">Nivel de frustración</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <section class="insights-section">
+        <div class="container">
+            <h2 class="section-title">Insights Clave para VisaPredictAI</h2>
+            
+            <div class="insights-grid">
+                <div class="insight-card fade-in">
+                    <div class="card-icon">📊</div>
+                    <h3>Puntos Clave Generales</h3>
+                    <ul class="insight-list">
+                        <li>Experiencia frustrante con renovaciones constantes de visa</li>
+                        <li>Conocimiento limitado solo al tipo de visa personal</li>
+                        <li>Documentos requeridos cambian sin explicación clara</li>
+                        <li>Procesos burocráticos lentos y poco transparentes</li>
+                        <li>Necesidad de certeza y confiabilidad en la información</li>
+                        <li>Prefiere enlaces directos a fuentes oficiales</li>
+                    </ul>
+                </div>
+
+                <div class="insight-card ux-card fade-in">
+                    <div class="card-icon">🎯</div>
+                    <h3>Insights de UX</h3>
+                    <ul class="insight-list">
+                        <li>Prefiere menú lateral con iconos intuitivos y texto claro</li>
+                        <li>Dashboard principal con resumen personalizado de perfil</li>
+                        <li>Organización por tipo de visa específico (no genérico)</li>
+                        <li>Notificaciones contextuales relevantes al tipo de visa</li>
+                        <li>Flujos completos sin pérdida de información</li>
+                        <li>Navegación móvil para consultas rápidas, desktop para documentos</li>
+                    </ul>
+                </div>
+
+                <div class="insight-card user-card fade-in">
+                    <div class="card-icon">👤</div>
+                    <h3>Necesidades del Usuario</h3>
+                    <ul class="insight-list">
+                        <li>Evaluación inicial de elegibilidad antes de aplicar</li>
+                        <li>Lista clara y actualizada de documentos requeridos</li>
+                        <li>Seguimiento en tiempo real del progreso del proceso</li>
+                        <li>Historial migratorio organizado y accesible</li>
+                        <li>Foro comunitario para compartir experiencias</li>
+                        <li>Predicciones confiables con alto nivel de certeza</li>
+                    </ul>
+                </div>
+
+                <div class="insight-card design-card fade-in">
+                    <div class="card-icon">🎨</div>
+                    <h3>Recomendaciones de Diseño</h3>
+                    <ul class="insight-list">
+                        <li>Arquitectura basada en tipos de visa específicos</li>
+                        <li>Sección "Resultados" en lugar de "Reportes"</li>
+                        <li>Pop-ups informativos para actualizaciones relevantes</li>
+                        <li>Categorías: Evaluación Inicial, Historial Migratorio, Perfil Profesional</li>
+                        <li>Soporte bilingüe (importante pero no crítico)</li>
+                        <li>Configuraciones mínimas - foco en funcionalidad core</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="recommendations">
+        <div class="container">
+            <h3>Recomendaciones Prioritarias</h3>
+            <div class="rec-grid">
+                <div class="rec-item">
+                    <h4>🏗️ Arquitectura de Información</h4>
+                    <p>Estructurar la app por tipos de visa específicos, no información genérica. Cada tipo debe tener su flujo y requisitos únicos.</p>
+                </div>
+                <div class="rec-item">
+                    <h4>📱 Experiencia Móvil/Desktop</h4>
+                    <p>Optimizar móvil para consultas rápidas y desktop para tareas complejas como subir documentos.</p>
+                </div>
+                <div class="rec-item">
+                    <h4>🔗 Integración Oficial</h4>
+                    <p>Proveer enlaces directos a sitios gubernamentales oficiales para validar información y generar confianza.</p>
+                </div>
+                <div class="rec-item">
+                    <h4>👥 Comunidad de Usuarios</h4>
+                    <p>Implementar foro filtrado por tipo de visa para compartir experiencias específicas y documentos solicitados.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 VisaPredictAI - Maestría en Inteligencia Artificial Aplicada, Tecnológico de Monterrey</p>
+        </div>
+    </footer>
+
+    <script>
+        // Smooth animations on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('fade-in');
+                }
+            });
+        }, observerOptions);
+
+        // Observe cards for animation
+        document.querySelectorAll('.insight-card').forEach(card => {
+            observer.observe(card);
+        });
+
+        // Add hover effects to cards
+        document.querySelectorAll('.insight-card').forEach(card => {
+            card.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateY(-8px) scale(1.02)';
+                this.style.transition = 'all 0.3s ease';
+            });
+            
+            card.addEventListener('mouseleave', function() {
+                this.style.transform = 'translateY(0) scale(1)';
+            });
+        });
+
+        // Smooth scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // Add loading animation
+        window.addEventListener('load', function() {
+            document.body.style.opacity = '1';
+            document.body.style.transition = 'opacity 0.5s ease';
+        });
+
+        // Counter animation for stats
+        function animateValue(element, start, end, duration) {
+            if (isNaN(end)) return;
+            
+            let startTimestamp = null;
+            const step = (timestamp) => {
+                if (!startTimestamp) startTimestamp = timestamp;
+                const progress = Math.min((timestamp - startTimestamp) / duration, 1);
+                element.innerHTML = Math.floor(progress * (end - start) + start);
+                if (progress < 1) {
+                    window.requestAnimationFrame(step);
+                }
+            };
+            window.requestAnimationFrame(step);
+        }
+
+        // Animate stats when visible
+        const statsObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const statNumber = entry.target.querySelector('.stat-number');
+                    const value = statNumber.textContent;
+                    if (!isNaN(value)) {
+                        animateValue(statNumber, 0, parseInt(value), 2000);
+                    }
+                    statsObserver.unobserve(entry.target);
+                }
+            });
+        });
+
+        document.querySelectorAll('.stat-item').forEach(stat => {
+            statsObserver.observe(stat);
+        });
+
+        // Add click feedback to insight items
+        document.querySelectorAll('.insight-list li').forEach(item => {
+            item.addEventListener('click', function() {
+                this.style.backgroundColor = '#f0f8ff';
+                setTimeout(() => {
+                    this.style.backgroundColor = '';
+                }, 300);
+            });
+        });
+    </script>
+</body>
+</html>
