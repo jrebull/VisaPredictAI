@@ -1,0 +1,1080 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Entrevista UX - Yazmín Flores | VisaPredictAI</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --usa-blue: #002868;
+            --usa-red: #BF0A30;
+            --usa-white: #FFFFFF;
+            --light-gray: #F8F9FA;
+            --medium-gray: #6C757D;
+            --dark-gray: #212529;
+            --border-color: #E9ECEF;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6;
+            color: var(--dark-gray);
+            background-color: var(--usa-white);
+            font-size: 16px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        header {
+            background: linear-gradient(135deg, var(--usa-blue) 0%, #1e3a8a 100%);
+            color: var(--usa-white);
+            padding: 2rem 0;
+            box-shadow: 0 4px 20px rgba(0, 40, 104, 0.1);
+        }
+
+        .header-content {
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+        }
+
+        .logo {
+            width: 80px;
+            height: 80px;
+            object-fit: contain;
+            border-radius: 12px;
+            background: var(--usa-white);
+            padding: 8px;
+        }
+
+        .header-text h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            letter-spacing: -0.02em;
+        }
+
+        .header-text p {
+            font-size: 1.1rem;
+            opacity: 0.9;
+            font-weight: 300;
+        }
+
+        .interview-info {
+            background: var(--light-gray);
+            padding: 2rem 0;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .info-grid {
+            display: grid;
+            grid-template-columns: auto 1fr auto;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .interviewee-photo {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 4px solid var(--usa-white);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+        }
+
+        .info-details {
+            display: grid;
+            gap: 1rem;
+        }
+
+        .info-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 0.75rem 1.25rem;
+            background: var(--usa-white);
+            border-radius: 8px;
+            border-left: 4px solid var(--usa-red);
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+        }
+
+        .info-item .label {
+            font-weight: 600;
+            color: var(--usa-blue);
+            min-width: 100px;
+        }
+
+        .info-item .value {
+            color: var(--dark-gray);
+        }
+
+        .date-badge {
+            background: var(--usa-red);
+            color: var(--usa-white);
+            padding: 1rem 1.5rem;
+            border-radius: 12px;
+            text-align: center;
+            box-shadow: 0 4px 15px rgba(191, 10, 48, 0.2);
+        }
+
+        .date-badge .day {
+            font-size: 1.5rem;
+            font-weight: 700;
+            display: block;
+        }
+
+        .date-badge .month-year {
+            font-size: 0.9rem;
+            opacity: 0.9;
+        }
+
+        .transcript {
+            padding: 3rem 0;
+        }
+
+        .transcript h2 {
+            font-size: 2rem;
+            color: var(--usa-blue);
+            margin-bottom: 2rem;
+            text-align: center;
+            position: relative;
+        }
+
+        .transcript h2::after {
+            content: '';
+            position: absolute;
+            bottom: -0.5rem;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 3px;
+            background: var(--usa-red);
+            border-radius: 2px;
+        }
+
+        .conversation {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .message {
+            margin-bottom: 1.5rem;
+            padding: 1.5rem;
+            border-radius: 12px;
+            position: relative;
+            animation: fadeInUp 0.6s ease-out;
+        }
+
+        .interviewer {
+            background: var(--light-gray);
+            border-left: 4px solid var(--usa-blue);
+            margin-right: 2rem;
+        }
+
+        .interviewee {
+            background: var(--usa-white);
+            border: 1px solid var(--border-color);
+            border-left: 4px solid var(--usa-red);
+            margin-left: 2rem;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+        }
+
+        .speaker {
+            font-weight: 700;
+            margin-bottom: 0.75rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .interviewer .speaker {
+            color: var(--usa-blue);
+        }
+
+        .interviewee .speaker {
+            color: var(--usa-red);
+        }
+
+        .speaker::before {
+            content: '';
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: currentColor;
+        }
+
+        .message-content {
+            font-size: 1rem;
+            line-height: 1.7;
+            color: var(--dark-gray);
+        }
+
+        .summary-section {
+            background: var(--light-gray);
+            padding: 3rem 0;
+            margin-top: 2rem;
+        }
+
+        .summary-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .summary-card {
+            background: var(--usa-white);
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+            border-top: 4px solid var(--usa-blue);
+        }
+
+        .summary-card h3 {
+            color: var(--usa-blue);
+            font-size: 1.25rem;
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+
+        .summary-card ul {
+            list-style: none;
+        }
+
+        .summary-card li {
+            padding: 0.5rem 0;
+            border-bottom: 1px solid var(--border-color);
+            position: relative;
+            padding-left: 1.5rem;
+        }
+
+        .summary-card li::before {
+            content: '▶';
+            position: absolute;
+            left: 0;
+            color: var(--usa-red);
+            font-size: 0.8rem;
+        }
+
+        .summary-card li:last-child {
+            border-bottom: none;
+        }
+
+        footer {
+            background: var(--usa-blue);
+            color: var(--usa-white);
+            text-align: center;
+            padding: 2rem 0;
+            margin-top: 3rem;
+        }
+
+        footer p {
+            opacity: 0.9;
+        }
+
+        .scroll-to-top {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            background: var(--usa-red);
+            color: var(--usa-white);
+            border: none;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(191, 10, 48, 0.3);
+            transition: all 0.3s ease;
+            opacity: 0;
+            transform: translateY(20px);
+        }
+
+        .scroll-to-top.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .scroll-to-top:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(191, 10, 48, 0.4);
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                text-align: center;
+                gap: 1rem;
+            }
+
+            .header-text h1 {
+                font-size: 2rem;
+            }
+
+            .info-grid {
+                grid-template-columns: 1fr;
+                text-align: center;
+                gap: 1.5rem;
+            }
+
+            .interviewer {
+                margin-right: 0;
+                margin-bottom: 1rem;
+            }
+
+            .interviewee {
+                margin-left: 0;
+                margin-bottom: 1rem;
+            }
+
+            .summary-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .container {
+                padding: 0 15px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .interviewee-photo {
+                width: 100px;
+                height: 100px;
+            }
+
+            .message {
+                padding: 1rem;
+            }
+
+            .date-badge .day {
+                font-size: 1.2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <img src="visalogo.png" alt="VisaPredictAI Logo" class="logo">
+                <div class="header-text">
+                    <h1>VisaPredictAI</h1>
+                    <p>Investigación de Experiencia de Usuario</p>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <section class="interview-info">
+        <div class="container">
+            <div class="info-grid">
+                <img src="Yaz Flores.jpg" alt="Yazmín Flores" class="interviewee-photo">
+                
+                <div class="info-details">
+                    <div class="info-item">
+                        <span class="label">Entrevistada:</span>
+                        <span class="value">Yazmín Flores</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="label">Edad:</span>
+                        <span class="value">38 años</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="label">Profesión:</span>
+                        <span class="value">Ingeniera</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="label">Residencia:</span>
+                        <span class="value">Massachusetts, Estados Unidos</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="label">Origen:</span>
+                        <span class="value">México</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="label">Tiempo en USA:</span>
+                        <span class="value">13 años</span>
+                    </div>
+                    <div class="info-item">
+                        <span class="label">Entrevistador:</span>
+                        <span class="value">Javier Rebull (Estudiante UX - MNA)</span>
+                    </div>
+                </div>
+
+                <div class="date-badge">
+                    <span class="day">31</span>
+                    <span class="month-year">JULIO 2025</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="transcript">
+        <div class="container">
+            <h2>Transcripción Completa de la Entrevista</h2>
+            <div class="conversation">
+                <div class="message interviewer">
+                    <div class="speaker">Entrevistador</div>
+                    <div class="message-content">Hola, buenas noches. Somos el equipo de VisaPredict AI. Para la Maestría en Inteligencia Artificial Aplicada en el Tecnológico de Monterrey, somos el equipo número 1. En continuación, estamos haciendo unas entrevistas para determinar la arquitectura de información para nuestra aplicación VisaPredict AI. Nos encontramos con... Hola, buenas noches, ¿Yazmín Flores?</div>
+                </div>
+
+                <div class="message interviewee">
+                    <div class="speaker">Yazmín Flores</div>
+                    <div class="message-content">Hola, buenas noches.</div>
+                </div>
+
+                <div class="message interviewer">
+                    <div class="speaker">Entrevistador</div>
+                    <div class="message-content">¿Yazmín Flores? ¿Nos puedes, por favor, decir tu edad?</div>
+                </div>
+
+                <div class="message interviewee">
+                    <div class="speaker">Yazmín Flores</div>
+                    <div class="message-content">38 años.</div>
+                </div>
+
+                <div class="message interviewer">
+                    <div class="speaker">Entrevistador</div>
+                    <div class="message-content">Te agradecemos de antemano el tiempo que has tomado para hacer este ejercicio con nosotros. Cabe resaltar que, mientras estuvimos analizando los usuarios para hacer nuestra aplicación de VisaPredict AI, que es una aplicación para determinar tu porcentaje de probabilidad con Inteligencia Artificial de si tu solicitud será aprobada o no para obtener una visa de trabajo, fuiste uno de los perfiles más fuertes para la evaluación de esta actividad. ¿Nos podrías decir rápidamente de qué país eres?</div>
+                </div>
+
+                <div class="message interviewee">
+                    <div class="speaker">Yazmín Flores</div>
+                    <div class="message-content">Soy de México, nací en México.</div>
+                </div>
+
+                <div class="message interviewer">
+                    <div class="speaker">Entrevistador</div>
+                    <div class="message-content">¿Naciste en México y actualmente en dónde radicas?</div>
+                </div>
+
+                <div class="message interviewee">
+                    <div class="speaker">Yazmín Flores</div>
+                    <div class="message-content">En Estados Unidos.</div>
+                </div>
+
+                <div class="message interviewer">
+                    <div class="speaker">Entrevistador</div>
+                    <div class="message-content">¿Cuánto tiempo llevas residiendo en Estados Unidos?</div>
+                </div>
+
+                <div class="message interviewee">
+                    <div class="speaker">Yazmín Flores</div>
+                    <div class="message-content">Cerca de 13 años.</div>
+                </div>
+
+                <div class="message interviewer">
+                    <div class="speaker">Entrevistador</div>
+                    <div class="message-content">¿Y en esos 13 años alguna vez te has encontrado con alguna dificultad o algo para hacer un trámite de visa o algún trámite migratorio?</div>
+                </div>
+
+                <div class="message interviewee">
+                    <div class="speaker">Yazmín Flores</div>
+                    <div class="message-content">Sí, por lo regular, cada vez que me enfrentaba a una renovación de visa había problemas.</div>
+                </div>
+
+                <div class="message interviewer">
+                    <div class="speaker">Entrevistador</div>
+                    <div class="message-content">¿Y tú crees que ha sido un proceso frustrante para ti? ¿Un proceso que te ha causado ansiedad o en algún momento miedo o enojo? ¿Este tipo de trámite tan recurrente?</div>
+                </div>
+
+                <div class="message interviewee">
+                    <div class="speaker">Yazmín Flores</div>
+                    <div class="message-content">Sí, porque te pueden rechazar por algún error o algo que esté mal, te pueden rechazar sin darte explicación.</div>
+                </div>
+
+                <div class="message interviewer">
+                    <div class="speaker">Entrevistador</div>
+                    <div class="message-content">Si me lo permites, vamos a proceder con la encuesta y vamos revisando punto por punto. ¿Cuál es tu género? ¿Con qué género te identificas?</div>
+                </div>
+
+                <div class="message interviewee">
+                    <div class="speaker">Yazmín Flores</div>
+                    <div class="message-content">Femenino.</div>
+                </div>
+
+                <div class="message interviewer">
+                    <div class="speaker">Entrevistador</div>
+                    <div class="message-content">Femenino, gracias. ¿En qué país resides actualmente?</div>
+                </div>
+
+                <div class="message interviewee">
+                    <div class="speaker">Yazmín Flores</div>
+                    <div class="message-content">En Estados Unidos.</div>
+                </div>
+
+                <div class="message interviewer">
+                    <div class="speaker">Entrevistador</div>
+                    <div class="message-content">¿En qué estado?</div>
+                </div>
+
+                <div class="message interviewee">
+                    <div class="speaker">Yazmín Flores</div>
+                    <div class="message-content">En Massachusetts.</div>
+                </div>
+
+                <div class="message interviewer">
+                    <div class="speaker">Entrevistador</div>
+                    <div class="message-content">¿Cuál es tu profesión principal?</div>
+                </div>
+
+                <div class="message interviewee">
+                    <div class="speaker">Yazmín Flores</div>
+                    <div class="message-content">Soy ingeniera.</div>
+                </div>
+
+                <div class="message interviewer">
+                    <div class="speaker">Entrevistador</div>
+                    <div class="message-content">Ingeniera, perfecto. Me imagino que sí, ¿verdad? ¿Alguna vez has solicitado una visa de trabajo para Estados Unidos?</div>
+                </div>
+
+                <div class="message interviewee">
+                    <div class="speaker">Yazmín Flores</div>
+                    <div class="message-content">Sí.</div>
+                </div>
+
+                <div class="message interviewer">
+                    <div class="speaker">Entrevistador</div>
+                    <div class="message-content">¿Cuántas veces?</div>
+                </div>
+
+                <div class="message interviewee">
+                    <div class="speaker">Yazmín Flores</div>
+                    <div class="message-content">Bueno, pues ya perdí la cuenta. Muchísimas, ¿no?</div>
+                </div>
+
+                <div class="message interviewer">
+                    <div class="speaker">Entrevistador</div>
+                    <div class="message-content">Sí, muchas. Con toda esta experiencia, ¿qué tan familiarizada dirías que estás con los procesos migratorios de Estados Unidos?</div>
+                </div>
+
+                <div class="message interviewee">
+                    <div class="speaker">Yazmín Flores</div>
+                    <div class="message-content">Pues es bajo porque solo conozco el procedimiento del tipo de visa que me han tramitado. O sea, no conozco todo. Hay muchos tipos de visa y los requerimientos son distintos, pero no los conozco al cien. No conozco el tipo de visa que me piden y listo.</div>
+                </div>
+
+                <div class="message interviewer">
+                    <div class="speaker">Entrevistador</div>
+                    <div class="message-content">Bastante interesante, al tener bastante tiempo en Estados Unidos y haber enfrentado bastantes procesos migratorios, aún así no te consideras 100% familiarizada con todos los tipos de visa, ¿correcto?</div>
+                </div>
+
+                <div class="message interviewee">
+                    <div class="speaker">Yazmín Flores</div>
+                    <div class="message-content">Correcto.</div>
+                </div>
+
+                <div class="message interviewer">
+                    <div class="speaker">Entrevistador</div>
+                    <div class="message-content">Hoy en día que vivimos con toda esta época de la inteligencia artificial y que está tan en boga, si tuvieras una aplicación que te ayudase mediante el uso de inteligencia artificial a tener más conocimiento y un seguimiento más estricto de tu proceso de visa, ¿te haría sentir un poco más segura? ¿Te gustaría tener una aplicación así? ¿O prefieres seguir manejándolo solo por correo con los abogados o con información de cuentas oficiales en páginas web?</div>
+                </div>
+
+                <div class="message interviewee">
+                    <div class="speaker">Yazmín Flores</div>
+                    <div class="message-content">Sí me gustaría una aplicación, pero que sea acertada. Los sitios oficiales, obviamente, te dan más confiabilidad porque son sitios oficiales del gobierno de Estados Unidos. Pero si te puedes apoyar en una aplicación que no te dé el mismo resultado idéntico, pero que al menos te dé una certeza y haya un nivel de confianza alta, pues sí, lo autorizaría.</div>
+                </div>
+
+                <div class="message interviewer">
+                    <div class="speaker">Entrevistador</div>
+                    <div class="message-content">Gracias, Yazmín. En el caso de que sí decidieras usar una aplicación como VisaPredict AI, ¿cuál sería la necesidad principal de esta aplicación? ¿Estimar una probabilidad de manera lo más exacta posible, obtener un listado de todos los documentos que tienes que hacer, que te ayudara con una simulación de entrevistas consulares, que te estuviera notificando sobre tu proceso, o algún otro que identifiques?</div>
+                </div>
+
+                <div class="message interviewee">
+                    <div class="speaker">Yazmín Flores</div>
+                    <div class="message-content">Pues todo lo que mencionaste suena bien, pero yo creo que lo principal es que te diga cómo va tu caso, que te haga una lista de los documentos que necesitas, qué es lo que tienes que hacer si alguno requiere algún tipo de acción o tramitarlo de alguna manera, y que te lleve a los sitios oficiales para poder tramitarlo.</div>
+                </div>
+
+                <div class="message interviewer">
+                    <div class="speaker">Entrevistador</div>
+                    <div class="message-content">Ok, entonces te gustaría que fuera el enlace entre tú y los sitios oficiales para que pudieras corroborar todo de manera más fidedigna, ¿correcto?</div>
+                </div>
+
+                <div class="message interviewee">
+                    <div class="speaker">Yazmín Flores</div>
+                    <div class="message-content">Sí.</div>
+                </div>
+
+                <div class="message interviewer">
+                    <div class="speaker">Entrevistador</div>
+                    <div class="message-content">En los procesos de visa que has enfrentado, ¿cuál dirías que es la principal frustración? ¿La complejidad de los requisitos, el miedo al rechazo, la falta de herramientas, los costos sin garantías, o la lentitud y burocracia del trámite?</div>
+                </div>
+
+                <div class="message interviewee">
+                    <div class="speaker">Yazmín Flores</div>
+                    <div class="message-content">Es un proceso que te lleva al inicio. El hacer la petición de la visa te lleva bastante tiempo. Es un poco frustrante todos los procesos que llevas, y más cuando se trata de una renovación, porque cuando es de la misma empresa y si cambias de empresa, te enfrentas a otro procedimiento más complejo. En general, es eso, y también que cada vez que haces una renovación, nunca tienes la certeza de que te van a pedir los mismos documentos. A lo mejor, cuando vayas a hacer una renovación, ahora te piden un documento que nunca te habían pedido y que ahora sí te lo piden.</div>
+                </div>
+
+                <div class="message interviewer">
+                    <div class="speaker">Entrevistador</div>
+                    <div class="message-content">En el caso de una aplicación como VisaPredict AI, ¿qué te haría sentir un poco más segura? ¿Cuál sería tu sección favorita?</div>
+                </div>
+
+                <div class="message interviewee">
+                    <div class="speaker">Yazmín Flores</div>
+                    <div class="message-content">A mí me gustaría que primero fuera por tipo de visa y, después, dentro del tipo de visa, que te diga el procedimiento que estás siguiendo y, después del procedimiento, cómo van las notificaciones y cosas así.</div>
+                </div>
+
+                <div class="message interviewer">
+                    <div class="speaker">Entrevistador</div>
+                    <div class="message-content">¿Te gustaría que estuviera bien claro el tipo de visa que estás aplicando y que, con base en el tipo de visa, te dé la información específica para ese tipo de visa y no solo información general para todos los tipos de visa?</div>
+                </div>
+
+                <div class="message interviewee">
+                    <div class="speaker">Yazmín Flores</div>
+                    <div class="message-content">Cada tipo de visa tiene sus propios requerimientos. No puedes hablar de algo generalizado. Hasta donde yo sé, no hay tipos de visa que manejen los mismos criterios. Por eso son diferentes, son distintos tipos de visa, porque cada uno te ofrece cosas distintas y los requerimientos son distintos. Sino, todos podríamos aplicar para todas y no habría problema si fuera todo genérico. Sí me gustaría que fuera primero por el tipo de visa y, en base al tipo de visa, el proceso que hay que seguir, porque eso es lo que hay mucho, se confunde cuando vas a hacer un trámite porque no sabes ni qué te ofrece, qué tipo de visa te están tramitando, o qué puedes hacer con ese tipo de visa, pero tampoco sabes el procedimiento que hay que hacer para obtener ese tipo de visa.</div>
+                </div>
+
+                <div class="message interviewer">
+                    <div class="speaker">Entrevistador</div>
+                    <div class="message-content">Perfecto, gracias. Si tuvieras que agrupar dentro de la aplicación, por ejemplo, "Predicción de elegibilidad" y "Checklist de documentos", ¿en qué categoría pondrías estas dos funcionalidades? ¿En evaluación inicial, preparación de la solicitud, perfil personal, o resultados y recomendaciones?</div>
+                </div>
+
+                <div class="message interviewee">
+                    <div class="speaker">Yazmín Flores</div>
+                    <div class="message-content">En evaluación inicial. También es importante saber si tan siquiera cubres los requisitos mínimos para intentar solicitar ese tipo de visa. A veces no cubrimos los requerimientos y no nos damos cuenta hasta que nos rechazan.</div>
+                </div>
+
+                <div class="message interviewer">
+                    <div class="speaker">Entrevistador</div>
+                    <div class="message-content">Perfecto, gracias. ¿Qué etiqueta usarías para una sección que incluya historial de visas y rechazos previos? ¿Historial migratorio, perfil del solicitante, antecedentes personales, información sensible, o algún otro?</div>
+                </div>
+
+                <div class="message interviewee">
+                    <div class="speaker">Yazmín Flores</div>
+                    <div class="message-content">Historial migratorio.</div>
+                </div>
+
+                <div class="message interviewer">
+                    <div class="speaker">Entrevistador</div>
+                    <div class="message-content">Historial migratorio, perfecto. ¿Cómo agruparías "Noticias sobre políticas migratorias" y "Formación y capacidades"? ¿En una categoría de recursos educativos, categoría de actualizaciones y noticias, categoría de soporte y ayuda, o como secciones independientes en el menú principal?</div>
+                </div>
+
+                <div class="message interviewee">
+                    <div class="speaker">Yazmín Flores</div>
+                    <div class="message-content">Sería como en una sección independiente. Si yo tengo mi tipo de visa y estoy haciendo un procedimiento, si hubiera alguna noticia que involucre mi tipo de visa, me gustaría que apareciera dentro de mi proceso de visa, pero no me interesa ver las demás noticias de los demás procesos.</div>
+                </div>
+
+                <div class="message interviewer">
+                    <div class="speaker">Entrevistador</div>
+                    <div class="message-content">¿Alguna noticia que pudiera impactar tu tipo de visa o el proceso migratorio que pudiera aplicar a tu solicitud? ¿Te gustaría verlo dentro de tu tipo de visa?</div>
+                </div>
+
+                <div class="message interviewee">
+                    <div class="speaker">Yazmín Flores</div>
+                    <div class="message-content">Sí, como en un pop-up que me diga "hoy hay una nueva actualización", y que me lleve al link oficial donde se está modificando o está cambiando para leer en qué me afecta o si no me afecta lo que haya cambiado.</div>
+                </div>
+
+                <div class="message interviewer">
+                    <div class="speaker">Entrevistador</div>
+                    <div class="message-content">Perfecto. ¿Qué característica principal te gustaría ver en una aplicación como este tipo de aplicación de visa? ¿Integración con calendarios para recordatorios de plazos, un chatbot inteligente para consultas en tiempo real, una comunidad de usuarios para compartir experiencias, herramientas para mejorar tu currículum para que te puedan contratar empresas que patrocinen visas, o un simulador de costos totales del proceso?</div>
+                </div>
+
+                <div class="message interviewee">
+                    <div class="speaker">Yazmín Flores</div>
+                    <div class="message-content">Estaría bien un foro donde puedas compartir tu experiencia y también leer la experiencia de otros participantes que están en el mismo proceso, porque, te digo, no todos los procesos son iguales. Entonces, tener un feedback de los usuarios para poder saber sus experiencias te podría motivar en tu proceso. Más que un feedback, que cuenten su experiencia o cómo va su proceso para ver si algo te puede ayudar. Por ejemplo, si le pidieron un documento distinto o que tú no contemplabas, pues tú ya también lo consideras para llevarlo en tu entrevista o para obtener ese documento, por si te lo piden.</div>
+                </div>
+
+                <div class="message interviewer">
+                    <div class="speaker">Entrevistador</div>
+                    <div class="message-content">Perfecto, para estar al tanto, ¿no? De lo que le hayan pedido a otra gente, ¿no?</div>
+                </div>
+
+                <div class="message interviewee">
+                    <div class="speaker">Yazmín Flores</div>
+                    <div class="message-content">Sí.</div>
+                </div>
+
+                <div class="message interviewer">
+                    <div class="speaker">Entrevistador</div>
+                    <div class="message-content">¿Cómo preferirías navegar en la aplicación? ¿Con un menú lateral con categorías fijas, una barra de navegación inferior para móviles, una búsqueda inteligente con sugerencias, o un flujo guiado paso a paso?</div>
+                </div>
+
+                <div class="message interviewee">
+                    <div class="speaker">Yazmín Flores</div>
+                    <div class="message-content">Con un menú lateral, está bien.</div>
+                </div>
+
+                <div class="message interviewer">
+                    <div class="speaker">Entrevistador</div>
+                    <div class="message-content">Muy bien. ¿Qué tan importante es para ti que la aplicación tenga soporte en español?</div>
+                </div>
+
+                <div class="message interviewee">
+                    <div class="speaker">Yazmín Flores</div>
+                    <div class="message-content">Puede ser que… pues sí, es importante que sea bilingüe, sí. Importante, pero no es imprescindible.</div>
+                </div>
+
+                <div class="message interviewer">
+                    <div class="speaker">Entrevistador</div>
+                    <div class="message-content">No es imprescindible, ¿no?</div>
+                </div>
+
+                <div class="message interviewee">
+                    <div class="speaker">Yazmín Flores</div>
+                    <div class="message-content">No, no es imprescindible. Es importante simplemente porque algún término que no logre comprender bien en inglés, pero en realidad no es tan importante.</div>
+                </div>
+
+                <div class="message interviewer">
+                    <div class="speaker">Entrevistador</div>
+                    <div class="message-content">Perfecto. Si llegaras a probar la aplicación, ¿qué tan difícil crees que sería para ti encontrar la sección de "Reportes generados"? ¿Muy fácil si está en el dashboard principal, fácil si está en un menú de resultados, moderado si requiere búsqueda más específica, o difícil si está enterrada dentro de submenús?</div>
+                </div>
+
+                <div class="message interviewee">
+                    <div class="speaker">Yazmín Flores</div>
+                    <div class="message-content">Debería estar en una sección del menú, ¿no?</div>
+                </div>
+
+                <div class="message interviewer">
+                    <div class="speaker">Entrevistador</div>
+                    <div class="message-content">Ok. ¿Cómo calificarías la utilidad de una función de "Configuración general" en la aplicación? ¿Muy útil para que puedas personalizar tus preferencias, útil para ajustes básicos, neutral dependiendo de las opciones, o poco útil porque prefieres que esté todo por default?</div>
+                </div>
+
+                <div class="message interviewee">
+                    <div class="speaker">Yazmín Flores</div>
+                    <div class="message-content">No, la verdad no me interesa.</div>
+                </div>
+
+                <div class="message interviewer">
+                    <div class="speaker">Entrevistador</div>
+                    <div class="message-content">Perfecto. ¿En qué categoría colocarías "Certificaciones relevantes" e "Información de empleo"? ¿En perfil profesional, historial laboral, requisitos de elegibilidad, o documentos de soporte?</div>
+                </div>
+
+                <div class="message interviewee">
+                    <div class="speaker">Yazmín Flores</div>
+                    <div class="message-content">En perfil profesional.</div>
+                </div>
+
+                <div class="message interviewer">
+                    <div class="speaker">Entrevistador</div>
+                    <div class="message-content">Perfil profesional, ok. ¿Qué emoción principal asocias con el uso de apps migratorias existentes, si alguna vez has usado alguna? ¿Ansiedad, debido a que son muy complejas, confianza si son claras, frustración por falta de precisión, o alivio al obtener respuestas rápidas?</div>
+                </div>
+
+                <div class="message interviewee">
+                    <div class="speaker">Yazmín Flores</div>
+                    <div class="message-content">No hay muchas en el mercado, pero si son como que no están claras, no puedes encontrar rápido las cosas, no son intuitivas esas aplicaciones y, por lo tanto, tampoco son precisas.</div>
+                </div>
+
+                <div class="message interviewer">
+                    <div class="speaker">Entrevistador</div>
+                    <div class="message-content">Ok. ¿Cómo mejorarías la navegación para usuarios bajo estrés? ¿Con iconos intuitivos y texto claro, menos clics para acciones clave, modo oscuro para reducir fatiga visual, o una voz guiada o asistente virtual?</div>
+                </div>
+
+                <div class="message interviewee">
+                    <div class="speaker">Yazmín Flores</div>
+                    <div class="message-content">A mí me gusta trabajar con iconos y texto claros y precisos.</div>
+                </div>
+
+                <div class="message interviewer">
+                    <div class="speaker">Entrevistador</div>
+                    <div class="message-content">Perfecto. ¿Qué tipo de dispositivo usas principalmente para tu revisión de procesos migratorios? ¿Celular, tableta, computadora, o múltiples dispositivos indistintamente?</div>
+                </div>
+
+                <div class="message interviewee">
+                    <div class="speaker">Yazmín Flores</div>
+                    <div class="message-content">El principal es mi teléfono, pero para consultar rápidamente. Pero si tengo que hacer algún tipo de actividad que requiera subir documentos o cosas más importantes, utilizo mi computadora.</div>
+                </div>
+
+                <div class="message interviewer">
+                    <div class="speaker">Entrevistador</div>
+                    <div class="message-content">Ok. ¿Qué característica considerarías esencial para identificar el contenido principal en una aplicación de predicción de visa? ¿Un dashboard principal que inicie con un resumen personalizado de tu perfil, secciones dedicadas a predicciones y riesgos específicos, herramientas interactivas como simuladores, contenido educativo para aprender sobre cambios legales recientes, o integración con perfiles de redes profesionales, como LinkedIn?</div>
+                </div>
+
+                <div class="message interviewee">
+                    <div class="speaker">Yazmín Flores</div>
+                    <div class="message-content">Tal vez un dashboard. Un dashboard principal con un resumen de tu perfil de visa, correcto.</div>
+                </div>
+
+                <div class="message interviewer">
+                    <div class="speaker">Entrevistador</div>
+                    <div class="message-content">Al organizar el contenido, ¿cómo agruparías "Panel administrativo" y "Reportes generados" en la aplicación? ¿En una categoría de gestión y administración, en una sección de resultados y análisis, como parte del perfil de usuario, en un menú de configuración avanzada, o como elementos independientes en la navegación principal?</div>
+                </div>
+
+                <div class="message interviewee">
+                    <div class="speaker">Yazmín Flores</div>
+                    <div class="message-content">¿Los reportes generados qué contienen? ¿Los reportes sobre tu aplicación de visa o los documentos que vas a generar, que te van a solicitar sobre el perfil que solicitas para aplicar a alguna empresa, o son reportes dentro de las estadísticas de tu predicción de visa?</div>
+                </div>
+
+                <div class="message interviewer">
+                    <div class="speaker">Entrevistador</div>
+                    <div class="message-content">Un reporte sobre tu tipo de perfil y tus probabilidades de tener el visado, qué puedes mejorar y qué no, y si estás bien. Un reporte personalizado sobre si eres candidato apto o no para el tipo de visado que aplicas.</div>
+                </div>
+
+                <div class="message interviewee">
+                    <div class="speaker">Yazmín Flores</div>
+                    <div class="message-content">O sea, al final es como un resultado.</div>
+                </div>
+
+                <div class="message interviewer">
+                    <div class="speaker">Entrevistador</div>
+                    <div class="message-content">Sí.</div>
+                </div>
+
+                <div class="message interviewee">
+                    <div class="speaker">Yazmín Flores</div>
+                    <div class="message-content">Si es lo mismo, sí, pero si al final vas a manejar como dos cosas distintas, pues creo que no, porque eso ya es muy confuso. Para mí, preferiría algo que dijera "resultado" a "reporte". Porque el reporte para mí se me hace como que es algo, o sea, me están comparando contra otras personas y están sacando un reporte. No sé, de cuántos aplicamos para la misma visa, cuántos fuimos, cuántos pasamos en la primera fase, o cosas así. No sé cómo estén manejados, pero si es lo mismo, pues está bien.</div>
+                </div>
+
+                <div class="message interviewer">
+                    <div class="speaker">Entrevistador</div>
+                    <div class="message-content">Perfecto, no está complicado. Si estuvieras probando la aplicación y navegando en ella, ¿qué tarea te resultaría un poco más desafiante según tu experiencia con otras aplicaciones? ¿Encontrar rápidamente recomendaciones personalizadas, navegar entre secciones de documentación y predicciones, actualizar el historial migratorio sin perder datos, acceder a soporte o noticias sin interrupciones, o completar un flujo guiado sin confusiones?</div>
+                </div>
+
+                <div class="message interviewee">
+                    <div class="speaker">Yazmín Flores</div>
+                    <div class="message-content">Completar un flujo completo. A veces quieres actualizar algo y se pierde la información, no puedes subirla, tienes ese tipo de problemas. Que la aplicación no te permite estar realizando las actividades de manera rápida y precisa, y que tenga ese tipo de problemas.</div>
+                </div>
+
+                <div class="message interviewer">
+                    <div class="speaker">Entrevistador</div>
+                    <div class="message-content">Perfecto. Y, por último, ¿qué elemento te ayudaría a sentirte más cómoda en la aplicación? ¿Una ruta de navegación visible, iconos intuitivos, barra de búsqueda predictiva, un menú desplegable con subcategorías, o flujos paso a paso con progresión visual?</div>
+                </div>
+
+                <div class="message interviewee">
+                    <div class="speaker">Yazmín Flores</div>
+                    <div class="message-content">Un menú desplegable lateral, para mí está bien, pero también los iconos te ayudan mucho visualmente.</div>
+                </div>
+
+                <div class="message interviewer">
+                    <div class="speaker">Entrevistador</div>
+                    <div class="message-content">Perfecto, menús e iconos. No podemos más que agradecerte tu tiempo, Yazmín. Te deseamos mucho éxito en tu futuro migratorio y que alcances todos tus objetivos.</div>
+                </div>
+
+                <div class="message interviewee">
+                    <div class="speaker">Yazmín Flores</div>
+                    <div class="message-content">Muchas gracias.</div>
+                </div>
+
+                <div class="message interviewer">
+                    <div class="speaker">Entrevistador</div>
+                    <div class="message-content">Gracias, buenas noches, bendiciones.</div>
+                </div>
+
+                <div class="message interviewee">
+                    <div class="speaker">Yazmín Flores</div>
+                    <div class="message-content">Buenas noches.</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="summary-section">
+        <div class="container">
+            <div class="summary-grid">
+                <div class="summary-card">
+                    <h3>Puntos Clave de la Entrevista</h3>
+                    <ul>
+                        <li>Múltiples solicitudes de visa de trabajo a lo largo de 13 años</li>
+                        <li>Experiencia frustrante con renovaciones de visa</li>
+                        <li>Conocimiento limitado a un solo tipo de visa</li>
+                        <li>Necesidad de claridad en documentos requeridos</li>
+                        <li>Preferencia por enlaces a sitios oficiales</li>
+                    </ul>
+                </div>
+                
+                <div class="summary-card">
+                    <h3>Preferencias de Diseño UX</h3>
+                    <ul>
+                        <li>Organización por tipo de visa específico</li>
+                        <li>Menú lateral con iconos intuitivos</li>
+                        <li>Dashboard con resumen personalizado</li>
+                        <li>Notificaciones contextual por tipo de visa</li>
+                        <li>Foro comunitario para compartir experiencias</li>
+                    </ul>
+                </div>
+                
+                <div class="summary-card">
+                    <h3>Necesidades Identificadas</h3>
+                    <ul>
+                        <li>Evaluación inicial de elegibilidad</li>
+                        <li>Lista clara de documentos requeridos</li>
+                        <li>Seguimiento del progreso del proceso</li>
+                        <li>Historial migratorio organizado</li>
+                        <li>Conexión directa con fuentes oficiales</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 VisaPredictAI - Maestría en Inteligencia Artificial Aplicada, Tecnológico de Monterrey</p>
+        </div>
+    </footer>
+
+    <button class="scroll-to-top" onclick="scrollToTop()">↑</button>
+
+    <script>
+        // Smooth scrolling for internal links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // Scroll to top functionality
+        function scrollToTop() {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        }
+
+        // Show/hide scroll to top button
+        window.addEventListener('scroll', function() {
+            const scrollButton = document.querySelector('.scroll-to-top');
+            if (window.pageYOffset > 300) {
+                scrollButton.classList.add('visible');
+            } else {
+                scrollButton.classList.remove('visible');
+            }
+        });
+
+        // Add animation delay to messages
+        document.addEventListener('DOMContentLoaded', function() {
+            const messages = document.querySelectorAll('.message');
+            messages.forEach((message, index) => {
+                message.style.animationDelay = `${index * 0.1}s`;
+            });
+        });
+
+        // Add hover effects to info items
+        document.querySelectorAll('.info-item').forEach(item => {
+            item.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateX(5px)';
+                this.style.transition = 'transform 0.3s ease';
+            });
+            
+            item.addEventListener('mouseleave', function() {
+                this.style.transform = 'translateX(0)';
+            });
+        });
+
+        // Add hover effects to summary cards
+        document.querySelectorAll('.summary-card').forEach(card => {
+            card.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateY(-5px)';
+                this.style.transition = 'transform 0.3s ease';
+                this.style.boxShadow = '0 8px 30px rgba(0, 0, 0, 0.12)';
+            });
+            
+            card.addEventListener('mouseleave', function() {
+                this.style.transform = 'translateY(0)';
+                this.style.boxShadow = '0 4px 20px rgba(0, 0, 0, 0.08)';
+            });
+        });
+
+        // Intersection Observer for fade-in animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // Observe elements for animation
+        document.querySelectorAll('.message, .summary-card, .info-item').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(20px)';
+            el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            observer.observe(el);
+        });
+
+        // Add click interaction to messages
+        document.querySelectorAll('.message').forEach(message => {
+            message.addEventListener('click', function() {
+                this.style.transform = 'scale(1.02)';
+                setTimeout(() => {
+                    this.style.transform = 'scale(1)';
+                }, 150);
+            });
+        });
+
+        // Dynamic date update
+        const currentDate = new Date();
+        const options = { 
+            weekday: 'long', 
+            year: 'numeric', 
+            month: 'long', 
+            day: 'numeric' 
+        };
+
+        // Add loading animation
+        window.addEventListener('load', function() {
+            document.body.classList.add('loaded');
+        });
+
+        // Add keyboard navigation
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                scrollToTop();
+            }
+        });
+
+        // Performance optimization: Lazy load images
+        if ('IntersectionObserver' in window) {
+            const imageObserver = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const img = entry.target;
+                        img.src = img.dataset.src || img.src;
+                        img.classList.remove('lazy');
+                        imageObserver.unobserve(img);
+                    }
+                });
+            });
+
+            document.querySelectorAll('img[data-src]').forEach(img => {
+                imageObserver.observe(img);
+            });
+        }
+
+        // Add print functionality
+        function printInterview() {
+            window.print();
+        }
+
+        // Add copy to clipboard functionality for quotes
+        document.querySelectorAll('.message-content').forEach(content => {
+            content.addEventListener('dblclick', function() {
+                navigator.clipboard.writeText(this.textContent).then(() => {
+                    // Show temporary feedback
+                    const originalBg = this.style.backgroundColor;
+                    this.style.backgroundColor = '#e8f5e8';
+                    setTimeout(() => {
+                        this.style.backgroundColor = originalBg;
+                    }, 1000);
+                });
+            });
+        });
+    </script>
+</body>
+</html>
