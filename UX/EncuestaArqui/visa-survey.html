@@ -1,0 +1,1162 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Encuesta VisaPredict AI - Your American Dream Starts Here</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      --usa-red: #B22234;
+      --usa-blue: #3C3B6E;
+      --usa-dark-blue: #002868;
+      --usa-white: #FFFFFF;
+      --star-gold: #FFD700;
+      --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      --shadow-hover: 0 8px 15px rgba(0, 0, 0, 0.2);
+      --shadow-glow: 0 0 20px rgba(60, 59, 110, 0.3);
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+      background: linear-gradient(135deg, #f0f4f8 0%, #d9e2ec 100%);
+      min-height: 100vh;
+      padding: 20px;
+      position: relative;
+      overflow-x: hidden;
+    }
+
+    /* Animated Background Stars */
+    body::before {
+      content: '★ ★ ★ ★ ★ ★ ★ ★ ★ ★';
+      position: fixed;
+      top: -50px;
+      left: 0;
+      right: 0;
+      font-size: 3em;
+      color: var(--star-gold);
+      opacity: 0.03;
+      text-align: center;
+      animation: floatStars 20s linear infinite;
+    }
+
+    @keyframes floatStars {
+      0% { transform: translateY(0) rotate(0deg); }
+      100% { transform: translateY(100vh) rotate(360deg); }
+    }
+
+    .container {
+      max-width: 1000px;
+      margin: 0 auto;
+      background: var(--usa-white);
+      border-radius: 25px;
+      box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15);
+      overflow: hidden;
+      animation: fadeIn 0.8s ease-out;
+      position: relative;
+    }
+
+    .container::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 5px;
+      background: repeating-linear-gradient(
+        90deg,
+        var(--usa-red) 0px,
+        var(--usa-red) 40px,
+        var(--usa-white) 40px,
+        var(--usa-white) 80px
+      );
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .header {
+      background: linear-gradient(135deg, var(--usa-dark-blue) 0%, var(--usa-blue) 50%, var(--usa-red) 100%);
+      color: var(--usa-white);
+      padding: 50px 40px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* Animated stripes overlay */
+    .header::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: repeating-linear-gradient(
+        45deg,
+        transparent,
+        transparent 20px,
+        rgba(255, 255, 255, 0.05) 20px,
+        rgba(255, 255, 255, 0.05) 40px
+      );
+      animation: stripes 30s linear infinite;
+    }
+
+    /* Star pattern overlay */
+    .header::after {
+      content: '★';
+      position: absolute;
+      font-size: 500px;
+      opacity: 0.02;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%) rotate(0deg);
+      animation: rotateStar 60s linear infinite;
+    }
+
+    @keyframes rotateStar {
+      from { transform: translate(-50%, -50%) rotate(0deg); }
+      to { transform: translate(-50%, -50%) rotate(360deg); }
+    }
+
+    @keyframes stripes {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(100px); }
+    }
+
+    .logo-container {
+      position: relative;
+      z-index: 1;
+      margin-bottom: 25px;
+    }
+
+    .logo {
+      width: 140px;
+      height: 140px;
+      border-radius: 50%;
+      border: 5px solid var(--usa-white);
+      box-shadow: 0 5px 25px rgba(0, 0, 0, 0.3), var(--shadow-glow);
+      background: var(--usa-white);
+      padding: 15px;
+      animation: pulse 2s ease-in-out infinite;
+      position: relative;
+    }
+
+    .logo::before {
+      content: '';
+      position: absolute;
+      inset: -10px;
+      border-radius: 50%;
+      background: conic-gradient(from 0deg, var(--usa-red), var(--usa-white), var(--usa-blue), var(--usa-red));
+      z-index: -1;
+      animation: rotate 10s linear infinite;
+      opacity: 0.5;
+    }
+
+    @keyframes rotate {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
+    }
+
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.05); }
+    }
+
+    h1 {
+      position: relative;
+      z-index: 1;
+      font-size: 3em;
+      font-weight: 800;
+      text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.4);
+      margin-bottom: 15px;
+      letter-spacing: 1px;
+    }
+
+    .subtitle {
+      position: relative;
+      z-index: 1;
+      font-size: 1.3em;
+      opacity: 0.95;
+      font-weight: 300;
+      letter-spacing: 2px;
+    }
+
+    .stars-row {
+      position: relative;
+      z-index: 1;
+      margin-top: 20px;
+      font-size: 1.5em;
+      color: var(--star-gold);
+      text-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
+    }
+
+    .form-container {
+      padding: 50px 40px;
+      background: linear-gradient(180deg, var(--usa-white) 0%, #f8f9fa 100%);
+    }
+
+    .progress-bar {
+      background: #e9ecef;
+      height: 8px;
+      border-radius: 10px;
+      margin-bottom: 40px;
+      overflow: hidden;
+      box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+
+    .progress-fill {
+      height: 100%;
+      background: linear-gradient(90deg, var(--usa-blue) 0%, var(--usa-red) 100%);
+      width: 0%;
+      border-radius: 10px;
+      transition: width 0.5s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .progress-fill::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      bottom: 0;
+      right: 0;
+      background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(255, 255, 255, 0.3),
+        transparent
+      );
+      animation: shimmer 2s infinite;
+    }
+
+    @keyframes shimmer {
+      0% { transform: translateX(-100%); }
+      100% { transform: translateX(100%); }
+    }
+
+    .question-card {
+      background: var(--usa-white);
+      border: 2px solid #e9ecef;
+      border-radius: 20px;
+      padding: 30px;
+      margin-bottom: 30px;
+      transition: all 0.4s ease;
+      position: relative;
+      overflow: hidden;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+    }
+
+    .question-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 6px;
+      height: 100%;
+      background: linear-gradient(180deg, var(--usa-blue) 0%, var(--usa-red) 50%, var(--usa-blue) 100%);
+      transition: width 0.3s ease;
+    }
+
+    .question-card::after {
+      content: '★';
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      font-size: 2em;
+      color: var(--star-gold);
+      opacity: 0;
+      transform: rotate(-15deg);
+      transition: all 0.3s ease;
+    }
+
+    .question-card:hover {
+      transform: translateY(-5px) scale(1.02);
+      box-shadow: var(--shadow-hover);
+      border-color: var(--usa-blue);
+      background: linear-gradient(135deg, var(--usa-white) 0%, #f8f9fa 100%);
+    }
+
+    .question-card:hover::before {
+      width: 10px;
+    }
+
+    .question-card:hover::after {
+      opacity: 0.1;
+      transform: rotate(0deg);
+    }
+
+    .question-header {
+      display: flex;
+      align-items: center;
+      margin-bottom: 20px;
+    }
+
+    .question-number {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      background: linear-gradient(135deg, var(--usa-blue) 0%, var(--usa-dark-blue) 100%);
+      color: var(--usa-white);
+      width: 45px;
+      height: 45px;
+      border-radius: 50%;
+      font-weight: bold;
+      margin-right: 20px;
+      box-shadow: 0 4px 10px rgba(60, 59, 110, 0.3);
+      font-size: 1.2em;
+      position: relative;
+    }
+
+    .question-number::before {
+      content: '';
+      position: absolute;
+      inset: -3px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--usa-red), var(--usa-white), var(--usa-blue));
+      z-index: -1;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+
+    .question-card:hover .question-number::before {
+      opacity: 0.5;
+    }
+
+    .question-text {
+      flex: 1;
+      font-weight: 600;
+      color: #2c3e50;
+      font-size: 1.15em;
+      line-height: 1.5;
+    }
+
+    select, input[type="text"] {
+      width: 100%;
+      padding: 14px 18px;
+      border: 2px solid #e9ecef;
+      border-radius: 12px;
+      font-size: 1em;
+      transition: all 0.3s ease;
+      background: var(--usa-white);
+      color: #2c3e50;
+      font-weight: 500;
+    }
+
+    select:focus, input[type="text"]:focus {
+      outline: none;
+      border-color: var(--usa-blue);
+      box-shadow: 0 0 0 4px rgba(60, 59, 110, 0.1), 0 4px 10px rgba(60, 59, 110, 0.1);
+      background: linear-gradient(to bottom, var(--usa-white) 0%, #f8f9fa 100%);
+    }
+
+    select {
+      cursor: pointer;
+      appearance: none;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 14 14'%3E%3Cpath fill='%233C3B6E' d='M11.293 4.293L7 8.586 2.707 4.293A1 1 0 001.293 5.707l6 6a1 1 0 001.414 0l6-6a1 1 0 10-1.414-1.414z'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 18px center;
+      padding-right: 45px;
+    }
+
+    input[type="text"] {
+      margin-top: 12px;
+    }
+
+    input[type="text"]::placeholder {
+      color: #adb5bd;
+      font-style: italic;
+    }
+
+    .btn-container {
+      text-align: center;
+      margin-top: 50px;
+      position: relative;
+    }
+
+    .btn-container::before,
+    .btn-container::after {
+      content: '★ ★ ★';
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--usa-red);
+      opacity: 0.2;
+      font-size: 1.5em;
+    }
+
+    .btn-container::before {
+      left: 50px;
+    }
+
+    .btn-container::after {
+      right: 50px;
+    }
+
+    button {
+      background: linear-gradient(135deg, var(--usa-blue) 0%, var(--usa-red) 100%);
+      color: var(--usa-white);
+      border: none;
+      padding: 18px 60px;
+      font-size: 1.3em;
+      font-weight: 700;
+      border-radius: 50px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      box-shadow: 0 8px 20px rgba(60, 59, 110, 0.3);
+      position: relative;
+      overflow: hidden;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    button::before {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 0;
+      height: 0;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.4);
+      transform: translate(-50%, -50%);
+      transition: width 0.6s, height 0.6s;
+    }
+
+    button::after {
+      content: '→';
+      position: absolute;
+      right: 25px;
+      top: 50%;
+      transform: translateY(-50%);
+      opacity: 0;
+      transition: all 0.3s ease;
+    }
+
+    button:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 12px 30px rgba(60, 59, 110, 0.4);
+      padding-right: 80px;
+    }
+
+    button:hover::after {
+      opacity: 1;
+      right: 35px;
+    }
+
+    button:active {
+      transform: translateY(-1px);
+    }
+
+    button:hover::before {
+      width: 400px;
+      height: 400px;
+    }
+
+    .success-message {
+      background: linear-gradient(135deg, #28a745 0%, #20c997 100%);
+      color: white;
+      padding: 25px;
+      border-radius: 15px;
+      margin-top: 30px;
+      text-align: center;
+      display: none;
+      animation: slideIn 0.5s ease;
+      box-shadow: 0 10px 30px rgba(40, 167, 69, 0.3);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .success-message::before {
+      content: '✓';
+      position: absolute;
+      font-size: 100px;
+      opacity: 0.1;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+
+    @keyframes slideIn {
+      from {
+        transform: translateY(-20px);
+        opacity: 0;
+      }
+      to {
+        transform: translateY(0);
+        opacity: 1;
+      }
+    }
+
+    .footer {
+      text-align: center;
+      padding: 30px;
+      background: linear-gradient(180deg, transparent 0%, rgba(60, 59, 110, 0.05) 100%);
+      color: var(--usa-blue);
+      font-size: 0.9em;
+    }
+
+    .footer-stars {
+      color: var(--star-gold);
+      font-size: 1.2em;
+      margin: 10px 0;
+    }
+
+    @media (max-width: 768px) {
+      .header {
+        padding: 40px 25px;
+      }
+      
+      h1 {
+        font-size: 2.2em;
+      }
+      
+      .form-container {
+        padding: 30px 20px;
+      }
+      
+      .question-card {
+        padding: 25px 20px;
+      }
+      
+      button {
+        width: 100%;
+        padding: 18px 40px;
+      }
+
+      .btn-container::before,
+      .btn-container::after {
+        display: none;
+      }
+    }
+
+    /* Loading animation */
+    .loading {
+      display: inline-block;
+      width: 20px;
+      height: 20px;
+      border: 3px solid rgba(255, 255, 255, 0.3);
+      border-radius: 50%;
+      border-top-color: white;
+      animation: spin 1s ease-in-out infinite;
+      margin-left: 10px;
+    }
+
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="header">
+      <div class="logo-container">
+        <img src="visalogo.png" alt="VisaPredict AI" class="logo">
+      </div>
+      <h1>VisaPredict AI</h1>
+      <p class="subtitle">Your American Dream Starts Here</p>
+      <div class="stars-row">★ ★ ★ ★ ★</div>
+    </div>
+
+    <div class="form-container">
+      <div class="progress-bar">
+        <div class="progress-fill" id="progressBar"></div>
+      </div>
+
+      <form id="encuesta" onsubmit="handleSubmit(event)">
+        
+        <!-- Pregunta 1 -->
+        <div class="question-card">
+          <div class="question-header">
+            <span class="question-number">1</span>
+            <div class="question-text">¿Cuál es su rango de edad?</div>
+          </div>
+          <select name="p1" required onchange="updateProgress()">
+            <option value="">Seleccione una opción</option>
+            <option value="Menos de 25 años">Menos de 25 años</option>
+            <option value="25-34 años">25-34 años</option>
+            <option value="35-44 años">35-44 años</option>
+            <option value="45-54 años">45-54 años</option>
+            <option value="55 años o más">55 años o más</option>
+            <option value="Otros">Otros</option>
+          </select>
+          <input type="text" name="p1_otros" placeholder="Especifique si eligió 'Otros'" />
+        </div>
+
+        <!-- Pregunta 2 -->
+        <div class="question-card">
+          <div class="question-header">
+            <span class="question-number">2</span>
+            <div class="question-text">¿Cuál es su género?</div>
+          </div>
+          <select name="p2" required onchange="updateProgress()">
+            <option value="">Seleccione una opción</option>
+            <option value="Masculino">Masculino</option>
+            <option value="Femenino">Femenino</option>
+            <option value="No binario">No binario</option>
+            <option value="Prefiero no decir">Prefiero no decir</option>
+            <option value="Otros">Otros</option>
+          </select>
+          <input type="text" name="p2_otros" placeholder="Especifique si eligió 'Otros'" />
+        </div>
+
+        <!-- Pregunta 3 -->
+        <div class="question-card">
+          <div class="question-header">
+            <span class="question-number">3</span>
+            <div class="question-text">¿En qué país reside actualmente?</div>
+          </div>
+          <select name="p3" required onchange="updateProgress()">
+            <option value="">Seleccione una opción</option>
+            <option value="México">México</option>
+            <option value="Canadá">Canadá</option>
+            <option value="Otro país de Latinoamérica">Otro país de Latinoamérica</option>
+            <option value="Estados Unidos">Estados Unidos</option>
+            <option value="Otro país (fuera de Norteamérica o Latinoamérica)">Otro país (fuera de Norteamérica o Latinoamérica)</option>
+            <option value="Otros">Otros</option>
+          </select>
+          <input type="text" name="p3_otros" placeholder="Especifique si eligió 'Otros'" />
+        </div>
+
+        <!-- Pregunta 4 -->
+        <div class="question-card">
+          <div class="question-header">
+            <span class="question-number">4</span>
+            <div class="question-text">¿Cuál es su profesión principal?</div>
+          </div>
+          <select name="p4" required onchange="updateProgress()">
+            <option value="">Seleccione una opción</option>
+            <option value="Ingeniería o tecnología">Ingeniería o tecnología</option>
+            <option value="Finanzas o economía">Finanzas o economía</option>
+            <option value="Salud o medicina">Salud o medicina</option>
+            <option value="Academia o educación">Academia o educación</option>
+            <option value="Otro sector profesional">Otro sector profesional</option>
+            <option value="Otros">Otros</option>
+          </select>
+          <input type="text" name="p4_otros" placeholder="Especifique si eligió 'Otros'" />
+        </div>
+
+        <!-- Pregunta 5 -->
+        <div class="question-card">
+          <div class="question-header">
+            <span class="question-number">5</span>
+            <div class="question-text">¿Ha solicitado alguna vez una visa de trabajo para EE.UU.?</div>
+          </div>
+          <select name="p5" required onchange="updateProgress()">
+            <option value="">Seleccione una opción</option>
+            <option value="Sí, y fue aprobada">Sí, y fue aprobada</option>
+            <option value="Sí, pero fue rechazada">Sí, pero fue rechazada</option>
+            <option value="No, pero planeo hacerlo pronto">No, pero planeo hacerlo pronto</option>
+            <option value="No, y no lo estoy considerando">No, y no lo estoy considerando</option>
+            <option value="Otros">Otros</option>
+          </select>
+          <input type="text" name="p5_otros" placeholder="Especifique si eligió 'Otros'" />
+        </div>
+
+        <!-- Pregunta 6 -->
+        <div class="question-card">
+          <div class="question-header">
+            <span class="question-number">6</span>
+            <div class="question-text">¿Qué tan familiarizado está con procesos migratorios a EE.UU.?</div>
+          </div>
+          <select name="p6" required onchange="updateProgress()">
+            <option value="">Seleccione una opción</option>
+            <option value="Muy familiarizado (he pasado por varios)">Muy familiarizado (he pasado por varios)</option>
+            <option value="Algo familiarizado (he investigado o ayudado a otros)">Algo familiarizado (he investigado o ayudado a otros)</option>
+            <option value="Poco familiarizado (solo sé lo básico)">Poco familiarizado (solo sé lo básico)</option>
+            <option value="Nada familiarizado (es nuevo para mí)">Nada familiarizado (es nuevo para mí)</option>
+            <option value="Otros">Otros</option>
+          </select>
+          <input type="text" name="p6_otros" placeholder="Especifique si eligió 'Otros'" />
+        </div>
+
+        <!-- Pregunta 7 -->
+        <div class="question-card">
+          <div class="question-header">
+            <span class="question-number">7</span>
+            <div class="question-text">¿Cuál es su principal necesidad al usar una app como VisaPredict AI?</div>
+          </div>
+          <select name="p7" required onchange="updateProgress()">
+            <option value="">Seleccione una opción</option>
+            <option value="Estimar probabilidades de aprobación de visa">Estimar probabilidades de aprobación de visa</option>
+            <option value="Obtener checklists de documentos requeridos">Obtener checklists de documentos requeridos</option>
+            <option value="Simular entrevistas consulares">Simular entrevistas consulares</option>
+            <option value="Encontrar patrocinadores laborales">Encontrar patrocinadores laborales</option>
+            <option value="Recibir actualizaciones sobre cambios en políticas migratorias">Recibir actualizaciones sobre cambios en políticas migratorias</option>
+            <option value="Otros">Otros</option>
+          </select>
+          <input type="text" name="p7_otros" placeholder="Especifique si eligió 'Otros'" />
+        </div>
+
+        <!-- Pregunta 8 -->
+        <div class="question-card">
+          <div class="question-header">
+            <span class="question-number">8</span>
+            <div class="question-text">¿Qué frustración principal enfrenta en el proceso de visa?</div>
+          </div>
+          <select name="p8" required onchange="updateProgress()">
+            <option value="">Seleccione una opción</option>
+            <option value="La opacidad y complejidad de los requisitos">La opacidad y complejidad de los requisitos</option>
+            <option value="El miedo al rechazo sin razones claras">El miedo al rechazo sin razones claras</option>
+            <option value="La falta de herramientas en español">La falta de herramientas en español</option>
+            <option value="Los altos costos sin garantías">Los altos costos sin garantías</option>
+            <option value="La lentitud y burocracia">La lentitud y burocracia</option>
+            <option value="Otros">Otros</option>
+          </select>
+          <input type="text" name="p8_otros" placeholder="Especifique si eligió 'Otros'" />
+        </div>
+
+        <!-- Pregunta 9 -->
+        <div class="question-card">
+          <div class="question-header">
+            <span class="question-number">9</span>
+            <div class="question-text">¿Cómo preferiría organizar las secciones principales en una app de predicción de visas?</div>
+          </div>
+          <select name="p9" required onchange="updateProgress()">
+            <option value="">Seleccione una opción</option>
+            <option value="Por etapas del proceso">Por etapas del proceso (e.g., exploración, evaluación, documentación)</option>
+            <option value="Por tipo de visa">Por tipo de visa (e.g., H-1B, TN, Green Card)</option>
+            <option value="Por necesidades del usuario">Por necesidades del usuario (e.g., perfil personal, predicciones, soporte)</option>
+            <option value="Por frecuencia de uso">Por frecuencia de uso (e.g., dashboard inicial con accesos rápidos)</option>
+            <option value="Otros">Otros</option>
+          </select>
+          <input type="text" name="p9_otros" placeholder="Especifique si eligió 'Otros'" />
+        </div>
+
+        <!-- Pregunta 10 -->
+        <div class="question-card">
+          <div class="question-header">
+            <span class="question-number">10</span>
+            <div class="question-text">Si tuviera que agrupar "Predicción de elegibilidad" y "Checklist de documentos", ¿en qué categoría las pondría?</div>
+          </div>
+          <select name="p10" required onchange="updateProgress()">
+            <option value="">Seleccione una opción</option>
+            <option value="Sección de Evaluación Inicial">Sección de Evaluación Inicial</option>
+            <option value="Sección de Preparación de Solicitud">Sección de Preparación de Solicitud</option>
+            <option value="Sección de Perfil Personal">Sección de Perfil Personal</option>
+            <option value="Sección de Resultados y Recomendaciones">Sección de Resultados y Recomendaciones</option>
+            <option value="Otros">Otros</option>
+          </select>
+          <input type="text" name="p10_otros" placeholder="Especifique si eligió 'Otros'" />
+        </div>
+
+        <!-- Pregunta 11 -->
+        <div class="question-card">
+          <div class="question-header">
+            <span class="question-number">11</span>
+            <div class="question-text">¿Qué etiqueta usaría para una sección que incluye historial de visas y rechazos previos?</div>
+          </div>
+          <select name="p11" required onchange="updateProgress()">
+            <option value="">Seleccione una opción</option>
+            <option value="Historial Migratorio">Historial Migratorio</option>
+            <option value="Perfil del Solicitante">Perfil del Solicitante</option>
+            <option value="Antecedentes Personales">Antecedentes Personales</option>
+            <option value="Información Sensible">Información Sensible</option>
+            <option value="Otros">Otros</option>
+          </select>
+          <input type="text" name="p11_otros" placeholder="Especifique si eligió 'Otros'" />
+        </div>
+
+        <!-- Pregunta 12 -->
+        <div class="question-card">
+          <div class="question-header">
+            <span class="question-number">12</span>
+            <div class="question-text">¿Cómo agruparía "Noticias sobre políticas migratorias" y "Formación y capacidades"?</div>
+          </div>
+          <select name="p12" required onchange="updateProgress()">
+            <option value="">Seleccione una opción</option>
+            <option value="En una categoría de Recursos Educativos">En una categoría de Recursos Educativos</option>
+            <option value="En una categoría de Actualizaciones y Noticias">En una categoría de Actualizaciones y Noticias</option>
+            <option value="En una categoría de Soporte y Ayuda">En una categoría de Soporte y Ayuda</option>
+            <option value="Como secciones independientes en el menú principal">Como secciones independientes en el menú principal</option>
+            <option value="Otros">Otros</option>
+          </select>
+          <input type="text" name="p12_otros" placeholder="Especifique si eligió 'Otros'" />
+        </div>
+
+        <!-- Pregunta 13 -->
+        <div class="question-card">
+          <div class="question-header">
+            <span class="question-number">13</span>
+            <div class="question-text">¿Qué característica adicional le gustaría ver en VisaPredict AI?</div>
+          </div>
+          <select name="p13" required onchange="updateProgress()">
+            <option value="">Seleccione una opción</option>
+            <option value="Integración con calendarios para recordatorios de plazos">Integración con calendarios para recordatorios de plazos</option>
+            <option value="Chatbot para consultas en tiempo real">Chatbot para consultas en tiempo real</option>
+            <option value="Comunidad de usuarios para compartir experiencias">Comunidad de usuarios para compartir experiencias</option>
+            <option value="Herramientas para mejorar el CV para patrocinadores">Herramientas para mejorar el CV para patrocinadores</option>
+            <option value="Simulador de costos totales del proceso">Simulador de costos totales del proceso</option>
+            <option value="Otros">Otros</option>
+          </select>
+          <input type="text" name="p13_otros" placeholder="Especifique si eligió 'Otros'" />
+        </div>
+
+        <!-- Pregunta 14 -->
+        <div class="question-card">
+          <div class="question-header">
+            <span class="question-number">14</span>
+            <div class="question-text">¿Cómo preferiría navegar por la app?</div>
+          </div>
+          <select name="p14" required onchange="updateProgress()">
+            <option value="">Seleccione una opción</option>
+            <option value="Menú lateral con categorías fijas">Menú lateral con categorías fijas</option>
+            <option value="Barra de navegación inferior para móviles">Barra de navegación inferior para móviles</option>
+            <option value="Búsqueda inteligente con sugerencias">Búsqueda inteligente con sugerencias</option>
+            <option value="Flujo guiado paso a paso (wizard)">Flujo guiado paso a paso (wizard)</option>
+            <option value="Otros">Otros</option>
+          </select>
+          <input type="text" name="p14_otros" placeholder="Especifique si eligió 'Otros'" />
+        </div>
+
+        <!-- Pregunta 15 -->
+        <div class="question-card">
+          <div class="question-header">
+            <span class="question-number">15</span>
+            <div class="question-text">¿Qué tan importante es para usted que la app tenga soporte en español?</div>
+          </div>
+          <select name="p15" required onchange="updateProgress()">
+            <option value="">Seleccione una opción</option>
+            <option value="Muy importante (es mi idioma principal)">Muy importante (es mi idioma principal)</option>
+            <option value="Importante (prefiero opciones bilingües)">Importante (prefiero opciones bilingües)</option>
+            <option value="Neutral (puedo usar inglés)">Neutral (puedo usar inglés)</option>
+            <option value="No importante (uso solo inglés)">No importante (uso solo inglés)</option>
+            <option value="Otros">Otros</option>
+          </select>
+          <input type="text" name="p15_otros" placeholder="Especifique si eligió 'Otros'" />
+        </div>
+
+        <!-- Pregunta 16 -->
+        <div class="question-card">
+          <div class="question-header">
+            <span class="question-number">16</span>
+            <div class="question-text">Si prueba la app, ¿qué dificultad espera en encontrar la sección de "Reportes generados"?</div>
+          </div>
+          <select name="p16" required onchange="updateProgress()">
+            <option value="">Seleccione una opción</option>
+            <option value="Muy fácil (si está en el dashboard principal)">Muy fácil (si está en el dashboard principal)</option>
+            <option value="Fácil (si está en un menú de resultados)">Fácil (si está en un menú de resultados)</option>
+            <option value="Moderada (si requiere búsqueda)">Moderada (si requiere búsqueda)</option>
+            <option value="Difícil (si está enterrada en submenús)">Difícil (si está enterrada en submenús)</option>
+            <option value="Otros">Otros</option>
+          </select>
+          <input type="text" name="p16_otros" placeholder="Especifique si eligió 'Otros'" />
+        </div>
+
+        <!-- Pregunta 17 -->
+        <div class="question-card">
+          <div class="question-header">
+            <span class="question-number">17</span>
+            <div class="question-text">¿Cómo calificaría la utilidad de una función de "Configuración general" en la app?</div>
+          </div>
+          <select name="p17" required onchange="updateProgress()">
+            <option value="">Seleccione una opción</option>
+            <option value="Muy útil (para personalizar preferencias)">Muy útil (para personalizar preferencias)</option>
+            <option value="Útil (para ajustes básicos)">Útil (para ajustes básicos)</option>
+            <option value="Neutral (depende de las opciones)">Neutral (depende de las opciones)</option>
+            <option value="Poco útil (prefiero defaults)">Poco útil (prefiero defaults)</option>
+            <option value="Otros">Otros</option>
+          </select>
+          <input type="text" name="p17_otros" placeholder="Especifique si eligió 'Otros'" />
+        </div>
+
+        <!-- Pregunta 18 -->
+        <div class="question-card">
+          <div class="question-header">
+            <span class="question-number">18</span>
+            <div class="question-text">¿En qué categoría colocaría "Certificaciones relevantes" y "Información de empleo"?</div>
+          </div>
+          <select name="p18" required onchange="updateProgress()">
+            <option value="">Seleccione una opción</option>
+            <option value="Perfil Profesional">Perfil Profesional</option>
+            <option value="Historial Laboral">Historial Laboral</option>
+            <option value="Requisitos de Elegibilidad">Requisitos de Elegibilidad</option>
+            <option value="Documentos de Soporte">Documentos de Soporte</option>
+            <option value="Otros">Otros</option>
+          </select>
+          <input type="text" name="p18_otros" placeholder="Especifique si eligió 'Otros'" />
+        </div>
+
+        <!-- Pregunta 19 -->
+        <div class="question-card">
+          <div class="question-header">
+            <span class="question-number">19</span>
+            <div class="question-text">¿Qué emoción principal asocia con el uso de apps migratorias existentes?</div>
+          </div>
+          <select name="p19" required onchange="updateProgress()">
+            <option value="">Seleccione una opción</option>
+            <option value="Ansiedad (debido a la complejidad)">Ansiedad (debido a la complejidad)</option>
+            <option value="Confianza (si son claras)">Confianza (si son claras)</option>
+            <option value="Frustración (por falta de precisión)">Frustración (por falta de precisión)</option>
+            <option value="Alivio (al obtener respuestas rápidas)">Alivio (al obtener respuestas rápidas)</option>
+            <option value="Otros">Otros</option>
+          </select>
+          <input type="text" name="p19_otros" placeholder="Especifique si eligió 'Otros'" />
+        </div>
+
+        <!-- Pregunta 20 -->
+        <div class="question-card">
+          <div class="question-header">
+            <span class="question-number">20</span>
+            <div class="question-text">¿Cómo mejoraría la navegación para usuarios bajo estrés?</div>
+          </div>
+          <select name="p20" required onchange="updateProgress()">
+            <option value="">Seleccione una opción</option>
+            <option value="Con iconos intuitivos y texto claro">Con iconos intuitivos y texto claro</option>
+            <option value="Menos clics para acciones clave">Menos clics para acciones clave</option>
+            <option value="Modo oscuro para reducir fatiga visual">Modo oscuro para reducir fatiga visual</option>
+            <option value="Voz guiada o asistente virtual">Voz guiada o asistente virtual</option>
+            <option value="Otros">Otros</option>
+          </select>
+          <input type="text" name="p20_otros" placeholder="Especifique si eligió 'Otros'" />
+        </div>
+
+        <!-- Pregunta 21 -->
+        <div class="question-card">
+          <div class="question-header">
+            <span class="question-number">21</span>
+            <div class="question-text">¿Qué tipo de dispositivo usa principalmente para apps relacionadas con procesos migratorios?</div>
+          </div>
+          <select name="p21" required onchange="updateProgress()">
+            <option value="">Seleccione una opción</option>
+            <option value="Teléfono móvil (smartphone)">Teléfono móvil (smartphone)</option>
+            <option value="Tableta">Tableta</option>
+            <option value="Computadora de escritorio o laptop">Computadora de escritorio o laptop</option>
+            <option value="Múltiples dispositivos indistintamente">Múltiples dispositivos indistintamente</option>
+            <option value="Ninguno, prefiero métodos no digitales">Ninguno, prefiero métodos no digitales</option>
+            <option value="Otros">Otros</option>
+          </select>
+          <input type="text" name="p21_otros" placeholder="Especifique si eligió 'Otros'" />
+        </div>
+
+        <!-- Pregunta 22 -->
+        <div class="question-card">
+          <div class="question-header">
+            <span class="question-number">22</span>
+            <div class="question-text">¿Qué característica considera esencial para identificar el contenido principal en una app como VisaPredict AI?</div>
+          </div>
+          <select name="p22" required onchange="updateProgress()">
+            <option value="">Seleccione una opción</option>
+            <option value="Un dashboard inicial con resumen personalizado de mi perfil">Un dashboard inicial con resumen personalizado de mi perfil</option>
+            <option value="Secciones dedicadas a predicciones y riesgos específicos">Secciones dedicadas a predicciones y riesgos específicos</option>
+            <option value="Herramientas interactivas como checklists y simuladores">Herramientas interactivas como checklists y simuladores</option>
+            <option value="Contenido educativo sobre cambios legales recientes">Contenido educativo sobre cambios legales recientes</option>
+            <option value="Integración con perfiles de redes profesionales">Integración con perfiles de redes profesionales (e.g., LinkedIn)</option>
+            <option value="Otros">Otros</option>
+          </select>
+          <input type="text" name="p22_otros" placeholder="Especifique si eligió 'Otros'" />
+        </div>
+
+        <!-- Pregunta 23 -->
+        <div class="question-card">
+          <div class="question-header">
+            <span class="question-number">23</span>
+            <div class="question-text">Al organizar el contenido, ¿cómo agruparía "Panel administrativo" y "Reportes generados" en la app?</div>
+          </div>
+          <select name="p23" required onchange="updateProgress()">
+            <option value="">Seleccione una opción</option>
+            <option value="En una categoría de Gestión y Administración">En una categoría de Gestión y Administración</option>
+            <option value="En una sección de Resultados y Análisis">En una sección de Resultados y Análisis</option>
+            <option value="Como parte del Perfil del Usuario">Como parte del Perfil del Usuario</option>
+            <option value="En un menú de Configuración Avanzada">En un menú de Configuración Avanzada</option>
+            <option value="Como elementos independientes en la navegación principal">Como elementos independientes en la navegación principal</option>
+            <option value="Otros">Otros</option>
+          </select>
+          <input type="text" name="p23_otros" placeholder="Especifique si eligió 'Otros'" />
+        </div>
+
+        <!-- Pregunta 24 -->
+        <div class="question-card">
+          <div class="question-header">
+            <span class="question-number">24</span>
+            <div class="question-text">Si estuviera probando la arquitectura de información de la app, ¿qué tarea le resultaría más desafiante?</div>
+          </div>
+          <select name="p24" required onchange="updateProgress()">
+            <option value="">Seleccione una opción</option>
+            <option value="Encontrar rápidamente recomendaciones personalizadas">Encontrar rápidamente recomendaciones personalizadas</option>
+            <option value="Navegar entre secciones de documentación y predicciones">Navegar entre secciones de documentación y predicciones</option>
+            <option value="Actualizar mi historial migratorio sin perder datos">Actualizar mi historial migratorio sin perder datos</option>
+            <option value="Acceder a soporte o noticias sin interrupciones">Acceder a soporte o noticias sin interrupciones</option>
+            <option value="Completar un flujo guiado sin confusiones">Completar un flujo guiado sin confusiones</option>
+            <option value="Otros">Otros</option>
+          </select>
+          <input type="text" name="p24_otros" placeholder="Especifique si eligió 'Otros'" />
+        </div>
+
+        <!-- Pregunta 25 -->
+        <div class="question-card">
+          <div class="question-header">
+            <span class="question-number">25</span>
+            <div class="question-text">Para diseñar la navegación, ¿qué elemento le ayudaría más a sentirse orientado en la app?</div>
+          </div>
+          <select name="p25" required onchange="updateProgress()">
+            <option value="">Seleccione una opción</option>
+            <option value="Breadcrumbs (ruta de navegación visible)">Breadcrumbs (ruta de navegación visible)</option>
+            <option value="Iconos intuitivos con tooltips explicativos">Iconos intuitivos con tooltips explicativos</option>
+            <option value="Barra de búsqueda predictiva">Barra de búsqueda predictiva</option>
+            <option value="Menú desplegable con subcategorías lógicas">Menú desplegable con subcategorías lógicas</option>
+            <option value="Flujos paso a paso con progresión visual">Flujos paso a paso con progresión visual</option>
+            <option value="Otros">Otros</option>
+          </select>
+          <input type="text" name="p25_otros" placeholder="Especifique si eligió 'Otros'" />
+        </div>
+
+        <div class="btn-container">
+          <button type="submit" id="submitBtn">Enviar Encuesta</button>
+        </div>
+
+        <div id="successMessage" class="success-message">
+          <h3>¡Gracias por completar la encuesta!</h3>
+          <p>Sus respuestas han sido enviadas exitosamente y nos ayudarán a mejorar VisaPredict AI.</p>
+        </div>
+      </form>
+    </div>
+
+    <div class="footer">
+      <div class="footer-stars">★ ★ ★ ★ ★</div>
+      <p>VisaPredict AI - Making Your American Dream Possible</p>
+      <p style="font-size: 0.8em; opacity: 0.7;">© 2024 VisaPredict AI. All rights reserved.</p>
+    </div>
+  </div>
+
+  <script>
+    // Update progress bar
+    function updateProgress() {
+      const form = document.getElementById('encuesta');
+      const selects = form.querySelectorAll('select[required]');
+      const completed = Array.from(selects).filter(select => select.value !== '').length;
+      const percentage = (completed / selects.length) * 100;
+      document.getElementById('progressBar').style.width = percentage + '%';
+    }
+
+    // Handle form submission
+    function handleSubmit(e) {
+      e.preventDefault();
+      const form = e.target;
+      const button = document.getElementById('submitBtn');
+      const originalHTML = button.innerHTML;
+      
+      // Change button state
+      button.innerHTML = 'Enviando<span class="loading"></span>';
+      button.disabled = true;
+      
+      const data = new FormData(form);
+      
+      // Agregar timestamp
+      data.append('timestamp', new Date().toISOString());
+      
+      fetch('https://script.google.com/macros/s/AKfycbzumpTlnQwYa_2jEujWD1cEmtTFvKExtAXFjbVhMGy8WRhMUjo8XkbmG61q1c8S7kKb/exec', {
+        method: 'POST',
+        body: data
+      })
+      .then(response => {
+        // Verificar si la respuesta es OK
+        if (!response.ok) {
+          throw new Error('Network response was not ok');
+        }
+        return response.text();
+      })
+      .then(text => {
+        // Intentar parsear como JSON
+        try {
+          const res = JSON.parse(text);
+          if (res.result === 'success') {
+            showSuccess();
+          } else {
+            throw new Error(res.error || 'Error desconocido');
+          }
+        } catch (e) {
+          // Si no es JSON válido, asumimos éxito (para manejar respuestas de texto plano)
+          console.log('Respuesta recibida:', text);
+          showSuccess();
+        }
+      })
+      .catch((error) => {
+        console.error('Error detallado:', error);
+        alert('Error al enviar la encuesta. Por favor, verifica tu conexión e intente de nuevo.\n\nSi el problema persiste, contacte al administrador.');
+      })
+      .finally(() => {
+        // Restore button
+        button.innerHTML = originalHTML;
+        button.disabled = false;
+      });
+      
+      function showSuccess() {
+        // Show success message
+        document.getElementById('successMessage').style.display = 'block';
+        
+        // Smooth scroll to message
+        document.getElementById('successMessage').scrollIntoView({ 
+          behavior: 'smooth', 
+          block: 'center' 
+        });
+        
+        // Reset form and progress
+        form.reset();
+        updateProgress();
+        
+        // Hide message after 5 seconds
+        setTimeout(() => {
+          document.getElementById('successMessage').style.display = 'none';
+        }, 5000);
+      }
+    }
+
+    // Intersection Observer for animations
+    const observerOptions = {
+      threshold: 0.1,
+      rootMargin: '0px 0px -50px 0px'
+    };
+
+    const observer = new IntersectionObserver(function(entries) {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.style.opacity = '1';
+          entry.target.style.transform = 'translateY(0)';
+        }
+      });
+    }, observerOptions);
+
+    // Initialize on DOM load
+    document.addEventListener('DOMContentLoaded', () => {
+      const cards = document.querySelectorAll('.question-card');
+      cards.forEach((card, index) => {
+        card.style.opacity = '0';
+        card.style.transform = 'translateY(20px)';
+        card.style.transition = `all 0.6s ease ${index * 0.05}s`;
+        observer.observe(card);
+      });
+
+      // Initialize progress bar
+      updateProgress();
+    });
+
+    // Show/hide "otros" input based on selection
+    document.querySelectorAll('select').forEach(select => {
+      select.addEventListener('change', function() {
+        const otrosInput = this.parentElement.querySelector('input[type="text"]');
+        if (otrosInput) {
+          otrosInput.style.display = this.value === 'Otros' ? 'block' : 'none';
+          if (this.value !== 'Otros') {
+            otrosInput.value = '';
+          }
+        }
+      });
+    });
+  </script>
+</body>
+</html>
