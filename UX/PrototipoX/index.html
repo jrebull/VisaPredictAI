@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VisaPredictAI - Prototipo Refinado</title>
+    
+    <link rel="stylesheet" href="base.css">
+    <link rel="stylesheet" href="components.css">
+    <link rel="stylesheet" href="screens.css">
+    <link rel="stylesheet" href="dark-mode.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="phone-container">
+        <div class="iphone">
+            <div class="power-button"></div>
+            <div class="volume-buttons">
+                <div class="volume-up"></div>
+                <div class="volume-down"></div>
+            </div>
+            <div class="screen">
+                <div class="dynamic-island"></div>
+                <div class="status-bar">
+                    <div class="time" id="statusTime">9:41</div>
+                    <div class="status-icons"><span>📶</span><span>📶</span><span>🔋</span></div>
+                </div>
+
+                <div class="loading-screen" id="loadingScreen">
+                    <div class="loading-logo">
+                        <img src="VisaPredictAI.png" alt="VisaPredictAI" onerror="this.style.display='none'; this.parentElement.innerHTML='<div style=\'font-size: 20px; font-weight: 700; color: #0055A4;\'>VisaPredictAI</div>';">
+                    </div>
+                    <div class="loading-text">VisaPredictAI</div>
+                    <div class="loading-bar"><div class="loading-progress"></div></div>
+                </div>
+
+                <div class="login-screen" id="loginScreen">
+                    <div class="login-container">
+                        <div class="login-logo">
+                            <img src="VisaPredictAI.png" alt="VisaPredictAI" onerror="this.style.display='none'; this.parentElement.innerHTML='<div style=\'font-size: 16px; font-weight: 700; color: #0055A4;\'>VPA</div>';">
+                        </div>
+                        <div class="login-form">
+                            <h1 class="login-title">Bienvenido</h1>
+                            <p class="login-subtitle">Ingresa a tu cuenta</p>
+                            <input type="email" class="login-input" id="loginEmail" placeholder="Correo electrónico" value="juan.perez@email.com">
+                            <input type="password" class="login-input" id="loginPassword" placeholder="Contraseña" value="••••••••">
+                            <button id="loginButton" class="login-button">Iniciar Sesión</button>
+                            <div class="login-divider">o</div>
+                            <button id="showRegisterButton" class="login-register">Crear Cuenta Nueva</button>
+                            <div class="biometric-login">
+                                <button id="faceIdButton" class="face-id-button"><span>👤</span></button>
+                                <div class="face-id-text">Face ID</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="register-screen" id="registerScreen">
+                    <div class="register-header">
+                        <div id="backToLoginButton" class="register-back">←</div>
+                        <h1 class="register-title">Crear Cuenta</h1>
+                        <p class="register-subtitle">Únete a VisaPredictAI</p>
+                    </div>
+                    <div class="register-form">
+                        <div class="step-indicator">
+                            <div class="step-dot active">1</div>
+                            <div class="step-dot">2</div>
+                            <div class="step-dot">3</div>
+                        </div>
+                        <div class="register-step">
+                            <div class="form-group"><label class="form-label">Nombre Completo</label><input type="text" class="form-input" placeholder="Juan Pérez"></div>
+                            <div class="form-group"><label class="form-label">Correo Electrónico</label><input type="email" class="form-input" placeholder="juan@email.com"></div>
+                            <div class="form-group"><label class="form-label">Contraseña</label><input type="password" class="form-input" placeholder="Mínimo 8 caracteres"></div>
+                            <div class="form-group"><label class="form-label">País de Origen</label><input type="text" class="form-input" placeholder="México"></div>
+                        </div>
+                        <button id="createAccountButton" class="btn-primary">Crear Cuenta</button>
+                    </div>
+                </div>
+
+                <div class="app-screen" id="homeScreen">
+                    <div class="app-header">
+                        <div class="header-content">
+                            <div class="header-info"><h1>Hola, Juan</h1><p>Bienvenido de vuelta</p></div>
+                            <div class="profile-image"><img src="Sully.png" alt="Profile" onerror="this.style.display='none'; this.parentElement.innerHTML='J';"></div>
+                        </div>
+                    </div>
+                    <div class="app-content">
+                        <div class="progress-container">
+                            <div class="progress-header"><span class="progress-title">Perfil Completado</span><span class="progress-percentage">75%</span></div>
+                            <div class="progress-bar"><div class="progress-fill" style="width: 75%;"></div></div>
+                        </div>
+                        <div class="quick-actions">
+                            <button class="action-btn" data-action="show-prediction"><div class="action-icon">🎯</div><span class="action-label">Nueva Predicción</span></button>
+                            <button class="action-btn" id="openChecklistButton"><div class="action-icon">📋</div><span class="action-label">Checklist</span></button>
+                        </div>
+                        <h3 style="margin: 24px 0 16px; font-size: 16px; font-weight: 600;">Novedades y Alertas</h3>
+                        <div class="alert-item"><div class="alert-header"><div class="alert-title">Nueva actualización en tu solicitud de visa</div><div class="alert-time">5 min</div></div><div class="alert-description">Tu solicitud ha sido procesada exitosamente</div></div>
+                        <div class="alert-item warning"><div class="alert-header"><div class="alert-title">Cambios en la política migratoria 2025</div><div class="alert-time">1 hora</div></div><div class="alert-description">Nuevas regulaciones han sido publicadas</div></div>
+                        <div class="alert-item info"><div class="alert-header"><div class="alert-title">Recordatorio: Documento pendiente</div><div class="alert-time">Ayer</div></div><div class="alert-description">Tu certificado de empleo vence en 3 días</div></div>
+                    </div>
+                </div>
+                
+                <div class="app-screen" id="predictionScreen">
+                     <div class="app-header">
+                        <div class="header-info"><h1>Predicción</h1><p>Última actualización: Hoy</p></div>
+                    </div>
+                    <div class="app-content">
+                        <button id="startPredictionButton" class="btn-primary">Iniciar Nueva Predicción</button>
+                        <div class="prediction-card">
+                            <div class="prediction-loading" id="predictionLoading"><div class="prediction-loading-text">Analizando tu perfil...</div><div class="prediction-progress-bar"><div class="prediction-progress-fill"></div></div></div>
+                            <div class="prediction-label">Resultado de Predicción</div>
+                            <div class="prediction-percentage" id="predictionValue">85%</div>
+                            <div class="prediction-status" id="predictionStatus">✓ Aprobado</div>
+                            <div class="prediction-reason" id="predictionReason"></div>
+                        </div>
+                        <div class="stats-grid">
+                            <div class="stat-card"><div class="stat-value">3</div><div class="stat-label">Documentos Pendientes</div></div>
+                            <div class="stat-card"><div class="stat-value">12</div><div class="stat-label">Días para Decisión</div></div>
+                        </div>
+                         <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 20px;">
+                            <button class="btn-secondary" data-modal="history">Historial</button>
+                            <button class="btn-secondary" data-modal="factors">Factores</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="app-screen" id="profileScreen">
+                    <div class="app-header">
+                         <div class="header-info"><h1>Mi Perfil</h1><p>75% completado</p></div>
+                    </div>
+                    <div class="app-content">
+                        <div class="progress-container" style="margin-bottom: 24px;"><div class="progress-bar"><div class="progress-fill" style="width: 75%;"></div></div></div>
+                        <div class="section-item" id="darkModeToggle">
+                            <div class="section-status" style="font-size: 20px;">🎨</div>
+                            <div class="section-info"><div class="section-name">Modo Oscuro</div><div class="section-description">Activar/Desactivar tema</div></div>
+                            <div class="section-arrow">›</div>
+                        </div>
+                        <div class="section-item" data-form="personalDataScreen"><div class="section-status complete">✓</div><div class="section-info"><div class="section-name">Datos Personales</div><div class="section-description">Completado</div></div><div class="section-arrow">›</div></div>
+                        <div class="section-item" data-form="academicScreen"><div class="section-status pending">!</div><div class="section-info"><div class="section-name">Formación Académica</div><div class="section-description">En progreso</div></div><div class="section-arrow">›</div></div>
+                        <div class="section-item" data-form="experienceScreen"><div class="section-status error">×</div><div class="section-info"><div class="section-name">Experiencia Laboral</div><div class="section-description">Pendiente</div></div><div class="section-arrow">›</div></div>
+                        <div class="section-item" data-form="employmentScreen"><div class="section-status complete">✓</div><div class="section-info"><div class="section-name">Empleo y Patrocinadores</div><div class="section-description">Completado</div></div><div class="section-arrow">›</div></div>
+                        <button class="btn-primary" style="margin-top: 24px;" data-form="employmentScreen">Gestionar Empleo →</button>
+                    </div>
+                </div>
+                
+                <div class="profile-form-screen" id="personalDataScreen"><div class="form-header"><div class="form-back" data-action="back-to-profile">←</div><h1 class="form-title">Datos Personales</h1><p class="form-subtitle">Información básica del solicitante</p></div><div class="form-content"><div class="form-section"><div class="form-group"><label class="form-label">Nombre Completo</label><input type="text" class="form-input" value="Juan Pérez González"></div><div class="form-group"><label class="form-label">Fecha de Nacimiento</label><input type="date" class="form-input" value="1990-05-15"></div><div class="form-group"><label class="form-label">Nacionalidad</label><select class="form-select"><option selected>Mexicana</option><option>Colombiana</option></select></div><div class="form-group"><label class="form-label">Número de Pasaporte</label><input type="text" class="form-input" value="G12345678"></div><div class="form-group"><label class="form-label">Estado Civil</label><select class="form-select"><option selected>Soltero</option><option>Casado</option></select></div></div><button class="btn-primary" data-action="save-form">Guardar Cambios</button></div></div>
+                <div class="profile-form-screen" id="academicScreen"><div class="form-header"><div class="form-back" data-action="back-to-profile">←</div><h1 class="form-title">Formación Académica</h1><p class="form-subtitle">Educación y certificaciones</p></div><div class="form-content"><button class="btn-primary" data-action="save-form">Guardar Cambios</button></div></div>
+                <div class="profile-form-screen" id="experienceScreen"><div class="form-header"><div class="form-back" data-action="back-to-profile">←</div><h1 class="form-title">Experiencia Laboral</h1><p class="form-subtitle">Historial profesional</p></div><div class="form-content"><button class="btn-primary" data-action="save-form">Guardar Cambios</button></div></div>
+                <div class="profile-form-screen" id="employmentScreen"><div class="form-header"><div class="form-back" data-action="back-to-profile">←</div><h1 class="form-title">Empleo</h1><p class="form-subtitle">Detalles de oferta laboral</p></div><div class="form-content"><button class="btn-primary" data-action="save-form">Guardar Cambios</button></div></div>
+                
+                <div class="app-screen" id="supportScreen">
+                    <div class="app-header"><div class="header-info"><h1>Soporte</h1><p>Centro de ayuda</p></div></div>
+                    <div class="app-content"><div class="card" data-screen="newsScreen" style="background: linear-gradient(135deg, #0055A4, #4F83CC); color: white; border: none;"><div style="display: flex; align-items: center; gap: 16px;"><div style="font-size: 32px;">📚</div><div><div style="font-weight: 600; font-size: 16px; margin-bottom: 4px;">Noticias y Recursos</div><div style="opacity: 0.9; font-size: 13px;">Guías y actualizaciones</div></div></div></div><h3 style="margin: 24px 0 16px; font-size: 16px; font-weight: 600;">Preguntas Frecuentes</h3><div class="faq-item"><div class="faq-question">¿Cómo verificar el estado de mi solicitud?<span class="faq-arrow">▼</span></div><div class="faq-answer">Puedes verificar el estado desde el Panel de Inicio, donde encontrarás actualizaciones en tiempo real y notificaciones importantes.</div></div><div class="faq-item"><div class="faq-question">¿Qué documentos necesito?<span class="faq-arrow">▼</span></div><div class="faq-answer">Los documentos incluyen: pasaporte válido, formularios completados, fotografías, prueba de solvencia económica y carta de empleo.</div></div><div class="faq-item"><div class="faq-question">¿Cómo funciona la predicción?<span class="faq-arrow">▼</span></div><div class="faq-answer">Nuestro sistema analiza tu perfil completo usando IA para generar un porcentaje de probabilidad basado en patrones históricos.</div></div></div>
+                </div>
+
+                <div class="app-screen" id="newsScreen">
+                    <div class="app-header"><div class="header-info"><h1>Noticias</h1><p>Información actualizada 2025</p></div></div>
+                    <div class="app-content">
+                        <div class="search-container"><span class="search-icon">🔍</span><input type="text" class="search-input" placeholder="Buscar..."></div>
+                        <div class="filter-container"><div class="filter-pill active">Todas</div><div class="filter-pill">Recientes</div><div class="filter-pill">Guías</div><div class="filter-pill">Políticas</div></div>
+                        
+                        <div class="news-card"><div class="news-image"><img src="https://imagenes.elpais.com/resizer/v2/https%3A%2F%2Fcloudfront-us-east-1.images.arcpublishing.com%2Fprisa%2F4D3J6XR3YJCH3E435E7575Z2JA.jpg/828/466/cloudfront-us-east-1.images.arcpublishing.com/prisa/4D3J6XR3YJCH3E435E7575Z2JA.jpg" alt="News" onerror="this.style.display='none'; this.parentElement.innerHTML='💵';"></div><div class="news-content"><div class="news-title">Gobierno exigirá depósitos de hasta $15,000 para visas</div><div class="news-excerpt">Nueva política requiere depósitos significativos para viajeros de ciertos países.</div><div class="news-meta"><span>El País</span><span>Agosto 2025</span></div></div></div>
+                        <div class="news-card"><div class="news-image"><img src="https://www.infobae.com/new-resizer/h2J_8E_A_9f3j_1a_fL-dK5v_tM=/992x661/filters:format(webp):quality(85)/cloudfront-us-east-1.images.arcpublishing.com/infobae/2XF3E4R5Z6F7B8C9D0A1B2C3D4.jpg" alt="News" onerror="this.style.display='none'; this.parentElement.innerHTML='📋';"></div><div class="news-content"><div class="news-title">EE.UU. endurece entrevistas para visas desde septiembre</div><div class="news-excerpt">Nuevas regulaciones más estrictas entrarán en vigor para el proceso de entrevistas.</div><div class="news-meta"><span>Infobae</span><span>Agosto 2025</span></div></div></div>
+                        <div class="news-card"><div class="news-image"><img src="https://media-cldnry.s-nbcnews.com/image/upload/t_nbcnews-fp-1200-630,f_auto,q_auto:best/msnbc/Components/Photos/060517/060517_visa_hmed_5p.jpg" alt="News" onerror="this.style.display='none'; this.parentElement.innerHTML='📊';"></div><div class="news-content"><div class="news-title">Nueva tasa de integridad para visas de turistas</div><div class="news-excerpt">Se implementa nueva tasa para fortalecer el proceso de verificación de visados.</div><div class="news-meta"><span>Telemundo</span><span>Agosto 2025</span></div></div></div>
+
+                    </div>
+                </div>
+
+                <div class="bottom-nav">
+                    <div class="nav-item active" data-screen="homeScreen"><div class="nav-icon"><img src="Inicio.png" alt="Inicio"></div><span class="nav-label">Inicio</span></div>
+                    <div class="nav-item" data-screen="profileScreen"><div class="nav-icon"><img src="Perfil.png" alt="Perfil"></div><span class="nav-label">Perfil</span></div>
+                    <div class="nav-item" data-screen="predictionScreen"><div class="nav-icon"><img src="Prediccion.png" alt="Predicción"></div><span class="nav-label">Predicción</span></div>
+                    <div class="nav-item" data-screen="supportScreen"><div class="nav-icon"><img src="Soporte.png" alt="Soporte"></div><span class="nav-label">Soporte</span></div>
+                    <div class="nav-item" data-screen="newsScreen"><div class="nav-icon"><img src="Noticias.png" alt="Noticias"></div><span class="nav-label">Noticias</span></div>
+                </div>
+
+                <div class="checklist-overlay" id="checklistOverlay">
+                     <div class="checklist-panel">
+                        <div class="checklist-header"><span class="checklist-title">Checklist de Documentos</span><button class="checklist-close" id="closeChecklistButton">×</button></div>
+                        <div class="checklist-progress"><div class="checklist-progress-bar" id="checklistProgress"></div></div>
+                        <div class="checklist-items"><label class="checkitem"><input type="checkbox" data-w="20"> Pasaporte vigente</label><label class="checkitem"><input type="checkbox" data-w="20"> Fotografías recientes</label><label class="checkitem"><input type="checkbox" data-w="20"> Certificado de empleo</label><label class="checkitem"><input type="checkbox" data-w="20"> Estados de cuenta (3 meses)</label><label class="checkitem"><input type="checkbox" data-w="20"> Certificados académicos</label></div>
+                        <button class="btn-primary" id="checklistDoneButton">Listo</button>
+                    </div>
+                </div>
+                
+                <div class="modal-overlay" id="modalOverlay">
+                    <div class="modal"><h3 class="modal-title" id="modalTitle">Título</h3><p class="modal-content" id="modalContent">Contenido.</p><div class="modal-actions"><button class="modal-btn cancel">Cerrar</button><button class="modal-btn confirm">Confirmar</button></div></div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
