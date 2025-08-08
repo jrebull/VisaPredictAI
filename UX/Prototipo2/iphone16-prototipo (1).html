@@ -507,25 +507,11 @@
         }
 
         .app-logo {
-            width: 220px;
-            height: 80px;
-            margin: 0 auto 15px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-        
-        .app-logo img {
-            width: 100%;
-            height: 100%;
-            object-fit: contain;
-        }
-        
-        .app-logo-fallback {
             width: 120px;
             height: 40px;
             background: linear-gradient(90deg, #0055A4, #4F83CC);
             border-radius: 8px;
+            margin: 0 auto 15px;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -707,8 +693,6 @@
             margin: 20px 0;
             color: white;
             box-shadow: 0 8px 24px rgba(0, 85, 164, 0.2);
-            position: relative;
-            overflow: hidden;
         }
 
         .prediction-label {
@@ -733,78 +717,6 @@
             border-radius: 20px;
             font-weight: 600;
             font-size: 14px;
-        }
-        
-        .prediction-loading {
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: linear-gradient(135deg, #0055A4, #4F83CC);
-            display: none;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            z-index: 10;
-        }
-        
-        .prediction-loading.active {
-            display: flex;
-        }
-        
-        .prediction-loading-text {
-            font-size: 18px;
-            font-weight: 600;
-            margin-bottom: 20px;
-            color: white;
-        }
-        
-        .prediction-progress-bar {
-            width: 80%;
-            height: 8px;
-            background: rgba(255, 255, 255, 0.2);
-            border-radius: 4px;
-            overflow: hidden;
-        }
-        
-        .prediction-progress-fill {
-            height: 100%;
-            background: white;
-            border-radius: 4px;
-            width: 0%;
-            animation: predictionProgress 3s ease-out forwards;
-        }
-        
-        @keyframes predictionProgress {
-            0% { width: 0%; }
-            30% { width: 45%; }
-            60% { width: 75%; }
-            100% { width: 100%; }
-        }
-        
-        .confetti {
-            position: absolute;
-            top: -10px;
-            width: 10px;
-            height: 10px;
-            background: gold;
-            animation: confettiFall 3s linear infinite;
-        }
-        
-        @keyframes confettiFall {
-            0% { transform: translateY(0) rotate(0deg); opacity: 1; }
-            100% { transform: translateY(400px) rotate(720deg); opacity: 0; }
-        }
-        
-        .celebration-icon {
-            font-size: 80px;
-            animation: bounce 0.6s ease-out;
-        }
-        
-        @keyframes bounce {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-20px); }
         }
 
         /* Alerts Minimalistas */
@@ -954,26 +866,6 @@
         }
 
         .nav-icon {
-            width: 24px;
-            height: 24px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-        
-        .nav-icon img {
-            width: 100%;
-            height: 100%;
-            object-fit: contain;
-            filter: grayscale(100%) opacity(0.6);
-            transition: filter 0.2s;
-        }
-        
-        .nav-item.active .nav-icon img {
-            filter: grayscale(0%) opacity(1);
-        }
-        
-        .nav-icon-emoji {
             font-size: 22px;
         }
 
@@ -1015,24 +907,6 @@
 
         .form-input::placeholder {
             color: #9E9E9E;
-        }
-
-        .form-select {
-            width: 100%;
-            padding: 14px 16px;
-            border: 1px solid #F5F5F5;
-            border-radius: 10px;
-            font-size: 15px;
-            transition: all 0.2s;
-            background: #FFFFFF;
-            color: #212121;
-            cursor: pointer;
-        }
-
-        .form-select:focus {
-            outline: none;
-            border-color: #0055A4;
-            box-shadow: 0 0 0 3px rgba(0, 85, 164, 0.1);
         }
 
         /* Buttons - Minimalista */
@@ -1098,14 +972,6 @@
             align-items: center;
             justify-content: center;
             font-size: 48px;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .news-image img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
         }
 
         .news-content {
@@ -1405,128 +1271,7 @@
             font-size: 12px;
             color: #9E9E9E;
         }
-
-        /* Profile Forms Screen */
-        .profile-form-screen {
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: white;
-            display: none;
-            flex-direction: column;
-            transform: translateX(100%);
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-
-        .profile-form-screen.active {
-            display: flex;
-            transform: translateX(0);
-        }
-
-        .form-header {
-            padding: 60px 20px 20px;
-            background: white;
-            border-bottom: 1px solid #F5F5F5;
-        }
-
-        .form-back {
-            font-size: 24px;
-            cursor: pointer;
-            margin-bottom: 16px;
-            color: #0055A4;
-        }
-
-        .form-title {
-            font-size: 28px;
-            font-weight: 700;
-            color: #212121;
-            margin-bottom: 8px;
-        }
-
-        .form-subtitle {
-            font-size: 14px;
-            color: #9E9E9E;
-        }
-
-        .form-content {
-            flex: 1;
-            padding: 20px;
-            overflow-y: auto;
-        }
-
-        .form-section {
-            margin-bottom: 32px;
-        }
-
-        .form-section-title {
-            font-size: 16px;
-            font-weight: 600;
-            color: #212121;
-            margin-bottom: 16px;
-        }
-    
-        /* Prediction: Reason for low score */
-        .prediction-reason {
-            margin-top: 12px;
-            font-size: 13px;
-            line-height: 1.5;
-            color: rgba(255, 255, 255, 0.95);
-            background: rgba(0, 0, 0, 0.25);
-            padding: 10px 14px;
-            border-radius: 10px;
-            display: none;
-            text-align: left;
-        }
-
-        /* Prettier Checklist Overlay */
-        .checklist-overlay {
-            position: absolute;
-            inset: 0;
-            background: rgba(0,0,0,0.6);
-            display: none;
-            align-items: flex-end;
-            justify-content: center;
-            z-index: 2050;
-            backdrop-filter: blur(2px);
-        }
-        .checklist-overlay.active { display: flex; }
-        .checklist-panel {
-            width: 100%;
-            background: #FFFFFF;
-            border-radius: 20px 20px 0 0;
-            padding: 16px 20px 24px;
-            box-shadow: 0 -10px 40px rgba(0,0,0,0.25);
-            max-height: 72%;
-            overflow: auto;
-        }
-        .checklist-header {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            margin-bottom: 12px;
-        }
-        .checklist-title { font-size: 18px; font-weight: 700; color: #212121; }
-        .checklist-close { background:#F5F5F5; border:none; border-radius:10px; padding:6px 10px; font-size:18px; cursor:pointer; }
-        .checklist-progress { height:8px; background:#F0F0F0; border-radius:6px; overflow:hidden; }
-        .checklist-progress-bar { height:100%; width:0%; background:linear-gradient(90deg,#0055A4,#4F83CC); }
-        .checklist-items { display:flex; flex-direction:column; gap:10px; margin:16px 0 12px; }
-        .checkitem { display:flex; align-items:center; gap:12px; padding:12px; border:1px solid #F0F0F0; border-radius:12px; }
-        .checkitem input { width:18px; height:18px; }
-
-        /* Nicer History List inside modal */
-        .history-list { display:flex; flex-direction:column; gap:10px; }
-        .history-item { display:flex; justify-content:space-between; align-items:center; padding:12px; border:1px solid #F5F5F5; border-radius:12px; }
-        .history-left { display:flex; align-items:center; gap:10px; color:#212121; }
-        .score { font-weight:700; }
-        .trend-up::before { content:'▲ '; }
-        .trend-down::before { content:'▼ '; }
-        .badge { font-size:12px; padding:4px 8px; border-radius:999px; }
-        .badge.good { background:#E8F5E9; color:#2E7D32; }
-        .badge.warn { background:#FFF3E0; color:#F57C00; }
-
-</style>
+    </style>
 </head>
 <body>
     <div class="phone-container">
@@ -1635,9 +1380,7 @@
                 <div class="app-screen" id="homeScreen">
                     <!-- Logo Section -->
                     <div class="logo-section">
-                        <div class="app-logo">
-                            <img src="VisaPredictAI.png" alt="VisaPredictAI" onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=\'app-logo-fallback\'>VisaPredictAI</div>';">
-                        </div>
+                        <div class="app-logo">VisaPredictAI</div>
                     </div>
 
                     <!-- Header Minimalista -->
@@ -1671,7 +1414,7 @@
                                 <div class="action-icon">🎯</div>
                                 <span class="action-label">Nueva Predicción</span>
                             </button>
-                            <button class="action-btn" onclick="openChecklist()">
+                            <button class="action-btn" onclick="showModal('checklist')">
                                 <div class="action-icon">📋</div>
                                 <span class="action-label">Checklist</span>
                             </button>
@@ -1690,7 +1433,7 @@
 
                         <div class="alert-item warning">
                             <div class="alert-header">
-                                <div class="alert-title">Cambios en la política migratoria 2025</div>
+                                <div class="alert-title">Cambios en la política migratoria 2024</div>
                                 <div class="alert-time">1 hora</div>
                             </div>
                             <div class="alert-description">Nuevas regulaciones han sido publicadas</div>
@@ -1719,16 +1462,9 @@
                         <button class="btn-primary" onclick="startPrediction()">Iniciar Nueva Predicción</button>
                         
                         <div class="prediction-card">
-                            <div class="prediction-loading" id="predictionLoading">
-                                <div class="prediction-loading-text">Analizando tu perfil...</div>
-                                <div class="prediction-progress-bar">
-                                    <div class="prediction-progress-fill"></div>
-                                </div>
-                            </div>
                             <div class="prediction-label">Resultado de Predicción</div>
                             <div class="prediction-percentage" id="predictionValue">85%</div>
                             <div class="prediction-status" id="predictionStatus">✓ Aprobado</div>
-                            <div class=\"prediction-reason\" id=\"predictionReason\"></div>
                         </div>
 
                         <div class="stats-grid">
@@ -1769,7 +1505,7 @@
                             </div>
                         </div>
 
-                        <div class="section-item" onclick="showPersonalDataForm()">
+                        <div class="section-item" onclick="editSection('personal')">
                             <div class="section-status complete">✓</div>
                             <div class="section-info">
                                 <div class="section-name">Datos Personales</div>
@@ -1778,7 +1514,7 @@
                             <div class="section-arrow">›</div>
                         </div>
 
-                        <div class="section-item" onclick="showAcademicForm()">
+                        <div class="section-item" onclick="editSection('academic')">
                             <div class="section-status pending">!</div>
                             <div class="section-info">
                                 <div class="section-name">Formación Académica</div>
@@ -1787,7 +1523,7 @@
                             <div class="section-arrow">›</div>
                         </div>
 
-                        <div class="section-item" onclick="showExperienceForm()">
+                        <div class="section-item" onclick="editSection('experience')">
                             <div class="section-status error">×</div>
                             <div class="section-info">
                                 <div class="section-name">Experiencia Laboral</div>
@@ -1808,162 +1544,6 @@
                         <button class="btn-primary" style="margin-top: 24px;" onclick="showEmploymentForm()">
                             Gestionar Empleo →
                         </button>
-                    </div>
-                </div>
-
-                <!-- Datos Personales Form -->
-                <div class="profile-form-screen" id="personalDataScreen">
-                    <div class="form-header">
-                        <div class="form-back" onclick="backToProfile()">←</div>
-                        <h1 class="form-title">Datos Personales</h1>
-                        <p class="form-subtitle">Información básica del solicitante</p>
-                    </div>
-                    
-                    <div class="form-content">
-                        <div class="form-section">
-                            <div class="form-group">
-                                <label class="form-label">Nombre Completo</label>
-                                <input type="text" class="form-input" value="Juan Pérez González">
-                            </div>
-                            
-                            <div class="form-group">
-                                <label class="form-label">Fecha de Nacimiento</label>
-                                <input type="date" class="form-input" value="1990-05-15">
-                            </div>
-                            
-                            <div class="form-group">
-                                <label class="form-label">Nacionalidad</label>
-                                <select class="form-select">
-                                    <option selected>Mexicana</option>
-                                    <option>Colombiana</option>
-                                    <option>Argentina</option>
-                                    <option>Peruana</option>
-                                </select>
-                            </div>
-                            
-                            <div class="form-group">
-                                <label class="form-label">Número de Pasaporte</label>
-                                <input type="text" class="form-input" value="G12345678">
-                            </div>
-                            
-                            <div class="form-group">
-                                <label class="form-label">Estado Civil</label>
-                                <select class="form-select">
-                                    <option selected>Soltero</option>
-                                    <option>Casado</option>
-                                    <option>Divorciado</option>
-                                    <option>Viudo</option>
-                                </select>
-                            </div>
-                        </div>
-                        
-                        <button class="btn-primary" onclick="savePersonalData()">Guardar Cambios</button>
-                    </div>
-                </div>
-
-                <!-- Formación Académica Form -->
-                <div class="profile-form-screen" id="academicScreen">
-                    <div class="form-header">
-                        <div class="form-back" onclick="backToProfile()">←</div>
-                        <h1 class="form-title">Formación Académica</h1>
-                        <p class="form-subtitle">Educación y certificaciones</p>
-                    </div>
-                    
-                    <div class="form-content">
-                        <div class="form-section">
-                            <div class="form-section-title">Último Grado Académico</div>
-                            
-                            <div class="form-group">
-                                <label class="form-label">Nivel de Estudios</label>
-                                <select class="form-select">
-                                    <option>Licenciatura</option>
-                                    <option selected>Maestría</option>
-                                    <option>Doctorado</option>
-                                </select>
-                            </div>
-                            
-                            <div class="form-group">
-                                <label class="form-label">Universidad</label>
-                                <input type="text" class="form-input" value="Universidad Nacional Autónoma de México">
-                            </div>
-                            
-                            <div class="form-group">
-                                <label class="form-label">Carrera</label>
-                                <input type="text" class="form-input" value="Ingeniería en Software">
-                            </div>
-                            
-                            <div class="form-group">
-                                <label class="form-label">Año de Graduación</label>
-                                <input type="number" class="form-input" value="2015">
-                            </div>
-                        </div>
-                        
-                        <div class="form-section">
-                            <div class="form-section-title">Certificaciones</div>
-                            
-                            <div class="form-group">
-                                <label class="form-label">Certificación TOEFL</label>
-                                <input type="text" class="form-input" value="110/120">
-                            </div>
-                            
-                            <div class="form-group">
-                                <label class="form-label">Otras Certificaciones</label>
-                                <input type="text" class="form-input" placeholder="AWS Certified, PMP, etc.">
-                            </div>
-                        </div>
-                        
-                        <button class="btn-primary" onclick="saveAcademicData()">Guardar Cambios</button>
-                    </div>
-                </div>
-
-                <!-- Experiencia Laboral Form -->
-                <div class="profile-form-screen" id="experienceScreen">
-                    <div class="form-header">
-                        <div class="form-back" onclick="backToProfile()">←</div>
-                        <h1 class="form-title">Experiencia Laboral</h1>
-                        <p class="form-subtitle">Historial profesional</p>
-                    </div>
-                    
-                    <div class="form-content">
-                        <div class="form-section">
-                            <div class="form-section-title">Empleo Actual</div>
-                            
-                            <div class="form-group">
-                                <label class="form-label">Empresa</label>
-                                <input type="text" class="form-input" value="Tech Solutions México">
-                            </div>
-                            
-                            <div class="form-group">
-                                <label class="form-label">Cargo</label>
-                                <input type="text" class="form-input" value="Senior Software Engineer">
-                            </div>
-                            
-                            <div class="form-group">
-                                <label class="form-label">Fecha de Inicio</label>
-                                <input type="date" class="form-input" value="2020-03-01">
-                            </div>
-                            
-                            <div class="form-group">
-                                <label class="form-label">Salario Anual (USD)</label>
-                                <input type="text" class="form-input" value="$75,000">
-                            </div>
-                        </div>
-                        
-                        <div class="form-section">
-                            <div class="form-section-title">Experiencia Previa</div>
-                            
-                            <div class="form-group">
-                                <label class="form-label">Años de Experiencia Total</label>
-                                <input type="number" class="form-input" value="8">
-                            </div>
-                            
-                            <div class="form-group">
-                                <label class="form-label">Especialización</label>
-                                <input type="text" class="form-input" value="Desarrollo Full Stack, Cloud Computing">
-                            </div>
-                        </div>
-                        
-                        <button class="btn-primary" onclick="saveExperienceData()">Guardar Cambios</button>
                     </div>
                 </div>
 
@@ -2092,7 +1672,7 @@
                     <div class="app-header">
                         <div class="header-info">
                             <h1>Noticias</h1>
-                            <p>Información actualizada 2025</p>
+                            <p>Información actualizada</p>
                         </div>
                     </div>
                     
@@ -2109,44 +1689,38 @@
                             <div class="filter-pill">Políticas</div>
                         </div>
 
-                        <div class="news-card" onclick="window.open('https://elpais.com/us/migracion/2025-08-04/el-gobierno-de-trump-exigira-depositos-de-hasta-15000-dolares-a-viajeros-de-ciertos-paises-para-recibir-una-visa-de-turismo-o-negocios.html', '_blank')">
-                            <div class="news-image">
-                                <img src="https://imagenes.elpais.com/resizer/v2/visa-usa.jpg?auth=visa" alt="News" onerror="this.style.display='none'; this.parentElement.innerHTML='💵';">
-                            </div>
+                        <div class="news-card">
+                            <div class="news-image">📰</div>
                             <div class="news-content">
-                                <div class="news-title">Gobierno exigirá depósitos de hasta $15,000 para visas</div>
-                                <div class="news-excerpt">Nueva política de Trump requiere depósitos significativos para viajeros de ciertos países.</div>
+                                <div class="news-title">Nuevas Regulaciones de Visas 2024</div>
+                                <div class="news-excerpt">Cambios significativos en las regulaciones que entrarán en vigor próximamente.</div>
                                 <div class="news-meta">
-                                    <span>El País</span>
-                                    <span>Agosto 2025</span>
+                                    <span>Oficina de Inmigración</span>
+                                    <span>Hoy</span>
                                 </div>
                             </div>
                         </div>
 
-                        <div class="news-card" onclick="window.open('https://www.infobae.com/estados-unidos/2025/08/04/estados-unidos-endurece-las-entrevistas-para-visas-esta-nueva-regla-regira-a-partir-septiembre/', '_blank')">
-                            <div class="news-image">
-                                <img src="https://www.infobae.com/new-resizer/visa-interview.jpg" alt="News" onerror="this.style.display='none'; this.parentElement.innerHTML='📋';">
-                            </div>
+                        <div class="news-card">
+                            <div class="news-image">📊</div>
                             <div class="news-content">
-                                <div class="news-title">EE.UU. endurece entrevistas para visas desde septiembre</div>
-                                <div class="news-excerpt">Nuevas regulaciones más estrictas entrarán en vigor para el proceso de entrevistas.</div>
+                                <div class="news-title">Impacto Económico de la Inmigración</div>
+                                <div class="news-excerpt">Estudio destaca la contribución positiva al desarrollo económico.</div>
                                 <div class="news-meta">
-                                    <span>Infobae</span>
-                                    <span>Agosto 2025</span>
+                                    <span>Instituto de Políticas</span>
+                                    <span>Ayer</span>
                                 </div>
                             </div>
                         </div>
 
-                        <div class="news-card" onclick="window.open('https://www.telemundo.com/noticias/noticias-telemundo/inmigracion/tasa-visa-integridad-turistas-inmigrantes-visados-rcna218576', '_blank')">
-                            <div class="news-image">
-                                <img src="https://media-cldnry.s-nbcnews.com/image/upload/visa-rates.jpg" alt="News" onerror="this.style.display='none'; this.parentElement.innerHTML='📊';">
-                            </div>
+                        <div class="news-card">
+                            <div class="news-image">📚</div>
                             <div class="news-content">
-                                <div class="news-title">Nueva tasa de integridad para visas de turistas</div>
-                                <div class="news-excerpt">Se implementa nueva tasa para fortalecer el proceso de verificación de visados.</div>
+                                <div class="news-title">Guía para Solicitantes</div>
+                                <div class="news-excerpt">Actualización sobre procedimientos y recursos disponibles.</div>
                                 <div class="news-meta">
-                                    <span>Telemundo</span>
-                                    <span>Agosto 2025</span>
+                                    <span>Cruz Roja</span>
+                                    <span>2 días</span>
                                 </div>
                             </div>
                         </div>
@@ -2156,56 +1730,24 @@
                 <!-- Bottom Navigation -->
                 <div class="bottom-nav">
                     <div class="nav-item active" onclick="navigateTo('homeScreen', this)">
-                        <div class="nav-icon">
-                            <img src="Inicio.png" alt="Inicio" onerror="this.style.display='none'; this.parentElement.innerHTML='<span class=\'nav-icon-emoji\'>🏠</span>';">
-                        </div>
+                        <div class="nav-icon">🏠</div>
                         <span class="nav-label">Inicio</span>
                     </div>
                     <div class="nav-item" onclick="navigateTo('predictionScreen', this)">
-                        <div class="nav-icon">
-                            <img src="Prediccion.png" alt="Predicción" onerror="this.style.display='none'; this.parentElement.innerHTML='<span class=\'nav-icon-emoji\'>🎯</span>';">
-                        </div>
+                        <div class="nav-icon">🎯</div>
                         <span class="nav-label">Predicción</span>
                     </div>
                     <div class="nav-item" onclick="navigateTo('profileScreen', this)">
-                        <div class="nav-icon">
-                            <img src="Perfil.png" alt="Perfil" onerror="this.style.display='none'; this.parentElement.innerHTML='<span class=\'nav-icon-emoji\'>👤</span>';">
-                        </div>
+                        <div class="nav-icon">👤</div>
                         <span class="nav-label">Perfil</span>
                     </div>
                     <div class="nav-item" onclick="navigateTo('supportScreen', this)">
-                        <div class="nav-icon">
-                            <img src="Soporte.png" alt="Soporte" onerror="this.style.display='none'; this.parentElement.innerHTML='<span class=\'nav-icon-emoji\'>💬</span>';">
-                        </div>
+                        <div class="nav-icon">💬</div>
                         <span class="nav-label">Soporte</span>
                     </div>
                     <div class="nav-item" onclick="navigateTo('newsScreen', this)">
-                        <div class="nav-icon">
-                            <img src="Noticias.png" alt="Noticias" onerror="this.style.display='none'; this.parentElement.innerHTML='<span class=\'nav-icon-emoji\'>📰</span>';">
-                        </div>
+                        <div class="nav-icon">📰</div>
                         <span class="nav-label">Noticias</span>
-                    </div>
-                </div>
-
-
-                <!-- Checklist Overlay (prettier) -->
-                <div class="checklist-overlay" id="checklistOverlay" onclick="closeChecklist()">
-                    <div class="checklist-panel" onclick="event.stopPropagation()">
-                        <div class="checklist-header">
-                            <span class="checklist-title">Checklist de Documentos</span>
-                            <button class="checklist-close" onclick="closeChecklist()">×</button>
-                        </div>
-                        <div class="checklist-progress">
-                            <div class="checklist-progress-bar" id="checklistProgress"></div>
-                        </div>
-                        <div class="checklist-items">
-                            <label class="checkitem"><input type="checkbox" data-w="20"> Pasaporte vigente</label>
-                            <label class="checkitem"><input type="checkbox" data-w="20"> Fotografías recientes</label>
-                            <label class="checkitem"><input type="checkbox" data-w="20"> Certificado de empleo</label>
-                            <label class="checkitem"><input type="checkbox" data-w="20"> Estados de cuenta (3 meses)</label>
-                            <label class="checkitem"><input type="checkbox" data-w="20"> Certificados académicos</label>
-                        </div>
-                        <button class="btn-primary" onclick="closeChecklist()">Listo</button>
                     </div>
                 </div>
 
@@ -2318,72 +1860,28 @@
             navItem.classList.add('active');
         }
 
-        // Profile Forms
-        function showPersonalDataForm() {
-            document.getElementById('personalDataScreen').classList.add('active');
-        }
-
-        function showAcademicForm() {
-            document.getElementById('academicScreen').classList.add('active');
-        }
-
-        function showExperienceForm() {
-            document.getElementById('experienceScreen').classList.add('active');
-        }
-
-        function backToProfile() {
-            document.querySelectorAll('.profile-form-screen').forEach(screen => {
-                screen.classList.remove('active');
-            });
-        }
-
-        function savePersonalData() {
-            showModal('success', 'Datos personales guardados correctamente');
-            setTimeout(backToProfile, 1500);
-        }
-
-        function saveAcademicData() {
-            showModal('success', 'Formación académica actualizada');
-            setTimeout(backToProfile, 1500);
-        }
-
-        function saveExperienceData() {
-            showModal('success', 'Experiencia laboral guardada');
-            setTimeout(backToProfile, 1500);
-        }
-
         // Modals
-        function showModal(type, customMessage) {
+        function showModal(type) {
             const overlay = document.getElementById('modalOverlay');
             const title = document.getElementById('modalTitle');
             const content = document.getElementById('modalContent');
             
-            if (customMessage) {
-                title.textContent = 'Éxito';
-                content.textContent = customMessage;
-            } else {
-                switch(type) {
-                    case 'checklist':
-                        title.textContent = 'Checklist de Documentos';
-                        content.textContent = '✓ Pasaporte válido\n✓ Fotografías recientes\n✓ Certificado de empleo\n✓ Estados bancarios\n✓ Certificados académicos';
-                        break;
-                    case 'history':
-                        title.textContent = 'Historial de Predicciones';
-                        content.innerHTML = `
-<div class="history-list">
-  <div class="history-item"><div class="history-left"><div class="score trend-up">85%</div><span>10 Nov</span></div><span class="badge good">Aprobado</span></div>
-  <div class="history-item"><div class="history-left"><div class="score trend-up">78%</div><span>15 Oct</span></div><span class="badge good">Aprobado</span></div>
-  <div class="history-item"><div class="history-left"><div class="score trend-down">72%</div><span>20 Sep</span></div><span class="badge warn">Revisión</span></div>
-</div>`;
-                        break;
-                    case 'factors':
-                        title.textContent = 'Factores Clave';
-                        content.textContent = 'Perfil académico: +20%\nExperiencia laboral: +15%\nPatrocinador confiable: +10%';
-                        break;
-                    default:
-                        title.textContent = 'Información';
-                        content.textContent = 'Función en desarrollo.';
-                }
+            switch(type) {
+                case 'checklist':
+                    title.textContent = 'Checklist de Documentos';
+                    content.textContent = '✓ Pasaporte válido\n✓ Fotografías recientes\n✓ Certificado de empleo\n✓ Estados bancarios\n✓ Certificados académicos';
+                    break;
+                case 'history':
+                    title.textContent = 'Historial';
+                    content.textContent = 'Nov 10: 85% Aprobado\nOct 15: 78% Aprobado\nSep 20: 72% Probable';
+                    break;
+                case 'factors':
+                    title.textContent = 'Factores Clave';
+                    content.textContent = 'Perfil académico: +20%\nExperiencia laboral: +15%\nPatrocinador confiable: +10%';
+                    break;
+                default:
+                    title.textContent = 'Información';
+                    content.textContent = 'Función en desarrollo.';
             }
             
             overlay.classList.add('active');
@@ -2411,6 +1909,10 @@
         }
 
         // Form Actions
+        function editSection(section) {
+            showModal('info');
+        }
+
         function showEmploymentForm() {
             showScreen('employmentScreen');
         }
@@ -2423,80 +1925,24 @@
             }, 1500);
         }
 
-        // Enhanced Prediction Animation
-        
-        // Enhanced Prediction Animation (updated to persist <80% state and show reason)
-        
-        // Enhanced Prediction Animation (clean)
+        // Prediction Animation
         function startPrediction() {
-            const loading = document.getElementById('predictionLoading');
             const value = document.getElementById('predictionValue');
             const status = document.getElementById('predictionStatus');
-            const reason = document.getElementById('predictionReason');
-            const card = loading ? loading.parentElement : null;
-
-            if (!loading || !value || !status || !card) return;
-
-            // Reset base styles
-            card.style.background = 'linear-gradient(135deg, #0055A4, #4F83CC)';
-            reason && (reason.style.display = 'none', reason.textContent = '');
-
-            // Show loading
-            loading.classList.add('active');
-            value.style.opacity = '0';
-            status.style.opacity = '0';
-
+            
+            value.style.opacity = '0.5';
+            value.textContent = '...';
+            status.textContent = 'Calculando...';
+            
             setTimeout(() => {
-                loading.classList.remove('active');
-
-                const newValue = Math.floor(Math.random() * 20) + 75; // 75 - 94
+                const newValue = Math.floor(Math.random() * 15) + 80;
                 value.style.opacity = '1';
-                status.style.opacity = '1';
                 value.textContent = newValue + '%';
-
-                if (newValue >= 80) {
-                    status.innerHTML = '🎉 ¡Aprobado!';
-                    card.style.background = 'linear-gradient(135deg, #2E7D32, #66BB6A)';
-                    value.innerHTML = `<span class="celebration-icon">🎊</span><br>${newValue}%`;
-
-                    for (let i = 0; i < 10; i++) {
-                        const confetti = document.createElement('div');
-                        confetti.className = 'confetti';
-                        confetti.style.left = Math.random() * 100 + '%';
-                        confetti.style.animationDelay = Math.random() * 2 + 's';
-                        confetti.style.background = ['gold', '#4CAF50', '#2196F3', '#FF9800'][Math.floor(Math.random() * 4)];
-                        card.appendChild(confetti);
-                        setTimeout(() => confetti.remove(), 3000);
-                    }
-
-                    reason && (reason.style.display = 'none', reason.textContent = '');
-
-                    setTimeout(() => {
-                        card.style.background = 'linear-gradient(135deg, #0055A4, #4F83CC)';
-                        value.innerHTML = newValue + '%';
-                    }, 5000);
-                } else {
-                    status.innerHTML = '⚠️ Perfil requiere revisión';
-                    card.style.background = 'linear-gradient(135deg, #F57C00, #FFB74D)';
-                    value.innerHTML = `<span style="font-size: 48px;">⚠️</span><br>${newValue}%`;
-
-                    const reasons = [
-                        'Ingresos declarados por debajo del umbral.',
-                        'Documentación incompleta o faltante.',
-                        'Historial de viajes limitado en los últimos 5 años.',
-                        'Inconsistencias entre empleo y solvencia.',
-                        'Motivo de viaje poco detallado.'
-                    ];
-                    const r = reasons[Math.floor(Math.random() * reasons.length)];
-                    if (reason) {
-                        reason.textContent = 'Posible razón del rechazo: ' + r;
-                        reason.style.display = 'block';
-                    }
-                }
-            }, 3000);
+                status.textContent = newValue >= 75 ? '✓ Aprobado' : '⚠️ Revisar';
+            }, 2000);
         }
 
-// Filter Pills
+        // Filter Pills
         document.querySelectorAll('.filter-pill').forEach(pill => {
             pill.addEventListener('click', function() {
                 document.querySelectorAll('.filter-pill').forEach(p => {
@@ -2512,31 +1958,6 @@
                 performLogin();
             }
         });
-    
-        // Checklist overlay logic
-        function openChecklist() {
-            const overlay = document.getElementById('checklistOverlay');
-            overlay.classList.add('active');
-            updateChecklistProgress();
-        }
-        function closeChecklist() {
-            document.getElementById('checklistOverlay').classList.remove('active');
-        }
-        function updateChecklistProgress() {
-            const inputs = document.querySelectorAll('#checklistOverlay input[type="checkbox"]');
-            const total = inputs.length;
-            let count = 0;
-            inputs.forEach(i => { if (i.checked) count++; });
-            const pct = Math.round((count / total) * 100);
-            const bar = document.getElementById('checklistProgress');
-            if (bar) bar.style.width = pct + '%';
-        }
-        document.addEventListener('change', (e) => {
-            if (e.target && e.target.closest('#checklistOverlay') && e.target.type === 'checkbox') {
-                updateChecklistProgress();
-            }
-        });
-
-</script>
+    </script>
 </body>
 </html>

@@ -507,8 +507,8 @@
         }
 
         .app-logo {
-            width: 220px;
-            height: 80px;
+            width: 140px;
+            height: 50px;
             margin: 0 auto 15px;
             display: flex;
             align-items: center;
@@ -1466,67 +1466,7 @@
             color: #212121;
             margin-bottom: 16px;
         }
-    
-        /* Prediction: Reason for low score */
-        .prediction-reason {
-            margin-top: 12px;
-            font-size: 13px;
-            line-height: 1.5;
-            color: rgba(255, 255, 255, 0.95);
-            background: rgba(0, 0, 0, 0.25);
-            padding: 10px 14px;
-            border-radius: 10px;
-            display: none;
-            text-align: left;
-        }
-
-        /* Prettier Checklist Overlay */
-        .checklist-overlay {
-            position: absolute;
-            inset: 0;
-            background: rgba(0,0,0,0.6);
-            display: none;
-            align-items: flex-end;
-            justify-content: center;
-            z-index: 2050;
-            backdrop-filter: blur(2px);
-        }
-        .checklist-overlay.active { display: flex; }
-        .checklist-panel {
-            width: 100%;
-            background: #FFFFFF;
-            border-radius: 20px 20px 0 0;
-            padding: 16px 20px 24px;
-            box-shadow: 0 -10px 40px rgba(0,0,0,0.25);
-            max-height: 72%;
-            overflow: auto;
-        }
-        .checklist-header {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            margin-bottom: 12px;
-        }
-        .checklist-title { font-size: 18px; font-weight: 700; color: #212121; }
-        .checklist-close { background:#F5F5F5; border:none; border-radius:10px; padding:6px 10px; font-size:18px; cursor:pointer; }
-        .checklist-progress { height:8px; background:#F0F0F0; border-radius:6px; overflow:hidden; }
-        .checklist-progress-bar { height:100%; width:0%; background:linear-gradient(90deg,#0055A4,#4F83CC); }
-        .checklist-items { display:flex; flex-direction:column; gap:10px; margin:16px 0 12px; }
-        .checkitem { display:flex; align-items:center; gap:12px; padding:12px; border:1px solid #F0F0F0; border-radius:12px; }
-        .checkitem input { width:18px; height:18px; }
-
-        /* Nicer History List inside modal */
-        .history-list { display:flex; flex-direction:column; gap:10px; }
-        .history-item { display:flex; justify-content:space-between; align-items:center; padding:12px; border:1px solid #F5F5F5; border-radius:12px; }
-        .history-left { display:flex; align-items:center; gap:10px; color:#212121; }
-        .score { font-weight:700; }
-        .trend-up::before { content:'▲ '; }
-        .trend-down::before { content:'▼ '; }
-        .badge { font-size:12px; padding:4px 8px; border-radius:999px; }
-        .badge.good { background:#E8F5E9; color:#2E7D32; }
-        .badge.warn { background:#FFF3E0; color:#F57C00; }
-
-</style>
+    </style>
 </head>
 <body>
     <div class="phone-container">
@@ -1671,7 +1611,7 @@
                                 <div class="action-icon">🎯</div>
                                 <span class="action-label">Nueva Predicción</span>
                             </button>
-                            <button class="action-btn" onclick="openChecklist()">
+                            <button class="action-btn" onclick="showModal('checklist')">
                                 <div class="action-icon">📋</div>
                                 <span class="action-label">Checklist</span>
                             </button>
@@ -1728,7 +1668,6 @@
                             <div class="prediction-label">Resultado de Predicción</div>
                             <div class="prediction-percentage" id="predictionValue">85%</div>
                             <div class="prediction-status" id="predictionStatus">✓ Aprobado</div>
-                            <div class=\"prediction-reason\" id=\"predictionReason\"></div>
                         </div>
 
                         <div class="stats-grid">
@@ -2187,28 +2126,6 @@
                     </div>
                 </div>
 
-
-                <!-- Checklist Overlay (prettier) -->
-                <div class="checklist-overlay" id="checklistOverlay" onclick="closeChecklist()">
-                    <div class="checklist-panel" onclick="event.stopPropagation()">
-                        <div class="checklist-header">
-                            <span class="checklist-title">Checklist de Documentos</span>
-                            <button class="checklist-close" onclick="closeChecklist()">×</button>
-                        </div>
-                        <div class="checklist-progress">
-                            <div class="checklist-progress-bar" id="checklistProgress"></div>
-                        </div>
-                        <div class="checklist-items">
-                            <label class="checkitem"><input type="checkbox" data-w="20"> Pasaporte vigente</label>
-                            <label class="checkitem"><input type="checkbox" data-w="20"> Fotografías recientes</label>
-                            <label class="checkitem"><input type="checkbox" data-w="20"> Certificado de empleo</label>
-                            <label class="checkitem"><input type="checkbox" data-w="20"> Estados de cuenta (3 meses)</label>
-                            <label class="checkitem"><input type="checkbox" data-w="20"> Certificados académicos</label>
-                        </div>
-                        <button class="btn-primary" onclick="closeChecklist()">Listo</button>
-                    </div>
-                </div>
-
                 <!-- Modal -->
                 <div class="modal-overlay" id="modalOverlay" onclick="closeModal()">
                     <div class="modal" onclick="event.stopPropagation()">
@@ -2368,13 +2285,8 @@
                         content.textContent = '✓ Pasaporte válido\n✓ Fotografías recientes\n✓ Certificado de empleo\n✓ Estados bancarios\n✓ Certificados académicos';
                         break;
                     case 'history':
-                        title.textContent = 'Historial de Predicciones';
-                        content.innerHTML = `
-<div class="history-list">
-  <div class="history-item"><div class="history-left"><div class="score trend-up">85%</div><span>10 Nov</span></div><span class="badge good">Aprobado</span></div>
-  <div class="history-item"><div class="history-left"><div class="score trend-up">78%</div><span>15 Oct</span></div><span class="badge good">Aprobado</span></div>
-  <div class="history-item"><div class="history-left"><div class="score trend-down">72%</div><span>20 Sep</span></div><span class="badge warn">Revisión</span></div>
-</div>`;
+                        title.textContent = 'Historial';
+                        content.textContent = 'Nov 10: 85% Aprobado\nOct 15: 78% Aprobado\nSep 20: 72% Probable';
                         break;
                     case 'factors':
                         title.textContent = 'Factores Clave';
@@ -2424,41 +2336,37 @@
         }
 
         // Enhanced Prediction Animation
-        
-        // Enhanced Prediction Animation (updated to persist <80% state and show reason)
-        
-        // Enhanced Prediction Animation (clean)
         function startPrediction() {
             const loading = document.getElementById('predictionLoading');
             const value = document.getElementById('predictionValue');
             const status = document.getElementById('predictionStatus');
-            const reason = document.getElementById('predictionReason');
-            const card = loading ? loading.parentElement : null;
-
-            if (!loading || !value || !status || !card) return;
-
-            // Reset base styles
-            card.style.background = 'linear-gradient(135deg, #0055A4, #4F83CC)';
-            reason && (reason.style.display = 'none', reason.textContent = '');
-
+            const card = loading.parentElement;
+            
             // Show loading
             loading.classList.add('active');
+            
+            // Hide existing content
             value.style.opacity = '0';
             status.style.opacity = '0';
-
+            
+            // After 3 seconds, show result
             setTimeout(() => {
                 loading.classList.remove('active');
-
-                const newValue = Math.floor(Math.random() * 20) + 75; // 75 - 94
+                
+                const newValue = Math.floor(Math.random() * 20) + 75;
                 value.style.opacity = '1';
                 status.style.opacity = '1';
                 value.textContent = newValue + '%';
-
+                
                 if (newValue >= 80) {
+                    // Success - Add confetti effect
                     status.innerHTML = '🎉 ¡Aprobado!';
                     card.style.background = 'linear-gradient(135deg, #2E7D32, #66BB6A)';
+                    
+                    // Add celebration animation
                     value.innerHTML = `<span class="celebration-icon">🎊</span><br>${newValue}%`;
-
+                    
+                    // Create confetti
                     for (let i = 0; i < 10; i++) {
                         const confetti = document.createElement('div');
                         confetti.className = 'confetti';
@@ -2466,37 +2374,25 @@
                         confetti.style.animationDelay = Math.random() * 2 + 's';
                         confetti.style.background = ['gold', '#4CAF50', '#2196F3', '#FF9800'][Math.floor(Math.random() * 4)];
                         card.appendChild(confetti);
+                        
                         setTimeout(() => confetti.remove(), 3000);
                     }
-
-                    reason && (reason.style.display = 'none', reason.textContent = '');
-
-                    setTimeout(() => {
-                        card.style.background = 'linear-gradient(135deg, #0055A4, #4F83CC)';
-                        value.innerHTML = newValue + '%';
-                    }, 5000);
                 } else {
+                    // Needs review
                     status.innerHTML = '⚠️ Perfil requiere revisión';
                     card.style.background = 'linear-gradient(135deg, #F57C00, #FFB74D)';
                     value.innerHTML = `<span style="font-size: 48px;">⚠️</span><br>${newValue}%`;
-
-                    const reasons = [
-                        'Ingresos declarados por debajo del umbral.',
-                        'Documentación incompleta o faltante.',
-                        'Historial de viajes limitado en los últimos 5 años.',
-                        'Inconsistencias entre empleo y solvencia.',
-                        'Motivo de viaje poco detallado.'
-                    ];
-                    const r = reasons[Math.floor(Math.random() * reasons.length)];
-                    if (reason) {
-                        reason.textContent = 'Posible razón del rechazo: ' + r;
-                        reason.style.display = 'block';
-                    }
                 }
+                
+                // Reset after 5 seconds
+                setTimeout(() => {
+                    card.style.background = '';
+                    value.innerHTML = newValue + '%';
+                }, 5000);
             }, 3000);
         }
 
-// Filter Pills
+        // Filter Pills
         document.querySelectorAll('.filter-pill').forEach(pill => {
             pill.addEventListener('click', function() {
                 document.querySelectorAll('.filter-pill').forEach(p => {
@@ -2512,31 +2408,6 @@
                 performLogin();
             }
         });
-    
-        // Checklist overlay logic
-        function openChecklist() {
-            const overlay = document.getElementById('checklistOverlay');
-            overlay.classList.add('active');
-            updateChecklistProgress();
-        }
-        function closeChecklist() {
-            document.getElementById('checklistOverlay').classList.remove('active');
-        }
-        function updateChecklistProgress() {
-            const inputs = document.querySelectorAll('#checklistOverlay input[type="checkbox"]');
-            const total = inputs.length;
-            let count = 0;
-            inputs.forEach(i => { if (i.checked) count++; });
-            const pct = Math.round((count / total) * 100);
-            const bar = document.getElementById('checklistProgress');
-            if (bar) bar.style.width = pct + '%';
-        }
-        document.addEventListener('change', (e) => {
-            if (e.target && e.target.closest('#checklistOverlay') && e.target.type === 'checkbox') {
-                updateChecklistProgress();
-            }
-        });
-
-</script>
+    </script>
 </body>
 </html>
