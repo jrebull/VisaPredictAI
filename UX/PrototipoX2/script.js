@@ -293,9 +293,6 @@ document.addEventListener('DOMContentLoaded', function() {
                 statusEl.textContent = '✓ Subido';
                 statusEl.className = 'doc-status uploaded';
                 progressContainer.style.display = 'none';
-                 // Opcional: mostrar el botón de nuevo para cambiar el archivo
-                // uploadButton.style.display = 'block';
-                // uploadButton.textContent = 'Cambiar Archivo';
             }
         }, 150);
     }
@@ -359,6 +356,7 @@ document.addEventListener('DOMContentLoaded', function() {
      * Lógica del Chatbot
      */
     function handleChat() {
+        if (!chatInput || !chatMessages) return;
         const userMessage = chatInput.value.trim();
         if (userMessage === '') return;
 
@@ -392,6 +390,8 @@ document.addEventListener('DOMContentLoaded', function() {
                 loadingScreen.style.display = 'none';
                 loginScreen.classList.add('active');
             }, 600);
+        } else if (loginScreen) {
+             loginScreen.classList.add('active');
         }
     }, 1500);
 
@@ -410,12 +410,76 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // --- 4. ASIGNACIÓN DE EVENTOS (EVENT LISTENERS) ---
     
-    // News Search and Filter Functionality
+    // ==========================================================
+    // == CORRECCIÓN: SE RESTAURA LA FUNCIÓN DE FILTRO DE NOTICIAS ==
+    // ==========================================================
     const newsSearchInput = document.getElementById('newsSearchInput');
     const newsContainer = document.getElementById('newsContainer');
-    
+    const noResultsMessage = document.getElementById('noResultsMessage');
+    const filterPills = document.querySelectorAll('.filter-pill');
+    let currentFilter = 'all';
+
+    function filterNews() {
+        if (!newsSearchInput || !newsContainer) return;
+        const searchTerm = newsSearchInput.value.toLowerCase();
+        const newsCards = newsContainer.querySelectorAll('.news-card');
+        let visibleCount = 0;
+
+        newsCards.forEach(card => {
+            const title = card.querySelector('.news-title')?.textContent.toLowerCase() || '';
+            const excerpt = card.querySelector('.news-excerpt')?.textContent.toLowerCase() || '';
+            const tags = card.dataset.tags || '';
+            
+            const matchesSearch = !searchTerm || title.includes(searchTerm) || excerpt.includes(searchTerm);
+            const matchesFilter = currentFilter === 'all' || tags.includes(currentFilter);
+            
+            if (matchesSearch && matchesFilter) {
+                card.style.display = 'block';
+                visibleCount++;
+            } else {
+                card.style.display = 'none';
+            }
+        });
+
+        if (noResultsMessage) {
+            noResultsMessage.style.display = visibleCount === 0 ? 'block' : 'none';
+        }
+    }
+
     newsSearchInput?.addEventListener('input', filterNews);
 
+    filterPills.forEach(pill => {
+        pill.addEventListener('click', function() {
+            filterPills.forEach(p => p.classList.remove('active'));
+            this.classList.add('active');
+            currentFilter = this.dataset.filter || 'all';
+            filterNews();
+        });
+    });
+
+    // In-App Browser for News
+    const webViewScreen = document.getElementById('webViewScreen');
+    const webViewFrame = webViewScreen?.querySelector('iframe');
+    const newsScreen = document.getElementById('newsScreen');
+
+    function openInAppBrowser(url) {
+        if (!webViewFrame) return;
+        webViewFrame.src = url;
+        showScreen('webViewScreen');
+    }
+
+    newsScreen?.addEventListener('click', function(e) {
+        const card = e.target.closest('.news-card');
+        if (card && card.dataset.link) {
+            openInAppBrowser(card.dataset.link);
+        }
+    });
+
+    document.querySelector('[data-action="back-to-news"]')?.addEventListener('click', () => {
+        showScreen('newsScreen');
+        if (webViewFrame) webViewFrame.src = 'about:blank';
+    });
+    
     // Document Upload Listeners
     document.querySelectorAll('.doc-upload-input').forEach(input => {
         input.addEventListener('change', () => simulateUpload(input));
@@ -490,6 +554,13 @@ document.addEventListener('DOMContentLoaded', function() {
     // Checklist
     document.getElementById('closeChecklistButton')?.addEventListener('click', () => checklistOverlay.classList.remove('active'));
     document.getElementById('checklistDoneButton')?.addEventListener('click', () => checklistOverlay.classList.remove('active'));
+    checklistOverlay.addEventListener('change', (e) => {
+        if (e.target.type === 'checkbox') {
+            updateChecklistProgress();
+        }
+    });
+    checklistOverlay.addEventListener('click', () => checklistOverlay.classList.remove('active'));
+    checklistOverlay.querySelector('.checklist-panel').addEventListener('click', (e) => e.stopPropagation());
 
     // Pantalla de Predicción
     document.getElementById('startPredictionButton')?.addEventListener('click', startPrediction);
@@ -503,6 +574,8 @@ document.addEventListener('DOMContentLoaded', function() {
     });
     modalOverlay.addEventListener('click', closeModal);
     modalOverlay.querySelector('.modal').addEventListener('click', (e) => e.stopPropagation());
+    modalOverlay.querySelector('.modal-btn.cancel').addEventListener('click', closeModal);
+    modalOverlay.querySelector('.modal-btn.confirm').addEventListener('click', closeModal);
     
     // Toggle de Modo Oscuro
     document.getElementById('darkModeToggle')?.addEventListener('click', toggleDarkMode);
@@ -512,10 +585,27 @@ document.addEventListener('DOMContentLoaded', function() {
         item.addEventListener('click', () => toggleFAQ(item));
     });
     
+    // Navegación desde tarjeta de Soporte a Noticias
+    document.querySelector('.card[data-screen="newsScreen"]')?.addEventListener('click', function() {
+        const screenId = this.dataset.screen;
+        showScreen(screenId);
+        document.querySelector('.nav-item.active')?.classList.remove('active');
+        document.querySelector(`.nav-item[data-screen="${screenId}"]`)?.classList.add('active');
+    });
+
+    // Evento para búsqueda legal
+    legalSearchInput?.addEventListener('keypress', function(e) {
+        if (e.key === 'Enter') {
+            searchLegalAssistance();
+        }
+    });
+    
     // Chatbot
     chatSendButton?.addEventListener('click', handleChat);
     chatInput?.addEventListener('keypress', (e) => {
-        if (e.key === 'Enter') handleChat();
+        if (e.key === 'Enter') {
+            handleChat();
+        }
     });
 
     // Iniciar con una frase aleatoria
