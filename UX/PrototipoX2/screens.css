@@ -114,12 +114,11 @@
 
 /* --- Web View Screen --- */
 #webViewScreen {
-    /* --- MODIFICADO: Se eleva el z-index para que la dynamic island quede por encima --- */
-    z-index: 998; 
+    z-index: 1500;
 }
 .web-view-content {
     flex: 1;
-    overflow: hidden; /* Prevent scrolling on the container */
+    overflow: hidden;
     background: #FFFFFF;
     position: relative; 
 }

@@ -9,6 +9,9 @@ document.addEventListener('DOMContentLoaded', function() {
     const motivationalQuoteEl = document.getElementById('motivationalQuote');
     const legalSearchInput = document.getElementById('legalSearchInput');
     const legalAssistanceResults = document.getElementById('legalAssistanceResults');
+    const chatMessages = document.getElementById('chatMessages');
+    const chatInput = document.getElementById('chatInput');
+    const chatSendButton = document.getElementById('chatSendButton');
 
     // --- NUEVO: Frases motivacionales ---
     const motivationalQuotes = [
@@ -222,6 +225,36 @@ document.addEventListener('DOMContentLoaded', function() {
             </div>
         `;
     }
+    
+    /**
+     * Lógica del Chatbot
+     */
+    function handleChat() {
+        const userMessage = chatInput.value.trim();
+        if (userMessage === '') return;
+
+        // Añadir burbuja del usuario
+        chatMessages.innerHTML += `<div class="chat-bubble user">${userMessage}</div>`;
+        chatInput.value = '';
+        chatMessages.scrollTop = chatMessages.scrollHeight;
+
+        // Simular respuesta del bot
+        setTimeout(() => {
+            let botResponse = "No estoy seguro de cómo responder a eso. ¿Puedes intentar preguntar sobre 'documentos', 'tiempos' o 'costos'?";
+            if (userMessage.toLowerCase().includes('hola')) {
+                botResponse = "¡Hola! Soy tu asistente de VisaPredictAI. ¿En qué puedo ayudarte hoy?";
+            } else if (userMessage.toLowerCase().includes('documentos')) {
+                botResponse = "Los documentos clave suelen ser: pasaporte, oferta de empleo, títulos académicos y estados de cuenta. Puedes ver tu checklist completo en la pantalla de Inicio.";
+            } else if (userMessage.toLowerCase().includes('tiempos')) {
+                botResponse = "Los tiempos de procesamiento varían mucho. La predicción en la app te dará un estimado basado en casos similares al tuyo.";
+            } else if (userMessage.toLowerCase().includes('gracias')) {
+                botResponse = "¡De nada! Estoy aquí para ayudarte en lo que necesites.";
+            }
+            chatMessages.innerHTML += `<div class="chat-bubble bot">${botResponse}</div>`;
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+        }, 1000);
+    }
+
 
     // --- 3. INICIALIZACIÓN DE LA APP ---
 
@@ -435,10 +468,18 @@ document.addEventListener('DOMContentLoaded', function() {
         document.querySelector(`.nav-item[data-screen="${screenId}"]`)?.classList.add('active');
     });
 
-    // --- NUEVO: Evento para búsqueda legal ---
+    // Evento para búsqueda legal
     legalSearchInput?.addEventListener('keypress', function(e) {
         if (e.key === 'Enter') {
             searchLegalAssistance();
+        }
+    });
+    
+    // Chatbot
+    chatSendButton?.addEventListener('click', handleChat);
+    chatInput?.addEventListener('keypress', (e) => {
+        if (e.key === 'Enter') {
+            handleChat();
         }
     });
 
