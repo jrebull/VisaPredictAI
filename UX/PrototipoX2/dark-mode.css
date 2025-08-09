@@ -1,16 +1,16 @@
 /* --- DARK MODE CORREGIDO Y ELEGANTE --- */
 
 /* Paleta de colores:
-   - Fondo Principal: #1C1C1E (Gris oscuro suave, estándar en iOS)
-   - Fondo de Superficies: #2C2C2E (Gris ligeramente más claro para profundidad)
-   - Bordes/Divisores: #48484A (Gris medio para separación sutil)
-   - Texto Principal: #F2F2F7 (Blanco cálido de iOS para máxima legibilidad)
-   - Texto Secundario: #AEAEB2 (Gris claro de iOS con excelente contraste)
-   - Acento Principal (Azul): #0A84FF (Azul vibrante y nativo de iOS)
+   - Fondo Principal: #001f3f (Azul naval oscuro)
+   - Fondo de Superficies: #003366 (Azul más oscuro)
+   - Bordes/Divisores: #004080 (Borde azul más oscuro)
+   - Texto Principal: #ffffff (Blanco)
+   - Texto Secundario: #b3cce6 (Azul claro)
+   - Acento Principal (Azul): #4F83CC (Azul vibrante)
 */
 
 body.dark-mode {
-    background: #1C1C1E;
+    background: #001f3f;
 }
 
 body.dark-mode .app-screen,
@@ -19,12 +19,12 @@ body.dark-mode .register-screen,
 body.dark-mode .app-content,
 body.dark-mode .form-content,
 body.dark-mode .register-form {
-    background: #1C1C1E; 
-    color: #F2F2F7;
+    background: #001f3f; 
+    color: #ffffff;
 }
 
 body.dark-mode .status-bar { 
-    color: #F2F2F7; 
+    color: #ffffff; 
 }
 
 /* Superficies como cabeceras, tarjetas y modales */
@@ -41,8 +41,8 @@ body.dark-mode .action-btn,
 body.dark-mode .modal,
 body.dark-mode .checklist-panel,
 body.dark-mode .history-item {
-    background: #2C2C2E;
-    border-color: #48484A;
+    background: #003366;
+    border-color: #004080;
 }
 
 /* Estilos de Hover para superficies */
@@ -52,7 +52,7 @@ body.dark-mode .alert-item:hover,
 body.dark-mode .news-card:hover,
 body.dark-mode .faq-item:hover,
 body.dark-mode .action-btn:hover {
-    border-color: #0A84FF; 
+    border-color: #4F83CC; 
 }
 
 /* Textos Principales */
@@ -67,7 +67,7 @@ body.dark-mode .modal-title,
 body.dark-mode .checklist-title,
 body.dark-mode .action-label,
 body.dark-mode .checkitem { 
-    color: #F2F2F7;
+    color: #ffffff;
 }
 
 /* Textos Secundarios */
@@ -82,27 +82,27 @@ body.dark-mode .faq-answer,
 body.dark-mode .modal-content,
 body.dark-mode .stat-label,
 body.dark-mode .nav-item { 
-    color: #AEAEB2; 
+    color: #b3cce6; 
 }
 
 /* Barras de Progreso - CORREGIDO */
-body.dark-mode .progress-bar { background: #48484A; }
-body.dark-mode .progress-fill { background: #0A84FF; }
-body.dark-mode .progress-percentage { color: #0A84FF; }
+body.dark-mode .progress-bar { background: #004080; }
+body.dark-mode .progress-fill { background: #4F83CC; }
+body.dark-mode .progress-percentage { color: #4F83CC; }
 /* Se eleva la importancia del título para que no se pierda */
-body.dark-mode .progress-title { color: #F2F2F7; } 
+body.dark-mode .progress-title { color: #ffffff; } 
 
 
 /* Iconos de acción */
-body.dark-mode .action-icon { background: #1C1C1E; color: #AEAEB2; }
-body.dark-mode .action-btn:hover .action-icon { background: #0A84FF; color: #FFFFFF; }
+body.dark-mode .action-icon { background: #001f3f; color: #b3cce6; }
+body.dark-mode .action-btn:hover .action-icon { background: #4F83CC; color: #FFFFFF; }
 
 /* Navegación inferior */
 body.dark-mode .bottom-nav {
-    background: #2C2C2E;
-    border-top-color: #48484A;
+    background: #003366;
+    border-top-color: #004080;
 }
-body.dark-mode .nav-item.active { color: #0A84FF; }
+body.dark-mode .nav-item.active { color: #ffffff; }
 /* Filtro CSS ajustado para el color de ícono inactivo */
 body.dark-mode .nav-icon img { 
     filter: invert(75%) sepia(1%) saturate(1596%) hue-rotate(200deg) brightness(88%) contrast(89%);
@@ -110,72 +110,72 @@ body.dark-mode .nav-icon img {
 body.dark-mode .nav-item.active .nav-icon img { filter: none; }
 
 /* Formularios e Inputs */
-body.dark-mode .form-label { color: #AEAEB2; }
+body.dark-mode .form-label { color: #b3cce6; }
 body.dark-mode .form-input, 
 body.dark-mode .form-select, 
 body.dark-mode .search-input {
-    background: #1C1C1E;
-    border: 1px solid #48484A;
-    color: #F2F2F7;
+    background: #001f3f;
+    border: 1px solid #004080;
+    color: #ffffff;
 }
 body.dark-mode .form-input:focus, 
 body.dark-mode .form-select:focus, 
 body.dark-mode .search-input:focus {
-    border-color: #0A84FF;
-    background: #2C2C2E;
-    box-shadow: 0 0 0 3px rgba(10, 132, 255, 0.3);
+    border-color: #4F83CC;
+    background: #003366;
+    box-shadow: 0 0 0 3px rgba(79, 131, 204, 0.3);
 }
-body.dark-mode .form-input::placeholder { color: #5f6368; }
+body.dark-mode .form-input::placeholder { color: #b3cce6; }
 
 /* Botones */
 body.dark-mode .btn-primary { 
-    background: #0A84FF;
+    background: #4F83CC;
     color: #FFFFFF;
     font-weight: 600;
     border: none;
 }
 body.dark-mode .btn-primary:hover { 
-    background: #3395ff;
+    background: #0055A4;
 }
 
 body.dark-mode .btn-secondary {
     background: transparent;
-    color: #0A84FF;
-    border-color: #48484A;
+    color: #4F83CC;
+    border-color: #004080;
 }
 body.dark-mode .btn-secondary:hover { 
-    background: rgba(10, 132, 255, 0.1);
-    border-color: #0A84FF;
+    background: rgba(79, 131, 204, 0.1);
+    border-color: #4F83CC;
 }
 
 /* Filtros y Modales */
 body.dark-mode .filter-pill {
-    background: #48484A;
-    color: #F2F2F7;
+    background: #004080;
+    color: #ffffff;
     border-color: transparent;
 }
-body.dark-mode .filter-pill:hover { background: #58585a; }
+body.dark-mode .filter-pill:hover { background: #0059b3; }
 body.dark-mode .filter-pill.active { 
-    background: #0A84FF; 
+    background: #4F83CC; 
     color: #FFFFFF; 
     font-weight: 600; 
 }
 
-body.dark-mode .modal-overlay { background: rgba(28, 28, 30, 0.8); backdrop-filter: blur(10px); }
-body.dark-mode .modal-btn.cancel { background: #48484A; color: #F2F2F7; }
+body.dark-mode .modal-overlay { background: rgba(0, 31, 63, 0.8); backdrop-filter: blur(10px); }
+body.dark-mode .modal-btn.cancel { background: #004080; color: #ffffff; }
 body.dark-mode .modal-btn.confirm { 
-    background: #0A84FF;
+    background: #4F83CC;
     color: #FFFFFF; 
     font-weight: 600; 
 }
 
-body.dark-mode .checklist-close { background: #48484A; color: #F2F2F7; }
+body.dark-mode .checklist-close { background: #004080; color: #ffffff; }
 
 /* Web View Screens */
 body.dark-mode .web-view-content {
-    background: #1C1C1E;
+    background: #001f3f;
 }
 body.dark-mode .webview-header {
-    background: #2C2C2E;
-    border-bottom-color: #48484A;
+    background: #003366;
+    border-bottom-color: #004080;
 }

@@ -81,8 +81,8 @@
 
                 <div class="app-screen" id="homeScreen">
                     <div class="app-header">
-                        <div class="header-content">
-                            <div class="header-info"><h1>Hola, Saul</h1><p>Bienvenido de vuelta</p></div>
+                        <div class="header-content" data-action="go-home">
+                            <div class="header-info"><h1>Hola, Saul</h1><p id="motivationalQuote">Bienvenido de vuelta</p></div>
                             <div class="profile-image"><img src="Sully.png" alt="Profile" onerror="this.style.display='none'; this.parentElement.innerHTML='S';"></div>
                         </div>
                     </div>
@@ -104,7 +104,9 @@
                 
                 <div class="app-screen" id="predictionScreen">
                      <div class="app-header">
-                        <div class="header-info"><h1>Predicción</h1><p>Última actualización: Hoy</p></div>
+                        <div class="header-content" data-action="go-home">
+                            <div class="header-info"><h1>Predicción</h1><p>Última actualización: Hoy</p></div>
+                        </div>
                     </div>
                     <div class="app-content">
                         <button id="startPredictionButton" class="btn-primary">Iniciar Nueva Predicción</button>
@@ -128,7 +130,9 @@
                 
                 <div class="app-screen" id="profileScreen">
                     <div class="app-header">
-                         <div class="header-info"><h1>Mi Perfil</h1><p>75% completado</p></div>
+                        <div class="header-content" data-action="go-home">
+                            <div class="header-info"><h1>Mi Perfil</h1><p>75% completado</p></div>
+                        </div>
                     </div>
                     <div class="app-content">
                         <div class="progress-container" style="margin-bottom: 24px;"><div class="progress-bar"><div class="progress-fill" style="width: 75%;"></div></div></div>
@@ -146,7 +150,7 @@
                 <div class="profile-form-screen" id="employmentScreen"><div class="form-header"><div class="form-back" data-action="back-to-profile">←</div><h1 class="form-title">Empleo</h1><p class="form-subtitle">Detalles de oferta laboral</p></div><div class="form-content"><button class="btn-primary" data-action="save-form">Guardar Cambios</button></div></div>
                 
                 <div class="app-screen" id="supportScreen">
-                    <div class="app-header"><div class="header-info"><h1>Soporte</h1><p>Centro de ayuda</p></div></div>
+                    <div class="app-header"><div class="header-content" data-action="go-home"><div class="header-info"><h1>Soporte</h1><p>Centro de ayuda</p></div></div></div>
                     <div class="app-content">
                         <div class="section-item" id="darkModeToggle">
                             <div class="section-status" style="font-size: 20px;">🎨</div>
@@ -162,6 +166,15 @@
                                 </div>
                             </div>
                         </div>
+
+                        <h3 style="margin: 24px 0 16px; font-size: 16px; font-weight: 600;">Asistencia Profesional</h3>
+                        <div class="search-container">
+                            <span class="search-icon">⚖️</span>
+                            <input type="text" class="search-input" id="legalSearchInput" placeholder="Buscar asistencia legal...">
+                        </div>
+                        <div id="legalAssistanceResults">
+                            </div>
+
                         <h3 style="margin: 24px 0 16px; font-size: 16px; font-weight: 600;">Preguntas Frecuentes</h3>
                         <div class="faq-item"><div class="faq-question">¿Cómo verificar el estado de mi solicitud?<span class="faq-arrow">▼</span></div><div class="faq-answer">Puedes verificar el estado desde el Panel de Inicio, donde encontrarás actualizaciones en tiempo real y notificaciones importantes.</div></div>
                         <div class="faq-item"><div class="faq-question">¿Qué documentos necesito?<span class="faq-arrow">▼</span></div><div class="faq-answer">Los documentos incluyen: pasaporte válido, formularios completados, fotografías, prueba de solvencia económica y carta de empleo.</div></div>
@@ -170,7 +183,7 @@
                 </div>
 
                 <div class="app-screen" id="newsScreen">
-                    <div class="app-header"><div class="header-info"><h1>Noticias</h1><p>Información actualizada 2025</p></div></div>
+                    <div class="app-header"><div class="header-content" data-action="go-home"><div class="header-info"><h1>Noticias</h1><p>Información actualizada 2025</p></div></div></div>
                     <div class="app-content">
                         <div class="search-container">
                             <span class="search-icon">🔍</span>
@@ -232,8 +245,8 @@
                     <div class="nav-item active" data-screen="homeScreen"><div class="nav-icon"><img src="Inicio.png" alt="Inicio"></div><span class="nav-label">Inicio</span></div>
                     <div class="nav-item" data-screen="profileScreen"><div class="nav-icon"><img src="Perfil.png" alt="Perfil"></div><span class="nav-label">Perfil</span></div>
                     <div class="nav-item" data-screen="predictionScreen"><div class="nav-icon"><img src="Prediccion.png" alt="Predicción"></div><span class="nav-label">Predicción</span></div>
-                    <div class="nav-item" data-screen="supportScreen"><div class="nav-icon"><img src="Soporte.png" alt="Soporte"></div><span class="nav-label">Soporte</span></div>
                     <div class="nav-item" data-screen="newsScreen"><div class="nav-icon"><img src="Noticias.png" alt="Noticias"></div><span class="nav-label">Noticias</span></div>
+                    <div class="nav-item" data-screen="supportScreen"><div class="nav-icon"><img src="Soporte.png" alt="Soporte"></div><span class="nav-label">Soporte</span></div>
                 </div>
 
                 <div class="checklist-overlay" id="checklistOverlay">

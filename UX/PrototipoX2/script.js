@@ -6,8 +6,35 @@ document.addEventListener('DOMContentLoaded', function() {
     const registerScreen = document.getElementById('registerScreen');
     const checklistOverlay = document.getElementById('checklistOverlay');
     const modalOverlay = document.getElementById('modalOverlay');
+    const motivationalQuoteEl = document.getElementById('motivationalQuote');
+    const legalSearchInput = document.getElementById('legalSearchInput');
+    const legalAssistanceResults = document.getElementById('legalAssistanceResults');
+
+    // --- NUEVO: Frases motivacionales ---
+    const motivationalQuotes = [
+        "Cada paso que das te acerca a tu meta.",
+        "La perseverancia es clave en este viaje.",
+        "Un documento a la vez, estás avanzando.",
+        "Mantén el enfoque, tu oportunidad te espera.",
+        "Confía en tu preparación y en el proceso.",
+        "Tu futuro profesional está en construcción.",
+        "La paciencia hoy es una visa mañana.",
+        "Organización es sinónimo de éxito.",
+        "Estás invirtiendo en tu futuro. ¡Sigue así!",
+        "Cada requisito completado es una victoria."
+    ];
 
     // --- 2. FUNCIONES PRINCIPALES ---
+
+    /**
+     * Muestra una frase motivacional aleatoria.
+     */
+    function showRandomQuote() {
+        if (motivationalQuoteEl) {
+            const randomIndex = Math.floor(Math.random() * motivationalQuotes.length);
+            motivationalQuoteEl.textContent = motivationalQuotes[randomIndex];
+        }
+    }
 
     /**
      * Oculta todas las pantallas y muestra la que corresponde al ID proporcionado.
@@ -20,6 +47,21 @@ document.addEventListener('DOMContentLoaded', function() {
         const screenToShow = document.getElementById(screenId);
         if (screenToShow) {
             screenToShow.classList.add('active');
+            if (screenId === 'homeScreen') {
+                showRandomQuote();
+            }
+        }
+    }
+
+    /**
+     * Navega a la pantalla de inicio y actualiza la barra de navegación.
+     */
+    function goToHome() {
+        showScreen('homeScreen');
+        document.querySelector('.nav-item.active')?.classList.remove('active');
+        const navItem = document.querySelector('.nav-item[data-screen="homeScreen"]');
+        if (navItem) {
+            navItem.classList.add('active');
         }
     }
 
@@ -35,10 +77,7 @@ document.addEventListener('DOMContentLoaded', function() {
             loginScreen.style.transform = 'scale(0.95)';
             setTimeout(() => {
                 loginScreen.classList.remove('active');
-                showScreen('homeScreen');
-                // Activa el ítem de navegación correspondiente
-                document.querySelector('.nav-item.active')?.classList.remove('active');
-                document.querySelector('.nav-item[data-screen="homeScreen"]').classList.add('active');
+                goToHome();
             }, 400);
         }
     }
@@ -151,6 +190,38 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
 
+    /**
+     * Simula la búsqueda de abogados y muestra los resultados.
+     */
+    function searchLegalAssistance() {
+        legalAssistanceResults.style.display = 'flex';
+        legalAssistanceResults.innerHTML = `
+            <div class="lawyer-card">
+                <div class="lawyer-avatar">AR</div>
+                <div class="lawyer-info">
+                    <div class="lawyer-name">Ana Rodríguez & Asoc.</div>
+                    <div class="lawyer-specialty">Especialistas en Visas H-1B</div>
+                    <div class="lawyer-rating">★★★★★</div>
+                </div>
+            </div>
+            <div class="lawyer-card">
+                <div class="lawyer-avatar">MJ</div>
+                <div class="lawyer-info">
+                    <div class="lawyer-name">Martínez & Jiménez</div>
+                    <div class="lawyer-specialty">Derecho Migratorio Corporativo</div>
+                    <div class="lawyer-rating">★★★★☆</div>
+                </div>
+            </div>
+            <div class="lawyer-card">
+                <div class="lawyer-avatar">LG</div>
+                <div class="lawyer-info">
+                    <div class="lawyer-name">Laura Garza Immigration</div>
+                    <div class="lawyer-specialty">Visas de Inversión y Talento</div>
+                    <div class="lawyer-rating">★★★★☆</div>
+                </div>
+            </div>
+        `;
+    }
 
     // --- 3. INICIALIZACIÓN DE LA APP ---
 
@@ -291,6 +362,11 @@ document.addEventListener('DOMContentLoaded', function() {
     document.querySelectorAll('[data-action="back-to-profile"]').forEach(button => {
         button.addEventListener('click', () => showScreen('profileScreen'));
     });
+    
+    // Botón para volver al Inicio desde el header
+    document.querySelectorAll('[data-action="go-home"]').forEach(button => {
+        button.addEventListener('click', goToHome);
+    });
 
     // Botones de guardar en formularios
     document.querySelectorAll('[data-action="save-form"]').forEach(button => {
@@ -358,4 +434,14 @@ document.addEventListener('DOMContentLoaded', function() {
         document.querySelector('.nav-item.active')?.classList.remove('active');
         document.querySelector(`.nav-item[data-screen="${screenId}"]`)?.classList.add('active');
     });
+
+    // --- NUEVO: Evento para búsqueda legal ---
+    legalSearchInput?.addEventListener('keypress', function(e) {
+        if (e.key === 'Enter') {
+            searchLegalAssistance();
+        }
+    });
+
+    // Iniciar con una frase aleatoria
+    showRandomQuote();
 });

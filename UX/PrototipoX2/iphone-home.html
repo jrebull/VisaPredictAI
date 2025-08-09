@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>iPhone Home</title>
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #f0f0f0;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+        }
+
+        .phone-container {
+            position: relative;
+            transform: scale(0.85);
+        }
+
+        .iphone {
+            width: 390px;
+            height: 844px;
+            background: #1c1c1e;
+            border-radius: 55px;
+            padding: 12px;
+            box-shadow: 
+                0 0 0 12px #2c2c2e,
+                0 0 0 14px #1c1c1e,
+                0 25px 70px rgba(0, 0, 0, 0.6),
+                inset 0 0 3px rgba(255, 255, 255, 0.1);
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .screen {
+            width: 100%;
+            height: 100%;
+            /* --- MODIFICADO: Usa 'fondophone.png' --- */
+            background-image: url('fondophone.png');
+            background-size: cover;
+            background-position: center;
+            border-radius: 45px;
+            overflow: hidden;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .app-grid {
+            padding: 40px 20px 20px;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            row-gap: 25px;
+            column-gap: 20px;
+            flex-grow: 1;
+        }
+
+        .app-icon {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-decoration: none;
+            color: white;
+            font-size: 12px;
+            text-align: center;
+            font-weight: 500;
+            text-shadow: 0 1px 2px rgba(0,0,0,0.3);
+        }
+
+        .app-icon img {
+            width: 60px;
+            height: 60px;
+            border-radius: 15px;
+            margin-bottom: 8px;
+            transition: transform 0.2s ease-out;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+
+        .app-icon-placeholder {
+            width: 60px;
+            height: 60px;
+            border-radius: 15px;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 32px;
+            font-weight: 600;
+            color: white;
+            transition: transform 0.2s ease-out;
+        }
+
+        .app-icon:active img, .app-icon:active .app-icon-placeholder {
+            transform: scale(0.9);
+        }
+
+        .dock {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            justify-items: center;
+            align-items: center;
+            background-color: rgba(255, 255, 255, 0.2);
+            margin: 20px;
+            border-radius: 20px;
+            padding: 10px;
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+        }
+    </style>
+</head>
+<body>
+    <div class="phone-container">
+        <div class="iphone">
+            <div class="screen">
+                <div class="app-grid">
+                    <a href="#" class="app-icon">
+                        <div class="app-icon-placeholder" style="background-color: #FEFEFE; color: #6C757D;">📅</div>
+                        <span>Calendar</span>
+                    </a>
+                    <a href="#" class="app-icon">
+                        <div class="app-icon-placeholder" style="background-color: #58D15E;">✉️</div>
+                        <span>Mail</span>
+                    </a>
+                     <a href="#" class="app-icon">
+                        <div class="app-icon-placeholder" style="background-color: #FEFEFE; color: #6C757D;">📷</div>
+                        <span>Photos</span>
+                    </a>
+                    <a href="#" class="app-icon">
+                        <div class="app-icon-placeholder" style="background-color: #3478F6;">🗺️</div>
+                        <span>Maps</span>
+                    </a>
+                    <a href="#" class="app-icon">
+                        <div class="app-icon-placeholder" style="background-color: #FF9F0A;">⏰</div>
+                        <span>Clock</span>
+                    </a>
+                    <a href="#" class="app-icon">
+                        <div class="app-icon-placeholder" style="background-color: #64D2FF;">☀️</div>
+                        <span>Weather</span>
+                    </a>
+                     <a href="#" class="app-icon">
+                        <div class="app-icon-placeholder" style="background-color: #5E5CE6;">📝</div>
+                        <span>Notes</span>
+                    </a>
+                    <a href="#" class="app-icon">
+                        <div class="app-icon-placeholder" style="background-color: #34C759;">📈</div>
+                        <span>Stocks</span>
+                    </a>
+                </div>
+                <div class="dock">
+                    <a href="#" class="app-icon">
+                        <div class="app-icon-placeholder" style="background-color: #58D15E;">📞</div>
+                    </a>
+                    <a href="#" class="app-icon">
+                        <div class="app-icon-placeholder" style="background-color: #3478F6;">🌐</div>
+                    </a>
+                    <a href="#" class="app-icon">
+                       <div class="app-icon-placeholder" style="background: linear-gradient(135deg, #F857A6, #FF5858);">🎵</div>
+                    </a>
+                    <a href="index.html" class="app-icon">
+                        <img src="iconoapp.png" alt="VisaPredictAI" 
+                             onerror="this.style.display='none'; this.parentElement.insertAdjacentHTML('afterbegin', '<div class=\'app-icon-placeholder\' style=\'background: linear-gradient(135deg, #0055A4, #4F83CC);\'>V</div>');">
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
