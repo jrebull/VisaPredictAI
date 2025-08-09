@@ -93,17 +93,39 @@
 
 
 /* --- Prediction Screen --- */
-.prediction-card { background: linear-gradient(135deg, #0055A4, #4F83CC); border-radius: 16px; padding: 32px; text-align: center; margin: 20px 0; color: white; box-shadow: 0 8px 24px rgba(0, 85, 164, 0.2); position: relative; overflow: hidden; transition: background 0.5s; }
+.prediction-card {
+    background: linear-gradient(135deg, #0055A4, #4F83CC);
+    border-radius: 16px;
+    padding: 32px;
+    text-align: center;
+    margin: 20px 0;
+    color: white;
+    box-shadow: 0 8px 24px rgba(0, 85, 164, 0.2);
+    position: relative;
+    overflow: hidden;
+    transition: background 0.5s;
+    border: 3px solid transparent;
+}
+.prediction-card.analyzing {
+    animation: glowing-border 2s infinite alternate;
+}
+
 .prediction-label { font-size: 14px; opacity: 0.9; margin-bottom: 8px; font-weight: 500; }
-.prediction-percentage { font-size: 64px; font-weight: 700; margin: 16px 0; letter-spacing: -2px; }
-.prediction-status { display: inline-block; padding: 8px 24px; background: rgba(255, 255, 255, 0.2); backdrop-filter: blur(10px); border-radius: 20px; font-weight: 600; font-size: 14px; }
+.prediction-percentage { font-size: 64px; font-weight: 700; margin: 16px 0; letter-spacing: -2px; transition: color 0.5s; }
+.prediction-status { display: inline-block; padding: 8px 24px; background: rgba(255, 255, 255, 0.2); backdrop-filter: blur(10px); border-radius: 20px; font-weight: 600; font-size: 14px; transition: opacity 0.5s; opacity: 0; }
+.prediction-status.visible { opacity: 1; }
 .prediction-loading { position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: linear-gradient(135deg, #0055A4, #4F83CC); display: none; flex-direction: column; justify-content: center; align-items: center; z-index: 10; }
 .prediction-loading.active { display: flex; }
 .prediction-loading-text { font-size: 18px; font-weight: 600; margin-bottom: 20px; color: white; }
 .prediction-progress-bar { width: 80%; height: 8px; background: rgba(255, 255, 255, 0.2); border-radius: 4px; overflow: hidden; }
 .prediction-progress-fill { height: 100%; background: white; border-radius: 4px; width: 0%; animation: predictionProgress 3s ease-out forwards; }
-.confetti { position: absolute; top: -10px; width: 10px; height: 10px; background: gold; animation: confettiFall 3s linear infinite; }
-.celebration-icon { font-size: 80px; animation: bounce 0.6s ease-out; }
+#confetti-container { position: absolute; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; overflow: hidden; }
+.confetti { position: absolute; width: 10px; height: 10px; background-color: #f1c40f; opacity: 0; }
+.confetti.confetti-1 { background-color: #f1c40f; }
+.confetti.confetti-2 { background-color: #e74c3c; }
+.confetti.confetti-3 { background-color: #3498db; }
+.confetti.confetti-4 { background-color: #2ecc71; }
+
 .prediction-reason { margin-top: 12px; font-size: 13px; line-height: 1.5; color: rgba(255, 255, 255, 0.95); background: rgba(0, 0, 0, 0.25); padding: 10px 14px; border-radius: 10px; display: none; text-align: left; }
 
 

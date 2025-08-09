@@ -112,9 +112,10 @@
                         <button id="startPredictionButton" class="btn-primary">Iniciar Nueva Predicción</button>
                         <div class="prediction-card">
                             <div class="prediction-loading" id="predictionLoading"><div class="prediction-loading-text">Analizando tu perfil...</div><div class="prediction-progress-bar"><div class="prediction-progress-fill"></div></div></div>
-                            <div class="prediction-label">Resultado de Predicción</div>
-                            <div class="prediction-percentage" id="predictionValue">85%</div>
-                            <div class="prediction-status" id="predictionStatus">✓ Aprobado</div>
+                            <div id="confetti-container"></div>
+                            <div class="prediction-label">Probabilidad de Aprobación</div>
+                            <div class="prediction-percentage" id="predictionValue">0%</div>
+                            <div class="prediction-status" id="predictionStatus"></div>
                             <div class="prediction-reason" id="predictionReason"></div>
                         </div>
                         <div class="stats-grid">
@@ -140,15 +141,76 @@
                         <div class="section-item" data-form="academicScreen"><div class="section-status pending">!</div><div class="section-info"><div class="section-name">Formación Académica</div><div class="section-description">En progreso</div></div><div class="section-arrow">›</div></div>
                         <div class="section-item" data-form="experienceScreen"><div class="section-status error">×</div><div class="section-info"><div class="section-name">Experiencia Laboral</div><div class="section-description">Pendiente</div></div><div class="section-arrow">›</div></div>
                         <div class="section-item" data-form="employmentScreen"><div class="section-status complete">✓</div><div class="section-info"><div class="section-name">Empleo y Patrocinadores</div><div class="section-description">Completado</div></div><div class="section-arrow">›</div></div>
-                        <button class="btn-primary" style="margin-top: 24px;" data-form="employmentScreen">Gestionar Empleo →</button>
+                        <div class="section-item" data-form="documentsScreen"><div class="section-status pending">📎</div><div class="section-info"><div class="section-name">Mis Documentos</div><div class="section-description">Gestiona tus archivos</div></div><div class="section-arrow">›</div></div>
+                    </div>
+                </div>
+
+                <div class="profile-form-screen" id="documentsScreen">
+                    <div class="form-header">
+                        <div class="form-back" data-action="back-to-profile">←</div>
+                        <h1 class="form-title">Mis Documentos</h1>
+                        <p class="form-subtitle">Sube y gestiona los archivos para tu solicitud.</p>
+                    </div>
+                    <div class="form-content">
+                        <div class="drop-zone">
+                            <p>📄 Arrastra y suelta tus archivos aquí</p>
+                        </div>
+                        <div class="document-list">
+                            <div class="document-item">
+                                <div class="doc-info">
+                                    <div class="doc-name">Pasaporte Vigente</div>
+                                    <div class="doc-status pending">Pendiente</div>
+                                </div>
+                                <div class="doc-actions">
+                                    <div class="upload-progress"><div class="upload-progress-bar"></div></div>
+                                    <div class="file-name"></div>
+                                    <label class="btn-upload">Subir Archivo<input type="file" onchange="simulateUpload(this)"></label>
+                                </div>
+                            </div>
+                            <div class="document-item">
+                                <div class="doc-info">
+                                    <div class="doc-name">CV o Resumen</div>
+                                    <div class="doc-status pending">Pendiente</div>
+                                </div>
+                                <div class="doc-actions">
+                                     <div class="upload-progress"><div class="upload-progress-bar"></div></div>
+                                    <div class="file-name"></div>
+                                    <label class="btn-upload">Subir Archivo<input type="file" onchange="simulateUpload(this)"></label>
+                                </div>
+                            </div>
+                            <div class="document-item">
+                                <div class="doc-info">
+                                    <div class="doc-name">Carta de Oferta Laboral</div>
+                                    <div class="doc-status pending">Pendiente</div>
+                                </div>
+                                <div class="doc-actions">
+                                     <div class="upload-progress"><div class="upload-progress-bar"></div></div>
+                                    <div class="file-name"></div>
+                                    <label class="btn-upload">Subir Archivo<input type="file" onchange="simulateUpload(this)"></label>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
                 
                 <div class="profile-form-screen" id="personalDataScreen"><div class="form-header"><div class="form-back" data-action="back-to-profile">←</div><h1 class="form-title">Datos Personales</h1><p class="form-subtitle">Información básica del solicitante</p></div><div class="form-content"><div class="form-section"><div class="form-group"><label class="form-label">Nombre Completo</label><input type="text" class="form-input" value="Saul Gonzalez"></div><div class="form-group"><label class="form-label">Fecha de Nacimiento</label><input type="date" class="form-input" value="1990-05-15"></div><div class="form-group"><label class="form-label">Nacionalidad</label><select class="form-select"><option selected>Mexicana</option><option>Colombiana</option></select></div><div class="form-group"><label class="form-label">Número de Pasaporte</label><input type="text" class="form-input" value="G12345678"></div><div class="form-group"><label class="form-label">Estado Civil</label><select class="form-select"><option selected>Soltero</option><option>Casado</option></select></div></div><button class="btn-primary" data-action="save-form">Guardar Cambios</button></div></div>
                 <div class="profile-form-screen" id="academicScreen"><div class="form-header"><div class="form-back" data-action="back-to-profile">←</div><h1 class="form-title">Formación Académica</h1><p class="form-subtitle">Educación y certificaciones</p></div><div class="form-content"><button class="btn-primary" data-action="save-form">Guardar Cambios</button></div></div>
                 <div class="profile-form-screen" id="experienceScreen"><div class="form-header"><div class="form-back" data-action="back-to-profile">←</div><h1 class="form-title">Experiencia Laboral</h1><p class="form-subtitle">Historial profesional</p></div><div class="form-content"><button class="btn-primary" data-action="save-form">Guardar Cambios</button></div></div>
-                <div class="profile-form-screen" id="employmentScreen"><div class="form-header"><div class="form-back" data-action="back-to-profile">←</div><h1 class="form-title">Empleo</h1><p class="form-subtitle">Detalles de oferta laboral</p></div><div class="form-content"><button class="btn-primary" data-action="save-form">Guardar Cambios</button></div></div>
-                
+
+                <div class="profile-form-screen" id="employmentScreen">
+                    <div class="form-header">
+                        <div class="form-back" data-action="back-to-profile">←</div>
+                        <h1 class="form-title">Empleo y Patrocinadores</h1>
+                        <p class="form-subtitle">Detalles de tu oferta y reseñas de empresas.</p>
+                    </div>
+                    <div class="form-content">
+                        <h3 style="margin-bottom: 20px; font-size: 16px; font-weight: 600;">Reseñas de Empresas Patrocinadoras</h3>
+                        <div id="company-reviews-container">
+                            </div>
+                        <button class="btn-primary" style="margin-top: 24px;" data-action="save-form">Guardar Cambios</button>
+                    </div>
+                </div>
+
                 <div class="app-screen" id="supportScreen">
                     <div class="app-header"><div class="header-content" data-action="go-home"><div class="header-info"><h1>Soporte</h1><p>Centro de ayuda</p></div></div></div>
                     <div class="app-content">

@@ -299,37 +299,87 @@ body.dark-mode .btn-secondary:active {
 .lawyer-specialty { font-size: 13px; color: #6C757D; margin: 2px 0 6px; }
 .lawyer-rating { font-size: 14px; color: #FFC107; }
 
-/* --- NUEVO: Community & Achievements --- */
-.post-card { background: #fff; border: 1px solid #e9ecef; border-radius: 12px; margin-bottom: 16px; }
-.post-header { display: flex; align-items: center; gap: 12px; padding: 12px 16px; border-bottom: 1px solid #e9ecef; }
-.post-avatar { width: 40px; height: 40px; border-radius: 50%; background: #0055A4; color: white; display: flex; align-items: center; justify-content: center; font-weight: 600; }
-.post-author { font-weight: 600; }
-.post-meta { font-size: 12px; color: #6c757d; }
-.post-content { padding: 16px; font-size: 14px; line-height: 1.6; color: #495057; }
-.post-footer { padding: 8px 16px; border-top: 1px solid #e9ecef; display: flex; gap: 20px; font-size: 13px; color: #6c757d; }
-.post-action { cursor: pointer; }
+/* --- NUEVO: Document Upload --- */
+.drop-zone {
+    border: 2px dashed #CED4DA;
+    border-radius: 12px;
+    padding: 30px;
+    text-align: center;
+    color: #6C757D;
+    margin-bottom: 24px;
+    cursor: pointer;
+    transition: background-color 0.2s, border-color 0.2s;
+}
+.drop-zone.dragover {
+    background-color: #F0F8FF;
+    border-color: #0055A4;
+}
+.document-list { display: flex; flex-direction: column; gap: 16px; }
+.document-item {
+    background: #FFFFFF;
+    border: 1px solid #E9ECEF;
+    border-radius: 12px;
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+.doc-info { display: flex; justify-content: space-between; align-items: center; }
+.doc-name { font-weight: 600; color: #212529; }
+.doc-status { font-size: 12px; font-weight: 600; padding: 4px 8px; border-radius: 20px; }
+.doc-status.pending { background-color: #FFF3E0; color: #F57C00; }
+.doc-status.uploading { background-color: #E3F2FD; color: #0055A4; }
+.doc-status.uploaded { background-color: #E8F5E9; color: #2E7D32; }
 
-.achievements-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
-.achievement-badge { text-align: center; }
-.achievement-icon { font-size: 40px; line-height: 1; margin-bottom: 4px; filter: grayscale(100%); opacity: 0.5; }
-.achievement-badge.unlocked .achievement-icon { filter: none; opacity: 1; }
-.achievement-name { font-size: 11px; color: #6c757d; }
+.doc-actions { display: flex; flex-direction: column; gap: 8px; }
+.btn-upload {
+    background: #0055A4; color: white; border: none; padding: 10px 16px;
+    border-radius: 8px; font-weight: 600; font-size: 13px;
+    cursor: pointer; text-align: center;
+}
+.btn-upload input[type="file"] { display: none; }
 
-/* --- NUEVO: Chatbot --- */
-.chat-window { flex-grow: 1; display: flex; flex-direction: column; }
-.chat-messages { flex-grow: 1; padding: 10px; overflow-y: auto; display: flex; flex-direction: column; gap: 10px; }
-.chat-bubble { max-width: 80%; padding: 10px 14px; border-radius: 16px; line-height: 1.5; }
-.chat-bubble.bot { background: #E9ECEF; color: #212529; border-bottom-left-radius: 2px; align-self: flex-start; }
-.chat-bubble.user { background: #0055A4; color: white; border-bottom-right-radius: 2px; align-self: flex-end; }
-.chat-input-area { display: flex; padding: 10px; border-top: 1px solid #E9ECEF; }
-#chatInput { flex-grow: 1; border: 1px solid #CED4DA; border-radius: 20px; padding: 8px 16px; font-size: 14px; }
-#chatSendButton { background: none; border: none; font-size: 24px; color: #0055A4; cursor: pointer; padding: 0 10px; }
+.upload-progress { width: 100%; height: 6px; background: #E9ECEF; border-radius: 3px; overflow: hidden; display: none; }
+.upload-progress-bar { width: 0%; height: 100%; background: #0055A4; transition: width 0.3s; }
+.file-name { font-size: 12px; color: #6C757D; text-align: center; font-style: italic; }
 
-/* --- NUEVO: Toggle Switch --- */
-.toggle-switch { display: flex; align-items: center; justify-content: space-between; }
-.switch { position: relative; display: inline-block; width: 44px; height: 24px; }
-.switch input { opacity: 0; width: 0; height: 0; }
-.slider { position: absolute; cursor: pointer; top: 0; left: 0; right: 0; bottom: 0; background-color: #ccc; transition: .4s; border-radius: 34px; }
-.slider:before { position: absolute; content: ""; height: 18px; width: 18px; left: 3px; bottom: 3px; background-color: white; transition: .4s; border-radius: 50%; }
-input:checked + .slider { background-color: #0055A4; }
-input:checked + .slider:before { transform: translateX(20px); }
+
+/* --- NUEVO: Company Reviews --- */
+.company-reviews-container { display: flex; flex-direction: column; gap: 16px; }
+.company-card {
+    background: #FFFFFF;
+    border: 1px solid #E9ECEF;
+    border-radius: 12px;
+    padding: 16px;
+    transition: all 0.2s;
+}
+.company-header { display: flex; align-items: center; gap: 12px; margin-bottom: 12px; }
+.company-logo { width: 48px; height: 48px; border-radius: 8px; overflow: hidden; background: #f0f0f0; }
+.company-logo img { width: 100%; height: 100%; object-fit: contain; }
+.company-info { flex-grow: 1; }
+.company-name { font-weight: 700; color: #212529; }
+.company-rating { font-size: 16px; color: #FFC107; }
+.company-summary { font-size: 13px; color: #6C757D; line-height: 1.5; margin-bottom: 12px; }
+.view-comments-btn {
+    background: #F8F9FA;
+    border: 1px solid #E9ECEF;
+    color: #0055A4;
+    padding: 8px 12px;
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer;
+    font-size: 12px;
+}
+.company-comments {
+    display: none;
+    margin-top: 16px;
+    border-top: 1px solid #E9ECEF;
+    padding-top: 16px;
+    display: none;
+    flex-direction: column;
+    gap: 12px;
+}
+.comment { display: flex; gap: 10px; }
+.comment-avatar { width: 32px; height: 32px; border-radius: 50%; background: #0055A4; color: white; display: flex; align-items: center; justify-content: center; font-weight: 600; flex-shrink: 0; }
+.comment-content .author { font-weight: 600; font-size: 13px; }
+.comment-content .text { font-size: 13px; color: #495057; }

@@ -40,7 +40,9 @@ body.dark-mode .stat-card,
 body.dark-mode .action-btn,
 body.dark-mode .modal,
 body.dark-mode .checklist-panel,
-body.dark-mode .history-item {
+body.dark-mode .history-item,
+body.dark-mode .document-item,
+body.dark-mode .company-card {
     background: #003366;
     border-color: #004080;
 }
@@ -66,7 +68,9 @@ body.dark-mode .faq-question,
 body.dark-mode .modal-title,
 body.dark-mode .checklist-title,
 body.dark-mode .action-label,
-body.dark-mode .checkitem { 
+body.dark-mode .checkitem,
+body.dark-mode .doc-name,
+body.dark-mode .company-name { 
     color: #ffffff;
 }
 
@@ -81,7 +85,9 @@ body.dark-mode .news-meta,
 body.dark-mode .faq-answer,
 body.dark-mode .modal-content,
 body.dark-mode .stat-label,
-body.dark-mode .nav-item { 
+body.dark-mode .nav-item,
+body.dark-mode .comment-content .text,
+body.dark-mode .company-summary { 
     color: #b3cce6; 
 }
 
@@ -128,7 +134,8 @@ body.dark-mode .search-input:focus {
 body.dark-mode .form-input::placeholder { color: #b3cce6; }
 
 /* Botones */
-body.dark-mode .btn-primary { 
+body.dark-mode .btn-primary,
+body.dark-mode .btn-upload { 
     background: #4F83CC;
     color: #FFFFFF;
     font-weight: 600;
@@ -178,4 +185,27 @@ body.dark-mode .web-view-content {
 body.dark-mode .webview-header {
     background: #003366;
     border-bottom-color: #004080;
+}
+
+/* Document Upload Dark Mode */
+body.dark-mode .drop-zone {
+    border-color: #004080;
+    color: #b3cce6;
+}
+body.dark-mode .drop-zone.dragover {
+    background-color: #001f3f;
+    border-color: #4F83CC;
+}
+body.dark-mode .upload-progress { background: #004080; }
+body.dark-mode .upload-progress-bar { background: #4F83CC; }
+
+/* Company Reviews Dark Mode */
+body.dark-mode .company-card {
+    background: #003366;
+    border-color: #004080;
+}
+body.dark-mode .view-comments-btn {
+    background: #004080;
+    border-color: #0055A4;
+    color: #b3cce6;
 }
