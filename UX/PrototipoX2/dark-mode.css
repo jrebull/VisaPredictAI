@@ -87,7 +87,8 @@ body.dark-mode .modal-content,
 body.dark-mode .stat-label,
 body.dark-mode .nav-item,
 body.dark-mode .comment-content .text,
-body.dark-mode .company-summary { 
+body.dark-mode .company-summary,
+body.dark-mode .drop-zone { 
     color: #b3cce6; 
 }
 
@@ -190,7 +191,6 @@ body.dark-mode .webview-header {
 /* Document Upload Dark Mode */
 body.dark-mode .drop-zone {
     border-color: #004080;
-    color: #b3cce6;
 }
 body.dark-mode .drop-zone.dragover {
     background-color: #001f3f;
@@ -200,12 +200,14 @@ body.dark-mode .upload-progress { background: #004080; }
 body.dark-mode .upload-progress-bar { background: #4F83CC; }
 
 /* Company Reviews Dark Mode */
-body.dark-mode .company-card {
-    background: #003366;
-    border-color: #004080;
-}
 body.dark-mode .view-comments-btn {
     background: #004080;
     border-color: #0055A4;
+    color: #b3cce6;
+}
+body.dark-mode .company-comments {
+    border-top-color: #004080;
+}
+body.dark-mode .comment-content .text {
     color: #b3cce6;
 }
