@@ -376,7 +376,8 @@
                 <!-- Pantalla de Detalles (Dinámica) -->
                 <div class="app-screen" id="detailScreen">
                     <div class="app-header">
-                        <button class="back-btn" id="backButton">← Volver</button>
+                        <!-- Botón volver minimalista con solo flecha -->
+                        <button class="back-btn" id="backButton" aria-label="Volver">←</button>
                         <h1 id="detailTitle">Detalles</h1>
                     </div>
                     <div class="app-content" id="detailContent"></div>
@@ -384,11 +385,14 @@
 
                 <!-- VisaBot ChatBot Screen -->
                 <div class="app-screen" id="chatbotScreen">
-                    <div class="app-header">
-                        <button class="back-btn" id="chatBackButton">← Volver</button>
-                        <div class="chat-header-info">
-                            <h1>🤖 VisaBot</h1>
-                            <p class="header-subtitle">Asistente IA disponible 24/7</p>
+                    <!-- Encabezado específico para el chat. Incluye el botón de volver alineado horizontalmente con el título -->
+                    <div class="app-header chat-header">
+                        <div class="chat-header-row">
+                            <button class="back-btn" id="chatBackButton" aria-label="Volver" onclick="goBack()">←</button>
+                            <div class="chat-header-info">
+                                <h1>🤖 VisaBot</h1>
+                                <p class="header-subtitle">Asistente IA disponible 24/7</p>
+                            </div>
                         </div>
                     </div>
                     <div class="chat-container">
@@ -410,7 +414,8 @@
                 <!-- Settings Screen (for Dark Mode) -->
                 <div class="app-screen" id="settingsScreen">
                     <div class="app-header">
-                        <button class="back-btn" id="settingsBackButton">← Volver</button>
+                        <!-- Botón volver minimalista con solo flecha -->
+                        <button class="back-btn" id="settingsBackButton" aria-label="Volver">←</button>
                         <h1>Configuración</h1>
                     </div>
                     <div class="app-content">
@@ -497,5 +502,17 @@
         </div>
     </div>
     <script src="script-v2.js"></script>
+    
+    <!-- Modal informativo para predicción IA -->
+    <div id="aiModal" class="modal-overlay" aria-hidden="true">
+        <div class="modal-content">
+            <h2>Análisis completado</h2>
+            <p>
+                La predicción se basa en un modelo de inteligencia artificial y puede contener errores.
+                Se recomienda buscar asistencia legal o profesional para la toma de decisiones.
+            </p>
+            <button id="closeModalBtn">Entendido</button>
+        </div>
+    </div>
 </body>
 </html>

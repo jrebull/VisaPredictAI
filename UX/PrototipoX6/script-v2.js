@@ -1,9 +1,11 @@
-// ===== VISA PREDICT AI - SCRIPT PRINCIPAL =====
+// ===== VISA PREDICT AI v2.0 - SCRIPT MEJORADO =====
 
 // Estado global
 let currentScreen = 'homeScreen';
 let previousScreen = '';
+let screenHistory = [];
 let predictionRunning = false;
+let darkMode = false;
 
 // Datos de la aplicación
 const appData = {
@@ -90,6 +92,7 @@ const appData = {
             id: 'news1',
             title: 'Gobierno exigirá depósitos de hasta $15,000 para visas',
             summary: 'Nueva política requiere depósitos significativos para viajeros de ciertos países.',
+            image: 'noticia1.png',
             content: `
                 <h2>Nueva Política de Depósitos para Visas de Turismo</h2>
                 <p>El gobierno de Estados Unidos anunció hoy una nueva política que requerirá depósitos de seguridad de hasta $15,000 para solicitantes de visas de turismo y negocios (B1/B2) de países seleccionados.</p>
@@ -117,6 +120,7 @@ const appData = {
             id: 'news2',
             title: 'Reducen tiempos de procesamiento EB-2',
             summary: 'Los tiempos bajan de 12 a 8 meses en promedio.',
+            image: 'noticia2.png',
             content: `
                 <h2>USCIS Acelera Procesamiento de Visas EB-2</h2>
                 <p>En una movida que beneficiará a miles de profesionales, USCIS anunció una reducción significativa en los tiempos de procesamiento para peticiones EB-2.</p>
@@ -134,8 +138,76 @@ const appData = {
             date: 'Julio 2025',
             source: 'USCIS',
             category: 'policy'
+        },
+        {
+            id: 'news3',
+            title: 'Nueva ley favorece a profesionales STEM',
+            summary: 'Cambios legislativos benefician a trabajadores en ciencia y tecnología.',
+            image: 'noticia3.png',
+            content: `
+                <h2>Reforma Migratoria para Profesionales STEM</h2>
+                <p>El Congreso aprobó nuevas medidas que facilitarán el proceso de inmigración para profesionales en campos de ciencia, tecnología, ingeniería y matemáticas.</p>
+                
+                <h3>Beneficios Principales:</h3>
+                <ul>
+                    <li>Exención del límite anual de visas H-1B para PhDs</li>
+                    <li>Proceso acelerado para green cards en STEM</li>
+                    <li>Extensión de OPT hasta 4 años</li>
+                    <li>Permiso de trabajo automático para cónyuges</li>
+                </ul>
+                
+                <h3>¿Quiénes califican?</h3>
+                <p>Profesionales con títulos avanzados en campos STEM de universidades acreditadas, especialmente aquellos con doctorados o contribuciones significativas en investigación.</p>
+            `,
+            date: 'Junio 2025',
+            source: 'Congress.gov',
+            category: 'policy'
         }
     ],
+
+    // Respuestas del ChatBot
+    chatbotResponses: {
+        greeting: [
+            "¡Hola! Soy VisaBot 🤖 ¿En qué puedo ayudarte con tu proceso migratorio?",
+            "¡Bienvenido! Estoy aquí para resolver todas tus dudas sobre visas y migración 🗽",
+            "¡Saludos! Soy tu asistente de inmigración. ¿Qué necesitas saber hoy?"
+        ],
+        visa: [
+            "Para visas de trabajo como H-1B, necesitas una oferta laboral de un empleador en USA. El proceso toma entre 6-8 meses típicamente. ¿Te gustaría saber más sobre algún tipo específico de visa?",
+            "Existen varios tipos de visa: H-1B para profesionales, L-1 para transferencias, O-1 para habilidades extraordinarias, y EB-2/EB-3 para residencia permanente. ¿Cuál te interesa?",
+            "El tipo de visa depende de tu situación: empleo, estudio, inversión o talento extraordinario. Basándome en tu perfil, la EB-2 parece ser una excelente opción."
+        ],
+        documents: [
+            "Los documentos básicos incluyen: pasaporte vigente, títulos universitarios apostillados, cartas de empleo, estados de cuenta bancarios, y certificaciones profesionales. ¿Necesitas ayuda con algún documento específico?",
+            "Para tu visa EB-2 necesitarás: diplomas, cartas de recomendación (mínimo 3), evidencia de logros profesionales, y certificación de inglés. Veo que ya tienes el 80% completado.",
+            "Es crucial que todos los documentos estén traducidos al inglés por un traductor certificado y debidamente apostillados. ¿Ya tienes tus documentos traducidos?"
+        ],
+        timeline: [
+            "El timeline típico es: H-1B (6-8 meses), EB-2 (12-18 meses), EB-3 (18-24 meses). Con premium processing puedes acelerar algunas etapas. Tu caso va muy bien encaminado.",
+            "Según tu progreso actual, estimamos que tu proceso complete en 4-6 meses más. Estás en la etapa de revisión por oficial, que típicamente toma 2-3 semanas.",
+            "Los tiempos han mejorado recientemente. USCIS redujo el procesamiento de EB-2 de 12 a 8 meses. Tu caso se beneficiará de estas mejoras."
+        ],
+        cost: [
+            "Los costos varían: H-1B ($5,000-$7,000), EB-2 ($10,000-$15,000) incluyendo tarifas gubernamentales y abogados. Muchas empresas cubren estos gastos.",
+            "Para tu visa EB-2, el costo total estimado es de $12,000. Esto incluye: tarifas USCIS ($2,805), abogado ($7,000-$9,000), y gastos adicionales. ¿Tu empleador cubrirá estos costos?",
+            "Tip importante: Algunos gastos son deducibles de impuestos. Además, con el premium processing ($2,805 adicional) puedes acelerar el proceso a 15 días."
+        ],
+        interview: [
+            "La entrevista consular es el paso final. Prepárate para preguntas sobre tu trabajo, planes en USA, y vínculos con tu país. La clave es ser honesto y conciso.",
+            "Tips para la entrevista: 1) Lleva todos los documentos organizados, 2) Viste formal, 3) Sé puntual, 4) Responde solo lo que te pregunten, 5) Mantén la calma.",
+            "Las preguntas comunes incluyen: ¿Por qué quieres ir a USA? ¿Qué harás allá? ¿Tienes familia? ¿Planeas regresar? Practica tus respuestas pero no las memorices."
+        ],
+        general: [
+            "Interesante pregunta. Basándome en mi base de datos de más de 50,000 casos, puedo decirte que tu situación es favorable. ¿Hay algo específico que te preocupe?",
+            "Entiendo tu consulta. En mi experiencia ayudando a miles de latinos, ese es un tema común. La clave es mantener toda la documentación actualizada y seguir el proceso paso a paso.",
+            "Excelente punto. Muchos profesionales tienen esa misma duda. La respuesta depende de varios factores. ¿Podrías darme más detalles sobre tu situación específica?"
+        ],
+        motivation: [
+            "¡No te desanimes! El proceso migratorio es largo pero vale la pena. Miles de latinos lo logran cada año, ¡tú también puedes! 💪",
+            "Recuerda: cada documento que completas te acerca más a tu meta. Tu perfil es sólido con un 75% de probabilidad de éxito. ¡Sigue adelante! 🌟",
+            "El camino al sueño americano no es fácil, pero con perseverancia se logra. Estás más cerca que nunca. ¡Vamos por ese último 25%! 🚀"
+        ]
+    },
 
     supportContent: {
         faq: {
@@ -233,6 +305,28 @@ const appData = {
                     description: 'Firma de servicio completo con 30 años de experiencia'
                 }
             ]
+        },
+        contact: {
+            title: 'Información de Contacto',
+            content: `
+                <div class="detail-content-block">
+                    <h2>📧 Contacto Directo</h2>
+                    <p><strong>Email:</strong> soporte@visapredictai.com</p>
+                    <p><strong>WhatsApp:</strong> +1-800-VISA-AI</p>
+                    <p><strong>Teléfono:</strong> 1-800-847-224</p>
+                    <p><strong>Horario:</strong> Lun-Vie 9AM-6PM PST</p>
+                    
+                    <h3>Oficinas</h3>
+                    <p><strong>San Francisco:</strong> 123 Market St, Suite 456</p>
+                    <p><strong>Los Angeles:</strong> 789 Wilshire Blvd, Floor 10</p>
+                    <p><strong>Miami:</strong> 321 Biscayne Blvd, Office 789</p>
+                    
+                    <h3>Redes Sociales</h3>
+                    <p>Facebook: @VisaPredictAI</p>
+                    <p>Twitter: @VisaPredictAI</p>
+                    <p>LinkedIn: VisaPredictAI</p>
+                </div>
+            `
         }
     }
 };
@@ -240,11 +334,14 @@ const appData = {
 // Inicialización
 document.addEventListener('DOMContentLoaded', function() {
     init();
-    setupEventListeners();
+    setupEventListeners(); // <--- AÑADE ESTA LÍNEA
 });
 
 function init() {
-    console.log('🚀 Iniciando VisaPredictAI...');
+    console.log('🚀 Iniciando VisaPredictAI v2.0...');
+    
+    // Cargar tema guardado
+    loadTheme();
     
     updateTime();
     setInterval(updateTime, 60000);
@@ -262,6 +359,16 @@ function init() {
             document.getElementById('loginScreen').classList.add('active');
         }, 500);
     }, 2000);
+}
+
+function loadTheme() {
+    const savedDarkMode = localStorage.getItem('darkMode') === 'true';
+    if (savedDarkMode) {
+        darkMode = true;
+        document.body.classList.add('dark-mode');
+        const toggle = document.getElementById('darkModeToggle');
+        if (toggle) toggle.checked = true;
+    }
 }
 
 function updateTime() {
@@ -282,11 +389,13 @@ function updateGreeting() {
     }
 }
 
-// Navegación
-function showScreen(screenId) {
-    // Guardar pantalla anterior
-    if (currentScreen !== screenId) {
-        previousScreen = currentScreen;
+// Navegación mejorada con historial
+function showScreen(screenId, addToHistory = true) {
+    console.log('🔄 Navegando a:', screenId);
+    
+    // Guardar en historial si no es navegación hacia atrás
+    if (addToHistory && currentScreen !== screenId) {
+        screenHistory.push(currentScreen);
     }
 
     // Ocultar todas las pantallas
@@ -304,21 +413,31 @@ function showScreen(screenId) {
         }, 10);
         currentScreen = screenId;
 
-        // Actualizar navegación
-        document.querySelectorAll('.nav-item').forEach(item => {
-            item.classList.remove('active');
-        });
-        const navItem = document.querySelector(`.nav-item[data-screen="${screenId}"]`);
-        if (navItem) navItem.classList.add('active');
+        // Actualizar navegación si es una pantalla principal
+        const mainScreens = ['homeScreen', 'profileScreen', 'predictionScreen', 'employmentScreen', 'supportScreen'];
+        if (mainScreens.includes(screenId)) {
+            document.querySelectorAll('.nav-item').forEach(item => {
+                item.classList.remove('active');
+            });
+            const navItem = document.querySelector(`.nav-item[data-screen="${screenId}"]`);
+            if (navItem) navItem.classList.add('active');
+        }
+    }
+}
+
+function goBack() {
+    if (screenHistory.length > 0) {
+        const previousScreen = screenHistory.pop();
+        showScreen(previousScreen, false);
+    } else {
+        // Si no hay historial, ir a home
+        showScreen('homeScreen', false);
     }
 }
 
 function showDetail(title, content) {
-    previousScreen = currentScreen;
-    
     document.getElementById('detailTitle').textContent = title;
     document.getElementById('detailContent').innerHTML = content;
-    
     showScreen('detailScreen');
 }
 
@@ -380,7 +499,7 @@ function generateNews() {
         <div class="news-item ${news.featured ? 'featured' : ''}" onclick="showNewsDetail('${news.id}')">
             <div class="news-image">
                 ${news.featured ? '<span class="news-badge">IMPORTANTE</span>' : ''}
-                <div class="news-icon">📰</div>
+                <img src="${news.image}" alt="${news.title}" onerror="this.style.display='none'; this.parentElement.innerHTML='<span class=\\'news-badge\\'>IMPORTANTE</span><div class=\\'news-image-fallback\\'>📰</div>';">
             </div>
             <div class="news-content">
                 <h3>${news.title}</h3>
@@ -403,7 +522,7 @@ function showAlertDetail(type) {
             <div class="detail-content-block">
                 <h2>${alert.icon} ${alert.title}</h2>
                 <p>${alert.message}</p>
-                <p style="color: var(--gray-500); margin-top: 20px;">${alert.time}</p>
+                <p style="color: var(--text-muted); margin-top: 20px;">${alert.time}</p>
                 
                 <h3 style="margin-top: 30px;">Acciones Recomendadas:</h3>
                 <ul>
@@ -445,7 +564,7 @@ function showCompanyDetail(companyId) {
                 <h3>Timeline Típico</h3>
                 <p>${company.timeline}</p>
                 
-                <div style="margin-top: 30px; padding: 16px; background: var(--blue-lighter); border-radius: 12px;">
+                <div style="margin-top: 30px; padding: 16px; background: var(--bg-tertiary); border-radius: 12px;">
                     <strong>Tasa de Éxito:</strong> ${company.sponsorshipRate}<br>
                     <strong>Tiempo Promedio:</strong> ${company.avgProcessTime}
                 </div>
@@ -461,7 +580,7 @@ function showNewsDetail(newsId) {
         const content = `
             <div class="news-article">
                 <h1>${news.title}</h1>
-                <div class="article-meta">
+                <div class="article-meta" style="display: flex; justify-content: space-between; font-size: 13px; color: var(--text-muted); margin-bottom: 20px; padding-bottom: 12px; border-bottom: 1px solid var(--border-color);">
                     <span>📅 ${news.date}</span>
                     <span>📰 ${news.source}</span>
                 </div>
@@ -498,23 +617,6 @@ function showProfileSection(section) {
                         </div>
                     </div>
                 </div>
-                <div class="detail-section">
-                    <h3>Información de Contacto</h3>
-                    <div class="detail-grid">
-                        <div class="detail-item">
-                            <h4>Email</h4>
-                            <p>saul.gonzalez@email.com</p>
-                        </div>
-                        <div class="detail-item">
-                            <h4>Teléfono</h4>
-                            <p>+1 (555) 123-4567</p>
-                        </div>
-                        <div class="detail-item">
-                            <h4>Dirección Actual</h4>
-                            <p>San Francisco, CA 94102</p>
-                        </div>
-                    </div>
-                </div>
             `
         },
         academic: {
@@ -535,23 +637,6 @@ function showProfileSection(section) {
                         </div>
                     </div>
                 </div>
-                <div class="detail-section">
-                    <h3>Certificaciones</h3>
-                    <div class="detail-grid">
-                        <div class="detail-item">
-                            <h4>AWS Solutions Architect Professional</h4>
-                            <p>Obtenida: Enero 2023</p>
-                        </div>
-                        <div class="detail-item">
-                            <h4>Google Cloud Professional Data Engineer</h4>
-                            <p>Obtenida: Junio 2022</p>
-                        </div>
-                        <div class="detail-item">
-                            <h4>Certified Kubernetes Administrator</h4>
-                            <p>Obtenida: Marzo 2022</p>
-                        </div>
-                    </div>
-                </div>
             `
         },
         experience: {
@@ -565,19 +650,6 @@ function showProfileSection(section) {
                             <p><strong>Tech Corp</strong> | 2022 - Presente</p>
                             <p>• Lideré equipo de 8 desarrolladores</p>
                             <p>• Implementé arquitectura microservicios</p>
-                            <p>• Reduje costos operativos en 35%</p>
-                        </div>
-                        <div class="detail-item">
-                            <h4>Software Developer</h4>
-                            <p><strong>StartupXYZ</strong> | 2020 - 2022</p>
-                            <p>• Desarrollé aplicación móvil con 100K+ usuarios</p>
-                            <p>• Optimicé performance del backend en 50%</p>
-                        </div>
-                        <div class="detail-item">
-                            <h4>Junior Developer</h4>
-                            <p><strong>Digital Agency</strong> | 2018 - 2020</p>
-                            <p>• Participé en 15+ proyectos web</p>
-                            <p>• Especialización en React y Node.js</p>
                         </div>
                     </div>
                 </div>
@@ -592,27 +664,18 @@ function showProfileSection(section) {
                         <div class="detail-item" style="background: #F0FDF4;">
                             <h4>✅ Pasaporte</h4>
                             <p>Válido hasta 2032</p>
-                            <p style="font-size: 12px; color: var(--gray-500);">Subido: 15/06/2024</p>
                         </div>
                         <div class="detail-item" style="background: #F0FDF4;">
                             <h4>✅ Título Universitario</h4>
                             <p>Ingeniería de Software - ITAM</p>
-                            <p style="font-size: 12px; color: var(--gray-500);">Subido: 20/06/2024</p>
-                        </div>
-                        <div class="detail-item" style="background: #F0FDF4;">
-                            <h4>✅ Título de Maestría</h4>
-                            <p>IA - Stanford University</p>
-                            <p style="font-size: 12px; color: var(--gray-500);">Subido: 22/06/2024</p>
                         </div>
                         <div class="detail-item" style="background: #FEFCE8;">
                             <h4>⚠️ Carta de Empleo</h4>
                             <p>Tech Corp - Pendiente actualización</p>
-                            <p style="font-size: 12px; color: var(--gray-500);">Requiere firma del CEO</p>
                         </div>
                         <div class="detail-item" style="background: #FEE2E2;">
                             <h4>❌ Estados de Cuenta</h4>
-                            <p>Últimos 3 meses</p>
-                            <p style="font-size: 12px; color: var(--gray-500);">Pendiente de subir</p>
+                            <p>Últimos 3 meses - Pendiente</p>
                         </div>
                     </div>
                 </div>
@@ -654,9 +717,9 @@ function showSupportSection(type) {
                     <div class="detail-section">
                         <h3>${content.title}</h3>
                         ${content.items.map(item => `
-                            <div class="detail-item" style="margin-bottom: 16px; cursor: pointer; background: white;">
+                            <div class="detail-item" style="margin-bottom: 16px;">
                                 <h4>📖 ${item.title}</h4>
-                                <p style="color: var(--gray-600); margin: 8px 0;">${item.description}</p>
+                                <p style="color: var(--text-secondary); margin: 8px 0;">${item.description}</p>
                                 <p style="font-size: 13px;">${item.content}</p>
                             </div>
                         `).join('')}
@@ -671,7 +734,7 @@ function showSupportSection(type) {
                         ${content.topics.map(topic => `
                             <div class="detail-item" style="margin-bottom: 16px;">
                                 <h4>${topic.title}</h4>
-                                <p style="color: var(--gray-600); font-size: 13px;">Por ${topic.author} • ${topic.replies} respuestas • ${topic.lastActivity}</p>
+                                <p style="color: var(--text-secondary); font-size: 13px;">Por ${topic.author} • ${topic.replies} respuestas • ${topic.lastActivity}</p>
                                 <p style="margin-top: 8px;">${topic.preview}</p>
                             </div>
                         `).join('')}
@@ -693,18 +756,95 @@ function showSupportSection(type) {
                                     💰 ${firm.priceRange} • 
                                     ⏱️ ${firm.avgTime}
                                 </p>
-                                <div style="margin-top: 8px;">
-                                    ${firm.specialties.map(s => `<span class="visa-tag">${s}</span>`).join(' ')}
-                                </div>
                             </div>
                         `).join('')}
                     </div>
                 `;
                 break;
+                
+            case 'contact':
+                html = content.content;
+                break;
         }
         
         showDetail(content.title, html);
     }
+}
+
+// ChatBot VisaBot
+function initChatbot() {
+    showScreen('chatbotScreen');
+}
+
+function sendChatMessage() {
+    const input = document.getElementById('chatInput');
+    const messagesContainer = document.getElementById('chatMessages');
+    
+    if (!input.value.trim()) return;
+    
+    const userMessage = input.value;
+    
+    // Agregar mensaje del usuario
+    const userMsgDiv = document.createElement('div');
+    userMsgDiv.className = 'chat-message user';
+    userMsgDiv.innerHTML = `
+        <div class="message-avatar">👤</div>
+        <div class="message-content">
+            <p>${userMessage}</p>
+        </div>
+    `;
+    messagesContainer.appendChild(userMsgDiv);
+    
+    // Limpiar input
+    input.value = '';
+    
+    // Simular typing
+    setTimeout(() => {
+        const botResponse = getBotResponse(userMessage);
+        
+        const botMsgDiv = document.createElement('div');
+        botMsgDiv.className = 'chat-message bot';
+        botMsgDiv.innerHTML = `
+            <div class="message-avatar">🤖</div>
+            <div class="message-content">
+                <p>${botResponse}</p>
+            </div>
+        `;
+        messagesContainer.appendChild(botMsgDiv);
+        
+        // Scroll al final
+        messagesContainer.scrollTop = messagesContainer.scrollHeight;
+    }, 1000);
+    
+    // Scroll al final
+    messagesContainer.scrollTop = messagesContainer.scrollHeight;
+}
+
+function getBotResponse(message) {
+    const lowerMessage = message.toLowerCase();
+    
+    // Detectar temas en el mensaje
+    if (lowerMessage.includes('hola') || lowerMessage.includes('hi') || lowerMessage.includes('buenos')) {
+        return getRandomResponse(appData.chatbotResponses.greeting);
+    } else if (lowerMessage.includes('visa') || lowerMessage.includes('h1b') || lowerMessage.includes('eb2') || lowerMessage.includes('green card')) {
+        return getRandomResponse(appData.chatbotResponses.visa);
+    } else if (lowerMessage.includes('documento') || lowerMessage.includes('papel') || lowerMessage.includes('requisito')) {
+        return getRandomResponse(appData.chatbotResponses.documents);
+    } else if (lowerMessage.includes('tiempo') || lowerMessage.includes('cuanto') || lowerMessage.includes('demora')) {
+        return getRandomResponse(appData.chatbotResponses.timeline);
+    } else if (lowerMessage.includes('costo') || lowerMessage.includes('precio') || lowerMessage.includes('dinero') || lowerMessage.includes('pagar')) {
+        return getRandomResponse(appData.chatbotResponses.cost);
+    } else if (lowerMessage.includes('entrevista') || lowerMessage.includes('consul') || lowerMessage.includes('embajada')) {
+        return getRandomResponse(appData.chatbotResponses.interview);
+    } else if (lowerMessage.includes('ayuda') || lowerMessage.includes('triste') || lowerMessage.includes('cansado') || lowerMessage.includes('dificil')) {
+        return getRandomResponse(appData.chatbotResponses.motivation);
+    } else {
+        return getRandomResponse(appData.chatbotResponses.general);
+    }
+}
+
+function getRandomResponse(responses) {
+    return responses[Math.floor(Math.random() * responses.length)];
 }
 
 // Predicción
@@ -756,8 +896,6 @@ function runPrediction() {
             }
 
             predictionRunning = false;
-
-            // Actualizar historial
             updatePredictionHistory(target);
         }
 
@@ -808,16 +946,17 @@ function setupEventListeners() {
     document.querySelectorAll('.nav-item').forEach(item => {
         item.addEventListener('click', function() {
             const screen = this.dataset.screen;
-            if (screen) showScreen(screen);
+            if (screen) {
+                screenHistory = []; // Reset history when using nav
+                showScreen(screen);
+            }
         });
     });
 
-    // Botón de volver
-    document.getElementById('backButton')?.addEventListener('click', () => {
-        if (previousScreen) {
-            showScreen(previousScreen);
-        }
-    });
+    // Botones de volver (ARREGLADO)
+    document.getElementById('backButton')?.addEventListener('click', goBack);
+    document.getElementById('chatBackButton')?.addEventListener('click', goBack);
+    document.getElementById('settingsBackButton')?.addEventListener('click', goBack);
 
     // Quick Actions
     document.querySelectorAll('.quick-action').forEach(action => {
@@ -897,13 +1036,37 @@ function setupEventListeners() {
     document.querySelectorAll('.support-tile').forEach(tile => {
         tile.addEventListener('click', function() {
             const supportType = this.dataset.support;
-            showSupportSection(supportType);
+            if (supportType === 'chatbot') {
+                initChatbot();
+            } else {
+                showSupportSection(supportType);
+            }
         });
     });
 
     // Settings
     document.getElementById('settingsButton')?.addEventListener('click', () => {
-        showDetail('Configuración', generateSettingsContent());
+        showScreen('settingsScreen');
+    });
+
+    // Dark Mode Toggle (IMPLEMENTADO)
+    document.getElementById('darkModeToggle')?.addEventListener('change', function() {
+        darkMode = this.checked;
+        if (darkMode) {
+            document.body.classList.add('dark-mode');
+            localStorage.setItem('darkMode', 'true');
+        } else {
+            document.body.classList.remove('dark-mode');
+            localStorage.setItem('darkMode', 'false');
+        }
+    });
+
+    // ChatBot
+    document.getElementById('chatSendBtn')?.addEventListener('click', sendChatMessage);
+    document.getElementById('chatInput')?.addEventListener('keypress', function(e) {
+        if (e.key === 'Enter') {
+            sendChatMessage();
+        }
     });
 }
 
@@ -953,7 +1116,7 @@ function filterNews(category) {
         if (category === 'all') {
             item.style.display = 'block';
         } else {
-            // En una implementación real, filtrarías por categoría
+            // Simulación de filtrado
             item.style.display = Math.random() > 0.3 ? 'block' : 'none';
         }
     });
@@ -964,7 +1127,7 @@ function generateCVContent() {
     return `
         <div class="detail-content-block">
             <h2 style="text-align: center;">Saul Gonzalez Martinez</h2>
-            <p style="text-align: center; color: var(--gray-600);">
+            <p style="text-align: center; color: var(--text-secondary);">
                 Ingeniero de Software Senior<br>
                 📧 saul.gonzalez@email.com | 📱 +1 (555) 123-4567<br>
                 📍 San Francisco, CA | 🌐 linkedin.com/in/saulgonzalez
@@ -972,30 +1135,18 @@ function generateCVContent() {
             
             <h3>Resumen Profesional</h3>
             <p>Ingeniero de software con 5+ años de experiencia en desarrollo de aplicaciones escalables, 
-            especializado en IA/ML y arquitectura cloud. Experiencia liderando equipos multiculturales 
-            y entregando proyectos de alto impacto.</p>
+            especializado en IA/ML y arquitectura cloud.</p>
             
             <h3>Experiencia Laboral</h3>
             <div style="margin-bottom: 20px;">
                 <h4>Senior Software Engineer - Tech Corp</h4>
-                <p style="color: var(--gray-500);">2022 - Presente | San Francisco, CA</p>
+                <p style="color: var(--text-muted);">2022 - Presente | San Francisco, CA</p>
                 <ul>
-                    <li>Lideré equipo de 8 desarrolladores en proyecto de $2M</li>
-                    <li>Implementé arquitectura microservicios reduciendo costos 35%</li>
-                    <li>Desarrollé sistema ML que mejoró conversión 25%</li>
+                    <li>Lideré equipo de 8 desarrolladores</li>
+                    <li>Implementé arquitectura microservicios</li>
+                    <li>Desarrollé sistema ML con mejora del 25%</li>
                 </ul>
             </div>
-            
-            <h3>Educación</h3>
-            <div style="margin-bottom: 16px;">
-                <h4>Maestría en Inteligencia Artificial</h4>
-                <p>Stanford University | 2020-2022 | GPA: 3.9/4.0</p>
-            </div>
-            
-            <h3>Habilidades</h3>
-            <p><strong>Lenguajes:</strong> Python, JavaScript, Java, Go<br>
-            <strong>Cloud:</strong> AWS, GCP, Azure, Kubernetes<br>
-            <strong>Idiomas:</strong> Español (Nativo), Inglés (Fluido)</p>
         </div>
     `;
 }
@@ -1007,26 +1158,9 @@ function generateExportContent() {
             <p>Selecciona el formato en el que deseas exportar tu información:</p>
             
             <div style="display: flex; flex-direction: column; gap: 12px; margin-top: 20px;">
-                <button class="btn-primary-large">
-                    📄 Exportar como PDF
-                </button>
-                <button class="btn-primary-large" style="background: white; color: var(--navy-medium); border: 2px solid var(--navy-medium);">
-                    📊 Exportar como Excel
-                </button>
-                <button class="btn-primary-large" style="background: white; color: var(--navy-medium); border: 2px solid var(--navy-medium);">
-                    📋 Exportar como JSON
-                </button>
-            </div>
-            
-            <div style="margin-top: 30px; padding: 16px; background: var(--blue-lighter); border-radius: 12px;">
-                <h4>¿Qué incluye la exportación?</h4>
-                <ul style="margin-top: 12px;">
-                    <li>Información personal completa</li>
-                    <li>Historial académico y profesional</li>
-                    <li>Documentos verificados</li>
-                    <li>Historial de predicciones</li>
-                    <li>Estado actual del proceso</li>
-                </ul>
+                <button class="btn-primary-large">📄 Exportar como PDF</button>
+                <button class="btn-secondary" style="width: 100%; padding: 16px;">📊 Exportar como Excel</button>
+                <button class="btn-secondary" style="width: 100%; padding: 16px;">📋 Exportar como JSON</button>
             </div>
         </div>
     `;
@@ -1044,30 +1178,12 @@ function generateImprovementsContent() {
             
             <div class="detail-item" style="margin-bottom: 16px;">
                 <h4>✅ Completar certificación AWS (+5%)</h4>
-                <p>La certificación AWS Solutions Architect es altamente valorada por empleadores.</p>
-                <button style="margin-top: 8px; padding: 8px 16px; background: var(--blue-primary); color: white; border: none; border-radius: 8px;">
-                    Comenzar preparación
-                </button>
+                <p>La certificación AWS Solutions Architect es altamente valorada.</p>
             </div>
             
             <div class="detail-item" style="margin-bottom: 16px;">
                 <h4>✅ Agregar carta de recomendación de CEO (+3%)</h4>
-                <p>Una carta del CEO de tu empresa actual fortalecería significativamente tu aplicación.</p>
-            </div>
-            
-            <div class="detail-item" style="margin-bottom: 16px;">
-                <h4>✅ Documentar publicaciones técnicas (+4%)</h4>
-                <p>Incluir artículos técnicos o contribuciones open source demuestra expertise.</p>
-            </div>
-            
-            <div class="detail-item" style="margin-bottom: 16px;">
-                <h4>✅ Certificar nivel de inglés TOEFL (+2%)</h4>
-                <p>Un puntaje TOEFL de 110+ es evidencia objetiva de tu dominio del idioma.</p>
-            </div>
-            
-            <div class="detail-item" style="margin-bottom: 16px;">
-                <h4>✅ Agregar evidencia de impacto nacional (+6%)</h4>
-                <p>Documentar proyectos con impacto a nivel nacional fortalece casos EB-2 NIW.</p>
+                <p>Una carta del CEO fortalecería tu aplicación.</p>
             </div>
         </div>
     `;
@@ -1083,7 +1199,7 @@ function generateChecklistContent() {
                     <span>Progreso Total</span>
                     <span style="font-weight: bold;">12 de 20 completados</span>
                 </div>
-                <div style="height: 8px; background: var(--gray-200); border-radius: 4px; overflow: hidden;">
+                <div style="height: 8px; background: var(--border-color); border-radius: 4px; overflow: hidden;">
                     <div style="width: 60%; height: 100%; background: linear-gradient(90deg, var(--navy-medium), var(--blue-primary));"></div>
                 </div>
             </div>
@@ -1091,86 +1207,16 @@ function generateChecklistContent() {
             <div style="display: flex; flex-direction: column; gap: 12px;">
                 <label style="display: flex; align-items: center; gap: 12px; padding: 12px; background: #F0FDF4; border-radius: 8px;">
                     <input type="checkbox" checked style="width: 20px; height: 20px;">
-                    <span>Pasaporte vigente (mínimo 6 meses)</span>
+                    <span>Pasaporte vigente</span>
                 </label>
                 <label style="display: flex; align-items: center; gap: 12px; padding: 12px; background: #F0FDF4; border-radius: 8px;">
                     <input type="checkbox" checked style="width: 20px; height: 20px;">
-                    <span>Fotografías formato visa (2)</span>
+                    <span>Fotografías formato visa</span>
                 </label>
-                <label style="display: flex; align-items: center; gap: 12px; padding: 12px; background: #F0FDF4; border-radius: 8px;">
-                    <input type="checkbox" checked style="width: 20px; height: 20px;">
-                    <span>Título universitario apostillado</span>
-                </label>
-                <label style="display: flex; align-items: center; gap: 12px; padding: 12px; background: var(--gray-50); border-radius: 8px;">
+                <label style="display: flex; align-items: center; gap: 12px; padding: 12px; background: var(--bg-tertiary); border-radius: 8px;">
                     <input type="checkbox" style="width: 20px; height: 20px;">
-                    <span>Cartas de recomendación (3)</span>
+                    <span>Cartas de recomendación</span>
                 </label>
-                <label style="display: flex; align-items: center; gap: 12px; padding: 12px; background: var(--gray-50); border-radius: 8px;">
-                    <input type="checkbox" style="width: 20px; height: 20px;">
-                    <span>Evidencia de logros profesionales</span>
-                </label>
-                <label style="display: flex; align-items: center; gap: 12px; padding: 12px; background: var(--gray-50); border-radius: 8px;">
-                    <input type="checkbox" style="width: 20px; height: 20px;">
-                    <span>Certificación de inglés (TOEFL/IELTS)</span>
-                </label>
-            </div>
-        </div>
-    `;
-}
-
-function generateSettingsContent() {
-    return `
-        <div class="detail-content-block">
-            <h2>⚙️ Configuración</h2>
-            
-            <div style="margin-bottom: 30px;">
-                <h3>Apariencia</h3>
-                <div style="display: flex; justify-content: space-between; align-items: center; padding: 12px 0; border-bottom: 1px solid var(--gray-200);">
-                    <span>Modo Oscuro</span>
-                    <label style="position: relative; display: inline-block; width: 48px; height: 26px;">
-                        <input type="checkbox" style="opacity: 0; width: 0; height: 0;">
-                        <span style="position: absolute; cursor: pointer; top: 0; left: 0; right: 0; bottom: 0; background-color: var(--gray-300); transition: .4s; border-radius: 34px;"></span>
-                    </label>
-                </div>
-                <div style="display: flex; justify-content: space-between; align-items: center; padding: 12px 0;">
-                    <span>Idioma</span>
-                    <select style="padding: 8px 12px; border: 1px solid var(--gray-300); border-radius: 8px;">
-                        <option>Español</option>
-                        <option>English</option>
-                        <option>Português</option>
-                    </select>
-                </div>
-            </div>
-            
-            <div style="margin-bottom: 30px;">
-                <h3>Notificaciones</h3>
-                <div style="display: flex; justify-content: space-between; align-items: center; padding: 12px 0; border-bottom: 1px solid var(--gray-200);">
-                    <span>Alertas de proceso</span>
-                    <label style="position: relative; display: inline-block; width: 48px; height: 26px;">
-                        <input type="checkbox" checked style="opacity: 0; width: 0; height: 0;">
-                        <span style="position: absolute; cursor: pointer; top: 0; left: 0; right: 0; bottom: 0; background-color: var(--blue-primary); transition: .4s; border-radius: 34px;"></span>
-                    </label>
-                </div>
-                <div style="display: flex; justify-content: space-between; align-items: center; padding: 12px 0;">
-                    <span>Noticias migratorias</span>
-                    <label style="position: relative; display: inline-block; width: 48px; height: 26px;">
-                        <input type="checkbox" checked style="opacity: 0; width: 0; height: 0;">
-                        <span style="position: absolute; cursor: pointer; top: 0; left: 0; right: 0; bottom: 0; background-color: var(--blue-primary); transition: .4s; border-radius: 34px;"></span>
-                    </label>
-                </div>
-            </div>
-            
-            <div>
-                <h3>Cuenta</h3>
-                <button style="width: 100%; padding: 12px; margin-bottom: 12px; background: white; color: var(--navy-medium); border: 2px solid var(--navy-medium); border-radius: 12px; font-weight: 600;">
-                    Cambiar Contraseña
-                </button>
-                <button style="width: 100%; padding: 12px; margin-bottom: 12px; background: white; color: var(--navy-medium); border: 2px solid var(--navy-medium); border-radius: 12px; font-weight: 600;">
-                    Exportar Datos
-                </button>
-                <button style="width: 100%; padding: 12px; background: var(--error); color: white; border: none; border-radius: 12px; font-weight: 600;">
-                    Cerrar Sesión
-                </button>
             </div>
         </div>
     `;
