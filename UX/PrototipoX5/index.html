@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VisaPredictAI - Prototipo Premium</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <script src="config.js"></script>
+</head>
+<body>
+    <div class="phone-container">
+        <div class="iphone">
+            <div class="power-button"></div>
+            <div class="volume-buttons">
+                <div class="volume-up"></div>
+                <div class="volume-down"></div>
+            </div>
+            <div class="screen">
+                <div class="dynamic-island"></div>
+                <div class="status-bar">
+                    <div class="time" id="statusTime">9:41</div>
+                    <div class="status-icons">📶 📶 🔋</div>
+                </div>
+
+                <!-- Loading Screen -->
+                <div class="loading-screen" id="loadingScreen">
+                    <div class="loading-logo">🗽</div>
+                    <div class="loading-text">VisaPredictAI</div>
+                    <div class="loading-subtitle">Tu camino al sueño americano</div>
+                    <div class="loading-bar"><div class="loading-progress"></div></div>
+                </div>
+
+                <!-- Login Screen -->
+                <div class="login-screen" id="loginScreen">
+                    <div class="login-container">
+                        <div class="login-logo">🗽</div>
+                        <div class="login-form">
+                            <h1 class="login-title">Bienvenido</h1>
+                            <p class="login-subtitle">Tu futuro en Estados Unidos comienza aquí</p>
+                            <input type="email" class="login-input" placeholder="Correo electrónico" value="saul.gonzalez@email.com">
+                            <input type="password" class="login-input" placeholder="Contraseña" value="••••••••">
+                            <button id="loginButton" class="login-button">Iniciar Sesión</button>
+                            <div class="login-divider">o continúa con</div>
+                            <div class="login-social">
+                                <button class="social-btn" id="googleLogin">G Google</button>
+                                <button class="social-btn" id="appleLogin">🍎 Apple</button>
+                            </div>
+                            <div class="biometric-login">
+                                <button id="faceIdButton" class="face-id-button">👤</button>
+                                <div class="face-id-text">Face ID</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- INICIO Screen -->
+                <div class="app-screen" id="homeScreen">
+                    <div class="app-header">
+                        <div class="header-top">
+                            <div>
+                                <h1 class="welcome-title" id="greetingText">Buenos días, Saul</h1>
+                                <p class="header-subtitle" id="motivationalQuote">Tu proceso está en marcha</p>
+                            </div>
+                            <button class="settings-btn" id="settingsButton">⚙️</button>
+                        </div>
+                    </div>
+                    
+                    <div class="app-content">
+                        <div class="profile-summary-card" id="profileSummaryCard">
+                            <div class="profile-avatar">SG
+                                <div class="profile-badge">75%</div>
+                            </div>
+                            <div class="profile-info">
+                                <h3>Saul Gonzalez</h3>
+                                <p>Ingeniero de Software • México</p>
+                                <div class="profile-stats">
+                                    <div class="stat">
+                                        <span class="stat-value">EB-2</span>
+                                        <span class="stat-label">Visa</span>
+                                    </div>
+                                    <div class="stat">
+                                        <span class="stat-value">3</span>
+                                        <span class="stat-label">Docs</span>
+                                    </div>
+                                    <div class="stat">
+                                        <span class="stat-value">85%</span>
+                                        <span class="stat-label">Prob.</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="visa-status-card">
+                            <h4>Estado de tu Proceso</h4>
+                            <div class="process-steps">
+                                <div class="step completed">
+                                    <div class="step-icon">✓</div>
+                                    <span>Documentos</span>
+                                </div>
+                                <div class="step completed">
+                                    <div class="step-icon">✓</div>
+                                    <span>Revisión</span>
+                                </div>
+                                <div class="step active">
+                                    <div class="step-icon">3</div>
+                                    <span>Oficial</span>
+                                </div>
+                                <div class="step">
+                                    <div class="step-icon">4</div>
+                                    <span>Entrevista</span>
+                                </div>
+                                <div class="step">
+                                    <div class="step-icon">5</div>
+                                    <span>Decisión</span>
+                                </div>
+                            </div>
+                            <div class="status-detail">
+                                <p><strong>Paso Actual:</strong> En Revisión por Oficial</p>
+                                <p><strong>Tiempo Estimado:</strong> 2-3 semanas</p>
+                            </div>
+                        </div>
+
+                        <div class="quick-actions-grid">
+                            <div class="quick-action" data-action="prediction">
+                                <div class="action-icon-wrapper prediction">🎯</div>
+                                <span>Predicción</span>
+                            </div>
+                            <div class="quick-action" data-action="documents">
+                                <div class="action-icon-wrapper documents">📄</div>
+                                <span>Documentos</span>
+                            </div>
+                            <div class="quick-action" data-action="news">
+                                <div class="action-icon-wrapper news">📰</div>
+                                <span>Noticias</span>
+                            </div>
+                            <div class="quick-action" data-action="checklist">
+                                <div class="action-icon-wrapper checklist">✅</div>
+                                <span>Checklist</span>
+                            </div>
+                        </div>
+
+                        <div class="alerts-section">
+                            <h4>Alertas Recientes</h4>
+                            <div class="alert-list" id="alertsList"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- PERFIL Screen -->
+                <div class="app-screen" id="profileScreen">
+                    <div class="app-header profile-header">
+                        <div class="profile-hero">
+                            <div class="profile-avatar-large">SG
+                                <button class="edit-photo-btn">📷</button>
+                            </div>
+                            <h2>Saul Gonzalez</h2>
+                            <p>Ingeniero de Software Senior</p>
+                            <div class="profile-badges">
+                                <span class="badge">🇲🇽 México</span>
+                                <span class="badge">📍 California</span>
+                                <span class="badge">💼 5 años exp.</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="app-content">
+                        <div class="candidate-score-card">
+                            <div class="score-circle">
+                                <svg viewBox="0 0 100 100">
+                                    <circle cx="50" cy="50" r="45" fill="none" stroke="#e0e0e0" stroke-width="8"/>
+                                    <circle cx="50" cy="50" r="45" fill="none" stroke="url(#gradient)" stroke-width="8" 
+                                            stroke-dasharray="283" stroke-dashoffset="70" stroke-linecap="round"
+                                            transform="rotate(-90 50 50)"/>
+                                    <defs>
+                                        <linearGradient id="gradient">
+                                            <stop offset="0%" style="stop-color:#4CAF50"/>
+                                            <stop offset="100%" style="stop-color:#8BC34A"/>
+                                        </linearGradient>
+                                    </defs>
+                                </svg>
+                                <div class="score-text">
+                                    <span class="score-number">75%</span>
+                                    <span class="score-label">Candidato Fuerte</span>
+                                </div>
+                            </div>
+                            <button class="improve-btn" data-action="improvements">📈 Ver Recomendaciones de Mejora</button>
+                        </div>
+
+                        <div class="profile-sections-list">
+                            <div class="profile-section-item" data-section="personal">
+                                <div class="section-icon">👤</div>
+                                <div class="section-content">
+                                    <h4>Datos Personales</h4>
+                                    <p>Información básica • Completo</p>
+                                </div>
+                                <div class="section-progress">
+                                    <div class="progress-ring complete">✓</div>
+                                </div>
+                            </div>
+                            <div class="profile-section-item" data-section="academic">
+                                <div class="section-icon">🎓</div>
+                                <div class="section-content">
+                                    <h4>Formación Académica</h4>
+                                    <p>2 títulos, 3 certificaciones</p>
+                                </div>
+                                <div class="section-progress">
+                                    <div class="progress-ring high">85%</div>
+                                </div>
+                            </div>
+                            <div class="profile-section-item" data-section="experience">
+                                <div class="section-icon">💼</div>
+                                <div class="section-content">
+                                    <h4>Experiencia Laboral</h4>
+                                    <p>5 años en tecnología</p>
+                                </div>
+                                <div class="section-progress">
+                                    <div class="progress-ring high">90%</div>
+                                </div>
+                            </div>
+                            <div class="profile-section-item" data-section="documents">
+                                <div class="section-icon">📁</div>
+                                <div class="section-content">
+                                    <h4>Mis Documentos</h4>
+                                    <p>12 de 15 subidos</p>
+                                </div>
+                                <div class="section-progress">
+                                    <div class="progress-ring high">80%</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="profile-actions">
+                            <button class="action-btn primary" data-action="cv">📄 Ver mi CV</button>
+                            <button class="action-btn secondary" data-action="export">⬇️ Exportar Perfil</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- PREDICCIÓN Screen -->
+                <div class="app-screen" id="predictionScreen">
+                    <div class="app-header">
+                        <h1>Análisis Predictivo IA</h1>
+                        <p class="header-subtitle">Basado en 50,000+ casos exitosos</p>
+                    </div>
+
+                    <div class="app-content">
+                        <div class="prediction-main-card">
+                            <div class="prediction-circle-container">
+                                <svg class="prediction-svg" viewBox="0 0 200 200">
+                                    <circle cx="100" cy="100" r="90" fill="none" stroke="#e0e0e0" stroke-width="12"/>
+                                    <circle cx="100" cy="100" r="90" fill="none" stroke="url(#predGradient)" stroke-width="12" 
+                                            stroke-dasharray="565" stroke-dashoffset="565" stroke-linecap="round"
+                                            transform="rotate(-90 100 100)" id="predictionArc"/>
+                                    <defs>
+                                        <linearGradient id="predGradient">
+                                            <stop offset="0%" style="stop-color:#4CAF50"/>
+                                            <stop offset="100%" style="stop-color:#8BC34A"/>
+                                        </linearGradient>
+                                    </defs>
+                                </svg>
+                                <div class="prediction-value">
+                                    <span id="predictionPercent">0</span>%
+                                    <p id="predictionLabel">Calculando...</p>
+                                </div>
+                            </div>
+                            
+                            <div class="prediction-factors" id="predictionFactors" style="display: none;">
+                                <h4>Factores Clave</h4>
+                                <div class="factor positive">✅ Perfil académico sólido</div>
+                                <div class="factor positive">✅ Experiencia relevante</div>
+                                <div class="factor warning">⚠️ Mejorar certificaciones</div>
+                                <div class="factor negative">❌ Falta carta de recomendación</div>
+                            </div>
+
+                            <button class="btn-primary-large" id="runPredictionBtn">
+                                🎯 Ejecutar Nueva Predicción
+                            </button>
+                        </div>
+
+                        <div class="prediction-history">
+                            <h4>Historial de Análisis</h4>
+                            <div class="history-timeline" id="predictionTimeline"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- EMPLEO Screen -->
+                <div class="app-screen" id="employmentScreen">
+                    <div class="app-header">
+                        <h1>Empresas Patrocinadoras</h1>
+                        <div class="header-controls">
+                            <input type="text" class="search-input-header" placeholder="🔍 Buscar empresa..." id="companySearchInput">
+                        </div>
+                    </div>
+
+                    <div class="app-content">
+                        <div class="filter-pills">
+                            <span class="pill active" data-filter="all">Todas</span>
+                            <span class="pill" data-filter="tech">Tecnología</span>
+                            <span class="pill" data-filter="health">Salud</span>
+                            <span class="pill" data-filter="finance">Finanzas</span>
+                        </div>
+                        <div class="companies-container" id="companiesContainer"></div>
+                    </div>
+                </div>
+
+                <!-- NOTICIAS Screen -->
+                <div class="app-screen" id="newsScreen">
+                    <div class="app-header">
+                        <h1>Noticias Migratorias</h1>
+                        <p class="header-subtitle">Actualizaciones importantes 2025</p>
+                    </div>
+
+                    <div class="app-content">
+                        <div class="news-categories">
+                            <div class="category-chip active" data-category="all">📢 Todas</div>
+                            <div class="category-chip" data-category="urgent">🚨 Urgentes</div>
+                            <div class="category-chip" data-category="policy">📋 Políticas</div>
+                            <div class="category-chip" data-category="h1b">💼 H-1B</div>
+                        </div>
+                        <div class="news-feed" id="newsFeed"></div>
+                    </div>
+                </div>
+
+                <!-- SOPORTE Screen -->
+                <div class="app-screen" id="supportScreen">
+                    <div class="app-header">
+                        <h1>Centro de Ayuda</h1>
+                        <p class="header-subtitle">Estamos aquí para apoyarte</p>
+                    </div>
+
+                    <div class="app-content">
+                        <div class="support-grid">
+                            <div class="support-tile" data-support="faq">
+                                <div class="tile-icon">❓</div>
+                                <h4>FAQ</h4>
+                                <p>Preguntas frecuentes</p>
+                            </div>
+                            <div class="support-tile" data-support="guides">
+                                <div class="tile-icon">📖</div>
+                                <h4>Guías</h4>
+                                <p>Paso a paso</p>
+                            </div>
+                            <div class="support-tile" data-support="forum">
+                                <div class="tile-icon">💬</div>
+                                <h4>Foro</h4>
+                                <p>Comunidad</p>
+                            </div>
+                            <div class="support-tile" data-support="lawyers">
+                                <div class="tile-icon">⚖️</div>
+                                <h4>Abogados</h4>
+                                <p>Directorio legal</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Pantalla de Detalles (Dinámica) -->
+                <div class="app-screen" id="detailScreen">
+                    <div class="app-header">
+                        <button class="back-btn" id="backButton">← Volver</button>
+                        <h1 id="detailTitle">Detalles</h1>
+                    </div>
+                    <div class="app-content" id="detailContent"></div>
+                </div>
+
+                <!-- Bottom Navigation -->
+                <div class="bottom-nav">
+                    <div class="nav-item active" data-screen="homeScreen">
+                        <div class="nav-icon">🏠</div>
+                        <span class="nav-label">Inicio</span>
+                    </div>
+                    <div class="nav-item" data-screen="profileScreen">
+                        <div class="nav-icon">👤</div>
+                        <span class="nav-label">Perfil</span>
+                    </div>
+                    <div class="nav-item nav-center" data-screen="predictionScreen">
+                        <div class="nav-icon-special">🎯</div>
+                        <span class="nav-label">Predicción</span>
+                    </div>
+                    <div class="nav-item" data-screen="employmentScreen">
+                        <div class="nav-icon">💼</div>
+                        <span class="nav-label">Empleo</span>
+                    </div>
+                    <div class="nav-item" data-screen="supportScreen">
+                        <div class="nav-icon">🆘</div>
+                        <span class="nav-label">Soporte</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,774 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VisaPredictAI - Prototipo Premium</title>
+    
+    <!-- ORDEN CRÍTICO DE CSS - NO CAMBIAR -->
+    <link rel="stylesheet" href="base.css">
+    <link rel="stylesheet" href="components.css">
+    <link rel="stylesheet" href="screens.css">
+    <link rel="stylesheet" href="dark-mode.css">
+    <link rel="stylesheet" href="images.css">
+    <link rel="stylesheet" href="cards.css">
+    <link rel="stylesheet" href="fixes.css">
+    <link rel="stylesheet" href="emergency-fix.css">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="phone-container">
+        <div class="iphone">
+            <div class="power-button"></div>
+            <div class="volume-buttons">
+                <div class="volume-up"></div>
+                <div class="volume-down"></div>
+            </div>
+            <div class="screen">
+                <div class="dynamic-island"></div>
+                <div class="status-bar">
+                    <div class="time" id="statusTime">9:41</div>
+                    <div class="status-icons"><span>📶</span><span>📶</span><span>🔋</span></div>
+                </div>
+
+                <!-- Loading Screen -->
+                <div class="loading-screen" id="loadingScreen">
+                    <div class="loading-logo">
+                        <img src="VisaPredictAI.png" alt="VisaPredictAI" onerror="this.style.display='none'; this.parentElement.innerHTML='<div style=\"font-size: 48px;\">🗽</div>';">
+                    </div>
+                    <div class="loading-text">VisaPredictAI</div>
+                    <div class="loading-subtitle">Tu camino al sueño americano</div>
+                    <div class="loading-bar"><div class="loading-progress"></div></div>
+                </div>
+
+                <!-- Login Screen -->
+                <div class="login-screen" id="loginScreen">
+                    <div class="login-container">
+                        <div class="login-logo">
+                            <img src="VisaPredictAI.png" alt="VisaPredictAI" style="width: 80%; height: 80%; object-fit: contain;" onerror="this.style.display='none'; this.parentElement.innerHTML='<span style=\"font-size: 48px;\">🗽</span>';">
+                        </div>
+                        <div class="login-form">
+                            <h1 class="login-title">Bienvenido</h1>
+                            <p class="login-subtitle">Tu futuro en Estados Unidos comienza aquí</p>
+                            <input type="email" class="login-input" id="loginEmail" placeholder="Correo electrónico" value="saul.gonzalez@email.com">
+                            <input type="password" class="login-input" id="loginPassword" placeholder="Contraseña" value="••••••••">
+                            <button id="loginButton" class="login-button">Iniciar Sesión</button>
+                            <div class="login-divider">o continúa con</div>
+                            <div class="login-social">
+                                <button class="social-btn" id="googleLogin">
+                                    <span>G</span> Google
+                                </button>
+                                <button class="social-btn" id="appleLogin">
+                                    <span>🍎</span> Apple
+                                </button>
+                            </div>
+                            <div class="biometric-login">
+                                <button id="faceIdButton" class="face-id-button"><span>👤</span></button>
+                                <div class="face-id-text">Face ID</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- INICIO Screen -->
+                <div class="app-screen" id="homeScreen">
+                    <div class="app-header-modern">
+                        <div class="header-top">
+                            <div>
+                                <h1 class="welcome-title" id="greetingText">Buenos días, Saul</h1>
+                                <p class="header-subtitle" id="motivationalQuote">Tu proceso está en marcha</p>
+                            </div>
+                            <button class="settings-btn" id="settingsButton">⚙️</button>
+                        </div>
+                    </div>
+                    
+                    <div class="app-content-modern">
+                        <!-- Profile Summary Card -->
+                        <div class="profile-summary-card" id="profileSummaryCard">
+                            <div class="profile-avatar">
+                                <img src="Sully.png" alt="Saul" style="width: 100%; height: 100%; object-fit: cover; border-radius: 50%;" onerror="this.style.display='none'; this.parentElement.innerHTML='<span>SG</span>';">
+                                <div class="profile-badge">75%</div>
+                            </div>
+                            <div class="profile-info">
+                                <h3>Saul Gonzalez</h3>
+                                <p>Ingeniero de Software • México</p>
+                                <div class="profile-stats">
+                                    <div class="stat">
+                                        <span class="stat-value">EB-2</span>
+                                        <span class="stat-label">Visa</span>
+                                    </div>
+                                    <div class="stat">
+                                        <span class="stat-value">3</span>
+                                        <span class="stat-label">Docs</span>
+                                    </div>
+                                    <div class="stat">
+                                        <span class="stat-value">85%</span>
+                                        <span class="stat-label">Prob.</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Visa Status Progress -->
+                        <div class="visa-status-card">
+                            <h4>Estado de tu Proceso</h4>
+                            <div class="process-steps">
+                                <div class="step completed">
+                                    <div class="step-icon">✓</div>
+                                    <span>Documentos</span>
+                                </div>
+                                <div class="step completed">
+                                    <div class="step-icon">✓</div>
+                                    <span>Revisión</span>
+                                </div>
+                                <div class="step active">
+                                    <div class="step-icon">3</div>
+                                    <span>Oficial</span>
+                                </div>
+                                <div class="step">
+                                    <div class="step-icon">4</div>
+                                    <span>Entrevista</span>
+                                </div>
+                                <div class="step">
+                                    <div class="step-icon">5</div>
+                                    <span>Decisión</span>
+                                </div>
+                            </div>
+                            <div class="status-detail">
+                                <p><strong>Paso Actual:</strong> En Revisión por Oficial</p>
+                                <p><strong>Tiempo Estimado:</strong> 2-3 semanas</p>
+                            </div>
+                        </div>
+
+                        <!-- Quick Actions Grid -->
+                        <div class="quick-actions-grid">
+                            <div class="quick-action" id="quickPrediction">
+                                <div class="action-icon-wrapper prediction">
+                                    <span>🎯</span>
+                                </div>
+                                <span>Predicción</span>
+                            </div>
+                            <div class="quick-action" id="quickDocuments">
+                                <div class="action-icon-wrapper documents">
+                                    <span>📄</span>
+                                </div>
+                                <span>Documentos</span>
+                            </div>
+                            <div class="quick-action" id="quickNews">
+                                <div class="action-icon-wrapper news">
+                                    <span>📰</span>
+                                </div>
+                                <span>Noticias</span>
+                            </div>
+                            <div class="quick-action" id="quickChecklist">
+                                <div class="action-icon-wrapper checklist">
+                                    <span>✅</span>
+                                </div>
+                                <span>Checklist</span>
+                            </div>
+                        </div>
+
+                        <!-- Recent Alerts -->
+                        <div class="alerts-section">
+                            <h4>Alertas Recientes</h4>
+                            <div class="alert-list" id="alertsList">
+                                <!-- Dynamically generated -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- PERFIL Screen -->
+                <div class="app-screen" id="profileScreen">
+                    <div class="app-header-modern profile-header">
+                        <div class="profile-hero">
+                            <div class="profile-avatar-large">
+                                <img src="Sully.png" alt="Saul" style="width: 100%; height: 100%; object-fit: cover; border-radius: 50%;" onerror="this.style.display='none'; this.parentElement.innerHTML='<span>SG</span>';">
+                                <button class="edit-photo-btn">📷</button>
+                            </div>
+                            <h2>Saul Gonzalez</h2>
+                            <p>Ingeniero de Software Senior</p>
+                            <div class="profile-badges">
+                                <span class="badge">🇲🇽 México</span>
+                                <span class="badge">📍 California</span>
+                                <span class="badge">💼 5 años exp.</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="app-content-modern">
+                        <!-- Candidate Score -->
+                        <div class="candidate-score-card">
+                            <div class="score-circle">
+                                <svg viewBox="0 0 100 100">
+                                    <circle cx="50" cy="50" r="45" fill="none" stroke="#e0e0e0" stroke-width="8"/>
+                                    <circle cx="50" cy="50" r="45" fill="none" stroke="url(#gradient)" stroke-width="8" 
+                                            stroke-dasharray="283" stroke-dashoffset="70" stroke-linecap="round"
+                                            transform="rotate(-90 50 50)"/>
+                                    <defs>
+                                        <linearGradient id="gradient">
+                                            <stop offset="0%" style="stop-color:#4CAF50"/>
+                                            <stop offset="100%" style="stop-color:#8BC34A"/>
+                                        </linearGradient>
+                                    </defs>
+                                </svg>
+                                <div class="score-text">
+                                    <span class="score-number">75%</span>
+                                    <span class="score-label">Candidato Fuerte</span>
+                                </div>
+                            </div>
+                            <button class="improve-btn">📈 Ver Recomendaciones de Mejora</button>
+                        </div>
+
+                        <!-- Profile Sections -->
+                        <div class="profile-sections-list">
+                            <div class="profile-section-item" data-section="personal">
+                                <div class="section-icon">👤</div>
+                                <div class="section-content">
+                                    <h4>Datos Personales</h4>
+                                    <p>Información básica • Completo</p>
+                                </div>
+                                <div class="section-progress">
+                                    <div class="progress-ring complete">✓</div>
+                                </div>
+                            </div>
+
+                            <div class="profile-section-item" data-section="academic">
+                                <div class="section-icon">🎓</div>
+                                <div class="section-content">
+                                    <h4>Formación Académica</h4>
+                                    <p>2 títulos, 3 certificaciones</p>
+                                </div>
+                                <div class="section-progress">
+                                    <div class="progress-ring high">85%</div>
+                                </div>
+                            </div>
+
+                            <div class="profile-section-item" data-section="experience">
+                                <div class="section-icon">💼</div>
+                                <div class="section-content">
+                                    <h4>Experiencia Laboral</h4>
+                                    <p>5 años en tecnología</p>
+                                </div>
+                                <div class="section-progress">
+                                    <div class="progress-ring high">90%</div>
+                                </div>
+                            </div>
+
+                            <div class="profile-section-item" data-section="skills">
+                                <div class="section-icon">🚀</div>
+                                <div class="section-content">
+                                    <h4>Habilidades y Competencias</h4>
+                                    <p>15 skills técnicas</p>
+                                </div>
+                                <div class="section-progress">
+                                    <div class="progress-ring medium">70%</div>
+                                </div>
+                            </div>
+
+                            <div class="profile-section-item" data-section="immigration">
+                                <div class="section-icon">🗺️</div>
+                                <div class="section-content">
+                                    <h4>Historial Migratorio</h4>
+                                    <p>Visa TN actual • Sin rechazos</p>
+                                </div>
+                                <div class="section-progress">
+                                    <div class="progress-ring complete">✓</div>
+                                </div>
+                            </div>
+
+                            <div class="profile-section-item" data-section="documents">
+                                <div class="section-icon">📁</div>
+                                <div class="section-content">
+                                    <h4>Mis Documentos</h4>
+                                    <p>12 de 15 subidos</p>
+                                </div>
+                                <div class="section-progress">
+                                    <div class="progress-ring high">80%</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Action Buttons -->
+                        <div class="profile-actions">
+                            <button class="action-btn primary" id="viewCVBtn">
+                                <span>📄</span> Ver mi CV
+                            </button>
+                            <button class="action-btn secondary" id="exportProfileBtn">
+                                <span>⬇️</span> Exportar Perfil
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- PREDICCIÓN Screen -->
+                <div class="app-screen" id="predictionScreen">
+                    <div class="app-header-modern">
+                        <h1>Análisis Predictivo IA</h1>
+                        <p class="header-subtitle">Basado en 50,000+ casos exitosos</p>
+                    </div>
+
+                    <div class="app-content-modern">
+                        <!-- Current Prediction -->
+                        <div class="prediction-main-card">
+                            <div class="prediction-circle-container" id="predictionContainer">
+                                <svg class="prediction-svg" viewBox="0 0 200 200">
+                                    <circle cx="100" cy="100" r="90" fill="none" stroke="#e0e0e0" stroke-width="12"/>
+                                    <circle cx="100" cy="100" r="90" fill="none" stroke="url(#predGradient)" stroke-width="12" 
+                                            stroke-dasharray="565" stroke-dashoffset="565" stroke-linecap="round"
+                                            transform="rotate(-90 100 100)" id="predictionArc"/>
+                                    <defs>
+                                        <linearGradient id="predGradient">
+                                            <stop offset="0%" style="stop-color:#4CAF50"/>
+                                            <stop offset="100%" style="stop-color:#8BC34A"/>
+                                        </linearGradient>
+                                    </defs>
+                                </svg>
+                                <div class="prediction-value">
+                                    <span id="predictionPercent">0</span>%
+                                    <p id="predictionLabel">Calculando...</p>
+                                </div>
+                            </div>
+                            
+                            <div class="prediction-factors" id="predictionFactors" style="display: none;">
+                                <h4>Factores Clave</h4>
+                                <div class="factor positive">✅ Perfil académico sólido</div>
+                                <div class="factor positive">✅ Experiencia relevante</div>
+                                <div class="factor warning">⚠️ Mejorar certificaciones</div>
+                                <div class="factor negative">❌ Falta carta de recomendación</div>
+                            </div>
+
+                            <button class="btn-primary-large" id="runPredictionBtn">
+                                <span>🎯</span> Ejecutar Nueva Predicción
+                            </button>
+                        </div>
+
+                        <!-- Prediction History -->
+                        <div class="prediction-history">
+                            <h4>Historial de Análisis</h4>
+                            <div class="history-timeline" id="predictionTimeline">
+                                <!-- Dynamically generated -->
+                            </div>
+                        </div>
+
+                        <!-- Improvement Tips -->
+                        <div class="improvement-tips-card">
+                            <h4>💡 Consejos para Mejorar</h4>
+                            <div class="tips-list">
+                                <div class="tip">
+                                    <span class="tip-icon">📚</span>
+                                    <div>
+                                        <strong>Educación Continua</strong>
+                                        <p>Considera una certificación en tu área</p>
+                                    </div>
+                                </div>
+                                <div class="tip">
+                                    <span class="tip-icon">🏆</span>
+                                    <div>
+                                        <strong>Logros Profesionales</strong>
+                                        <p>Documenta tus contribuciones clave</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- EMPLEO Screen -->
+                <div class="app-screen" id="employmentScreen">
+                    <div class="app-header-modern">
+                        <h1>Empresas Patrocinadoras</h1>
+                        <div class="header-controls">
+                            <input type="text" class="search-input-header" placeholder="🔍 Buscar empresa..." id="companySearchInput">
+                        </div>
+                    </div>
+
+                    <div class="app-content-modern">
+                        <!-- Filter Pills -->
+                        <div class="filter-pills">
+                            <span class="pill active" data-filter="all">Todas</span>
+                            <span class="pill" data-filter="tech">Tecnología</span>
+                            <span class="pill" data-filter="health">Salud</span>
+                            <span class="pill" data-filter="finance">Finanzas</span>
+                            <span class="pill" data-filter="consulting">Consultoría</span>
+                        </div>
+
+                        <!-- Companies List -->
+                        <div class="companies-container" id="companiesContainer">
+                            <!-- Dynamically generated -->
+                        </div>
+                    </div>
+                </div>
+
+                <!-- NOTICIAS Screen -->
+                <div class="app-screen" id="newsScreen">
+                    <div class="app-header-modern">
+                        <h1>Noticias Migratorias</h1>
+                        <p class="header-subtitle">Actualizaciones importantes 2025</p>
+                    </div>
+
+                    <div class="app-content-modern">
+                        <!-- News Categories -->
+                        <div class="news-categories">
+                            <div class="category-chip active">📢 Todas</div>
+                            <div class="category-chip">🚨 Urgentes</div>
+                            <div class="category-chip">📋 Políticas</div>
+                            <div class="category-chip">💼 H-1B</div>
+                            <div class="category-chip">🎓 EB-2/EB-3</div>
+                        </div>
+
+                        <!-- News Feed -->
+                        <div class="news-feed" id="newsFeed">
+                            <div class="news-item featured" data-link="https://elpais.com/us/migracion/2025-08-04/el-gobierno-de-trump-exigira-depositos-de-hasta-15000-dolares-a-viajeros-de-ciertos-paises-para-recibir-una-visa-de-turismo-o-negocios.html">
+                                <div class="news-image">
+                                    <span class="news-badge">IMPORTANTE</span>
+                                    <div class="news-icon">💰</div>
+                                </div>
+                                <div class="news-content">
+                                    <h3>Gobierno exigirá depósitos de hasta $15,000 para visas</h3>
+                                    <p>Nueva política requiere depósitos significativos para viajeros de ciertos países. Esta medida afectará principalmente a solicitantes de visas B1/B2.</p>
+                                    <div class="news-meta">
+                                        <span>📅 Agosto 2025</span>
+                                        <span>📰 El País</span>
+                                        <span class="news-link">Ver más →</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="news-item" data-link="https://www.infobae.com/estados-unidos/2024/05/10/estados-unidos-endurece-las-entrevistas-para-visas-esta-es-la-nueva-regla-que-regira-a-partir-de-finales-de-mayo/">
+                                <div class="news-image">
+                                    <div class="news-icon">🎤</div>
+                                </div>
+                                <div class="news-content">
+                                    <h3>EE.UU. endurece entrevistas para visas</h3>
+                                    <p>Nuevas regulaciones más estrictas para el proceso de entrevistas consulares.</p>
+                                    <div class="news-meta">
+                                        <span>📅 Septiembre 2025</span>
+                                        <span>📰 Infobae</span>
+                                        <span class="news-link">Ver más →</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="news-item" data-link="https://www.telemundo.com/noticias/noticias-telemundo/inmigracion/publican-una-propuesta-que-aumentaria-las-tarifas-de-los-tramites-de-inmigracion-rcna64131">
+                                <div class="news-image">
+                                    <div class="news-icon">📈</div>
+                                </div>
+                                <div class="news-content">
+                                    <h3>Aumentan tarifas de trámites migratorios</h3>
+                                    <p>USCIS anuncia incremento del 26% en costos de procesamiento.</p>
+                                    <div class="news-meta">
+                                        <span>📅 Agosto 2025</span>
+                                        <span>📰 Telemundo</span>
+                                        <span class="news-link">Ver más →</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="news-item">
+                                <div class="news-image">
+                                    <div class="news-icon">⏰</div>
+                                </div>
+                                <div class="news-content">
+                                    <h3>Reducen tiempos de procesamiento EB-2</h3>
+                                    <p>Buenas noticias: los tiempos bajan de 12 a 8 meses en promedio.</p>
+                                    <div class="news-meta">
+                                        <span>📅 Julio 2025</span>
+                                        <span>📰 USCIS</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- SOPORTE Screen -->
+                <div class="app-screen" id="supportScreen">
+                    <div class="app-header-modern">
+                        <h1>Centro de Ayuda</h1>
+                        <p class="header-subtitle">Estamos aquí para apoyarte</p>
+                    </div>
+
+                    <div class="app-content-modern">
+                        <!-- Support Grid -->
+                        <div class="support-grid">
+                            <div class="support-tile" id="supportFAQ">
+                                <div class="tile-icon">❓</div>
+                                <h4>FAQ</h4>
+                                <p>Preguntas frecuentes</p>
+                            </div>
+                            <div class="support-tile" id="supportGuides">
+                                <div class="tile-icon">📖</div>
+                                <h4>Guías</h4>
+                                <p>Paso a paso</p>
+                            </div>
+                            <div class="support-tile" id="supportForum">
+                                <div class="tile-icon">💬</div>
+                                <h4>Foro</h4>
+                                <p>Comunidad</p>
+                            </div>
+                            <div class="support-tile" id="supportLawyers">
+                                <div class="tile-icon">⚖️</div>
+                                <h4>Abogados</h4>
+                                <p>Directorio legal</p>
+                            </div>
+                            <div class="support-tile" id="supportChat">
+                                <div class="tile-icon">💬</div>
+                                <h4>Chat IA</h4>
+                                <p>Asistente 24/7</p>
+                            </div>
+                            <div class="support-tile" id="supportContact">
+                                <div class="tile-icon">📧</div>
+                                <h4>Contacto</h4>
+                                <p>Escríbenos</p>
+                            </div>
+                        </div>
+
+                        <!-- Featured Resources -->
+                        <div class="featured-resources">
+                            <h4>Recursos Destacados</h4>
+                            <div class="resource-card">
+                                <span class="resource-icon">🎯</span>
+                                <div>
+                                    <h5>Calculadora de Elegibilidad EB-2 NIW</h5>
+                                    <p>Evalúa si calificas para la visa sin oferta laboral</p>
+                                </div>
+                            </div>
+                            <div class="resource-card">
+                                <span class="resource-icon">📅</span>
+                                <div>
+                                    <h5>Boletín de Visas - Diciembre 2025</h5>
+                                    <p>Fechas de prioridad actualizadas</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Documents Modal -->
+                <div class="modal-overlay" id="documentsModal">
+                    <div class="modal-content documents-modal">
+                        <div class="modal-header">
+                            <h3>📁 Mis Documentos</h3>
+                            <button class="modal-close" id="closeDocuments">×</button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="documents-list">
+                                <div class="document-item">
+                                    <div class="doc-icon">📄</div>
+                                    <div class="doc-info">
+                                        <h5>Pasaporte</h5>
+                                        <p>Válido hasta 2032</p>
+                                    </div>
+                                    <span class="doc-status uploaded">✓</span>
+                                </div>
+                                <div class="document-item">
+                                    <div class="doc-icon">🎓</div>
+                                    <div class="doc-info">
+                                        <h5>Título Universitario</h5>
+                                        <p>Ingeniería de Software</p>
+                                    </div>
+                                    <span class="doc-status uploaded">✓</span>
+                                </div>
+                                <div class="document-item">
+                                    <div class="doc-icon">💼</div>
+                                    <div class="doc-info">
+                                        <h5>Carta de Empleo</h5>
+                                        <p>Tech Corp</p>
+                                    </div>
+                                    <span class="doc-status uploaded">✓</span>
+                                </div>
+                                <div class="document-item">
+                                    <div class="doc-icon">💰</div>
+                                    <div class="doc-info">
+                                        <h5>Estados de Cuenta</h5>
+                                        <p>Últimos 3 meses</p>
+                                    </div>
+                                    <span class="doc-status pending">!</span>
+                                </div>
+                                <div class="document-item">
+                                    <div class="doc-icon">📋</div>
+                                    <div class="doc-info">
+                                        <h5>Formulario I-140</h5>
+                                        <p>Pendiente de firma</p>
+                                    </div>
+                                    <span class="doc-status pending">!</span>
+                                </div>
+                            </div>
+                            <button class="btn-primary" style="width: 100%; margin-top: 20px;">
+                                <span>➕</span> Subir Nuevo Documento
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Checklist Modal -->
+                <div class="modal-overlay" id="checklistModal">
+                    <div class="modal-content checklist-modal">
+                        <div class="modal-header">
+                            <h3>✅ Checklist de Requisitos</h3>
+                            <button class="modal-close" id="closeChecklist">×</button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="checklist-progress">
+                                <div class="progress-bar">
+                                    <div class="progress-fill" id="checklistProgress" style="width: 60%;"></div>
+                                </div>
+                                <span class="progress-text">12 de 20 completados</span>
+                            </div>
+                            <div class="checklist-items">
+                                <label class="checklist-item">
+                                    <input type="checkbox" checked>
+                                    <span>Pasaporte vigente (mínimo 6 meses)</span>
+                                </label>
+                                <label class="checklist-item">
+                                    <input type="checkbox" checked>
+                                    <span>Fotografías formato visa (2)</span>
+                                </label>
+                                <label class="checklist-item">
+                                    <input type="checkbox" checked>
+                                    <span>Título universitario apostillado</span>
+                                </label>
+                                <label class="checklist-item">
+                                    <input type="checkbox" checked>
+                                    <span>Certificados de empleo anteriores</span>
+                                </label>
+                                <label class="checklist-item">
+                                    <input type="checkbox">
+                                    <span>Cartas de recomendación (3)</span>
+                                </label>
+                                <label class="checklist-item">
+                                    <input type="checkbox">
+                                    <span>Evidencia de logros profesionales</span>
+                                </label>
+                                <label class="checklist-item">
+                                    <input type="checkbox">
+                                    <span>Publicaciones o patentes</span>
+                                </label>
+                                <label class="checklist-item">
+                                    <input type="checkbox">
+                                    <span>Certificación de inglés (TOEFL/IELTS)</span>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Settings Modal -->
+                <div class="modal-overlay" id="settingsModal">
+                    <div class="modal-content settings-modal">
+                        <div class="modal-header">
+                            <h3>⚙️ Configuración</h3>
+                            <button class="modal-close" id="closeSettings">×</button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="settings-section">
+                                <h4>Apariencia</h4>
+                                <div class="setting-item">
+                                    <span>Modo Oscuro</span>
+                                    <label class="toggle-switch">
+                                        <input type="checkbox" id="darkModeToggle">
+                                        <span class="toggle-slider"></span>
+                                    </label>
+                                </div>
+                                <div class="setting-item">
+                                    <span>Idioma</span>
+                                    <select class="setting-select">
+                                        <option>Español</option>
+                                        <option>English</option>
+                                        <option>Português</option>
+                                    </select>
+                                </div>
+                            </div>
+                            
+                            <div class="settings-section">
+                                <h4>Notificaciones</h4>
+                                <div class="setting-item">
+                                    <span>Alertas de proceso</span>
+                                    <label class="toggle-switch">
+                                        <input type="checkbox" checked>
+                                        <span class="toggle-slider"></span>
+                                    </label>
+                                </div>
+                                <div class="setting-item">
+                                    <span>Noticias migratorias</span>
+                                    <label class="toggle-switch">
+                                        <input type="checkbox" checked>
+                                        <span class="toggle-slider"></span>
+                                    </label>
+                                </div>
+                                <div class="setting-item">
+                                    <span>Recordatorios de documentos</span>
+                                    <label class="toggle-switch">
+                                        <input type="checkbox" checked>
+                                        <span class="toggle-slider"></span>
+                                    </label>
+                                </div>
+                            </div>
+
+                            <div class="settings-section">
+                                <h4>Cuenta</h4>
+                                <button class="btn-secondary">Cambiar Contraseña</button>
+                                <button class="btn-secondary">Exportar Datos</button>
+                                <button class="btn-danger">Cerrar Sesión</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- CV Modal -->
+                <div class="modal-overlay" id="cvModal">
+                    <div class="modal-content cv-modal">
+                        <div class="modal-header">
+                            <h3>📄 Curriculum Vitae</h3>
+                            <button class="modal-close" id="closeCV">×</button>
+                        </div>
+                        <div class="modal-body cv-body">
+                            <!-- CV content will be generated dynamically -->
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Bottom Navigation -->
+                <div class="bottom-nav">
+                    <div class="nav-item active" data-screen="homeScreen">
+                        <div class="nav-icon">
+                            <img src="Inicio.png" alt="Inicio" style="width: 24px; height: 24px;" onerror="this.style.display='none'; this.parentElement.innerHTML='🏠';">
+                        </div>
+                        <span class="nav-label">Inicio</span>
+                    </div>
+                    <div class="nav-item" data-screen="profileScreen">
+                        <div class="nav-icon">
+                            <img src="Perfil.png" alt="Perfil" style="width: 24px; height: 24px;" onerror="this.style.display='none'; this.parentElement.innerHTML='👤';">
+                        </div>
+                        <span class="nav-label">Perfil</span>
+                    </div>
+                    <div class="nav-item nav-center" data-screen="predictionScreen">
+                        <div class="nav-icon-special">
+                            <img src="Prediccion.png" alt="Predicción" style="width: 32px; height: 32px;" onerror="this.style.display='none'; this.parentElement.innerHTML='<span>🎯</span>';">
+                        </div>
+                        <span class="nav-label">Predicción</span>
+                    </div>
+                    <div class="nav-item" data-screen="employmentScreen">
+                        <div class="nav-icon">
+                            <img src="Empleo.png" alt="Empleo" style="width: 24px; height: 24px;" onerror="this.style.display='none'; this.parentElement.innerHTML='💼';">
+                        </div>
+                        <span class="nav-label">Empleo</span>
+                    </div>
+                    <div class="nav-item" data-screen="supportScreen">
+                        <div class="nav-icon">
+                            <img src="Soporte.png" alt="Soporte" style="width: 24px; height: 24px;" onerror="this.style.display='none'; this.parentElement.innerHTML='🆘';">
+                        </div>
+                        <span class="nav-label">Soporte</span>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>

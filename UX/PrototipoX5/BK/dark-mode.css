@@ -1,0 +1,725 @@
+/* ===== DARK-MODE.CSS - MODO OSCURO COMPLETO ===== */
+
+/* Paleta de colores para modo oscuro */
+:root {
+    --dark-bg-primary: #0F172A;
+    --dark-bg-secondary: #1E293B;
+    --dark-bg-tertiary: #334155;
+    --dark-border: #475569;
+    --dark-text-primary: #F1F5F9;
+    --dark-text-secondary: #CBD5E1;
+    --dark-text-muted: #94A3B8;
+    --dark-accent-blue: #60A5FA;
+    --dark-accent-green: #34D399;
+    --dark-accent-red: #F87171;
+    --dark-accent-yellow: #FBBF24;
+}
+
+/* ===== BASE ===== */
+body.dark-mode {
+    background: linear-gradient(135deg, #0F172A 0%, #1E293B 100%);
+}
+
+body.dark-mode .screen {
+    background: var(--dark-bg-primary);
+}
+
+body.dark-mode .status-bar {
+    color: var(--dark-text-primary);
+}
+
+/* ===== PANTALLAS ===== */
+body.dark-mode .app-screen {
+    background: var(--dark-bg-primary);
+}
+
+body.dark-mode .app-content-modern {
+    background: var(--dark-bg-primary);
+}
+
+/* ===== HEADERS ===== */
+body.dark-mode .app-header-modern {
+    background: linear-gradient(135deg, var(--dark-bg-secondary), var(--dark-bg-tertiary));
+}
+
+body.dark-mode .settings-btn {
+    background: rgba(255,255,255,0.1);
+    border-color: rgba(255,255,255,0.2);
+}
+
+body.dark-mode .settings-btn:hover {
+    background: rgba(255,255,255,0.2);
+}
+
+/* ===== PROFILE SUMMARY CARD ===== */
+body.dark-mode .profile-summary-card {
+    background: var(--dark-bg-secondary);
+    box-shadow: 0 4px 6px rgba(0,0,0,0.3);
+}
+
+body.dark-mode .profile-summary-card:hover {
+    box-shadow: 0 10px 15px rgba(0,0,0,0.4);
+}
+
+body.dark-mode .profile-avatar {
+    background: linear-gradient(135deg, var(--dark-accent-blue), #3B82F6);
+}
+
+body.dark-mode .profile-info h3 {
+    color: var(--dark-text-primary);
+}
+
+body.dark-mode .profile-info p {
+    color: var(--dark-text-secondary);
+}
+
+body.dark-mode .stat-value {
+    color: var(--dark-accent-blue);
+}
+
+body.dark-mode .stat-label {
+    color: var(--dark-text-muted);
+}
+
+/* ===== VISA STATUS CARD ===== */
+body.dark-mode .visa-status-card {
+    background: var(--dark-bg-secondary);
+}
+
+body.dark-mode .visa-status-card h4 {
+    color: var(--dark-text-primary);
+}
+
+body.dark-mode .process-steps::before {
+    background: var(--dark-bg-tertiary);
+}
+
+body.dark-mode .step-icon {
+    background: var(--dark-bg-tertiary);
+    color: var(--dark-text-muted);
+}
+
+body.dark-mode .step.completed .step-icon {
+    background: var(--dark-accent-green);
+}
+
+body.dark-mode .step.active .step-icon {
+    background: var(--dark-accent-blue);
+}
+
+body.dark-mode .step span {
+    color: var(--dark-text-secondary);
+}
+
+body.dark-mode .status-detail {
+    background: var(--dark-bg-tertiary);
+}
+
+body.dark-mode .status-detail p {
+    color: var(--dark-text-secondary);
+}
+
+/* ===== QUICK ACTIONS ===== */
+body.dark-mode .quick-action {
+    background: var(--dark-bg-secondary);
+}
+
+body.dark-mode .quick-action:hover {
+    background: var(--dark-bg-tertiary);
+}
+
+body.dark-mode .quick-action span {
+    color: var(--dark-text-secondary);
+}
+
+/* ===== ALERTS ===== */
+body.dark-mode .alerts-section h4 {
+    color: var(--dark-text-primary);
+}
+
+body.dark-mode .alert-item {
+    background: var(--dark-bg-secondary);
+}
+
+body.dark-mode .alert-content h5 {
+    color: var(--dark-text-primary);
+}
+
+body.dark-mode .alert-content p {
+    color: var(--dark-text-secondary);
+}
+
+body.dark-mode .alert-time {
+    color: var(--dark-text-muted);
+}
+
+/* ===== NAVIGATION ===== */
+body.dark-mode .bottom-nav {
+    background: var(--dark-bg-secondary);
+    border-top-color: var(--dark-border);
+}
+
+body.dark-mode .nav-item {
+    color: var(--dark-text-muted);
+}
+
+body.dark-mode .nav-item.active {
+    color: var(--dark-accent-blue);
+}
+
+body.dark-mode .nav-icon img {
+    filter: brightness(0.5) grayscale(100%);
+}
+
+body.dark-mode .nav-item.active .nav-icon img {
+    filter: brightness(1) grayscale(0%);
+}
+
+body.dark-mode .nav-center .nav-icon-special {
+    background: linear-gradient(135deg, var(--dark-accent-blue), #3B82F6);
+    border-color: var(--dark-bg-secondary);
+}
+
+body.dark-mode .nav-center .nav-icon-special img {
+    filter: brightness(1);
+}
+
+/* ===== PROFILE SCREEN ===== */
+body.dark-mode .profile-header {
+    background: linear-gradient(135deg, var(--dark-bg-secondary), var(--dark-bg-tertiary));
+}
+
+body.dark-mode .profile-avatar-large {
+    background: var(--dark-bg-primary);
+}
+
+body.dark-mode .profile-avatar-large span {
+    color: var(--dark-accent-blue);
+}
+
+body.dark-mode .edit-photo-btn {
+    background: var(--dark-accent-blue);
+    border-color: var(--dark-bg-secondary);
+}
+
+body.dark-mode .badge {
+    background: rgba(255,255,255,0.1);
+    border-color: rgba(255,255,255,0.2);
+}
+
+body.dark-mode .candidate-score-card {
+    background: var(--dark-bg-secondary);
+}
+
+body.dark-mode .score-number {
+    color: var(--dark-accent-blue);
+}
+
+body.dark-mode .score-label {
+    color: var(--dark-text-secondary);
+}
+
+body.dark-mode .improve-btn {
+    background: var(--dark-bg-tertiary);
+    color: var(--dark-accent-blue);
+    border-color: var(--dark-accent-blue);
+}
+
+body.dark-mode .improve-btn:hover {
+    background: var(--dark-accent-blue);
+    color: var(--dark-bg-primary);
+}
+
+body.dark-mode .profile-section-item {
+    background: var(--dark-bg-secondary);
+}
+
+body.dark-mode .section-icon {
+    background: var(--dark-bg-tertiary);
+}
+
+body.dark-mode .section-content h4 {
+    color: var(--dark-text-primary);
+}
+
+body.dark-mode .section-content p {
+    color: var(--dark-text-secondary);
+}
+
+body.dark-mode .progress-ring.complete {
+    background: var(--dark-accent-green);
+}
+
+body.dark-mode .progress-ring.high {
+    background: var(--dark-accent-blue);
+}
+
+body.dark-mode .progress-ring.medium {
+    background: var(--dark-accent-yellow);
+}
+
+body.dark-mode .action-btn.primary {
+    background: var(--dark-accent-blue);
+}
+
+body.dark-mode .action-btn.secondary {
+    background: var(--dark-bg-secondary);
+    color: var(--dark-accent-blue);
+    border-color: var(--dark-accent-blue);
+}
+
+/* ===== PREDICTION SCREEN ===== */
+body.dark-mode .prediction-main-card {
+    background: var(--dark-bg-secondary);
+}
+
+body.dark-mode .prediction-value span {
+    color: var(--dark-accent-blue);
+}
+
+body.dark-mode .prediction-value p {
+    color: var(--dark-text-secondary);
+}
+
+body.dark-mode .prediction-factors {
+    background: var(--dark-bg-tertiary);
+}
+
+body.dark-mode .prediction-factors h4 {
+    color: var(--dark-text-primary);
+}
+
+body.dark-mode .factor.positive {
+    background: rgba(52, 211, 153, 0.1);
+    color: var(--dark-accent-green);
+}
+
+body.dark-mode .factor.warning {
+    background: rgba(251, 191, 36, 0.1);
+    color: var(--dark-accent-yellow);
+}
+
+body.dark-mode .factor.negative {
+    background: rgba(248, 113, 113, 0.1);
+    color: var(--dark-accent-red);
+}
+
+body.dark-mode .prediction-history {
+    background: var(--dark-bg-secondary);
+}
+
+body.dark-mode .prediction-history h4 {
+    color: var(--dark-text-primary);
+}
+
+body.dark-mode .timeline-item {
+    background: var(--dark-bg-tertiary);
+}
+
+body.dark-mode .timeline-date {
+    color: var(--dark-text-secondary);
+}
+
+body.dark-mode .timeline-score.positive {
+    color: var(--dark-accent-green);
+}
+
+body.dark-mode .timeline-score.neutral {
+    color: var(--dark-accent-yellow);
+}
+
+body.dark-mode .timeline-score.negative {
+    color: var(--dark-accent-red);
+}
+
+body.dark-mode .improvement-tips-card {
+    background: linear-gradient(135deg, var(--dark-bg-secondary), var(--dark-bg-tertiary));
+}
+
+body.dark-mode .improvement-tips-card h4 {
+    color: var(--dark-text-primary);
+}
+
+body.dark-mode .tip {
+    background: var(--dark-bg-secondary);
+}
+
+body.dark-mode .tip strong {
+    color: var(--dark-text-primary);
+}
+
+body.dark-mode .tip p {
+    color: var(--dark-text-secondary);
+}
+
+/* ===== EMPLOYMENT SCREEN ===== */
+body.dark-mode .search-input-header {
+    background: rgba(255,255,255,0.1);
+    border-color: rgba(255,255,255,0.2);
+    color: white;
+}
+
+body.dark-mode .search-input-header::placeholder {
+    color: rgba(255,255,255,0.5);
+}
+
+body.dark-mode .pill {
+    background: var(--dark-bg-secondary);
+    border-color: var(--dark-border);
+    color: var(--dark-text-secondary);
+}
+
+body.dark-mode .pill:hover {
+    background: var(--dark-bg-tertiary);
+}
+
+body.dark-mode .pill.active {
+    background: var(--dark-accent-blue);
+    color: var(--dark-bg-primary);
+    border-color: var(--dark-accent-blue);
+}
+
+body.dark-mode .company-card {
+    background: var(--dark-bg-secondary);
+}
+
+body.dark-mode .company-logo {
+    background: var(--dark-bg-tertiary);
+    color: var(--dark-accent-blue);
+}
+
+body.dark-mode .company-info h4 {
+    color: var(--dark-text-primary);
+}
+
+body.dark-mode .company-rating {
+    color: var(--dark-text-secondary);
+}
+
+body.dark-mode .company-description {
+    color: var(--dark-text-secondary);
+}
+
+body.dark-mode .company-stats {
+    background: var(--dark-bg-tertiary);
+}
+
+body.dark-mode .visa-tag {
+    background: var(--dark-bg-tertiary);
+    color: var(--dark-accent-blue);
+}
+
+body.dark-mode .review {
+    background: var(--dark-bg-tertiary);
+}
+
+body.dark-mode .review-header strong {
+    color: var(--dark-text-primary);
+}
+
+body.dark-mode .review p {
+    color: var(--dark-text-secondary);
+}
+
+/* ===== NEWS SCREEN ===== */
+body.dark-mode .category-chip {
+    background: var(--dark-bg-secondary);
+    border-color: var(--dark-border);
+    color: var(--dark-text-secondary);
+}
+
+body.dark-mode .category-chip:hover {
+    background: var(--dark-bg-tertiary);
+}
+
+body.dark-mode .category-chip.active {
+    background: var(--dark-accent-blue);
+    color: var(--dark-bg-primary);
+    border-color: var(--dark-accent-blue);
+}
+
+body.dark-mode .news-item {
+    background: var(--dark-bg-secondary);
+}
+
+body.dark-mode .news-item.featured {
+    border-color: var(--dark-accent-blue);
+}
+
+body.dark-mode .news-image {
+    background: linear-gradient(135deg, var(--dark-bg-tertiary), var(--dark-bg-secondary));
+}
+
+body.dark-mode .news-content h3 {
+    color: var(--dark-text-primary);
+}
+
+body.dark-mode .news-content p {
+    color: var(--dark-text-secondary);
+}
+
+body.dark-mode .news-meta {
+    color: var(--dark-text-muted);
+}
+
+body.dark-mode .news-link {
+    color: var(--dark-accent-blue);
+}
+
+/* ===== SUPPORT SCREEN ===== */
+body.dark-mode .support-tile {
+    background: var(--dark-bg-secondary);
+}
+
+body.dark-mode .support-tile:hover {
+    background: var(--dark-accent-blue);
+    color: var(--dark-bg-primary);
+}
+
+body.dark-mode .support-tile h4 {
+    color: var(--dark-text-primary);
+}
+
+body.dark-mode .support-tile:hover h4 {
+    color: var(--dark-bg-primary);
+}
+
+body.dark-mode .support-tile p {
+    color: var(--dark-text-secondary);
+}
+
+body.dark-mode .support-tile:hover p {
+    color: var(--dark-bg-primary);
+}
+
+body.dark-mode .featured-resources {
+    background: var(--dark-bg-secondary);
+}
+
+body.dark-mode .featured-resources h4 {
+    color: var(--dark-text-primary);
+}
+
+body.dark-mode .resource-card {
+    background: var(--dark-bg-tertiary);
+}
+
+body.dark-mode .resource-card:hover {
+    background: var(--dark-bg-secondary);
+}
+
+body.dark-mode .resource-card h5 {
+    color: var(--dark-text-primary);
+}
+
+body.dark-mode .resource-card p {
+    color: var(--dark-text-secondary);
+}
+
+/* ===== MODALS ===== */
+body.dark-mode .modal-overlay {
+    background: rgba(0,0,0,0.7);
+}
+
+body.dark-mode .modal-content {
+    background: var(--dark-bg-secondary);
+}
+
+body.dark-mode .modal-header {
+    border-bottom-color: var(--dark-border);
+}
+
+body.dark-mode .modal-header h3 {
+    color: var(--dark-text-primary);
+}
+
+body.dark-mode .modal-close {
+    background: var(--dark-bg-tertiary);
+    color: var(--dark-text-primary);
+}
+
+body.dark-mode .modal-close:hover {
+    background: var(--dark-border);
+}
+
+body.dark-mode .document-item {
+    background: var(--dark-bg-tertiary);
+}
+
+body.dark-mode .doc-icon {
+    background: var(--dark-bg-secondary);
+}
+
+body.dark-mode .doc-info h5 {
+    color: var(--dark-text-primary);
+}
+
+body.dark-mode .doc-info p {
+    color: var(--dark-text-secondary);
+}
+
+body.dark-mode .doc-status.uploaded {
+    background: var(--dark-accent-green);
+}
+
+body.dark-mode .doc-status.pending {
+    background: var(--dark-accent-yellow);
+    color: var(--dark-bg-primary);
+}
+
+body.dark-mode .checklist-item {
+    background: var(--dark-bg-tertiary);
+}
+
+body.dark-mode .checklist-item:hover {
+    background: var(--dark-bg-secondary);
+}
+
+body.dark-mode .checklist-item span {
+    color: var(--dark-text-secondary);
+}
+
+body.dark-mode .progress-bar {
+    background: var(--dark-bg-tertiary);
+}
+
+body.dark-mode .progress-text {
+    color: var(--dark-text-secondary);
+}
+
+body.dark-mode .settings-section h4 {
+    color: var(--dark-text-primary);
+}
+
+body.dark-mode .setting-item {
+    border-bottom-color: var(--dark-border);
+}
+
+body.dark-mode .setting-item span {
+    color: var(--dark-text-secondary);
+}
+
+body.dark-mode .toggle-slider {
+    background-color: var(--dark-bg-tertiary);
+}
+
+body.dark-mode input:checked + .toggle-slider {
+    background-color: var(--dark-accent-blue);
+}
+
+body.dark-mode .setting-select {
+    background: var(--dark-bg-tertiary);
+    border-color: var(--dark-border);
+    color: var(--dark-text-primary);
+}
+
+body.dark-mode .btn-secondary {
+    background: var(--dark-bg-tertiary);
+    color: var(--dark-accent-blue);
+}
+
+body.dark-mode .btn-danger {
+    background: var(--dark-accent-red);
+}
+
+/* ===== CV MODAL ===== */
+body.dark-mode .cv-header {
+    border-bottom-color: var(--dark-border);
+}
+
+body.dark-mode .cv-header h2 {
+    color: var(--dark-accent-blue);
+}
+
+body.dark-mode .cv-header p {
+    color: var(--dark-text-secondary);
+}
+
+body.dark-mode .cv-section h3 {
+    color: var(--dark-accent-blue);
+    border-bottom-color: var(--dark-border);
+}
+
+body.dark-mode .cv-entry h4 {
+    color: var(--dark-text-primary);
+}
+
+body.dark-mode .cv-date {
+    color: var(--dark-text-muted);
+}
+
+body.dark-mode .cv-entry ul {
+    color: var(--dark-text-secondary);
+}
+
+/* ===== LOGIN SCREEN ===== */
+body.dark-mode .login-screen {
+    background: linear-gradient(135deg, var(--dark-bg-secondary), var(--dark-bg-tertiary));
+}
+
+body.dark-mode .login-logo {
+    background: var(--dark-bg-primary);
+}
+
+body.dark-mode .login-input {
+    background: var(--dark-bg-primary);
+    color: var(--dark-text-primary);
+}
+
+body.dark-mode .login-input:focus {
+    box-shadow: 0 0 0 3px rgba(96, 165, 250, 0.3);
+}
+
+body.dark-mode .login-button {
+    background: var(--dark-accent-blue);
+    color: var(--dark-bg-primary);
+}
+
+body.dark-mode .social-btn {
+    background: rgba(255,255,255,0.05);
+    border-color: rgba(255,255,255,0.2);
+}
+
+body.dark-mode .social-btn:hover {
+    background: rgba(255,255,255,0.1);
+}
+
+body.dark-mode .face-id-button {
+    background: rgba(255,255,255,0.1);
+    border-color: rgba(255,255,255,0.2);
+}
+
+body.dark-mode .face-id-button:hover {
+    background: rgba(255,255,255,0.2);
+}
+
+/* ===== LOADING SCREEN ===== */
+body.dark-mode .loading-screen {
+    background: linear-gradient(135deg, var(--dark-bg-secondary), var(--dark-bg-tertiary));
+}
+
+body.dark-mode .loading-logo {
+    background: var(--dark-bg-primary);
+}
+
+/* ===== BUTTONS ===== */
+body.dark-mode .btn-primary {
+    background: linear-gradient(135deg, var(--dark-accent-blue), #3B82F6);
+}
+
+body.dark-mode .btn-primary-large {
+    background: linear-gradient(135deg, var(--dark-accent-blue), #3B82F6);
+}
+
+/* ===== SCROLLBAR ===== */
+body.dark-mode ::-webkit-scrollbar-track {
+    background: var(--dark-bg-secondary);
+}
+
+body.dark-mode ::-webkit-scrollbar-thumb {
+    background: var(--dark-bg-tertiary);
+}
+
+body.dark-mode ::-webkit-scrollbar-thumb:hover {
+    background: var(--dark-border);
+}

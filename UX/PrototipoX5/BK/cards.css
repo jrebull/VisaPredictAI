@@ -1,0 +1,72 @@
+/* ===== CARDS.CSS - ESTILOS ESPECÍFICOS DE TARJETAS ===== */
+/* Este archivo corrige los problemas de renderizado */
+
+/* Reseteo de conflictos */
+.app-screen * {
+    box-sizing: border-box;
+}
+
+/* Asegurar que el contenedor principal funcione */
+.app-screen {
+    padding-bottom: 80px; /* Espacio para navegación */
+}
+
+/* Corregir problemas de overflow */
+.app-content-modern {
+    max-height: calc(100vh - 240px);
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+/* Arreglar imágenes de perfil cuando faltan */
+.profile-pic-large,
+.profile-pic-xl {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    font-size: 32px !important;
+    color: white !important;
+    font-weight: 700 !important;
+}
+
+/* Asegurar que los emojis se vean correctamente */
+.nav-icon,
+.quick-card-icon,
+.notification-icon span,
+.support-icon,
+.action-icon,
+.btn-icon {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI Emoji', 'Apple Color Emoji', 'Noto Color Emoji', sans-serif !important;
+}
+
+/* Corregir altura del contenido */
+.app-header-modern + .app-content-modern {
+    height: calc(100% - 160px);
+}
+
+/* Asegurar visibilidad de elementos críticos */
+.summary-card,
+.quick-card,
+.notification-card {
+    opacity: 1 !important;
+    visibility: visible !important;
+    display: block !important;
+}
+
+/* Corregir navegación inferior */
+.bottom-nav-modern {
+    z-index: 1000;
+    position: fixed !important;
+    bottom: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+}
+
+/* Prevenir que el contenido se superponga */
+.modal-overlay {
+    position: fixed !important;
+    top: 0 !important;
+    left: 0 !important;
+    width: 100% !important;
+    height: 100% !important;
+}

@@ -1,0 +1,324 @@
+/* ===== FIXES.CSS - CORRECCIONES FINALES PARA IPHONE ===== */
+
+/* ===== ASEGURAR CONTENEDOR DEL IPHONE ===== */
+.screen {
+    position: relative !important;
+    overflow: hidden !important;
+    display: flex !important;
+    flex-direction: column !important;
+    width: 100% !important;
+    height: 100% !important;
+}
+
+/* ===== PANTALLAS DENTRO DEL IPHONE ===== */
+.app-screen,
+.loading-screen,
+.login-screen {
+    position: absolute !important;
+    top: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+    bottom: 0 !important;
+    width: 100% !important;
+    height: 100% !important;
+    max-width: 100% !important;
+    overflow: hidden !important;
+}
+
+/* ===== LOADING SCREEN VISIBLE POR DEFECTO ===== */
+.loading-screen {
+    display: flex !important;
+    opacity: 1 !important;
+}
+
+.loading-screen.fade-out {
+    opacity: 0 !important;
+    transition: opacity 0.5s ease !important;
+}
+
+/* ===== LOGIN SCREEN OCULTO POR DEFECTO ===== */
+.login-screen {
+    display: none;
+    opacity: 0;
+}
+
+.login-screen.active {
+    display: flex !important;
+    opacity: 1 !important;
+}
+
+/* ===== APP SCREENS OCULTOS POR DEFECTO ===== */
+.app-screen {
+    display: none;
+    opacity: 0;
+    transform: translateX(100%);
+}
+
+.app-screen.active {
+    display: flex !important;
+    opacity: 1 !important;
+    transform: translateX(0) !important;
+}
+
+/* ===== PANTALLAS DENTRO DEL IPHONE ===== */
+.app-screen,
+.loading-screen,
+.login-screen {
+    position: absolute !important;
+    top: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+    bottom: 0 !important;
+    width: 100% !important;
+    height: 100% !important;
+    max-width: 100% !important;
+    overflow: hidden !important;
+}
+
+/* ===== Z-INDEX JERARQUÍA ===== */
+.dynamic-island {
+    z-index: 10000 !important;
+}
+
+.status-bar {
+    z-index: 9999 !important;
+}
+
+.loading-screen {
+    z-index: 9998 !important;
+}
+
+.login-screen {
+    z-index: 9997 !important;
+}
+
+.modal-overlay {
+    z-index: 5000 !important;
+    position: fixed !important;
+    top: 0 !important;
+    left: 0 !important;
+    width: 100% !important;
+    height: 100% !important;
+}
+
+.bottom-nav {
+    z-index: 1000 !important;
+}
+
+/* ===== PREVENIR OVERFLOW DE CONTENIDO ===== */
+.app-content-modern {
+    max-height: calc(100vh - 200px) !important;
+    overflow-y: auto !important;
+    overflow-x: hidden !important;
+    -webkit-overflow-scrolling: touch !important;
+}
+
+/* ===== AJUSTES PARA NAVEGACIÓN ===== */
+.bottom-nav {
+    position: absolute !important;
+    bottom: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+    width: 100% !important;
+}
+
+/* ===== EMOJIS VISIBLES ===== */
+.nav-icon,
+.action-icon-wrapper,
+.alert-icon,
+.tile-icon,
+.news-icon,
+.resource-icon,
+.doc-icon,
+.tip-icon {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI Emoji', 'Apple Color Emoji', 'Segoe UI Symbol', 'Noto Color Emoji', sans-serif !important;
+}
+
+/* ===== TEXTO RESPONSIVE ===== */
+h1, h2, h3, h4, h5, p, span {
+    word-wrap: break-word !important;
+    overflow-wrap: break-word !important;
+    max-width: 100% !important;
+}
+
+/* ===== IMÁGENES Y AVATARES ===== */
+.profile-avatar,
+.profile-avatar-large,
+.company-logo,
+.loading-logo,
+.login-logo {
+    flex-shrink: 0 !important;
+}
+
+/* ===== MODALES CENTRADOS ===== */
+.modal-overlay {
+    display: none;
+    padding: 20px !important;
+}
+
+.modal-overlay.active {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+}
+
+.modal-content {
+    position: relative !important;
+    max-height: 80vh !important;
+    overflow-y: auto !important;
+}
+
+/* ===== BOTONES CLICKABLES ===== */
+button,
+.nav-item,
+.quick-action,
+.profile-section-item,
+.support-tile,
+.news-item,
+.company-card,
+.resource-card,
+.alert-item {
+    cursor: pointer !important;
+    -webkit-tap-highlight-color: transparent !important;
+}
+
+/* ===== ANIMACIONES SUAVES ===== */
+* {
+    -webkit-transition: all 0.3s ease;
+    transition: all 0.3s ease;
+}
+
+.app-screen {
+    -webkit-transition: opacity 0.3s ease, transform 0.3s ease !important;
+    transition: opacity 0.3s ease, transform 0.3s ease !important;
+}
+
+/* ===== SCROLLBAR PERSONALIZADO ===== */
+.app-content-modern::-webkit-scrollbar,
+.modal-body::-webkit-scrollbar {
+    width: 4px !important;
+}
+
+.app-content-modern::-webkit-scrollbar-track,
+.modal-body::-webkit-scrollbar-track {
+    background: transparent !important;
+}
+
+.app-content-modern::-webkit-scrollbar-thumb,
+.modal-body::-webkit-scrollbar-thumb {
+    background: rgba(0,0,0,0.2) !important;
+    border-radius: 2px !important;
+}
+
+/* ===== PREVENIR ZOOM EN INPUTS ===== */
+input, select, textarea {
+    font-size: 16px !important;
+}
+
+/* ===== ASEGURAR VISIBILIDAD DE ELEMENTOS CRÍTICOS ===== */
+.loading-screen.fade-out {
+    opacity: 0 !important;
+    pointer-events: none !important;
+}
+
+.app-screen.active {
+    opacity: 1 !important;
+    transform: translateX(0) !important;
+    display: flex !important;
+}
+
+/* ===== CORRECCIÓN PARA EL CÍRCULO DE PREDICCIÓN ===== */
+.prediction-circle-container {
+    position: relative !important;
+}
+
+.prediction-value {
+    position: absolute !important;
+    top: 100px !important;
+    left: 50% !important;
+    transform: translate(-50%, -50%) !important;
+}
+
+/* ===== AJUSTES PARA MODO OSCURO ===== */
+body.dark-mode .app-content-modern::-webkit-scrollbar-thumb {
+    background: rgba(255,255,255,0.2) !important;
+}
+
+/* ===== ASEGURAR QUE LOS HEADERS NO SE COMPRIMAN ===== */
+.app-header-modern {
+    flex-shrink: 0 !important;
+    min-height: 120px !important;
+}
+
+/* ===== AJUSTE FINAL DE PADDING ===== */
+.app-content-modern {
+    padding-bottom: 100px !important; /* Espacio para la navegación */
+}
+
+/* ===== COMPATIBILIDAD CON SAFARI ===== */
+@supports (-webkit-touch-callout: none) {
+    .app-content-modern {
+        padding-bottom: calc(100px + env(safe-area-inset-bottom)) !important;
+    }
+    
+    .bottom-nav {
+        padding-bottom: calc(16px + env(safe-area-inset-bottom)) !important;
+    }
+}
+
+/* ===== ANIMACIÓN DE CARGA MEJORADA ===== */
+@keyframes shimmer {
+    0% {
+        background-position: -1000px 0;
+    }
+    100% {
+        background-position: 1000px 0;
+    }
+}
+
+.loading-logo {
+    position: relative !important;
+    overflow: hidden !important;
+}
+
+.loading-logo::after {
+    content: '' !important;
+    position: absolute !important;
+    top: 0 !important;
+    left: 0 !important;
+    width: 100% !important;
+    height: 100% !important;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent) !important;
+    animation: shimmer 2s infinite !important;
+}
+
+/* ===== ASEGURAR QUE TODO ESTÉ DENTRO DEL VIEWPORT ===== */
+.phone-container {
+    position: relative !important;
+    transform: scale(0.85) !important;
+    transform-origin: center center !important;
+}
+
+/* ===== RESPONSIVE PARA DIFERENTES TAMAÑOS DE PANTALLA ===== */
+@media (max-height: 700px) {
+    .phone-container {
+        transform: scale(0.7) !important;
+    }
+}
+
+@media (max-height: 600px) {
+    .phone-container {
+        transform: scale(0.6) !important;
+    }
+}
+
+/* ===== FIX PARA ELEMENTOS QUE SE SALEN DEL CONTENEDOR ===== */
+.app-screen > * {
+    max-width: 100% !important;
+}
+
+/* ===== ASEGURAR QUE LOS MODALES SE VEAN CORRECTAMENTE ===== */
+.modal-content {
+    max-width: calc(100% - 40px) !important;
+    margin: 0 auto !important;
+}

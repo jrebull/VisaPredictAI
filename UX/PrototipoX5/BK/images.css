@@ -1,0 +1,162 @@
+/* ===== IMAGES.CSS - ESTILOS PARA MANEJO DE IMÁGENES ===== */
+
+/* ===== LOGO DE CARGA ===== */
+.loading-logo img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    padding: 10px;
+}
+
+/* ===== LOGO DE LOGIN ===== */
+.login-logo img {
+    width: 80%;
+    height: 80%;
+    object-fit: contain;
+}
+
+/* ===== AVATARES DE PERFIL ===== */
+.profile-avatar img,
+.profile-avatar-large img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 50%;
+}
+
+/* ===== NAVEGACIÓN ===== */
+.nav-icon {
+    width: 24px;
+    height: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.nav-icon img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+/* Estilos para iconos no activos */
+.nav-item:not(.active) .nav-icon img {
+    filter: grayscale(100%) opacity(0.6);
+}
+
+/* Estilos para iconos activos */
+.nav-item.active .nav-icon img {
+    filter: none;
+}
+
+/* Icono especial de predicción */
+.nav-icon-special img {
+    width: 32px !important;
+    height: 32px !important;
+    filter: none !important;
+}
+
+/* ===== MODO OSCURO PARA IMÁGENES ===== */
+body.dark-mode .nav-item:not(.active) .nav-icon img {
+    filter: brightness(0.7) grayscale(100%);
+}
+
+body.dark-mode .nav-item.active .nav-icon img {
+    filter: brightness(1.2);
+}
+
+body.dark-mode .nav-icon-special img {
+    filter: brightness(1) !important;
+}
+
+/* ===== MANEJO DE ERRORES DE CARGA ===== */
+img {
+    max-width: 100%;
+    height: auto;
+}
+
+/* Prevenir el texto alternativo roto */
+img:not([src]), img[src=""] {
+    display: none;
+}
+
+/* ===== ANIMACIÓN DE CARGA DE IMÁGENES ===== */
+img {
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+img[src]:not([src=""]) {
+    opacity: 1;
+}
+
+/* ===== PLACEHOLDER MIENTRAS CARGA ===== */
+.profile-avatar,
+.profile-avatar-large,
+.loading-logo,
+.login-logo {
+    background: linear-gradient(135deg, #f0f0f0, #e0e0e0);
+    position: relative;
+}
+
+.profile-avatar::before,
+.profile-avatar-large::before,
+.loading-logo::before,
+.login-logo::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+    animation: shimmer 2s infinite;
+}
+
+/* Una vez que la imagen carga, ocultar el placeholder */
+.profile-avatar:has(img[src]:not([src=""])),
+.profile-avatar-large:has(img[src]:not([src=""])),
+.loading-logo:has(img[src]:not([src=""])),
+.login-logo:has(img[src]:not([src=""])) {
+    background: none;
+}
+
+.profile-avatar:has(img[src]:not([src=""]))::before,
+.profile-avatar-large:has(img[src]:not([src=""]))::before,
+.loading-logo:has(img[src]:not([src=""]))::before,
+.login-logo:has(img[src]:not([src=""]))::before {
+    display: none;
+}
+
+@keyframes shimmer {
+    to {
+        left: 100%;
+    }
+}
+
+/* ===== OPTIMIZACIÓN PARA RETINA ===== */
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+    .nav-icon img,
+    .nav-icon-special img {
+        image-rendering: -webkit-optimize-contrast;
+        image-rendering: crisp-edges;
+    }
+}
+
+/* ===== COMPATIBILIDAD CON DIFERENTES FORMATOS ===== */
+.loading-logo,
+.login-logo,
+.profile-avatar,
+.profile-avatar-large {
+    /* Fallback para cuando no hay imagen */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+    color: #999;
+}
+
+/* Asegurar que el badge se vea sobre la imagen */
+.profile-badge {
+    z-index: 10;
+}
