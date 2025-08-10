@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VisaPredictAI - Demo Completa</title>
+    <style>
+        /* ===== ESTILOS ESENCIALES INLINE ===== */
+        :root {
+            --navy-dark: #0F1C3F;
+            --navy-medium: #1B3A61;
+            --blue-primary: #3B82F6;
+            --blue-lighter: #EFF6FF;
+            --gray-200: #E5E7EB;
+            --gray-600: #4B5563;
+            --gray-900: #111827;
+            --success: #10B981;
+            --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+            --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            user-select: none;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Inter', system-ui, sans-serif;
+            background: linear-gradient(135deg, #E6F2FF 0%, #F0F7FF 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+        }
+
+        .demo-container {
+            text-align: center;
+            padding: 20px;
+        }
+
+        .demo-title {
+            font-size: 48px;
+            font-weight: 800;
+            background: linear-gradient(135deg, var(--navy-dark), var(--blue-primary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 20px;
+        }
+
+        .demo-subtitle {
+            font-size: 20px;
+            color: var(--gray-600);
+            margin-bottom: 40px;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            max-width: 1200px;
+            margin: 0 auto 40px;
+        }
+
+        .feature-card {
+            background: white;
+            padding: 30px;
+            border-radius: 16px;
+            box-shadow: var(--shadow-md);
+            transition: all 0.3s;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .feature-icon {
+            font-size: 48px;
+            margin-bottom: 16px;
+        }
+
+        .feature-title {
+            font-size: 18px;
+            font-weight: 700;
+            color: var(--gray-900);
+            margin-bottom: 8px;
+        }
+
+        .feature-description {
+            font-size: 14px;
+            color: var(--gray-600);
+            line-height: 1.5;
+        }
+
+        .cta-section {
+            margin-top: 40px;
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 18px 40px;
+            background: linear-gradient(135deg, var(--navy-medium), var(--blue-primary));
+            color: white;
+            text-decoration: none;
+            border-radius: 12px;
+            font-size: 18px;
+            font-weight: 700;
+            box-shadow: var(--shadow-lg);
+            transition: all 0.3s;
+            cursor: pointer;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.2);
+        }
+
+        .stats-container {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            margin: 40px 0;
+        }
+
+        .stat-item {
+            text-align: center;
+        }
+
+        .stat-value {
+            font-size: 36px;
+            font-weight: 800;
+            color: var(--navy-medium);
+        }
+
+        .stat-label {
+            font-size: 14px;
+            color: var(--gray-600);
+        }
+
+        .tech-stack {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+            margin-top: 30px;
+        }
+
+        .tech-badge {
+            padding: 8px 16px;
+            background: var(--blue-lighter);
+            color: var(--navy-medium);
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+
+        .pulse {
+            animation: pulse 2s infinite;
+        }
+
+        .footer {
+            margin-top: 60px;
+            padding-top: 30px;
+            border-top: 1px solid var(--gray-200);
+            color: var(--gray-600);
+            font-size: 14px;
+        }
+
+        .highlight {
+            background: linear-gradient(135deg, #FFE4B5, #FFA500);
+            padding: 2px 8px;
+            border-radius: 4px;
+            color: var(--navy-dark);
+            font-weight: 600;
+        }
+    </style>
+</head>
+<body>
+    <div class="demo-container">
+        <h1 class="demo-title">🗽 VISA PREDICT AI</h1>
+        <p class="demo-subtitle">Prototipo Premium Refactorizado - Tu camino al sueño americano</p>
+
+        <div class="stats-container">
+            <div class="stat-item">
+                <div class="stat-value">5</div>
+                <div class="stat-label">Archivos Optimizados</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-value pulse">100%</div>
+                <div class="stat-label">UX Mejorado</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-value">7+</div>
+                <div class="stat-label">Pantallas Interactivas</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-value">0</div>
+                <div class="stat-label">Popups Externos</div>
+            </div>
+        </div>
+
+        <div class="features-grid">
+            <div class="feature-card">
+                <div class="feature-icon">🎯</div>
+                <h3 class="feature-title">Predicción con IA</h3>
+                <p class="feature-description">
+                    Análisis en tiempo real basado en 50,000+ casos exitosos. 
+                    Visualización circular animada con factores clave.
+                </p>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon">📱</div>
+                <h3 class="feature-title">100% Contenido Interno</h3>
+                <p class="feature-description">
+                    Todo el contenido se muestra dentro del iPhone. 
+                    Sin modales, sin popups, sin redirecciones externas.
+                </p>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon">🏢</div>
+                <h3 class="feature-title">Base de Empresas</h3>
+                <p class="feature-description">
+                    Información detallada de empresas patrocinadoras con 
+                    tasas de éxito y tiempos de procesamiento.
+                </p>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon">📰</div>
+                <h3 class="feature-title">Noticias Integradas</h3>
+                <p class="feature-description">
+                    Artículos completos de noticias migratorias 
+                    mostrados dentro de la aplicación.
+                </p>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon">👤</div>
+                <h3 class="feature-title">Perfil Completo</h3>
+                <p class="feature-description">
+                    Gestión integral de información personal, académica, 
+                    laboral y documentos con progreso visual.
+                </p>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon">⚙️</div>
+                <h3 class="feature-title">Configuración Flexible</h3>
+                <p class="feature-description">
+                    Archivo config.js opcional para personalización 
+                    completa sin tocar el código principal.
+                </p>
+            </div>
+        </div>
+
+        <div style="background: white; padding: 30px; border-radius: 16px; margin: 40px auto; max-width: 800px; box-shadow: var(--shadow-lg);">
+            <h2 style="color: var(--navy-medium); margin-bottom: 20px;">✨ Mejoras Implementadas</h2>
+            <div style="text-align: left; display: grid; gap: 12px;">
+                <div>✅ <span class="highlight">Consolidación</span> De 10 archivos CSS a solo 1 archivo de estilos</div>
+                <div>✅ <span class="highlight">Navegación</span> Sistema de pantallas con botón de regreso</div>
+                <div>✅ <span class="highlight">Contenido Rico</span> Artículos y perfiles completos integrados</div>
+                <div>✅ <span class="highlight">Sin Dependencias</span> JavaScript Vanilla puro</div>
+                <div>✅ <span class="highlight">Personalizable</span> Configuración centralizada opcional</div>
+                <div>✅ <span class="highlight">Responsive</span> Adaptable a diferentes resoluciones</div>
+                <div>✅ <span class="highlight">Animaciones</span> Transiciones suaves y loading states</div>
+            </div>
+        </div>
+
+        <div class="tech-stack">
+            <span class="tech-badge">HTML5</span>
+            <span class="tech-badge">CSS3</span>
+            <span class="tech-badge">JavaScript ES6+</span>
+            <span class="tech-badge">No Frameworks</span>
+            <span class="tech-badge">No Dependencies</span>
+            <span class="tech-badge">Mobile First</span>
+        </div>
+
+        <div class="cta-section">
+            <button class="cta-button" onclick="alert('🚀 ¡Descarga los archivos y personaliza tu prototipo!\n\n📁 Archivos necesarios:\n• index.html\n• styles.css\n• script.js\n• config.js (opcional)\n• README.md\n\n💡 Abre index.html en tu navegador para comenzar.')">
+                🚀 Comenzar con el Prototipo
+            </button>
+        </div>
+
+        <div class="footer">
+            <p><strong>Estructura de Archivos Optimizada:</strong></p>
+            <p style="margin-top: 10px;">
+                📁 index.html (estructura) | 
+                🎨 styles.css (diseño) | 
+                ⚙️ script.js (lógica) | 
+                📝 config.js (datos) | 
+                📚 README.md (docs)
+            </p>
+            <p style="margin-top: 20px;">
+                Desarrollado con 💙 para la comunidad latina en su camino al sueño americano 🗽
+            </p>
+        </div>
+    </div>
+
+    <script>
+        // Mini demo interactiva
+        document.querySelectorAll('.feature-card').forEach(card => {
+            card.addEventListener('click', function() {
+                this.style.transform = 'scale(0.95)';
+                setTimeout(() => {
+                    this.style.transform = '';
+                }, 200);
+            });
+        });
+
+        // Animación de números
+        function animateValue(obj, start, end, duration) {
+            let startTimestamp = null;
+            const step = (timestamp) => {
+                if (!startTimestamp) startTimestamp = timestamp;
+                const progress = Math.min((timestamp - startTimestamp) / duration, 1);
+                obj.innerHTML = Math.floor(progress * (end - start) + start);
+                if (progress < 1) {
+                    window.requestAnimationFrame(step);
+                }
+            };
+            window.requestAnimationFrame(step);
+        }
+
+        // Animar estadísticas al cargar
+        window.addEventListener('load', () => {
+            const stats = document.querySelectorAll('.stat-value');
+            animateValue(stats[0], 0, 5, 1000);
+            animateValue(stats[1], 0, 100, 1500);
+            animateValue(stats[2], 0, 7, 1200);
+        });
+    </script>
+</body>
+</html>
