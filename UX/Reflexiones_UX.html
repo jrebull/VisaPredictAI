@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Reflexiones sobre las tendencias de UX - Santander Bank US</title>
+  <meta name="description" content="Post de foro sobre madurez UX y tendencias, escrito desde Santander Bank US, con citas textuales integradas, figuras, video y referencias APA 7." />
+  <style>
+    :root{--brand:#EC0000;--ink:#2c3e50;--muted:#495057;--card:#fff;--soft:#f8f9fa;--grad1:#667eea;--grad2:#764ba2}
+    html,body{margin:0;padding:0;background:linear-gradient(135deg,var(--grad1),var(--grad2));min-height:100vh}
+    body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif;line-height:1.6;color:var(--ink)}
+    .wrap{max-width:960px;margin:0 auto;padding:20px}
+    .paper{background:var(--card);border-radius:20px;padding:40px;box-shadow:0 20px 60px rgba(0,0,0,.1)}
+    h1,h2,h3,h4{margin:0 0 .25rem 0}
+    a{color:var(--brand);text-decoration:none}
+    a:hover{text-decoration:underline}
+    .header{background:linear-gradient(135deg,var(--brand),#ff6b6b);color:#fff;padding:30px;border-radius:15px;margin-bottom:30px;text-align:center}
+    .badge{font-size:14px;opacity:.9}
+    .callout{background:var(--soft);border-left:4px solid var(--brand);padding:20px;border-radius:8px;margin-bottom:20px}
+    .section{margin-bottom:40px}
+    .bar{background:linear-gradient(90deg,var(--brand),#ff8a8a);color:#fff;padding:15px 25px;border-radius:10px;margin-bottom:20px}
+    .pill{background:#fff3cd;padding:15px;border-radius:8px;border-left:3px solid #ffc107}
+    .card{background:#f8f9fa;padding:20px;border-radius:10px;margin-bottom:15px}
+    .ribbon{background:linear-gradient(135deg,var(--grad1),var(--grad2));color:#fff;padding:20px;border-radius:10px;margin-top:20px}
+    .footer{text-align:center;margin-top:40px;padding:20px;background:linear-gradient(135deg,var(--grad1),var(--grad2));border-radius:10px;color:#fff}
+    .chips{display:flex;flex-wrap:wrap;gap:.5rem}
+    .chip{background:transparent;border:1px solid #e9ecef;border-radius:999px;padding:4px 10px;font-size:12px}
+    .refs ul{list-style:none;padding:0}
+    .refs li{margin-bottom:10px;padding-left:20px;text-indent:-20px}
+    .subtle{opacity:.95;color:var(--muted)}
+    figure{margin:0}
+    figcaption{padding:10px 14px;font-size:12px;color:#6c757d;background:#fff;border-top:1px solid #e9ecef;text-align:center}
+    .phygital-note{display:block;font-size:90%;color:#6c757d;margin-top:6px}
+    .video-figure iframe{width:100%;aspect-ratio:16/9;height:auto;border:0}
+  .prototype-frame{width:100%;height:85vh;min-height:640px;border:0;border-radius:12px}
+    .prototype-wrap{background:#eef2ff;border:1px solid #e9ecef;border-radius:14px;padding:20px}
+    .cta{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:12px;background:linear-gradient(135deg,#eef2ff,#e0f2fe);border:1px solid #e9ecef;border-radius:12px;padding:16px}
+    .cta .button{display:inline-block;padding:14px 22px;border-radius:999px;background:var(--brand);color:#fff;font-weight:700}
+    .cta p{margin:0;color:var(--muted)}
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="paper">
+
+      <!-- Header -->
+      <div class="header">
+        <h1>📊 Actividad 6: Reflexiones sobre las tendencias de UX</h1>
+        <p class="badge">Perspectiva desde Santander Bank US</p>
+      </div>
+
+      <!-- Contexto -->
+      <div class="callout">
+        <h3 style="color:var(--brand)">📍 Contexto</h3>
+        <p class="subtle">Trabajo en <strong style="color:var(--brand)">Santander Bank US</strong> y, desde esa experiencia, comparto un diagnóstico honesto de nuestra madurez UX, los tópicos que hoy tendrían mayor impacto (incluyendo el lanzamiento de <strong>Certificates of Deposit — CDs</strong> en <strong>Openbank by Santander</strong>, banca 100% digital enfocada a nuevas generaciones), y una mirada a 10/20/30 años. Cierro con el recorrido que hicimos en la materia (proyecto <strong>VisaPredictAI</strong>) y conclusiones.</p>
+      </div>
+      
+      <!-- Imagen 1: Miami -->
+      <div class="card" style="padding:0;overflow:hidden;margin:16px 0;">
+        <figure>
+          <img src="https://www.santander.com/content/dam/santander-com/es/contenido-paginas/sala-de-comunicacion/notas-de-prensa/2025/05/im-np-2025-05-22-openbank-inaugura-en-miami-su-primera-oficina-en-estados-unidos-desktop.jpg" alt="Imagen 1. Santander Physical Branch in Miami for Openbank" style="display:block;width:100%;height:auto;object-fit:cover;" />
+          <figcaption>Imagen 1. Santander Physical Branch in Miami for Openbank</figcaption>
+        </figure>
+      </div>
+
+      <!-- Sección 1 -->
+      <div class="section">
+        <div class="bar"><h2>1️⃣ Nivel de madurez de UX en Santander Bank US</h2><span class="badge">(visión desde dentro)</span></div>
+        <p class="pill">Si tuviera que ubicar hoy a <strong>Santander Bank US</strong> en un marco de madurez de UX (del "reactivo/aislado" al "integrado/gestionado/optimizando"), lo colocaría <strong style="color:var(--brand)">entre "integrado" y "gestionado a escala"</strong>. Y sostengo esta valoración porque, como sintetizan Buis, Ashby y Kouwenberg, <q>To help clients grow more 'UX Mature', it is necessary to structurally guide them along the way.</q> —y eso es lo que hemos hecho al institucionalizar prácticas, rituales y medición transversal (<a href="https://doi.org/10.1016/j.infsof.2022.107086" target="_blank" rel="noopener">Buis et al., 2023</a>).</p>
+
+        <div class="card">
+          <h4 style="color:var(--brand)">🎯 (1) UX conectado a la estrategia</h4>
+          <p>Con el lanzamiento de <strong>Openbank by Santander</strong> en EE. UU. (Q4‑2024) abrazamos explícitamente la ambición de ser un <strong>"digital bank with branches"</strong>: captar depósitos nacionales y escalar la experiencia de principio a fin. En el propio comunicado se subraya que ofrecemos <q>one of the fastest onboarding processes on the market</q> y que habrá <q>additional products to follow during 2025</q> (<a href="https://www.santander.com/en/press-room/press-releases/2024/10/santander-launches-openbank-in-the-us-expanding-its-consumer-banking-business-nationwide" target="_blank" rel="noopener">Santander, 2024</a>). Esto alinea UX con objetivos de negocio (depósitos, NPS (Net Promoter Score; Reichheld, 2003) y coste‑to‑serve) y nos obliga a medir <em>time‑to‑first‑value</em> (TTFV = Time To First Value: tiempo hasta el primer valor percibido por el cliente) y calidad por episodio.</p>
+        </div>
+
+        <div class="card">
+          <h4 style="color:var(--brand)">💻 (2) Plataforma tecnológica propia = velocidad + calidad + observabilidad</h4>
+          <p>Openbank EE. UU. corre sobre tecnología del Grupo: <q>combining its core banking infrastructure, known as Gravity, with its award‑winning customer interface, ODS.</q> Esa combinación habilita experimentos controlados, telemetría y personalización sin sacrificar cumplimiento (<a href="https://www.santander.com/en/press-room/features/openbank-us-milestone-in-santander-transformation" target="_blank" rel="noopener">Santander, 2025</a>). Además, estandariza <em>feature flags</em>, eventos analíticos y <em>guardrails</em> de privacidad/ética accesibles a squads y compliance.</p>
+        </div>
+
+        <div class="card">
+          <h4 style="color:var(--brand)">📈 (3) Resultados y señales de calidad</h4>
+          <p>En <strong>seis meses</strong>, Openbank superó los <strong>100 000 clientes</strong> y acumuló <strong>más de $4 000 millones</strong> en depósitos: <q>more than $4 billion in deposits and more than 100,000 customers, as of May 2025.</q> (<a href="https://www.businesswire.com/news/home/20250522018659/en/Santander-Introduces-First-Openbank-Location-in-the-United-States-at-Miami-Worldcenter" target="_blank" rel="noopener">Business Wire, 2025</a>). No es solo adquisición; debemos leer <em>cohortes de retención</em>, <em>drivers</em> de churn y coste de contacto por episodio.</p>
+        </div>
+
+        <div class="card">
+          <h4 style="color:var(--brand)">🏪 (4) Omnicanal orquestado: "digital‑first", no "digital‑only"</h4>
+          <p>La <strong>primera ubicación física Openbank</strong> en <strong>Miami Worldcenter</strong> (mayo 2025) materializa un puente phygital: <q>first Openbank location in the United States, located at… Miami Worldcenter.</q> (<a href="https://www.santander.com/en/press-room/press-releases/2025/05/santander-introduces-first-openbank-location-in-the-united-states-at-miami-worldcenter" target="_blank" rel="noopener">Santander, 2025</a>; <a href="https://www.santanderus.com/news_press_article/santander-introduces-first-openbank-location-in-the-united-states-at-miami-worldcenter/" target="_blank" rel="noopener">Santander US, 2025</a>). En UX implica <em>handoffs</em> con contexto, continuidad visual/tonal y reglas claras de privacidad al pasar de app a atención humana.</p>
+        </div>
+        <p class="phygital-note">Nota: por <strong>"phygital"</strong> me refiero a la integración fluida entre lo físico y lo digital; en corto: <q>Phygital refers to the blending of physical and digital experiences, creating seamless interactions between the real and virtual worlds.</q></p>
+
+        <div class="card">
+          <h4 style="color:var(--brand)">🚀 (5) Go‑to‑market y personalización a escala</h4>
+          <p>La campaña <strong>"You're smart like that"</strong> (2025) articula la propuesta: <q>Built around the tagline 'You're smart like that'… opening a High Yield Savings Account is a smart financial decision.</q> (<a href="https://www.santanderus.com/youre-smart-like-that/" target="_blank" rel="noopener">Santander US, 2025</a>). Esto exige <em>targeting</em>, <em>frequency capping</em>, coherencia con <em>in‑product copy</em> y monitoreo de <em>brand safety</em>.</p>
+        </div>
+
+        <!-- Imagen 2: Campaña You’re smart like that -->
+        <div class="card" style="padding:0;overflow:hidden;margin:12px 0;">
+          <figure>
+            <img src="https://www.santanderus.com/wp-content/uploads/2025/01/YSLT_OOH_InSitu_Opt2.png" alt="Imagen 2. Openbank US campaign 'You're smart like that' (OOH)" style="display:block;width:100%;height:auto;object-fit:cover;" />
+            <figcaption>Imagen 2. Openbank US campaign "You're smart like that" (OOH). Pieza OOH de la campaña nacional; refuerza el <em>tagline</em> y la propuesta de valor (apertura en minutos, APY competitivo) con visuales contextuales. Fuente: <a href="https://www.santanderus.com/youre-smart-like-that/" target="_blank" rel="noopener">Santander US (2025)</a>.</figcaption>
+          </figure>
+        </div>
+
+        <div class="ribbon"><h4>💡 Conclusión de Sección 1</h4><p>Diagnóstico: <strong>integrado–gestionado</strong>. Prioridad de los próximos 12 meses: cerrar el bucle <strong>diseño ⇄ datos ⇄ negocio</strong> con foco en outcomes (no solo outputs) y accesibilidad como estándar. Resultados esperados: mayor conversión en onboarding, menor TTFV, reducción de fricción y consistencia phygital.</p>
+        <ul style="margin:8px 0 0 16px"><li><strong>OKRs sugeridos:</strong> +20% conversión visit→apply; −15% TTFV; AA constante en web/app; 100% de experimentos con <em>ethics guardrails</em>.</li></ul></div>
+      </div>
+
+      <!-- 🔧 Palancas para subir el último peldaño -->
+      <div class="card" style="border-left:4px solid #4caf50">
+        <h4 style="color:#2e7d32;margin-top:0">🔧 Palancas para subir el último peldaño</h4>
+        <ol style="margin:8px 0 0 18px">
+          <li><strong>Design System + tokens accesibles</strong> (tokens = variables de diseño para color, tipografía, espaciado y estados). Efecto: consistencia, velocidad y cumplimiento AA/AAA desde el origen.</li>
+          <li><strong>Research continuo</strong> “ligero” (1–2 <em>loops</em>/mes: entrevistas cortas + <em>journey analytics</em>). Efecto: detección temprana de fricción y validación de decisiones micro‑UX.</li>
+          <li><strong>Experimentación industrializada</strong> (A/B con <em>ethics/privacy guardrails</em>; <em>feature flags</em>; <em>rollouts</em> graduales). Efecto: aprendizaje causal, mitigación de riesgo y despliegue seguro.</li>
+          <li><strong>Paneles compartidos</strong> X+Biz (NPS de episodios, TTFV, conversión por segmento, coste de contacto, renovaciones de CD). Efecto: foco en outcomes y accountability transversal.</li>
+          <li><strong>Orquestación phygital</strong> (handoffs Miami Worldcenter ↔ app con contexto persistente). Efecto: menos repetición de datos, menos abandono y mayor satisfacción.</li>
+        </ol>
+      </div>
+
+      <!-- Sección 2 -->
+      <div class="section">
+        <div class="bar"><h2>2️⃣ Tópicos con mayor impacto ahora mismo</h2><span class="badge">Openbank 100% digital · CDs · Arquitectura de marca</span></div>
+
+        <div class="card" style="border-left:4px solid #ff9800">
+          <h4 style="color:#e65100">📊 A) CDs bien diseñados = confianza y claridad</h4>
+          <p>Tras el éxito de <em>High‑Yield Savings</em>, el plan público indica que Openbank <q>will begin offering additional products, such as Certificates of Deposit (CDs) and Checking Accounts, later in 2025.</q> Esto exige pedagogía impecable (plazos, penalizaciones, APY) y micro‑interacciones que eliminen ansiedad (<a href="https://www.santander.com/en/press-room/features/openbank-us-milestone-in-santander-transformation" target="_blank" rel="noopener">Santander, 2025</a>). Acciones UX: simuladores con escenarios “qué‑pasa‑si”, calendarios de vencimiento, confirmaciones con <em>breakdown</em> claro, <em>disclosures</em> FDIC visibles y soporte humano en apertura/renovación.</p>
+        </div>
+
+        <div class="card" style="border-left:4px solid #9c27b0">
+          <h4 style="color:#6a1b9a">🎨 B) Openbank by Santander como marca digital protagonista</h4>
+          <p>Arquitectura vigente: <strong>Openbank by Santander</strong> como frente digital nacional sin “romper” el equity de Santander. Implica gobernanza de marca (tono, patrones, accesibilidad), claridad de identidad (¿dónde estoy y por qué?) y <em>privacy</em> unificado con consent granular. La ubicación de Miami y la campaña refuerzan confianza (<em>fintech‑like experience, bank‑grade safety</em>).</p>
+        </div>
+
+        <div class="card" style="border-left:4px solid #2196f3">
+          <h4 style="color:#1565c0">📐 C) Métricas‑que‑importan y orquestación omnicanal</h4>
+          <p>Para CDs mediremos <strong>visit→apply→fund</strong>, <strong>TTFV</strong>, <strong>renovación</strong>, <strong>abandono por fricción</strong> por campo/paso, <strong>coste de contacto</strong> y <strong>NPS de episodios</strong>. Instrumentación: eventos normalizados, paneles compartidos X+Biz y pruebas A/B con segmentación y límites éticos.</p>
+        </div>
+
+        <div class="card" style="border-left:4px solid #e91e63">
+          <h4 style="color:#c2185b">🏦 D) ¿Desaparecerá "Santander" para dejar sólo "Openbank"?</h4>
+          <p><strong>No hay</strong> (al 15‑ago‑2025) anuncio oficial de retirar la marca <strong>Santander</strong> en EE. UU. La estrategia pública sitúa a Openbank como rol digital nacional y a Santander Bank evolucionando su red. Recomendación: experimentar con arquitectura de marca (co‑branded → endorsed → standalone) midiendo <em>brand lift</em>, recuerdo y confianza por segmento. Reuters resume el objetivo de fondeo: <q>cheaper funding</q> para el negocio de auto (<a href="https://www.reuters.com/business/finance/santander-launches-digital-bank-us-gain-cheaper-funding-auto-loans-2024-10-21/" target="_blank" rel="noopener">Reuters, 2024</a>).</p>
+        </div>
+
+        <!-- Video: campaña / experiencia -->
+        <div class="card" style="padding:0;overflow:hidden;margin:12px 0;">
+          <figure class="video-figure">
+            <iframe src="https://player.vimeo.com/video/1065215489?h=8769c84c1c&badge=0&autopause=0&player_id=0&app_id=58479" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen title="Openbank by Santander — You're smart like that"></iframe>
+            <figcaption>Video 1. Spot de campaña/experiencia Openbank — refuerza la promesa digital y la sencillez del onboarding (fuente: Vimeo).</figcaption>
+          </figure>
+        </div>
+
+        <div class="ribbon" style="background:linear-gradient(135deg,#ff6b6b,#feca57)"><h4>💡 En síntesis de Sección 2</h4><p>Éxito = <strong>CDs entendibles, confiables y renovables</strong>; marca <strong>Openbank by Santander</strong> coherente y medible; omnicanalidad que convierte. Indicadores de impacto: ≥35% visit→apply, ≥75% fund rate, ≥60% renovación a vencimiento en clientes primerizos, ≤5% contactos por fricción y NPS de episodios ≥+40.</p></div>
+      </div>
+
+      <!-- Sección 3 -->
+      <div class="section">
+        <div class="bar"><h2>3️⃣ Lo que vivimos en la materia (VisaPredictAI)</h2><span class="badge">Aprendizajes y cicatrices</span></div>
+        <p>En el <strong>Verano de Interfaces</strong> construimos <strong>VisaPredictAI</strong>, un prototipo que estima la probabilidad de aprobación de visa y guía al usuario. El recorrido fue completo: <strong>descubrimiento</strong> (entrevistas, jobs‑to‑be‑done, mapa de dolor), <strong>definición</strong> (personas/escenarios), <strong>ideación</strong> (flujos, sketches), <strong>prototipado</strong> (Figma, wizard flows, empty states) y <strong>pruebas</strong> formativas rápidas.</p>
+        <div class="card"><h4 style="margin-top:0">😰 Lo que dolió</h4>
+          <ol><li>Sesgos en datos y el riesgo ético de “puntuar” personas</li><li>Expectativas mágicas sobre IA</li><li>Tiempo limitado para investigación</li><li>Tono y lenguaje sensibles</li></ol>
+        </div>
+        <div class="card"><h4 style="margin-top:0">✅ Cómo lo resolvimos</h4>
+          <ul><li><strong>Transparencia</strong>: explicaciones legibles del modelo y sus límites</li><li><strong>Control</strong> del usuario: edición de inputs, autosave, estados claros</li><li><strong>Contenido empático</strong>: microcopys que reducen ansiedad</li><li><strong>Accesibilidad</strong>: foco visible, contraste, validaciones amables, compatibilidad con lector</li></ul>
+        </div>
+        <p class="callout" style="background:#f5f5f5"><em>Aprendimos que entender al usuario no es “descubrir lo que quiere”, sino reducir incertidumbre y gestionar emociones; la confianza se diseña con claridad, consistencia y honestidad.</em></p>
+        <div class="ribbon"><h4>💡 Conclusión de Sección 3</h4><p>La mayor lección de VisaPredictAI fue ética aplicada: <strong>explicar</strong> la IA, dar <strong>control</strong> y escribir <strong>con empatía</strong>. Para el banco, esto se traduce en <strong>microcopys claros</strong>, <strong>transparencia</strong> en tasas y riesgos, y pruebas formativas continuas antes de escalar.</p></div>
+      </div>
+
+      <!-- Prototipo embebido: VisaPredictAI -->
+      <div class="card prototype-wrap">
+        <div class="cta">
+          <p><strong>Probar prototipo</strong> · VisaPredictAI (versión 02)</p>
+          <a class="button" href="https://visapredictai.com/ux/prototipo_02/" target="_blank" rel="noopener">Probar prototipo en pestaña nueva</a>
+        </div>
+        <figure style="margin-top:12px">
+          <iframe class="prototype-frame" src="https://visapredictai.com/ux/prototipo_02/" title="Prototipo VisaPredictAI — versión 02" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+          <figcaption>Prototipo 1. VisaPredictAI — prototipo navegable (versión 02). Si tu LMS bloquea <em>iframes</em>, usa el botón “Probar prototipo”.</figcaption>
+        </figure>
+      </div>
+
+      <!-- Sección 4 -->
+      <div class="section">
+        <div class="bar"><h2>4️⃣ Tendencias de UX: ¿a dónde vamos?</h2><span class="badge">10 / 20 / 30 años</span></div>
+        <div class="card" style="border:2px solid #667eea"><h3 style="color:#667eea">🚀 10 años (2035)</h3><p>UX multimodal con IA generativa como copiloto y personalización <em>on‑device</em>, con accesibilidad y privacidad por diseño. Como resume Abdu: <q>AI and ML are rapidly changing the way we design.</q> y, en clave de inclusión, Schloesser: <q>accessible and inclusive for all.</q> (<a href="https://uxmag.com/articles/the-future-of-ux-design-how-ai-and-machine-learning-are-changing-the-way-we-design" target="_blank" rel="noopener">Abdu, 2023</a>; <a href="https://uxmag.com/articles/using-ai-to-break-down-barriers-in-ux-design-2" target="_blank" rel="noopener">Schloesser, 2023</a>; <a href="https://www.lyssna.com/blog/ux-design-trends/" target="_blank" rel="noopener">Boswell, 2025</a>).</p></div>
+        <div class="card" style="border:2px solid #ff6b6b"><h3 style="color:#ff6b6b">🌐 20 años (2045)</h3><p>Computación espacial cotidiana: como anticipa Davis, <q>moving beyond the confines of 2D interfaces… into the immersive realm of a 3D space.</q> y el reto práctico que señala Kołodziejczyk: <q>Designing UI that properly uses 3D Space? Not so much.</q> (<a href="https://uxdesign.cc/beyond-the-screen-a-glimpse-into-the-future-of-ux-a90782e4ce9e" target="_blank" rel="noopener">Davis, 2023</a>; <a href="https://uxdesign.cc/prototyping-for-apples-ar-headset-915e9351e2ec" target="_blank" rel="noopener">Kołodziejczyk, 2023</a>).</p></div>
+        <div class="card" style="border:2px solid #4caf50"><h3 style="color:#4caf50">🧘 30 años (2055)</h3><p>Experiencias <em>calm‑tech</em> y proactivas, orquestando humano+IA+entorno con métricas de bienestar, confianza y sostenibilidad como norte. El éxito no será “qué tan inteligente”, sino <strong>qué tan digno y comprensible</strong> es el sistema.</p></div>
+        <div class="ribbon"><h4>💡 Conclusión de Sección 4</h4><p>El mapa 10/20/30 marca capacidades que debemos sembrar hoy: <strong>multimodal + IA</strong> (2035), <strong>spatial</strong> con criterios de seguridad/ergonomía (2045) y <strong>calm‑tech</strong> medido en bienestar y confianza (2055). Recomendación: pilotos trimestrales, <em>design tokens</em> listos para voz/gestos y guías de accesibilidad AAA.</p></div>
+      </div>
+
+      <!-- Conclusiones -->
+      <div class="section" style="margin-bottom:30px">
+        <div class="bar" style="background:linear-gradient(90deg,var(--brand),#ff6b6b)"><h2>🎯 Conclusiones</h2></div>
+        <div class="card"><h4>📊 Dónde estamos y por qué</h4><p>Santander Bank US opera con UX <strong>integrado‑gestionado</strong>: plataforma propia (Gravity/ODS), ambición nacional con branches, y señales de tracción (>100k clientes; >$4bn depósitos). La apuesta <em>phygital</em> (Miami Worldcenter) confirma continuidad de contexto y foco en <strong>experiencias con P&L</strong>. El próximo salto no es producir más interfaces, sino <strong>cerrar ciclo diseño ⇄ datos ⇄ negocio</strong> para mover métricas de valor (conversión, TTFV, renovación de CDs y coste de contacto).</p></div>
+        <div class="card"><h4>⚡ Prioridades 0–90 días</h4>
+          <ul>
+            <li><strong>CDs (beta controlado)</strong>: simulador “qué‑pasa‑si”, calendarios de vencimiento, <em>disclosures</em> FDIC visibles y flows de renovación con <em>opt‑in/opt‑out</em> explícitos.</li>
+            <li><strong>Medición por episodios</strong>: esquema de eventos normalizado; <strong>NPS (Net Promoter Score)</strong> por <em>journey</em>; panel X+Biz con conversión visit→apply→fund, TTFV y coste de contacto.</li>
+            <li><strong>Accesibilidad</strong>: auditoría AA, remediación priorizada (contraste, foco, etiquetas ARIA, navegación con teclado y lector).</li>
+            <li><strong>Contenido</strong>: guía de microcopy (claridad > ingenio), tono Openbank by Santander unificado y glosario financiero claro (APY, penalizaciones, renovación).</li>
+          </ul>
+        </div>
+        <div class="card"><h4>🗺️ Roadmap 6–12 meses</h4>
+          <ul>
+            <li><strong>CDs GA</strong> con aprendizaje de beta; automatizar recordatorios y <em>smart renewals</em>.</li>
+            <li><strong>Payments/Checking</strong>: pilotos con cohorts jóvenes; integración de KYC/AML fluida y states de error empáticos.</li>
+            <li><strong>Phygital</strong>: <em>handoffs</em> branch↔app con contexto persistente y trazabilidad de continuidad.</li>
+            <li><strong>Experimentación industrializada</strong>: A/B con <em>guardrails</em> de ética/privacidad, <em>feature flags</em> y <em>rollouts</em> graduales.</li>
+          </ul>
+        </div>
+        <div class="card"><h4>📈 KPIs ejecutivos 2025</h4>
+          <ul>
+            <li>Onboarding CDs: ≥35% visit→apply, ≥75% fund rate, TTFV −15% vs. línea base.</li>
+            <li>Renovación CDs: ≥60% en primer vencimiento; churn ≤10% por fricción.</li>
+            <li>Experiencia: NPS episodios ≥+40; ≤5% contactos/cliente por dudas de producto.</li>
+            <li>Accesibilidad: cumplimiento AA sostenido; issues críticos ≤0 por trimestre.</li>
+          </ul>
+        </div>
+        <div class="card"><h4>⚠️ Riesgos y mitigaciones</h4>
+          <ul>
+            <li><strong>Confusión de marca</strong> (Openbank vs. Santander) → pruebas de arquitectura de marca y consistencia de tokens.</li>
+            <li><strong>Dark patterns involuntarios</strong> → <em>design reviews</em> con ética/privacidad y <em>copy</em> transparente.</li>
+            <li><strong>Debt de accesibilidad</strong> → <em>lint</em> de accesibilidad en CI y <em>design tokens</em> AA/AAA por defecto.</li>
+          </ul>
+        </div>
+        <div class="card"><h4>🎯 Declaración final</h4><p>Ganar en UX para banca digital no va de “sorprender”, va de <strong>hacer entendible y confiable</strong> cada decisión financiera. Si ejecutamos CDs con claridad radical, medimos outcomes y orquestamos lo phygital sin fricciones, <strong>Openbank by Santander</strong> consolidará una ventaja difícil de copiar.</p></div>
+      </div>
+
+      <!-- Imagen adicional tras conclusiones y antes de Referencias -->
+      <div class="card" style="padding:0;overflow:hidden;margin:16px 0;">
+        <figure>
+          <img src="https://www.santander.com/content/dam/santander-com/es/contenido-paginas/sala-de-comunicaci%C3%B3n/notas-de-prensa/2024/10/np-2024-10-21-santander-lanza-openbank-usa-galeria-1.jpg.transform/rendition-md/image.jpg" alt="Imagen 3. Openbank USA — lanzamiento (2024)" style="display:block;width:100%;height:auto;object-fit:cover;" />
+          <figcaption>Imagen 3. Openbank USA — lanzamiento (2024). Arquitectura de marca y experiencia física alineadas con la visión digital.</figcaption>
+        </figure>
+      </div>
+
+      <!-- Referencias -->
+      <div class="section refs">
+        <h2 style="color:var(--brand);font-size:22px">📚 Referencias</h2>
+        <ul>
+          <li>Abdu, A. (2023, June 8). <em>The future of UX design: How AI and machine learning are changing the way we design</em>. UX Magazine. <a href="https://uxmag.com/articles/the-future-of-ux-design-how-ai-and-machine-learning-are-changing-the-way-we-design" target="_blank" rel="noopener">Link</a></li>
+          <li>Boswell, A. (2025, June 16). <em>UX design trends for 2025</em>. Lyssna. <a href="https://www.lyssna.com/blog/ux-design-trends/" target="_blank" rel="noopener">Link</a></li>
+          <li>Buis, E. E. G., Ashby, S. S. R., & Kouwenberg, K. K. P. A. (2023). <em>Increasing the UX maturity level of clients: A study of best practices in an agile environment</em>. <em>Information and Software Technology, 154</em>, 107086. <a href="https://doi.org/10.1016/j.infsof.2022.107086" target="_blank" rel="noopener">https://doi.org/10.1016/j.infsof.2022.107086</a></li>
+          <li>Davis, J. (2023, June 7). <em>Beyond the screen: A glimpse into the future of UX: How spatial computing will change our interaction with technology</em>. UX Collective. <a href="https://uxdesign.cc/beyond-the-screen-a-glimpse-into-the-future-of-ux-a90782e4ce9e" target="_blank" rel="noopener">Link</a></li>
+          <li>Kołodziejczyk, K. (2023, June 5). <em>Prototyping for Apple's Vision Pro AR headset</em>. UX Collective. <a href="https://uxdesign.cc/prototyping-for-apples-ar-headset-915e9351e2ec" target="_blank" rel="noopener">Link</a></li>
+          <li>Schloesser, N. (2023, March 14). <em>Using AI to break down barriers in UX design</em>. UX Magazine. <a href="https://uxmag.com/articles/using-ai-to-break-down-barriers-in-ux-design-2" target="_blank" rel="noopener">Link</a></li>
+          <li>Reuters. (2024, Oct 21). <em>Santander launches US digital bank to cut cost of auto lending</em>. <a href="https://www.reuters.com/business/finance/santander-launches-digital-bank-us-gain-cheaper-funding-auto-loans-2024-10-21/" target="_blank" rel="noopener">Link</a></li>
+          <li>Santander. (2024, Oct 21). <em>Santander launches Openbank in the US, expanding its consumer banking business nationwide</em>. <a href="https://www.santander.com/en/press-room/press-releases/2024/10/santander-launches-openbank-in-the-us-expanding-its-consumer-banking-business-nationwide" target="_blank" rel="noopener">Link</a></li>
+          <li>Santander. (2025, May 22). <em>Santander introduces first Openbank location in the United States at Miami Worldcenter</em>. <a href="https://www.santander.com/en/press-room/press-releases/2025/05/santander-introduces-first-openbank-location-in-the-united-states-at-miami-worldcenter" target="_blank" rel="noopener">Link</a></li>
+          <li>Santander. (2025). <em>Openbank US milestone in Santander transformation</em>. <a href="https://www.santander.com/en/press-room/features/openbank-us-milestone-in-santander-transformation" target="_blank" rel="noopener">Link</a></li>
+          <li>Santander US. (2025, Jan). <em>Openbank US launches new campaign "You're smart like that"</em>. <a href="https://www.santanderus.com/youre-smart-like-that/" target="_blank" rel="noopener">Link</a></li>
+          <li>Santander US. (2025, Feb 3). <em>Openbank by Santander hits $2 billion in deposits in the United States</em>. <a href="https://www.santanderus.com/news_press_article/openbank-by-santander-hits-2-billion-in-deposits-in-the-united-states/" target="_blank" rel="noopener">Link</a></li>
+          <li>Santander US. (2025, May 21). <em>Openbank by Santander reaches 100,000 customers in the United States, well-positioned for continued growth in 2025</em>. <a href="https://www.santanderus.com/news_press_article/openbank-by-santander-reaches-100000-customers-in-the-united-states-well-positioned-for-continued-growth-in-2025/" target="_blank" rel="noopener">Link</a></li>
+          <li>Business Wire. (2025, May 22). <em>Santander Introduces First Openbank Location in the United States at Miami Worldcenter</em>. <a href="https://www.businesswire.com/news/home/20250522018659/en/Santander-Introduces-First-Openbank-Location-in-the-United-States-at-Miami-Worldcenter" target="_blank" rel="noopener">Link</a></li>
+          <li>Reichheld, F. F. (2003, December). <em>The one number you need to grow</em>. <em>Harvard Business Review</em>. <a href="https://hbr.org/2003/12/the-one-number-you-need-to-grow" target="_blank" rel="noopener">Link</a></li>
+        </ul>
+      </div>
+
+      <!-- Footer -->
+      <div class="footer"><p>💼 Post creado para el foro de Experiencia del usuario y diseño de interfaces · 📝 Actividad 6 · 🏦 Perspectiva desde Santander Bank US</p><p style="margin-top:8px;opacity:.9">Post by <strong>Javier Rebull</strong> · Estudiante de MNA ITESM — Agosto 2025</p></div>
+
+    </div>
+  </div>
+</body>
+</html>
